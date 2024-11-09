@@ -41,3 +41,7 @@ out/
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
+
+### YML ###
+application-vworld.yml
+application-local.yml
