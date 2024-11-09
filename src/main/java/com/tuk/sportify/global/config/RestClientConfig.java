@@ -22,17 +22,17 @@ public class RestClientConfig {
         final RestClient restClient = RestClient.create();
         final RestClientAdapter restClientAdapter = RestClientAdapter.create(restClient);
         final HttpServiceProxyFactory factory =
-            HttpServiceProxyFactory.builderFor(restClientAdapter).build();
+                HttpServiceProxyFactory.builderFor(restClientAdapter).build();
         return factory.createClient(VworldRestClient.class);
     }
 
     @Bean
-    public DefaultRequestParams defaultRequestParams(){
+    public DefaultRequestParams defaultRequestParams() {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("service","address");
-        params.add("request","getAddress");
-        params.add("type","both");
-        params.add("key",apiKey);
+        params.add("service", "address");
+        params.add("request", "getAddress");
+        params.add("type", "both");
+        params.add("key", apiKey);
         return new DefaultRequestParams(params);
     }
 }

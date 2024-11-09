@@ -22,6 +22,7 @@ public class SportVoucher {
 
     @Column(name = "bussine_number")
     private String businessNumber;
+
     @Embedded private Facility facility;
     @Embedded private Course course;
     @Embedded private Item item;

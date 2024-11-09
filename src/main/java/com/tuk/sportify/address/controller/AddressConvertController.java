@@ -1,7 +1,6 @@
 package com.tuk.sportify.address.controller;
 
 import com.tuk.sportify.address.dto.AddressResponse;
-import com.tuk.sportify.address.dto.VworldAddressResponse;
 import com.tuk.sportify.address.service.AddressConvertService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,7 @@ public class AddressConvertController {
 
     @GetMapping
     public AddressResponse getConvertedAddress(
-            @RequestParam String longitude,@RequestParam String latitude) {
-        return addressConvertService.convertCoordinateToAddress(longitude,latitude);
+            @RequestParam String longitude, @RequestParam String latitude) {
+        return addressConvertService.convertCoordinateToAddress(longitude, latitude);
     }
 }

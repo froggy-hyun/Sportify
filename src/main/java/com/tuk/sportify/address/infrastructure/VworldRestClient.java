@@ -10,6 +10,6 @@ public interface VworldRestClient {
 
     @GetExchange("https://api.vworld.kr/req/address")
     VworldAddressResponse getAddressByCoordinate(
-        @RequestParam final String point,
-        @RequestParam final MultiValueMap<String,String> defaultParameters);
+            @RequestParam final String point,
+            @RequestParam final MultiValueMap<String, String> defaultParameters);
 }
