@@ -1,1 +1,10 @@
+server:
+  port: 8080
 
+spring:
+  profiles:
+    active: local
+    group:
+      local: local, vworld
+      dev:
+      prod:
