@@ -12,23 +12,23 @@ import java.util.Optional;
 @RequestMapping("/members")
 public class MemberController {
 
-    private final MemberService userService;
+    private final MemberService memberService;
 
     @Autowired
-    public MemberController(MemberService userService) {
-        this.userService = userService;
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     // 모든 회원 조회
     @GetMapping
     public List<Member> getAllMembers() {
-        return userService.getAllMembers();
+        return memberService.getAllMembers();
     }
 
     // ID로 특정 회원 조회
     @GetMapping("/{id}")
     public Optional<Member> getMemberById(@PathVariable Long id) {
-        return userService.getMemberById(id);
+        return memberService.getMemberById(id);
     }
 }
 
