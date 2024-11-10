@@ -1,4 +1,4 @@
-package com.tuk.sportify.user.domain;
+package com.tuk.sportify.member.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,12 +10,12 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "user")
+@Table(name = "member")
 @Getter @Setter
-public class User{
+public class Member{
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "member_id", nullable = false)
     private Long id;
 
     @Column(unique = true, nullable = false)
