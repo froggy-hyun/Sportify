@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "member")
-@Getter @Setter
+@Getter
 public class Member{
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
