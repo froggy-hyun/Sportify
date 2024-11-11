@@ -1,5 +1,6 @@
 package com.tuk.sportify.sportvoucher.domain;
 
+import com.tuk.sportify.global.utils.StringFormatter;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -32,4 +33,8 @@ public class Course {
 
     @Column(name = "course_established_month")
     private String establishedMonth;
+
+    public String getDuration(){
+        return StringFormatter.createCourseDuration(beginAt,endAt);
+    }
 }
