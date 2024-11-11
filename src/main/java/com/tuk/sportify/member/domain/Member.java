@@ -28,7 +28,20 @@ public class Member{
     private String name;
 
     @Column(nullable = false)
+    private String gender;
+
+    @Column(nullable = false)
+    private int age;
+
+    @Column(nullable = false)
     private String phone;
+
+    @Column(nullable = false)
+    private String address;
+
+    //장애인 비장애인 여부
+    @Column(nullable = false)
+    private boolean disabled;
 
     @CreationTimestamp
     private Timestamp createdDate;

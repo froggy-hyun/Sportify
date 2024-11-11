@@ -30,14 +30,22 @@ public class MemberServiceTest {
                 .email("test1@example.com")
                 .password("password1")
                 .name("Test Member1")
+                .gender("male")
+                .age(15)
                 .phone("123-456-7890")
+                .address("address1")
+                .disabled(true)
                 .build());
 
         memberRepository.save(Member.builder()
                 .email("test2@example.com")
                 .password("password2")
                 .name("Test Member2")
-                .phone("098-765-4321")
+                .gender("female")
+                .age(17)
+                .phone("234-456-7890")
+                .address("address2")
+                .disabled(false)
                 .build());
     }
 
