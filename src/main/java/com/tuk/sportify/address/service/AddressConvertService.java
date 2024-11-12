@@ -21,7 +21,7 @@ public class AddressConvertService {
 
     public AddressResponse convertCoordinateToAddress(
             final String longitude, final String latitude) {
-        final String point = StringFormatter.createPoint(longitude, latitude);
+        final String point = StringFormatter.createCoordinate(longitude, latitude);
         VworldAddressResponse vworldAddressResponse =
                 vworldRestClient.getAddressByCoordinate(point, defaultRequestParams.params());
         return addressConvertMapper.toAddressResponse(vworldAddressResponse);
