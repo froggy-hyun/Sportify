@@ -12,9 +12,10 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "member")
 @Getter
-public class Member{
+public class Member {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_id", nullable = false)
     private Long id;
 
@@ -45,4 +46,8 @@ public class Member{
 
     @CreationTimestamp
     private Timestamp createdDate;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
