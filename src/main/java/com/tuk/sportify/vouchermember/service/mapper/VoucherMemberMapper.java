@@ -7,6 +7,7 @@ import com.tuk.sportify.vouchermember.dto.CrewVoucher;
 import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
 import com.tuk.sportify.vouchermember.dto.PersonalAndCrewVoucherResponse;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
 
@@ -19,12 +20,19 @@ public class VoucherMemberMapper {
 
     }
 
-    public PersonalVoucher toPersonalVoucher(final SportVoucher sportVouchers){
-        final Course course = sportVoucher.getCourse();
-        return new PersonalVoucher(course.getName(), course.getDuration());
+    public List<PersonalVoucher> toPersonalVoucher(final Slice<SportVoucher> sportVouchersSlice){
+        final List<SportVoucher> sportVouchers = sportVouchersSlice.getContent();
+        return sportVouchers.stream()
+            .map(SportVoucher::getCourse)
+            .map(c->new PersonalVoucher(c.getName(),c.getDuration()))
+            .collect(Collectors.toList());
     }
 
-    public CrewVoucher toCrewVoucher(final VoucherMember voucherMember){
-        return new CrewVoucher();
+    public List<CrewVoucher> toCrewVoucher(final Slice<VoucherMember> voucherMemberSlice){
+        final List<VoucherMember> voucherMembers = voucherMemberSlice.getContent();
+        return voucherMembers.stream()
+            .map(vm->new CrewVoucher(vm.getSportVoucherName(),
+                vm.crewName()))
+            .collect(Collectors.toList());
     }
 }

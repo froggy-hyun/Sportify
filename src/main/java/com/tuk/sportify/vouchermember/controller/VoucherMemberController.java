@@ -20,6 +20,7 @@ public class VoucherMemberController {
         final Long memberId, @RequestParam Integer personalVoucherFetchSize,
         @RequestParam Integer crewVoucherFetchSize
     ){
-        voucherMemberService.findPersonalAndCrewVouchers(memberId,personalVoucherFetchSize,crewVoucherFetchSize);
+        return voucherMemberService.findPersonalAndCrewVouchers(memberId,personalVoucherFetchSize,
+            crewVoucherFetchSize);
     }
 }

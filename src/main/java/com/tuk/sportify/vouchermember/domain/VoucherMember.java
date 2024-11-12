@@ -33,4 +33,12 @@ public class VoucherMember {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Crew crew;
+
+    public String getSportVoucherName(){
+        return sportVoucher.getCourse().getName();
+    }
+
+    public String crewName(){
+        return crew.getName();
+    }
 }
