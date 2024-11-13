@@ -9,8 +9,8 @@ public class UserPrinciple extends User{
     private static final String PASSWORD_ERASED_VALUE = "[PASSWORD_ERASED]";
     final String email;
 
-    public UserPrinciple(String username, String password, Collection<? extends GrantedAuthority> authorities, String email) {
-        super(username, password, authorities);
+    public UserPrinciple(String email, String username, Collection<? extends GrantedAuthority> authorities) {
+        super(username, PASSWORD_ERASED_VALUE, authorities);
         this.email = email;
     }
 

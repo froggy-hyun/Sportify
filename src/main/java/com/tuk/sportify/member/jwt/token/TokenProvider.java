@@ -3,12 +3,19 @@ package com.tuk.sportify.member.jwt.token;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
 import com.tuk.sportify.member.jwt.token.dto.TokenValidationResult;
+import com.tuk.sportify.member.principle.UserPrinciple;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.security.Key;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
@@ -80,6 +87,17 @@ public class TokenProvider {
         Claims claims = e.getClaims();
         return new TokenValidationResult(TokenStatus.TOKEN_EXPIRED, TokenType.ACCESS,
                 claims.get(TOKEN_ID_KEY, String.class), null);
+    }
+
+    public Authentication getAuthentication(String token, Claims claims) {
+        Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get(AUTHORITIES_KEY).toString() //claims에서 권한 정보를 받아와
+                        .split(",")) //파싱
+                .map(SimpleGrantedAuthority::new)
+                .toList();
+
+        UserPrinciple principle = new UserPrinciple(claims.getSubject(), claims.get(USERNAME_KEY, String.class), authorities);
+
+        return new UsernamePasswordAuthenticationToken(principle, token, authorities);
     }
 }
 

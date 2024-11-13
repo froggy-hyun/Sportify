@@ -8,3 +8,8 @@ spring:
       local: local, vworld
       dev:
       prod:
+
+jwt:
+  header: Authorization
+  secret: dGhpcyBpcyBteSBoaWRkZW4gand0IGtleSBmb3IgdGVzdCwgcGxlYXNlIGdpdmUgbWUgand0IGtleSBoYWhhaGFoYWhh==
+  access-token-validity-in-seconds: 360000
