@@ -26,4 +26,5 @@ public class SportVoucher {
     @Embedded private Facility facility;
     @Embedded private Course course;
     @Embedded private Item item;
+    private Long popularity;
 }
