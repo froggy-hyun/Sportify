@@ -2,7 +2,9 @@ package com.tuk.sportify.member.controller;
 
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
+import com.tuk.sportify.member.dto.LoginMemberRequest;
 import com.tuk.sportify.member.jwt.token.dto.ApiResponseJson;
+import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
 import com.tuk.sportify.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +39,19 @@ public class MemberController {
         return new ApiResponseJson(
                 HttpStatus.OK, Map.of("email", member.getEmail(), "username", member.getName())
         );
+    }
+
+    @PostMapping("/login")
+    public ApiResponseJson login(@Valid @RequestBody LoginMemberRequest request, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new IllegalArgumentException("잘못된 요청입니다.");
+        }
+
+        TokenInfo tokenInfo = memberService.loginMember(request.getEmail(), request.getPassword());
+
+        log.info("Token issued: {}", tokenInfo);
+
+        return new ApiResponseJson(HttpStatus.OK, tokenInfo);
     }
 
     // 모든 회원 조회

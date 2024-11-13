@@ -4,10 +4,12 @@ import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.domain.Role;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
 import com.tuk.sportify.member.jwt.token.TokenProvider;
+import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
 import com.tuk.sportify.member.repository.MemberRepository;
 import com.tuk.sportify.member.service.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +53,32 @@ public class MemberService {
 
         log.info("비밀번호 정책 미달");
         throw new IllegalArgumentException("비밀번호는 최소 8자리에 영어, 숫자, 특수문자를 포함해야 합니다.");
+    }
+
+    public TokenInfo loginMember(String email, String password) {
+        try {
+            Member member = findMemberByEmail(email);
+
+            checkPassword(password, member);
+
+            return tokenProvider.createToken(member);
+        } catch (BadCredentialsException e) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+    }
+
+    private void checkPassword(String password, Member member) {
+        if (!passwordEncoder.matches(password, member.getPassword())) {
+            log.info("비밀번호가 일치하지 않습니다.");
+            throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
+        }
+    }
+
+    private Member findMemberByEmail(String email) {
+        return memberRepository.findByEmail(email).orElseThrow(() -> {
+            log.info("계정이 존재하지 않습니다.");
+            return new IllegalArgumentException("계정이 존재하지 않습니다.");
+        });
     }
 
     // 전체 회원 조회
