@@ -22,8 +22,8 @@ public class SecurityConfig {
 
     //권한별 url
     private final String[] adminUrl = {"/admin/**"};
-    private final String[] permitAllUrl = {"/error", "/user/login"};
-    private final String[] anonymousUrl = {"/user/register"};
+    private final String[] permitAllUrl = {"/error", "/members/login"};
+    private final String[] anonymousUrl = {"/members/register"};
 
 
     @Bean
