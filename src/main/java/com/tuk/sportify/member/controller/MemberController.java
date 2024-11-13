@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,13 +58,19 @@ public class MemberController {
     // 모든 회원 조회
     @GetMapping
     public List<Member> getAllMembers() {
-        return memberService.getAllMembers();
+        List<Member> members = memberService.getAllMembers();
+
+        return members.stream()
+                .findAny()
+                .map(m -> members) // 목록이 비어있지 않으면 반환
+                .orElseThrow(() -> new IllegalArgumentException("회원 목록이 없습니다."));
     }
 
     // ID로 특정 회원 조회
     @GetMapping("/{id}")
-    public Optional<Member> getMemberById(@PathVariable Long id) {
-        return memberService.getMemberById(id);
+    public Member getMemberById(@PathVariable Long id) {
+        return memberService.getMemberById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID " + id + "에 해당하는 회원이 없습니다."));
     }
 }
 
