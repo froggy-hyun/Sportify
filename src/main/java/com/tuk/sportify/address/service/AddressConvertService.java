@@ -6,7 +6,7 @@ import com.tuk.sportify.address.infrastructure.VworldRestClient;
 
 import com.tuk.sportify.address.dto.DefaultRequestParams;
 import com.tuk.sportify.address.service.mapper.AddressConvertMapper;
-import com.tuk.sportify.address.util.RequestParamCreator;
+import com.tuk.sportify.global.utils.StringFormatter;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class AddressConvertService {
 
     public AddressResponse convertCoordinateToAddress(
             final String longitude, final String latitude) {
-        final String point = RequestParamCreator.createPoint(longitude, latitude);
+        final String point = StringFormatter.createCoordinate(longitude, latitude);
         VworldAddressResponse vworldAddressResponse =
                 vworldRestClient.getAddressByCoordinate(point, defaultRequestParams.params());
         return addressConvertMapper.toAddressResponse(vworldAddressResponse);
