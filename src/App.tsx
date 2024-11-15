@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const queryClient = new QueryClient();
   return (
-    <div>
-      <button onClick={() => setCount((count) => count + 1)}>클릭</button>
-      <h1>안녕하세{"용".repeat(count)}</h1>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+        </Routes>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
