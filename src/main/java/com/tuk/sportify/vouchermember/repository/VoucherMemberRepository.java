@@ -1,5 +1,6 @@
 package com.tuk.sportify.vouchermember.repository;
 
+import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
@@ -39,4 +40,7 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
         + "and vm.crew =:null and vm.sportVoucher.course.endAt < :currentDate")
     List<SportVoucher> findPastSportVoucherByMemberJoinFetch(Member member,
         Integer currentDate, Pageable pageable);
+
+    @Query("select vm from VoucherMember vm join fetch vm.member where vm.crew =:crew")
+    List<VoucherMember> findByCrewJoinFetch(Crew crew);
 }

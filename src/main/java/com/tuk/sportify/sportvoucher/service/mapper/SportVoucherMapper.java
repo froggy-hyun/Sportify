@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class SportVoucherMapper {
 
-    public List<VoucherResponse> toVoucherResponses(final List<SportVoucher> sportVouchers) {
+    public List<VoucherResponse> toVouchersResponse(final List<SportVoucher> sportVouchers) {
         return sportVouchers.stream().map(this::toVoucherResponse).toList();
     }
 
-    private VoucherResponse toVoucherResponse(final SportVoucher sportVoucher) {
+    public VoucherResponse toVoucherResponse(final SportVoucher sportVoucher) {
         Course course = sportVoucher.getCourse();
         Facility facility = sportVoucher.getFacility();
         return new VoucherResponse(

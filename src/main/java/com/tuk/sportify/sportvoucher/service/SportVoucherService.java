@@ -38,14 +38,19 @@ public class SportVoucherService {
         final Integer fetchSize, final Integer currentDate) {
         List<SportVoucher> recentVouchers = sportVoucherRepository.findNewVoucherByCityAndGu(
             city, gu, currentDate, Limit.of(fetchSize));
-        return sportVoucherMapper.toVoucherResponses(recentVouchers);
+        return sportVoucherMapper.toVouchersResponse(recentVouchers);
     }
 
     private List<VoucherResponse> findPopularVouchers(final String city, final String gu,
         final Integer fetchSize, final Integer currentDate) {
         List<SportVoucher> sportVouchers = sportVoucherRepository.findPopularVoucherByCityAndGu(
             city, gu, currentDate, Limit.of(fetchSize));
-        return sportVoucherMapper.toVoucherResponses(sportVouchers);
+        return sportVoucherMapper.toVouchersResponse(sportVouchers);
+    }
+
+    public VoucherResponse getVoucherResponse(final Long sportVoucherId){
+        final SportVoucher sportVoucher = getSportVoucher(sportVoucherId);
+        sportVoucherMapper.toVouchersResponse()
     }
 
     public SportVoucher getSportVoucher(final Long sportVoucherId) {

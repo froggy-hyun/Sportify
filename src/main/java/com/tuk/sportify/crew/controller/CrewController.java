@@ -5,6 +5,7 @@ import com.tuk.sportify.crew.service.CrewService;
 import com.tuk.sportify.global.response.IdResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,12 +20,19 @@ public class CrewController {
 
     private final CrewService crewService;
 
+    // 크루 생성
     @PostMapping("/sport-vouchers/{sportVoucherId}")
     @ResponseStatus(HttpStatus.CREATED)
     public IdResponse createCrew(
         final Long memberId, @RequestBody final CreateCrewRequest createCrewRequest,
         @PathVariable final Long sportVoucherId){
         return crewService.createCrew(memberId,sportVoucherId,createCrewRequest);
+    }
+
+    // 크루 단건(크루 멤버 포함) 조회
+    @GetMapping("/{crewId}")
+    public void getCrewWithMember(@PathVariable final Long crewId){
+        crewService.getCrewWithMembers(crewId);
     }
 
 }
