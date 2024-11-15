@@ -25,25 +25,27 @@ public class SportVoucherService {
             final String gu,
             final Integer popularVoucherFetchSize,
             final Integer recentVoucherFetchSize) {
-        String date = SportifyDateFormatter.getSportifyDate();
+        // 당월을 표현하는 Date
+        String currentDate = SportifyDateFormatter.getCurrentDate();
+        // 익월을 표현하는 Date (개설은 됐지만 시작되지 않은 이용권)
+        String nextMonthDate = SportifyDateFormatter.getNextMonthDate();
         return new PopularAndRecentVoucherResponse(
-            findPopularVouchers(city, gu, popularVoucherFetchSize, date),
-            findRecentVouchers(city, gu, recentVoucherFetchSize, date)
+            findPopularVouchers(city, gu, popularVoucherFetchSize, currentDate,nextMonthDate),
+            findRecentVouchers(city, gu, recentVoucherFetchSize, currentDate,nextMonthDate)
         );
     }
 
     private List<VoucherResponse> findRecentVouchers(final String city, final String gu,
-        final Integer recentVoucherFetchSize,
-        final String date) {
+        final Integer recentVoucherFetchSize, final String currentDate, final String nextMothDate) {
         List<SportVoucher> recentVouchers = sportVoucherRepository.findRecentVoucherByCityAndGu(
-            city, gu, date, Limit.of(recentVoucherFetchSize));
+            city, gu, currentDate,nextMothDate, Limit.of(recentVoucherFetchSize));
         return sportVoucherMapper.toVoucherResponses(recentVouchers);
     }
 
     private List<VoucherResponse> findPopularVouchers(final String city, final String gu,
-        final Integer popularVoucherFetchSize, final String date) {
+        final Integer popularVoucherFetchSize, final String currentDate, final String nextMothDate) {
         List<SportVoucher> sportVouchers = sportVoucherRepository.findPopularVoucherByCityAndGu(
-            city, gu, date, Limit.of(popularVoucherFetchSize));
+            city, gu, currentDate,nextMothDate, Limit.of(popularVoucherFetchSize));
         return sportVoucherMapper.toVoucherResponses(sportVouchers);
     }
 }

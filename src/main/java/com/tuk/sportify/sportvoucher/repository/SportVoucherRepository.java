@@ -8,15 +8,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SportVoucherRepository extends JpaRepository<SportVoucher,Long> {
+public interface SportVoucherRepository extends JpaRepository<SportVoucher, Long> {
 
-    @Query("select sv from SportVoucher sv where sv.facility.city =:city and sv.facility.gu =:gu "
-        + " and sv.course.beginAt like :date% order by sv.popularity")
-    List<SportVoucher> findPopularVoucherByCityAndGu(String city, String gu, String date,
-        Limit limit);
+    @Query(
+            "select sv from SportVoucher sv where sv.facility.city =:city and sv.facility.gu =:gu "
+                    + " and sv.course.endAt like :date% or sv.course.beginAt like :nextMonthDate% order by sv"
+                    + ".popularity")
+    List<SportVoucher> findPopularVoucherByCityAndGu(
+            String city, String gu, String currentDate, String nextMonthDate, Limit limit);
 
-    @Query("select sv from SportVoucher sv where sv.facility.city =:city and sv.facility.gu =:gu "
-        + " and sv.course.beginAt like :date%")
-    List<SportVoucher> findRecentVoucherByCityAndGu(String city, String gu, String date,
-        Limit limit);
+    @Query(
+            "select sv from SportVoucher sv where sv.facility.city =:city and sv.facility.gu =:gu "
+                    + " and sv.course.endAt like :currentDate% or sv.course.beginAt like :nextMonthDate%")
+    List<SportVoucher> findRecentVoucherByCityAndGu(
+            String city, String gu, String currentDate, String nextMonthDate, Limit limit);
 }
