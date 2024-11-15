@@ -5,16 +5,18 @@ import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
 import com.tuk.sportify.vouchermember.dto.CrewVoucher;
-import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
 import com.tuk.sportify.vouchermember.dto.PersonalAndCrewVoucherResponse;
+import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
 import com.tuk.sportify.vouchermember.repository.VoucherMemberRepository;
 import com.tuk.sportify.vouchermember.service.mapper.VoucherMemberMapper;
-import java.util.List;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
+
+import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,18 +39,16 @@ public class VoucherMemberService {
 
     private List<CrewVoucher> findCrewVouchers(final Member member,final Integer page,
         final Integer fetchSize) {
-        final PageRequest pageRequest = PageRequest.of(page,fetchSize);
-        final Slice<VoucherMember> voucherMember = voucherMemberRepository.findByMemberJoinFetch(member,
-            pageRequest);
+        final List<VoucherMember> voucherMember = voucherMemberRepository.findByMemberJoinFetch(member,
+            Limit.of(fetchSize));
         return voucherMemberMapper.toCrewVoucher(voucherMember);
     }
 
     private List<PersonalVoucher> findPersonalVouchers(final Member member,final Integer page,
         final Integer fetchSize) {
-        final PageRequest pageRequest = PageRequest.of(page, fetchSize);
-        final Slice<SportVoucher> sportVouchers =
+        final List<SportVoucher> sportVouchers =
             voucherMemberRepository.findSportVoucherByMemberJoinFetch(
-            member, pageRequest);
+            member, Limit.of(fetchSize));
         return voucherMemberMapper.toPersonalVoucher(sportVouchers);
     }
 }

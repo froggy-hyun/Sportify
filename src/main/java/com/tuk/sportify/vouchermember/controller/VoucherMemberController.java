@@ -23,4 +23,6 @@ public class VoucherMemberController {
         return voucherMemberService.findPersonalAndCrewVouchers(memberId,personalVoucherFetchSize,
             crewVoucherFetchSize);
     }
+
+
 }

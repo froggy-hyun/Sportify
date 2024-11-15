@@ -14,18 +14,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class VoucherMemberMapper {
 
-    public List<PersonalVoucher> toPersonalVoucher(final Slice<SportVoucher> sportVouchersSlice) {
-        final List<SportVoucher> sportVouchers = sportVouchersSlice.getContent();
+    public List<PersonalVoucher> toPersonalVoucher(final List<SportVoucher> sportVouchers) {
         return sportVouchers.stream()
                 .map(SportVoucher::getCourse)
                 .map(c -> new PersonalVoucher(c.getName(), c.getDuration()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
-    public List<CrewVoucher> toCrewVoucher(final Slice<VoucherMember> voucherMemberSlice) {
-        final List<VoucherMember> voucherMembers = voucherMemberSlice.getContent();
+    public List<CrewVoucher> toCrewVoucher(final List<VoucherMember> voucherMembers) {
         return voucherMembers.stream()
                 .map(vm -> new CrewVoucher(vm.getSportVoucherName(), vm.crewName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
