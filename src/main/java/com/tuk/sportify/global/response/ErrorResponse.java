@@ -1,4 +1,4 @@
-package com.tuk.sportify.global.advice;
+package com.tuk.sportify.global.response;
 
 public record ErrorResponse(String status, String code, String message) {
 

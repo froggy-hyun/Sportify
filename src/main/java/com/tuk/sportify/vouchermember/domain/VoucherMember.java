@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,6 +34,13 @@ public class VoucherMember {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Crew crew;
+
+    @Builder
+    public VoucherMember(final Member member, final SportVoucher sportVoucher, final Crew crew) {
+        this.member = member;
+        this.sportVoucher = sportVoucher;
+        this.crew = crew;
+    }
 
     public String getSportVoucherName(){
         return sportVoucher.getCourse().getName();

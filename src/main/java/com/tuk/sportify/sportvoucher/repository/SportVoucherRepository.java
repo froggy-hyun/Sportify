@@ -21,4 +21,6 @@ public interface SportVoucherRepository extends JpaRepository<SportVoucher, Long
                     + " and sv.course.endAt > :currentDate ")
     List<SportVoucher> findNewVoucherByCityAndGu(
             String city, String gu, Integer currentDate, Limit limit);
+
+
 }

@@ -1,5 +1,7 @@
 package com.tuk.sportify.sportvoucher.domain;
 
+import com.tuk.sportify.global.error.ErrorCode;
+import com.tuk.sportify.sportvoucher.exception.SportVoucherClosedException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -33,4 +35,11 @@ public class SportVoucher {
     @Embedded private Course course;
     @Embedded private Item item;
     private Long popularity;
+
+    public void validateOpening(final Integer currentDate){
+        Integer endAt = course.getEndAt();
+        if(currentDate > endAt){
+            throw new SportVoucherClosedException(ErrorCode.SPORT_VOUCHER_CLOSED);
+        }
+    }
 }

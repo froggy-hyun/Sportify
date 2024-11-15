@@ -1,4 +1,4 @@
-package com.tuk.sportify.global.advice;
+package com.tuk.sportify.global.response;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;

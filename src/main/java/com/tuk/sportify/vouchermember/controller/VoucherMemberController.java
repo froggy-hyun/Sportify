@@ -18,6 +18,7 @@ public class VoucherMemberController {
 
     private final VoucherMemberService voucherMemberService;
 
+    // 메인 페이지 개인&크루 간략 조회 : 페이징 X
     @GetMapping
     public PersonalAndCrewVoucherResponse findPersonalAndCrewVouchers(
         final Long memberId, @RequestParam Integer personalVoucherFetchSize,
@@ -27,20 +28,23 @@ public class VoucherMemberController {
             crewVoucherFetchSize);
     }
 
+    // 현재 크루 이용 내역 리스트 : 페이징 X
     @GetMapping("/my-current-crews")
     public MyCurrentCrewResponse findMyCurrentCrews(final Long memberId){
         return voucherMemberService.findMyCurrentCrews(memberId);
     }
 
+    // 과거 크루 이용 내역 리스트 : 페이징 O
     @GetMapping("/my-past-crews")
     public MyPastCrewResponse findMyPastCrews(final Long memberId,@RequestParam Integer page,
         @RequestParam Integer fetchSize){
         return voucherMemberService.findMyPastCrews(memberId,page,fetchSize);
     }
 
+    // 과거 개인 이용권 내역 : 페이징 O
     @GetMapping("/past-voucher")
     public PastPersonalVoucherResponse findPastPersonalVouchers(
         final Long memberId, @RequestParam Integer page, @RequestParam Integer fetchSize){
-        return voucherMemberService.findPastPersonalVouchers(memberId);
+        return voucherMemberService.findPastPersonalVouchers(memberId,page,fetchSize);
     }
 }
