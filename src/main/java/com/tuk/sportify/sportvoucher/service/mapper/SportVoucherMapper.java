@@ -18,6 +18,9 @@ public class SportVoucherMapper {
         Course course = sportVoucher.getCourse();
         Facility facility = sportVoucher.getFacility();
         return new VoucherResponse(
-                course.getName(), facility.getDetailAddress(), course.getDuration());
+                sportVoucher.getId(),
+                course.getName(),
+                facility.getDetailAddress(),
+                course.getDuration());
     }
 }

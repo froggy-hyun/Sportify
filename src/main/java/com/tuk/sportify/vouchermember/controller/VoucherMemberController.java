@@ -24,5 +24,8 @@ public class VoucherMemberController {
             crewVoucherFetchSize);
     }
 
-
+    @GetMapping("/crews")
+    public void findCrews(final Long memberId){
+        return voucherMemberService.findCrews(memberId);
+    }
 }

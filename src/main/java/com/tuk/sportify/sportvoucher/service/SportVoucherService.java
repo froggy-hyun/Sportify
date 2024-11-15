@@ -2,7 +2,7 @@ package com.tuk.sportify.sportvoucher.service;
 
 import com.tuk.sportify.global.utils.SportifyDateFormatter;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
-import com.tuk.sportify.sportvoucher.dto.PopularAndRecentVoucherResponse;
+import com.tuk.sportify.sportvoucher.dto.PopularAndNewVoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherResponse;
 import com.tuk.sportify.sportvoucher.repository.SportVoucherRepository;
 
@@ -20,32 +20,29 @@ public class SportVoucherService {
     private final SportVoucherRepository sportVoucherRepository;
     private final SportVoucherMapper sportVoucherMapper;
 
-    public PopularAndRecentVoucherResponse findPopularAndRecentVoucher(
+    public PopularAndNewVoucherResponse findPopularAndRecentVoucher(
             final String city,
             final String gu,
             final Integer popularVoucherFetchSize,
             final Integer recentVoucherFetchSize) {
-        // 당월을 표현하는 Date
-        String currentDate = SportifyDateFormatter.getCurrentDate();
-        // 익월을 표현하는 Date (개설은 됐지만 시작되지 않은 이용권)
-        String nextMonthDate = SportifyDateFormatter.getNextMonthDate();
-        return new PopularAndRecentVoucherResponse(
-            findPopularVouchers(city, gu, popularVoucherFetchSize, currentDate,nextMonthDate),
-            findRecentVouchers(city, gu, recentVoucherFetchSize, currentDate,nextMonthDate)
+        Integer currentDate = SportifyDateFormatter.getCurrentDate();
+        return new PopularAndNewVoucherResponse(
+            findPopularVouchers(city, gu, popularVoucherFetchSize, currentDate),
+            findNewVouchers(city, gu, recentVoucherFetchSize, currentDate)
         );
     }
 
-    private List<VoucherResponse> findRecentVouchers(final String city, final String gu,
-        final Integer recentVoucherFetchSize, final String currentDate, final String nextMothDate) {
-        List<SportVoucher> recentVouchers = sportVoucherRepository.findRecentVoucherByCityAndGu(
-            city, gu, currentDate,nextMothDate, Limit.of(recentVoucherFetchSize));
+    private List<VoucherResponse> findNewVouchers(final String city, final String gu,
+        final Integer fetchSize, final Integer currentDate) {
+        List<SportVoucher> recentVouchers = sportVoucherRepository.findNewVoucherByCityAndGu(
+            city, gu, currentDate, Limit.of(fetchSize));
         return sportVoucherMapper.toVoucherResponses(recentVouchers);
     }
 
     private List<VoucherResponse> findPopularVouchers(final String city, final String gu,
-        final Integer popularVoucherFetchSize, final String currentDate, final String nextMothDate) {
+        final Integer fetchSize, final Integer currentDate) {
         List<SportVoucher> sportVouchers = sportVoucherRepository.findPopularVoucherByCityAndGu(
-            city, gu, currentDate,nextMothDate, Limit.of(popularVoucherFetchSize));
+            city, gu, currentDate, Limit.of(fetchSize));
         return sportVoucherMapper.toVoucherResponses(sportVouchers);
     }
 }

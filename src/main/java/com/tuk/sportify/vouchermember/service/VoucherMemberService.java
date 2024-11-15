@@ -1,5 +1,6 @@
 package com.tuk.sportify.vouchermember.service;
 
+import com.tuk.sportify.global.utils.SportifyDateFormatter;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
@@ -35,6 +36,13 @@ public class VoucherMemberService {
             findPersonalVouchers(member,0,personalVoucherFetchSize),
             findCrewVouchers(member,0,crewVoucherFetchSize)
         );
+    }
+
+    public void findCrews(final Long memberId){
+        final Member member = memberService.getMemberById(memberId).get();
+        final Integer currentDate = SportifyDateFormatter.getCurrentDate();
+        List<VoucherMember> currentCrewsByMember = voucherMemberRepository.findCurrentCrewsByMember(
+            member, currentDate);
     }
 
     private List<CrewVoucher> findCrewVouchers(final Member member,final Integer page,

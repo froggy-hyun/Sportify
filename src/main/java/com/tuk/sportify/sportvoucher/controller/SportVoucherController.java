@@ -1,5 +1,6 @@
 package com.tuk.sportify.sportvoucher.controller;
 
+import com.tuk.sportify.sportvoucher.dto.PopularAndNewVoucherResponse;
 import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,12 +18,12 @@ public class SportVoucherController {
     private final SportVoucherService sportVoucherService;
 
     @GetMapping
-    public void findPopularAndRecentVoucher(
+    public PopularAndNewVoucherResponse findPopularAndRecentVoucher(
             @RequestParam final String city,
             @RequestParam final String gu,
             @RequestParam Integer popularVoucherFetchSize,
             @RequestParam Integer recentVoucherFetchSize) {
-        sportVoucherService.findPopularAndRecentVoucher(
+        return sportVoucherService.findPopularAndRecentVoucher(
                 city, gu, popularVoucherFetchSize, recentVoucherFetchSize);
     }
 }
