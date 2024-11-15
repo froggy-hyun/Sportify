@@ -7,6 +7,7 @@ import com.tuk.sportify.vouchermember.domain.VoucherMember;
 import com.tuk.sportify.vouchermember.dto.CrewVoucher;
 import com.tuk.sportify.vouchermember.dto.MyCrew;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
+import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
 
 import org.springframework.stereotype.Component;
@@ -16,13 +17,13 @@ import java.util.List;
 @Component
 public class VoucherMemberMapper {
 
-    public List<PersonalVoucher> toPersonalVoucher(final List<SportVoucher> sportVouchers) {
+    public List<PersonalVoucher> toCurrentPersonalVoucher(final List<SportVoucher> sportVouchers) {
         return sportVouchers.stream()
-                .map(this::createPersonalVoucher)
+                .map(this::createCurrentPersonalVoucher)
                 .toList();
     }
 
-    private PersonalVoucher createPersonalVoucher(final SportVoucher sportVoucher) {
+    private PersonalVoucher createCurrentPersonalVoucher(final SportVoucher sportVoucher) {
         Course course = sportVoucher.getCourse();
         return new PersonalVoucher(
             sportVoucher.getId(), course.getName(), course.getDuration());
@@ -34,9 +35,14 @@ public class VoucherMemberMapper {
                 .toList();
     }
 
-    public MyCurrentCrewResponse toMyCrewResponse(final List<VoucherMember> voucherMembers) {
+    public MyCurrentCrewResponse toMyCurrentCrewResponse(final List<VoucherMember> voucherMembers) {
         final List<MyCrew> myCrews = voucherMembers.stream().map(this::toMyCrew).toList();
         return new MyCurrentCrewResponse(myCrews);
+    }
+
+    public MyPastCrewResponse toMyPastCrewResponse(final List<VoucherMember> voucherMembers){
+        final List<MyCrew> myCrews = voucherMembers.stream().map(this::toMyCrew).toList();
+        return new MyPastCrewResponse(myCrews);
     }
 
     private MyCrew toMyCrew(final VoucherMember voucherMember) {

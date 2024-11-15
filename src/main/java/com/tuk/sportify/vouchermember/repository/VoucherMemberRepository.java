@@ -5,6 +5,7 @@ import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
 
 import org.springframework.data.domain.Limit;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,15 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
     List<VoucherMember> findByMemberJoinFetch(Member member, Integer currentDate, Limit limit);
 
     @Query("select vm from VoucherMember vm join fetch vm.sportVoucher join fetch vm.crew where vm"
-        + ".member =:member "
-        + "and vm.sportVoucher.course.endAt > :currentDate")
+        + ".member =:member and vm.sportVoucher.course.endAt > :currentDate")
     List<VoucherMember> findCurrentCrewsByMember(Member member, Integer currentDate);
+
+    @Query("select vm from VoucherMember vm join fetch vm.sportVoucher join fetch vm.crew where vm"
+        + ".member =:member and vm.sportVoucher.course.endAt < :currentDate")
+    List<VoucherMember> findPastCrewsByMember(Member member, Integer currentDate, Pageable pageable);
+
+    @Query("select vm from VoucherMember vm join fetch vm.sportVoucher where vm.member =: member "
+        + "and vm.crew =:null and vm.sportVoucher.course.endAt < :currentDate")
+    List<SportVoucher> findPastSportVoucherByMemberJoinFetch(Member member,
+        Integer currentDate, Pageable pageable);
 }

@@ -2,6 +2,7 @@ package com.tuk.sportify.vouchermember.controller;
 
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
 import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
+import com.tuk.sportify.vouchermember.dto.PastPersonalVoucherResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalAndCrewVoucherResponse;
 import com.tuk.sportify.vouchermember.service.VoucherMemberService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,14 @@ public class VoucherMemberController {
     }
 
     @GetMapping("/my-past-crews")
-    public MyPastCrewResponse findMyPastCrews(final Long memberId){
-        return voucherMemberService.
+    public MyPastCrewResponse findMyPastCrews(final Long memberId,@RequestParam Integer page,
+        @RequestParam Integer fetchSize){
+        return voucherMemberService.findMyPastCrews(memberId,page,fetchSize);
+    }
+
+    @GetMapping("/past-voucher")
+    public PastPersonalVoucherResponse findPastPersonalVouchers(
+        final Long memberId, @RequestParam Integer page, @RequestParam Integer fetchSize){
+        return voucherMemberService.findPastPersonalVouchers(memberId);
     }
 }
