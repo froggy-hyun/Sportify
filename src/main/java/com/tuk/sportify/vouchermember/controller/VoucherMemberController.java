@@ -1,5 +1,7 @@
 package com.tuk.sportify.vouchermember.controller;
 
+import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
+import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalAndCrewVoucherResponse;
 import com.tuk.sportify.vouchermember.service.VoucherMemberService;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +26,13 @@ public class VoucherMemberController {
             crewVoucherFetchSize);
     }
 
-    @GetMapping("/crews")
-    public void findCrews(final Long memberId){
-        return voucherMemberService.findCrews(memberId);
+    @GetMapping("/my-current-crews")
+    public MyCurrentCrewResponse findMyCurrentCrews(final Long memberId){
+        return voucherMemberService.findMyCurrentCrews(memberId);
+    }
+
+    @GetMapping("/my-past-crews")
+    public MyPastCrewResponse findMyPastCrews(final Long memberId){
+        return voucherMemberService.
     }
 }

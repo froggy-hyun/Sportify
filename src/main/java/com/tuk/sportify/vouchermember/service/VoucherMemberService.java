@@ -6,6 +6,7 @@ import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
 import com.tuk.sportify.vouchermember.dto.CrewVoucher;
+import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalAndCrewVoucherResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
 import com.tuk.sportify.vouchermember.repository.VoucherMemberRepository;
@@ -32,31 +33,33 @@ public class VoucherMemberService {
         final Long memberId, final Integer personalVoucherFetchSize,
         final Integer crewVoucherFetchSize){
         final Member member = memberService.getMemberById(memberId).get();
+        final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         return new PersonalAndCrewVoucherResponse(
-            findPersonalVouchers(member,0,personalVoucherFetchSize),
-            findCrewVouchers(member,0,crewVoucherFetchSize)
+            findPersonalVouchers(member, personalVoucherFetchSize,currentDate),
+            findCrewVouchers(member,crewVoucherFetchSize,currentDate)
         );
     }
 
-    public void findCrews(final Long memberId){
+    public MyCurrentCrewResponse findMyCurrentCrews(final Long memberId){
         final Member member = memberService.getMemberById(memberId).get();
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        List<VoucherMember> currentCrewsByMember = voucherMemberRepository.findCurrentCrewsByMember(
+        List<VoucherMember> myCrews = voucherMemberRepository.findCurrentCrewsByMember(
             member, currentDate);
+        return voucherMemberMapper.toMyCrewResponse(myCrews);
     }
 
-    private List<CrewVoucher> findCrewVouchers(final Member member,final Integer page,
-        final Integer fetchSize) {
+    private List<CrewVoucher> findCrewVouchers(final Member member, final Integer fetchSize,
+        final Integer currentDate) {
         final List<VoucherMember> voucherMember = voucherMemberRepository.findByMemberJoinFetch(member,
-            Limit.of(fetchSize));
+            currentDate,Limit.of(fetchSize));
         return voucherMemberMapper.toCrewVoucher(voucherMember);
     }
 
-    private List<PersonalVoucher> findPersonalVouchers(final Member member,final Integer page,
-        final Integer fetchSize) {
+    private List<PersonalVoucher> findPersonalVouchers(final Member member,
+        final Integer fetchSize, final Integer currentDate) {
         final List<SportVoucher> sportVouchers =
             voucherMemberRepository.findSportVoucherByMemberJoinFetch(
-            member, Limit.of(fetchSize));
+            member,currentDate, Limit.of(fetchSize));
         return voucherMemberMapper.toPersonalVoucher(sportVouchers);
     }
 }
