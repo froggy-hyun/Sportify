@@ -11,14 +11,14 @@ public class MemberMapper {
     // CreateMemberRequest를 Member로 변환
     public Member CreateMemberRequestToMember(CreateMemberRequest createMemberRequest, PasswordEncoder passwordEncoder) {
         return Member.builder()
-                .email(createMemberRequest.getEmail())
-                .password(passwordEncoder.encode(createMemberRequest.getPassword())) // 비밀번호 암호화
-                .name(createMemberRequest.getName())
-                .gender(createMemberRequest.getGender())
-                .age(createMemberRequest.getAge())
-                .phone(createMemberRequest.getPhone())
-                .address(createMemberRequest.getAddress())
-                .disabled(createMemberRequest.isDisabled())
+                .email(createMemberRequest.email())
+                .password(passwordEncoder.encode(createMemberRequest.password())) // 비밀번호 암호화
+                .name(createMemberRequest.name())
+                .gender(createMemberRequest.gender())
+                .age(createMemberRequest.age())
+                .phone(createMemberRequest.phone())
+                .address(createMemberRequest.address())
+                .disabled(createMemberRequest.disabled())
                 .role(Role.ROLE_USER) // 기본 사용자 역할 설정
                 .build();
     }

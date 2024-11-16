@@ -1,7 +1,6 @@
 package com.tuk.sportify.member.service;
 
 import com.tuk.sportify.member.domain.Member;
-import com.tuk.sportify.member.domain.Role;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
 import com.tuk.sportify.member.jwt.token.TokenProvider;
 import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
@@ -33,11 +32,11 @@ public class MemberService {
     private final TokenProvider tokenProvider;
 
     public Member createMember(CreateMemberRequest request) {
-        checkPasswordStrength(request.getPassword());
+        checkPasswordStrength(request.password());
 
         //이미 등록된 이메일인지 체크
-        if (memberRepository.existsByEmail(request.getEmail())) {
-            log.info("이미 등록된 이메일={}", request.getEmail());
+        if (memberRepository.existsByEmail(request.email())) {
+            log.info("이미 등록된 이메일={}", request.email());
             throw new IllegalArgumentException("이미 등록된 이메일입니다.");
         }
 
