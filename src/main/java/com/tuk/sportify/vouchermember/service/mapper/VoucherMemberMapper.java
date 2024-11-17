@@ -17,14 +17,15 @@ import java.util.List;
 @Component
 public class VoucherMemberMapper {
 
-    public List<PersonalVoucher> toCurrentPersonalVoucher(final List<SportVoucher> sportVouchers) {
-        return sportVouchers.stream()
+    public List<PersonalVoucher> toCurrentPersonalVoucher(final List<VoucherMember> voucherMembers) {
+        return voucherMembers.stream()
                 .map(this::createCurrentPersonalVoucher)
                 .toList();
     }
 
-    private PersonalVoucher createCurrentPersonalVoucher(final SportVoucher sportVoucher) {
-        Course course = sportVoucher.getCourse();
+    private PersonalVoucher createCurrentPersonalVoucher(final VoucherMember voucherMember) {
+        final SportVoucher sportVoucher = voucherMember.getSportVoucher();
+        final Course course = sportVoucher.getCourse();
         return new PersonalVoucher(
             sportVoucher.getId(), course.getName(), course.getDuration());
     }

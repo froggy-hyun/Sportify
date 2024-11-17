@@ -21,7 +21,7 @@ public class VoucherMemberController {
     // 현재 활동중인 이용권 목록 (개인+크루)
     @GetMapping
     public PersonalAndCrewVoucherResponse findPersonalAndCrewVouchers(
-        final Long memberId, @RequestParam Integer personalVoucherFetchSize,
+        @RequestParam final Long memberId, @RequestParam Integer personalVoucherFetchSize,
         @RequestParam Integer crewVoucherFetchSize
     ){
         return voucherMemberService.findPersonalAndCrewVouchers(memberId,personalVoucherFetchSize,

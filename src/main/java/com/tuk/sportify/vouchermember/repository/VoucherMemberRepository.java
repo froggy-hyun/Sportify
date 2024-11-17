@@ -20,7 +20,7 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
     @Query(
             "select vm from VoucherMember vm join fetch vm.sportVoucher where vm.member =:member "
                     + "and vm.crew is null and vm.sportVoucher.course.endAt > :currentDate")
-    List<SportVoucher> findSportVoucherByMemberJoinFetch(Member member, Integer currentDate, Limit limit);
+    List<VoucherMember> findSportVoucherByMemberJoinFetch(Member member, Integer currentDate, Limit limit);
 
     // 현재 참여중인 크루에 대한 이용권 조회
     @Query(
@@ -43,7 +43,7 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
     @Query(
             "select vm from VoucherMember vm join fetch vm.sportVoucher where vm.member =:member "
                     + "and vm.crew is null and vm.sportVoucher.course.endAt < :currentDate")
-    List<SportVoucher> findPastSportVoucherByMemberJoinFetch(
+    List<VoucherMember> findPastSportVoucherByMemberJoinFetch(
         Member member, Integer currentDate, Pageable pageable);
 
     @Query("select vm from VoucherMember vm join fetch vm.member where vm.crew =:crew")

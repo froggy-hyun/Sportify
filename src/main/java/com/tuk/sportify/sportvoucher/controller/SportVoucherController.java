@@ -29,7 +29,7 @@ public class SportVoucherController {
                 city, gu, fetchSize);
     }
 
-    // 이용권 단건 상세 조회
+    // 이용권 단건 상세 조회 : TODO 추후 반환 데이터 수정 필요
     @GetMapping("/{sportVoucherId}")
     public VoucherResponse getSingleSportVoucher(@PathVariable final Long sportVoucherId){
         return sportVoucherService.getSingleSportVoucher(sportVoucherId);
