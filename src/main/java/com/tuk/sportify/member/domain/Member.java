@@ -29,7 +29,8 @@ public class Member {
     private String name;
 
     @Column(nullable = false)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(nullable = false)
     private int age;

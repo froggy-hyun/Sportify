@@ -1,5 +1,6 @@
 package com.tuk.sportify.member.dto;
 
+import com.tuk.sportify.member.domain.Gender;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,8 +32,8 @@ public record CreateMemberRequest (
     @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9-_]{3,10}$", message = "이름은 특수문자 제외 3자이상 10자이하로 입력해주세요.")
     String name,
 
-    @NotBlank(message = "성별은 필수 입력 값입니다.")
-    String gender,
+    @NotNull(message = "성별은 필수 입력 값입니다.")
+    Gender gender,
 
     @NotNull(message = "나이는 필수 입력 값입니다.")
     int age,
