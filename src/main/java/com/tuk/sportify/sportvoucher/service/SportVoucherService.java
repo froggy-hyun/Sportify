@@ -25,10 +25,10 @@ public class SportVoucherService {
     public PopularVoucherResponse findPopularVoucher(
             final String city,
             final String gu,
-            final Integer popularVoucherFetchSize) {
+            final Integer fetchSize) {
         Integer currentDate = SportifyDateFormatter.getCurrentDate();
         return new PopularVoucherResponse(
-            findPopularVouchers(city, gu, popularVoucherFetchSize, currentDate)
+            findPopularVouchers(city, gu, fetchSize, currentDate)
         );
     }
 

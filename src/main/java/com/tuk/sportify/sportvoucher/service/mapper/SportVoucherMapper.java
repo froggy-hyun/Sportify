@@ -20,7 +20,7 @@ public class SportVoucherMapper {
         return new VoucherResponse(
                 sportVoucher.getId(),
                 course.getName(),
-                facility.getDetailAddress(),
+                facility.getBasicAddress(),
                 course.getDuration());
     }
 }

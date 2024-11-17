@@ -12,7 +12,7 @@ public interface SportVoucherRepository extends JpaRepository<SportVoucher, Long
 
     @Query(
             "select sv from SportVoucher sv where sv.facility.city =:city and sv.facility.gu =:gu "
-                    + " and sv.course.endAt > :currentDate order by sv.popularity")
+                    + " and sv.course.endAt > :currentDate order by sv.popularity desc")
     List<SportVoucher> findPopularVoucherByCityAndGu(
             String city, String gu, Integer currentDate, Limit limit);
 

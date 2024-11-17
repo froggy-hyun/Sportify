@@ -20,13 +20,13 @@ public class SportVoucherController {
     private final SportVoucherService sportVoucherService;
 
     // 인기 이용권 조회
-    @GetMapping
+    @GetMapping("/popularity")
     public PopularVoucherResponse findPopularVoucher(
             @RequestParam final String city,
             @RequestParam final String gu,
-            @RequestParam Integer popularVoucherFetchSize) {
+            @RequestParam Integer fetchSize) {
         return sportVoucherService.findPopularVoucher(
-                city, gu, popularVoucherFetchSize);
+                city, gu, fetchSize);
     }
 
     // 이용권 단건 상세 조회
