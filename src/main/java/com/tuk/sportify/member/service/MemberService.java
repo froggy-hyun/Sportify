@@ -1,7 +1,10 @@
 package com.tuk.sportify.member.service;
 
+import com.tuk.sportify.global.error.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
+import com.tuk.sportify.member.exception.LoginFailedException;
+import com.tuk.sportify.member.exception.RegisterFailedException;
 import com.tuk.sportify.member.jwt.token.TokenProvider;
 import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
 import com.tuk.sportify.member.repository.MemberRepository;
@@ -37,7 +40,7 @@ public class MemberService {
         //이미 등록된 이메일인지 체크
         if (memberRepository.existsByEmail(request.email())) {
             log.info("이미 등록된 이메일={}", request.email());
-            throw new IllegalArgumentException("이미 등록된 이메일입니다.");
+            throw new RegisterFailedException(ErrorCode.MEMBER_REGISTER_EMAIL_ALREADY_EXIST);
         }
 
         Member member = memberMapper.CreateMemberRequestToMember(request, passwordEncoder);
@@ -51,7 +54,7 @@ public class MemberService {
         }
 
         log.info("비밀번호 정책 미달");
-        throw new IllegalArgumentException("비밀번호는 최소 8자리에 영어, 숫자, 특수문자를 포함해야 합니다.");
+        throw new RegisterFailedException(ErrorCode.MEMBER_REGISTER_PASSWORD_POLICY_VIOLATION);
     }
 
     public TokenInfo loginMember(String email, String password) {
@@ -62,7 +65,7 @@ public class MemberService {
 
             return tokenProvider.createToken(member);
         } catch (BadCredentialsException e) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw new LoginFailedException(ErrorCode.MEMBER_LOGIN_PASSWORD_INCORRECT);
         }
     }
 
@@ -76,7 +79,7 @@ public class MemberService {
     private Member findMemberByEmail(String email) {
         return memberRepository.findByEmail(email).orElseThrow(() -> {
             log.info("계정이 존재하지 않습니다.");
-            return new IllegalArgumentException("계정이 존재하지 않습니다.");
+            return new LoginFailedException(ErrorCode.MEMBER_NOT_EXIST);
         });
     }
 
