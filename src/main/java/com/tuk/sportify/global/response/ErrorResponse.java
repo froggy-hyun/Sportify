@@ -2,11 +2,14 @@ package com.tuk.sportify.global.response;
 
 import com.tuk.sportify.global.error.ErrorCode;
 
-public record ErrorResponse(String status, int httpStatusCode, String code, String message) {
-
-    private static final String FAILURE = "failure";
+public record ErrorResponse(
+        int httpStatusCode, String httpStatusMessage, String code, String serverMessage) {
 
     public ErrorResponse(final ErrorCode errorCode) {
-        this(FAILURE, errorCode.getHttpStatus().value(), errorCode.getCode(), errorCode.getMsg());
+        this(
+                errorCode.getHttpStatus().value(),
+                errorCode.getHttpStatus().getReasonPhrase(),
+                errorCode.getCode(),
+                errorCode.getMsg());
     }
 }
