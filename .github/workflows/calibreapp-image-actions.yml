@@ -14,7 +14,3 @@ jobs:
         uses: calibreapp/image-actions@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-          formats: jpg,png,webp
-          maxSize: 10MB #10M 이상 시 별도 압축 후 업로드 진행
-          minSize: 1KB
