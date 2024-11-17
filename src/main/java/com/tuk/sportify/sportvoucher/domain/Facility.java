@@ -3,6 +3,7 @@ package com.tuk.sportify.sportvoucher.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
+import jakarta.persistence.Table;
 import lombok.Getter;
 
 @Embeddable

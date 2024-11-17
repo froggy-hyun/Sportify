@@ -1,6 +1,7 @@
 package com.tuk.sportify.vouchermember.dto;
 
 public record CrewVoucher(
-    String crewName,
-    String voucherCourseName
+    Long voucherId,
+    String voucherCourseName,
+    String crewName
 ) {}
