@@ -3,7 +3,7 @@ package com.tuk.sportify.sportvoucher.service;
 import com.tuk.sportify.global.error.ErrorCode;
 import com.tuk.sportify.global.utils.SportifyDateFormatter;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
-import com.tuk.sportify.sportvoucher.dto.PopularAndNewVoucherResponse;
+import com.tuk.sportify.sportvoucher.dto.PopularVoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherResponse;
 import com.tuk.sportify.sportvoucher.exception.SportVoucherNotFoundException;
 import com.tuk.sportify.sportvoucher.repository.SportVoucherRepository;
@@ -22,23 +22,14 @@ public class SportVoucherService {
     private final SportVoucherRepository sportVoucherRepository;
     private final SportVoucherMapper sportVoucherMapper;
 
-    public PopularAndNewVoucherResponse findPopularAndRecentVoucher(
+    public PopularVoucherResponse findPopularVoucher(
             final String city,
             final String gu,
-            final Integer popularVoucherFetchSize,
-            final Integer recentVoucherFetchSize) {
+            final Integer popularVoucherFetchSize) {
         Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        return new PopularAndNewVoucherResponse(
-            findPopularVouchers(city, gu, popularVoucherFetchSize, currentDate),
-            findNewVouchers(city, gu, recentVoucherFetchSize, currentDate)
+        return new PopularVoucherResponse(
+            findPopularVouchers(city, gu, popularVoucherFetchSize, currentDate)
         );
-    }
-
-    private List<VoucherResponse> findNewVouchers(final String city, final String gu,
-        final Integer fetchSize, final Integer currentDate) {
-        List<SportVoucher> recentVouchers = sportVoucherRepository.findNewVoucherByCityAndGu(
-            city, gu, currentDate, Limit.of(fetchSize));
-        return sportVoucherMapper.toVouchersResponse(recentVouchers);
     }
 
     private List<VoucherResponse> findPopularVouchers(final String city, final String gu,
