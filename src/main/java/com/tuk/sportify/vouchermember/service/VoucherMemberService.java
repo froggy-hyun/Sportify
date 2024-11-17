@@ -59,7 +59,7 @@ public class VoucherMemberService {
             final Long memberId, final Integer page, final Integer fetchSize) {
         final Member member = getMember(memberId);
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        final PageRequest pageRequest = PageRequest.of(page, fetchSize, Sort.by("endAt"));
+        final PageRequest pageRequest = PageRequest.of(page, fetchSize);
         List<VoucherMember> myCrews =
                 voucherMemberRepository.findPastCrewsByMember(member, currentDate, pageRequest);
         return voucherMemberMapper.toMyPastCrewResponse(myCrews);
@@ -81,7 +81,7 @@ public class VoucherMemberService {
             final Long memberId, final Integer page, final Integer fetchSize) {
         final Member member = getMember(memberId);
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        final PageRequest pageRequest = PageRequest.of(page, fetchSize, Sort.by("endAt"));
+        final PageRequest pageRequest = PageRequest.of(page, fetchSize);
         final List<VoucherMember> sportVouchers =
                 voucherMemberRepository.findPastSportVoucherByMemberJoinFetch(
                         member, currentDate, pageRequest);

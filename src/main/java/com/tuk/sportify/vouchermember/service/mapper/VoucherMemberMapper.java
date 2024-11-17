@@ -17,22 +17,25 @@ import java.util.List;
 @Component
 public class VoucherMemberMapper {
 
-    public List<PersonalVoucher> toCurrentPersonalVoucher(final List<VoucherMember> voucherMembers) {
-        return voucherMembers.stream()
-                .map(this::createCurrentPersonalVoucher)
-                .toList();
+    public List<PersonalVoucher> toCurrentPersonalVoucher(
+            final List<VoucherMember> voucherMembers) {
+        return voucherMembers.stream().map(this::createCurrentPersonalVoucher).toList();
     }
 
     private PersonalVoucher createCurrentPersonalVoucher(final VoucherMember voucherMember) {
         final SportVoucher sportVoucher = voucherMember.getSportVoucher();
         final Course course = sportVoucher.getCourse();
-        return new PersonalVoucher(
-            sportVoucher.getId(), course.getName(), course.getDuration());
+        return new PersonalVoucher(sportVoucher.getId(), course.getName(), course.getDuration());
     }
 
     public List<CrewVoucher> toCrewVoucher(final List<VoucherMember> voucherMembers) {
         return voucherMembers.stream()
-                .map(vm -> new CrewVoucher(vm.getSportVoucherName(), vm.crewName()))
+                .map(
+                        vm ->
+                                new CrewVoucher(
+                                        vm.getSportVoucher().getId(),
+                                        vm.getSportVoucherName(),
+                                        vm.crewName()))
                 .toList();
     }
 
@@ -41,7 +44,7 @@ public class VoucherMemberMapper {
         return new MyCurrentCrewResponse(myCrews);
     }
 
-    public MyPastCrewResponse toMyPastCrewResponse(final List<VoucherMember> voucherMembers){
+    public MyPastCrewResponse toMyPastCrewResponse(final List<VoucherMember> voucherMembers) {
         final List<MyCrew> myCrews = voucherMembers.stream().map(this::toMyCrew).toList();
         return new MyPastCrewResponse(myCrews);
     }
