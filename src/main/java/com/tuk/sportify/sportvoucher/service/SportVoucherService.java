@@ -5,7 +5,7 @@ import com.tuk.sportify.global.utils.SportifyDateFormatter;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.sportvoucher.dto.PopularAndNewVoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherResponse;
-import com.tuk.sportify.sportvoucher.exception.SportVoucherNotFound;
+import com.tuk.sportify.sportvoucher.exception.SportVoucherNotFoundException;
 import com.tuk.sportify.sportvoucher.repository.SportVoucherRepository;
 
 import com.tuk.sportify.sportvoucher.service.mapper.SportVoucherMapper;
@@ -48,15 +48,10 @@ public class SportVoucherService {
         return sportVoucherMapper.toVouchersResponse(sportVouchers);
     }
 
-    public VoucherResponse getVoucherResponse(final Long sportVoucherId){
-        final SportVoucher sportVoucher = getSportVoucher(sportVoucherId);
-        sportVoucherMapper.toVouchersResponse()
-    }
-
     public SportVoucher getSportVoucher(final Long sportVoucherId) {
         SportVoucher sportVoucher = sportVoucherRepository
             .findById(sportVoucherId)
-            .orElseThrow(() -> new SportVoucherNotFound(ErrorCode.SPORT_VOUCHER_NOT_FOUND));
+            .orElseThrow(() -> new SportVoucherNotFoundException(ErrorCode.SPORT_VOUCHER_NOT_FOUND));
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         sportVoucher.validateOpening(currentDate);
         return sportVoucher;

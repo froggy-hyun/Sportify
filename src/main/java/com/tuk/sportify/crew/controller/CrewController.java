@@ -34,5 +34,4 @@ public class CrewController {
     public void getCrewWithMember(@PathVariable final Long crewId){
         crewService.getCrewWithMembers(crewId);
     }
-
 }
