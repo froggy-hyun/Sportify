@@ -17,10 +17,10 @@ public class Course {
     private String code;
 
     @Column(name = "course_begin_at")
-    private String beginAt;
+    private Integer beginAt;
 
     @Column(name = "course_end_at")
-    private String endAt;
+    private Integer endAt;
 
     @Column(name = "course_price")
     private Integer price;
@@ -35,6 +35,6 @@ public class Course {
     private String establishedMonth;
 
     public String getDuration(){
-        return StringFormatter.createCourseDuration(beginAt,endAt);
+        return StringFormatter.createCourseDuration(beginAt.toString(),endAt.toString());
     }
 }
