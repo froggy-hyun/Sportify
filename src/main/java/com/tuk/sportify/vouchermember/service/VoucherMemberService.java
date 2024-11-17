@@ -99,7 +99,7 @@ public class VoucherMemberService {
 
     @Transactional
     public void participate(final Crew crew, final Long sportVoucherId){
-        final SportVoucher sportVoucher = sportVoucherService.getSportVoucher(sportVoucherId);
+        final SportVoucher sportVoucher = sportVoucherService.getSportVoucherById(sportVoucherId);
         final VoucherMember voucherMember = new VoucherMember(crew.getHost(), sportVoucher, crew);
         voucherMemberRepository.save(voucherMember);
     }

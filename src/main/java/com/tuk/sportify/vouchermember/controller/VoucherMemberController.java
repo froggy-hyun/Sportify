@@ -18,7 +18,7 @@ public class VoucherMemberController {
 
     private final VoucherMemberService voucherMemberService;
 
-    // 메인 페이지 개인&크루 간략 조회 : 페이징 X
+    // 현재 활동중인 이용권 목록 (개인+크루)
     @GetMapping
     public PersonalAndCrewVoucherResponse findPersonalAndCrewVouchers(
         final Long memberId, @RequestParam Integer personalVoucherFetchSize,
@@ -28,7 +28,7 @@ public class VoucherMemberController {
             crewVoucherFetchSize);
     }
 
-    // 현재 크루 이용 내역 리스트 : 페이징 X
+    // 참여중인 크루 목록
     @GetMapping("/my-current-crews")
     public MyCurrentCrewResponse findMyCurrentCrews(final Long memberId){
         return voucherMemberService.findMyCurrentCrews(memberId);
