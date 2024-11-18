@@ -1,6 +1,6 @@
 package com.tuk.sportify.sportvoucher.domain;
 
-import com.tuk.sportify.global.error.ErrorCode;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.sportvoucher.exception.SportVoucherClosedException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

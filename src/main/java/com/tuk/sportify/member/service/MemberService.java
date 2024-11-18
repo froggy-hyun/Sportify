@@ -1,6 +1,6 @@
 package com.tuk.sportify.member.service;
 
-import com.tuk.sportify.global.error.ErrorCode;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
 import com.tuk.sportify.member.exception.LoginFailedException;

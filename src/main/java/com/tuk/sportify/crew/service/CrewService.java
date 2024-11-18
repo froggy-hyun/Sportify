@@ -4,7 +4,7 @@ import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.crew.dto.CreateCrewRequest;
 import com.tuk.sportify.crew.exception.CrewNotFoundExceptionException;
 import com.tuk.sportify.crew.repository.CrewRepository;
-import com.tuk.sportify.global.error.ErrorCode;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.global.response.IdResponse;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;

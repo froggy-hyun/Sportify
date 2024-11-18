@@ -1,6 +1,6 @@
 package com.tuk.sportify.global.exception;
 
-import com.tuk.sportify.global.error.ErrorCode;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
