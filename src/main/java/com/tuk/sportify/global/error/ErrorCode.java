@@ -22,14 +22,15 @@ public enum ErrorCode {
      * Member : 멤버 관련 에러 코드
      */
     MEMBER_REGISTER_EMAIL_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "310", "이미 존재하는 이메일입니다."),
-    MEMBER_REGISTER_PASSWORD_POLICY_VIOLATION(HttpStatus.BAD_REQUEST, "320", "비밀번호는 최소 8자 이상이며, 숫자, 특수문자, 대소문자를 포함해야 합니다."),
-    MEMBER_REGISTER_ETC_POLICY_VIOLATION(HttpStatus.BAD_REQUEST, "330", "회원가입 양식에 맞지 않습니다."),
+    MEMBER_REGISTER_PASSWORD_POLICY_VIOLATION(HttpStatus.BAD_REQUEST, "311", "비밀번호는 최소 8자 이상이며, 숫자, 특수문자, 대소문자를 포함해야 합니다."),
+    MEMBER_REGISTER_ETC_POLICY_VIOLATION(HttpStatus.BAD_REQUEST, "312", "회원가입 양식에 맞지 않습니다."),
 
-    MEMBER_LOGIN_PASSWORD_INCORRECT(HttpStatus.BAD_REQUEST, "410", "비밀번호가 일치하지 않습니다."),
+    MEMBER_LOGIN_PASSWORD_INCORRECT(HttpStatus.BAD_REQUEST, "320", "비밀번호가 일치하지 않습니다."),
 
-    MEMBER_NOT_EXIST(HttpStatus.BAD_REQUEST, "510", "존재하지 않는 회원입니다."),
-    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "520", "해당 ID의 회원을 찾을 수 없습니다."),
-    EMPTY_MEMBER_LIST(HttpStatus.BAD_REQUEST, "530", "회원 목록이 비어 있습니다.");
+    MEMBER_NOT_EXIST(HttpStatus.BAD_REQUEST, "330", "존재하지 않는 회원입니다."),
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "331", "해당 ID의 회원을 찾을 수 없습니다."),
+    EMPTY_MEMBER_LIST(HttpStatus.BAD_REQUEST, "332", "회원 목록이 비어 있습니다.");
+
 //    MEMBER_SERVER_ERROR(HttpStatus.BAD_REQUEST, "500", "Server error"),
 //    MEMBER_TOKEN_EXPIRED(HttpStatus.BAD_REQUEST, "4011", "Token expired"),
 //    MEMBER_TOKEN_IS_BLACKLIST(HttpStatus.BAD_REQUEST, "4012", "Token is blacklisted"),
