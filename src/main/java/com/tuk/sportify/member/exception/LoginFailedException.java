@@ -1,14 +1,13 @@
 package com.tuk.sportify.member.exception;
 
 import com.tuk.sportify.global.error.ErrorCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.tuk.sportify.global.exception.AuthException;
 
-@Getter
-@RequiredArgsConstructor
-public class LoginFailedException extends RuntimeException{
+public class LoginFailedException extends AuthException {
 
-    private final ErrorCode errorCode;
+    public LoginFailedException(final ErrorCode errorCode) {
+        super(errorCode);
+    }
 
 }
 

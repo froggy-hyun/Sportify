@@ -1,13 +1,12 @@
 package com.tuk.sportify.member.exception;
 
 import com.tuk.sportify.global.error.ErrorCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.tuk.sportify.global.exception.ResourceNotFoundException;
 
-@Getter
-@RequiredArgsConstructor
-public class EmptyMemberListException extends RuntimeException {
+public class EmptyMemberListException extends ResourceNotFoundException {
 
-    private final ErrorCode errorCode;
+    public EmptyMemberListException(final ErrorCode errorCode) {
+        super(errorCode);
+    }
 }
 

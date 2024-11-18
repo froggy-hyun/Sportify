@@ -23,6 +23,7 @@ public enum ErrorCode {
      */
     MEMBER_REGISTER_EMAIL_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "310", "이미 존재하는 이메일입니다."),
     MEMBER_REGISTER_PASSWORD_POLICY_VIOLATION(HttpStatus.BAD_REQUEST, "320", "비밀번호는 최소 8자 이상이며, 숫자, 특수문자, 대소문자를 포함해야 합니다."),
+    MEMBER_REGISTER_ETC_POLICY_VIOLATION(HttpStatus.BAD_REQUEST, "330", "회원가입 양식에 맞지 않습니다."),
 
     MEMBER_LOGIN_PASSWORD_INCORRECT(HttpStatus.BAD_REQUEST, "410", "비밀번호가 일치하지 않습니다."),
 
