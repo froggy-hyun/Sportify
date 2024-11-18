@@ -11,7 +11,6 @@ import com.tuk.sportify.sportvoucher.repository.SportVoucherRepository;
 
 import com.tuk.sportify.sportvoucher.service.mapper.SportVoucherMapper;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.domain.Limit;
@@ -57,8 +56,8 @@ public class SportVoucherService {
     public VoucherSearchResponse searchVoucherByMiddleCategory(final String city, final String gu,
         final Long middleCategoryId){
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        final List<SportVoucher> sportVouchers = sportVoucherRepository.findByMiddleCategory(city, gu,
-            middleCategoryId);
+        final List<SportVoucher> sportVouchers = sportVoucherRepository.findByMiddleCategoryJoinFetch(city, gu,
+            middleCategoryId,currentDate);
         return sportVoucherMapper.toVoucherSearchResponse(sportVouchers);
     }
 }
