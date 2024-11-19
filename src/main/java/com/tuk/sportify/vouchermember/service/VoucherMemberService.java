@@ -66,7 +66,7 @@ public class VoucherMemberService {
     }
 
     private Member getMember(final Long memberId) {
-        return memberService.getMemberById(memberId).get();
+        return memberService.getMemberById(memberId);
     }
 
     private List<CrewVoucher> findCrewVouchers(

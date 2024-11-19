@@ -1,6 +1,6 @@
 package com.tuk.sportify.global.response;
 
-import com.tuk.sportify.global.error.ErrorCode;
+import com.tuk.sportify.global.status_code.ErrorCode;
 
 public record ErrorResponse(
         int httpStatusCode, String httpStatusMessage, String code, String serverMessage) {

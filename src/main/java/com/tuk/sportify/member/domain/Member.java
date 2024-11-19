@@ -12,9 +12,10 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "member")
 @Getter
-public class Member{
+public class Member {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_id", nullable = false)
     private Long id;
 
@@ -28,8 +29,26 @@ public class Member{
     private String name;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Column(nullable = false)
+    private int age;
+
+    @Column(nullable = false)
     private String phone;
+
+    @Column(nullable = false)
+    private String address;
+
+    //장애인 비장애인 여부
+    @Column(nullable = false)
+    private boolean disabled;
 
     @CreationTimestamp
     private Timestamp createdDate;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
