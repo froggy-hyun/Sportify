@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { navLinks } from '../constants/navLinks';
 import { Link } from 'react-router-dom';
 import * as S from '../styles/componentsSyles/Navbar.styled';
+
 const Navbar = () => {
   const [activeIdx, setActiveIdx] = useState(0);
+  
   return (
     <S.NavContainer>
       {navLinks.map((item, index) => (
