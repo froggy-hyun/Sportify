@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const NavContainer = styled.ul`
   position: fixed;
@@ -11,6 +12,10 @@ export const NavContainer = styled.ul`
   display: flex;
   background-color: var(--white);
   box-shadow: 4px 0px 12px 0px rgba(0, 0, 0, 0.08);
+`;
+
+export const StyledLink = styled(Link)`
+  width: 100%;
 `;
 
 export const NavItem = styled.li`
