@@ -19,6 +19,7 @@ padding: 2rem;
 export const NoticeAndSearch = styled.img`
    height: 2.4rem;
    width: 2.4rem;
+   flex-shrink: 0;
    &.search {
     margin-left: 2rem;
 
@@ -29,6 +30,7 @@ export const NoticeAndSearch = styled.img`
 export const LogoImg= styled.img`
   width: 10.7rem;
   height: 2.4rem;
+  flex-shrink: 0;
 `;
 
 

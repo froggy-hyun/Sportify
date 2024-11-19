@@ -1,2 +1,3 @@
 import Header from "./Header";
-export{Header}
+import Navbar from "./Navbar";
+export{Header,Navbar}
