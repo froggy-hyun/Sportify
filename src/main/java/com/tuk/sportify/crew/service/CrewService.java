@@ -4,7 +4,7 @@ import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.crew.dto.CreateCrewRequest;
 import com.tuk.sportify.crew.exception.CrewNotFoundExceptionException;
 import com.tuk.sportify.crew.repository.CrewRepository;
-import com.tuk.sportify.global.error.ErrorCode;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.global.response.IdResponse;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
@@ -22,7 +22,7 @@ public class CrewService {
 
     public IdResponse createCrew(final Long memberId,
         final Long sportVoucherId, final CreateCrewRequest request){
-        Member member = memberService.getMemberById(memberId).get();
+        Member member = memberService.getMemberById(memberId);
         final Crew crew = new Crew(member, request.crewName(), request.content());
         crewRepository.save(crew);
         voucherMemberService.participate(crew,sportVoucherId);
