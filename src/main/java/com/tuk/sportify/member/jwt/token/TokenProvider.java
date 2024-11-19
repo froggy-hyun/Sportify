@@ -43,6 +43,7 @@ public class TokenProvider {
         //Access 토큰
         String accessToken = Jwts.builder()
                 .setSubject(member.getEmail())
+                .claim("id", member.getId())
                 .claim(AUTHORITIES_KEY, member.getRole())
                 .claim(USERNAME_KEY, member.getName())
                 .claim(TOKEN_ID_KEY, tokenId)
