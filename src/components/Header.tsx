@@ -10,6 +10,7 @@ const Header = () => {
   return (
     <S.HeaderContainer>
       <S.LogoImg src={logoImg} alt="sportify" />
+      
       <div>
         <S.NoticeAndSearch src={searchImg} alt="검색" />
         <S.NoticeAndSearch className="search" src={noticeImg} alt="알림" />

@@ -5,7 +5,7 @@ export const NavContainer = styled.ul`
   bottom: 0;
   width: 100%;
   height: fit-content;
-  justify-content: center;
+  justify-content: space-between;
   padding: 2rem;
   align-items: center;
   display: flex;
@@ -23,6 +23,7 @@ export const NavItem = styled.li`
 
 export const IconContainer = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
 `;
