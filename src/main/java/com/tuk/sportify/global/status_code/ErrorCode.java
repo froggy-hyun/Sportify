@@ -29,7 +29,7 @@ public enum ErrorCode {
 
     MEMBER_NOT_EXIST(HttpStatus.BAD_REQUEST, "320", "존재하지 않는 회원입니다."),
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "321", "해당 ID의 회원을 찾을 수 없습니다."),
-    EMPTY_MEMBER_LIST(HttpStatus.BAD_REQUEST, "322", "회원 목록이 비어 있습니다."),
+    MEMBER_EMPTY_MEMBER_LIST(HttpStatus.BAD_REQUEST, "322", "회원 목록이 비어 있습니다."),
 
     /**
      * Jwt : Jwt 관련 에러 코드

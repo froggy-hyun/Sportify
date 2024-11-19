@@ -3,7 +3,9 @@ package com.tuk.sportify.member.service;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
+import com.tuk.sportify.member.dto.MemberInfoResponse;
 import com.tuk.sportify.member.exception.LoginFailedException;
+import com.tuk.sportify.member.exception.MemberNotFoundException;
 import com.tuk.sportify.member.exception.RegisterFailedException;
 import com.tuk.sportify.member.jwt.token.TokenProvider;
 import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
@@ -19,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -30,6 +33,7 @@ public class MemberService {
 
     private static final String PASSWORD_REGEX = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"; // 최소 8자리 + 영어, 숫자, 특수문자를 모두 포함해야함.
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
+
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
@@ -85,12 +89,16 @@ public class MemberService {
 
     // 전체 회원 조회
     public List<Member> getAllMembers() {
-        return memberRepository.findAll();
+        return memberRepository.findAll().stream()
+                .findAny()
+                .map(member -> memberRepository.findAll())
+                .orElseThrow(() -> new MemberNotFoundException(ErrorCode.MEMBER_EMPTY_MEMBER_LIST));
     }
 
+
     // ID로 회원 조회
-    public Optional<Member> getMemberById(Long id) {
-        return memberRepository.findById(id);
+    public Member getMemberById(Long id) {
+        return memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException(ErrorCode.MEMBER_NOT_FOUND));
     }
 }
 

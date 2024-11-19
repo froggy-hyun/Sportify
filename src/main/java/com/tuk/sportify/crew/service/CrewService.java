@@ -22,7 +22,7 @@ public class CrewService {
 
     public IdResponse createCrew(final Long memberId,
         final Long sportVoucherId, final CreateCrewRequest request){
-        Member member = memberService.getMemberById(memberId).get();
+        Member member = memberService.getMemberById(memberId);
         final Crew crew = new Crew(member, request.crewName(), request.content());
         crewRepository.save(crew);
         voucherMemberService.participate(crew,sportVoucherId);
