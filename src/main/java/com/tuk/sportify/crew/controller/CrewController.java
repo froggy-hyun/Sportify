@@ -2,6 +2,7 @@ package com.tuk.sportify.crew.controller;
 
 import com.tuk.sportify.crew.dto.CreateCrewRequest;
 import com.tuk.sportify.crew.service.CrewService;
+import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 import com.tuk.sportify.global.response.IdResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class CrewController {
     @PostMapping("/sport-vouchers/{sportVoucherId}")
     @ResponseStatus(HttpStatus.CREATED)
     public IdResponse createCrew(
-        final Long memberId, @RequestBody final CreateCrewRequest createCrewRequest,
+        @AuthenticationMember final Long memberId, @RequestBody final CreateCrewRequest createCrewRequest,
         @PathVariable final Long sportVoucherId){
         return crewService.createCrew(memberId,sportVoucherId,createCrewRequest);
     }

@@ -26,20 +26,19 @@ public class VoucherMemberController {
         @AuthenticationMember final Long memberId, @RequestParam Integer personalVoucherFetchSize,
         @RequestParam Integer crewVoucherFetchSize
     ){
-        System.out.println("memberId = " + memberId);
         return voucherMemberService.findPersonalAndCrewVouchers(memberId,personalVoucherFetchSize,
             crewVoucherFetchSize);
     }
 
     // 참여중인 크루 목록
     @GetMapping("/my-current-crews")
-    public MyCurrentCrewResponse findMyCurrentCrews(@RequestParam final Long memberId){
+    public MyCurrentCrewResponse findMyCurrentCrews(@AuthenticationMember final Long memberId){
         return voucherMemberService.findMyCurrentCrews(memberId);
     }
 
     // 과거 크루 이용 내역 리스트 : 페이징 O
     @GetMapping("/my-past-crews")
-    public MyPastCrewResponse findMyPastCrews(@RequestParam final Long memberId,@RequestParam Integer page,
+    public MyPastCrewResponse findMyPastCrews(@AuthenticationMember final Long memberId,@RequestParam Integer page,
         @RequestParam Integer fetchSize){
         return voucherMemberService.findMyPastCrews(memberId,page,fetchSize);
     }
@@ -47,7 +46,7 @@ public class VoucherMemberController {
     // 과거 개인 이용권 내역 : 페이징 O
     @GetMapping("/my-past-voucher")
     public PastPersonalVoucherResponse findPastPersonalVouchers(
-        final Long memberId, @RequestParam Integer page, @RequestParam Integer fetchSize){
+        @AuthenticationMember final Long memberId, @RequestParam Integer page, @RequestParam Integer fetchSize){
         return voucherMemberService.findPastPersonalVouchers(memberId,page,fetchSize);
     }
 }
