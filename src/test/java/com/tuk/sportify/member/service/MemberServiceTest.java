@@ -1,5 +1,6 @@
 package com.tuk.sportify.member.service;
 
+import com.tuk.sportify.member.domain.Gender;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,7 +30,7 @@ public class MemberServiceTest {
                 .email("test1@example.com")
                 .password("password1")
                 .name("Test Member1")
-                .gender("male")
+                .gender(Gender.MALE)
                 .age(15)
                 .phone("123-456-7890")
                 .address("address1")
@@ -41,7 +41,7 @@ public class MemberServiceTest {
                 .email("test2@example.com")
                 .password("password2")
                 .name("Test Member2")
-                .gender("female")
+                .gender(Gender.FEMALE)
                 .age(17)
                 .phone("234-456-7890")
                 .address("address2")
@@ -60,10 +60,10 @@ public class MemberServiceTest {
     @Test
     public void testGetMemberById() {
         Member member = memberRepository.findAll().get(0);  // 첫 번째 멤버 가져오기
-        Optional<Member> foundMember = memberService.getMemberById(member.getId());
+        Member foundMember = memberService.getMemberById(member.getId());
 
-        assertThat(foundMember).isPresent();
-        assertThat(foundMember.get().getEmail()).isEqualTo(member.getEmail());
-        assertThat(foundMember.get().getName()).isEqualTo(member.getName());
+        assertThat(foundMember).isNotNull();
+        assertThat(foundMember.getEmail()).isEqualTo(member.getEmail());
+        assertThat(foundMember.getName()).isEqualTo(member.getName());
     }
 }
