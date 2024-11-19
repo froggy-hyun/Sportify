@@ -1,11 +1,13 @@
 package com.tuk.sportify.vouchermember.controller;
 
+import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
 import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PastPersonalVoucherResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalAndCrewVoucherResponse;
 import com.tuk.sportify.vouchermember.service.VoucherMemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,9 +23,10 @@ public class VoucherMemberController {
     // 현재 활동중인 이용권 목록 (개인+크루)
     @GetMapping
     public PersonalAndCrewVoucherResponse findPersonalAndCrewVouchers(
-        @RequestParam final Long memberId, @RequestParam Integer personalVoucherFetchSize,
+        @AuthenticationMember final Long memberId, @RequestParam Integer personalVoucherFetchSize,
         @RequestParam Integer crewVoucherFetchSize
     ){
+        System.out.println("memberId = " + memberId);
         return voucherMemberService.findPersonalAndCrewVouchers(memberId,personalVoucherFetchSize,
             crewVoucherFetchSize);
     }

@@ -24,6 +24,7 @@ public class TokenProvider {
     private static final String AUTHORITIES_KEY = "auth";
     private static final String TOKEN_ID_KEY = "tokenId";
     private static final String USERNAME_KEY = "username";
+    private static final String ID = "id";
 
     private final Key hashKey;
     private final long accessTokenValidationInMilliseconds;
@@ -39,11 +40,10 @@ public class TokenProvider {
         long currentTime = (new Date()).getTime();
         Date accessTokenExpireTime = new Date(currentTime + this.accessTokenValidationInMilliseconds);
         String tokenId = UUID.randomUUID().toString();
-
         //Access 토큰
         String accessToken = Jwts.builder()
                 .setSubject(member.getEmail())
-                .claim("id", member.getId())
+                .claim(ID, member.getId())
                 .claim(AUTHORITIES_KEY, member.getRole())
                 .claim(USERNAME_KEY, member.getName())
                 .claim(TOKEN_ID_KEY, tokenId)
@@ -95,8 +95,7 @@ public class TokenProvider {
                         .split(",")) //파싱
                 .map(SimpleGrantedAuthority::new)
                 .toList();
-
-        UserPrinciple principle = new UserPrinciple(claims.getSubject(), claims.get(USERNAME_KEY, String.class), authorities);
+        UserPrinciple principle = new UserPrinciple(claims.getSubject(), claims.get(USERNAME_KEY, String.class), authorities,claims.get(ID,Long.class));
 
         return new UsernamePasswordAuthenticationToken(principle, token, authorities);
     }
