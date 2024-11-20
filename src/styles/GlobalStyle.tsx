@@ -62,7 +62,9 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
+    margin-top: 6.4rem;
 	line-height: 1;
+    background-color: var( --grayBG) ;
 }
 
 ol, ul {
