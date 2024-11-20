@@ -28,3 +28,8 @@ export const activeTicketsData = [
 
 ]
 
+export const myNeighborsData = [
+ "정명고등학교 크로스핏 모임" ,"MZ 당구 모임"
+]
+
+

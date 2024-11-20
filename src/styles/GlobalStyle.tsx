@@ -67,6 +67,10 @@ body {
     background-color: var( --grayBG) ;
 }
 
+button {
+	border-radius: 0.8rem;
+}
+
 ol, ul {
 	list-style: none;
 }

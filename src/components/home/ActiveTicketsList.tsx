@@ -1,5 +1,5 @@
 import React from 'react';
-import { activeTicketsData } from '../../constants/activeTickesData';
+import { activeTicketsData } from '../../constants/homeData';
 import ActiveTicketItem from './ActiveTicketItem';
 import { TicketItem } from '../../types/ticket';
 import * as S from '../../styles/componentsSyles/homeStyles/ActiveTicketsList.styled';
