@@ -1,8 +1,8 @@
 import React from 'react';
-import { activeTicketsData } from '../../constants/homeData';
+import { activeTicketsData } from '@/constants/homeData';
 import ActiveTicketItem from './TicketItem';
-import { TicketItemType } from '../../types/ticket';
-import * as S from '../../styles/componentsSyles/homeStyles/ActiveTicketsList.styled';
+import { TicketItemType } from '@/types/ticket';
+import * as S from '@/styles/componentsSyles/homeStyles/ActiveTicketsList.styled';
 
 const ActiveTicketsList = () => {
   return (

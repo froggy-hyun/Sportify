@@ -1,6 +1,6 @@
 import React from 'react';
-import { TicketItemType, TicketStatus } from '../../types/ticket';
-import * as S from '../../styles/componentsSyles/homeStyles/TicketItem.styled';
+import { TicketItemType, TicketStatus } from '@/types/ticket';
+import * as S from '@/styles/componentsSyles/homeStyles/TicketItem.styled';
 
 export interface ActiveTicketItemProps extends TicketItemType {
   ticket: TicketStatus;

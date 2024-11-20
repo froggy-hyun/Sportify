@@ -1,6 +1,6 @@
 import React from 'react';
-import * as S from '../../styles/componentsSyles/homeStyles/TrendingTickets.styled';
-import { activeTicketsData } from '../../constants/homeData';
+import * as S from '@/styles/componentsSyles/homeStyles/TrendingTickets.styled';
+import { activeTicketsData } from '@/constants/homeData';
 import { TicketItemType } from '@/types/ticket';
 import ActiveTicketItem from './TicketItem';
 
