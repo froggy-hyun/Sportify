@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from '../../styles/componentsSyles/homeStyles/MyNeighborItem.styled';
-
 import arrowImg from '../../assets/icon/etc/arrow/rightArrow_Default.png';
 
 const MyNeighborItem = ({ title }: { title: string }) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { myNeighborsData } from '../../constants/homeData';
 import * as S from '../../styles/componentsSyles/homeStyles/MyNeighbors.styled';
+
 import MyNeighborItem from './MyNeighborItem';
 import circlesImg from '../../assets/icon/etc/homeCircles.png';
 

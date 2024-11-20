@@ -9,10 +9,6 @@ export const TicketsListContainer = styled.div`
 
 export const TicketsListTitle = styled.h1`
   color: var(--white, #FFF);
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
   margin-bottom: 1.6rem;
 `;
 

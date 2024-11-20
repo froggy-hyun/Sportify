@@ -62,11 +62,18 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-    margin-top: 6.4rem;
+    margin: 6.4rem 0 8.6rem 0;
 	line-height: 1;
     background-color: var( --grayBG) ;
 }
 
+h1 {
+    color: var(--textC3);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
 button {
 	border-radius: 0.8rem;
 }

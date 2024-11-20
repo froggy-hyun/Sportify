@@ -10,10 +10,6 @@ export const MyNeighborsContainer= styled.div`
 `;
 
 export const MyNeighborsTitle = styled.h1`
-  color: var(--textC3);
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: normal;
   margin-bottom: 1.6rem;
   position: relative;
 `;
