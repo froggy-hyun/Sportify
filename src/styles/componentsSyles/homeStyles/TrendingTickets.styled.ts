@@ -11,7 +11,7 @@ export const TrendingTicketsContainer = styled.div`
 export const TrendingTicketsTitleContainer = styled.div`
   width: 100%;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   display: flex;
 `;
 
