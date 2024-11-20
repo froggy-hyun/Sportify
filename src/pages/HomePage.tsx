@@ -1,5 +1,7 @@
 import { TrendingTickets, Location, ActiveTicketsList, MyNeighbors } from '../components';
+
 const HomePage = () => {
+  
   return (
     <div>
       <Location />

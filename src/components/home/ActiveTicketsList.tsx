@@ -1,4 +1,3 @@
-import React from 'react';
 import { activeTicketsData } from '@/constants/homeData';
 import ActiveTicketItem from './TicketItem';
 import { TicketItemType } from '@/types/ticket';
