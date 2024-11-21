@@ -7,6 +7,7 @@ const TicketApplyPage = () => {
       <Location />
       <AlertBanner />
       <CategoryContainer />
+      
     </div>
   );
 };

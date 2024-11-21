@@ -1,3 +1,5 @@
 import CategoryContainer from './CategoryContainer';
+import CategoryList from './CategoryList';
+import CategoryItem from './CategoryItem';
 
-export { CategoryContainer };
+export { CategoryContainer, CategoryList, CategoryItem };
