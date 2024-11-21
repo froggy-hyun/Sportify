@@ -40,14 +40,22 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         TokenValidationResult tokenValidationResult = tokenProvider.validateToken(token);
+
         if (!tokenValidationResult.isValid()) { //토큰이 유효하지 않는 경우
             handleWrongToken(request, response, filterChain, tokenValidationResult);
+            return;
+        }
+
+        // BlackList인지 검증
+        if (tokenProvider.isAccessTokenBlackList(token)) {
+            handleBlackListedToken(request, response, filterChain);
             return;
         }
 
         // 정상 토큰 처리
         handlerValidToken(token, tokenValidationResult);
         filterChain.doFilter(request, response);
+
 
     }
 
@@ -77,4 +85,13 @@ public class JwtFilter extends OncePerRequestFilter {
 
         return null;
     }
+
+    private void handleBlackListedToken(HttpServletRequest request, HttpServletResponse response,
+                                        FilterChain filterChain) throws IOException, ServletException {
+        request.setAttribute("result",
+                new TokenValidationResult(TokenStatus.TOKEN_IS_BLACKLIST, null, null, null)
+        );
+        filterChain.doFilter(request, response);
+    }
+
 }

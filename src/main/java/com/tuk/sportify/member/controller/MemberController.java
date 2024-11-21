@@ -7,12 +7,16 @@ import com.tuk.sportify.member.dto.LoginMemberRequest;
 import com.tuk.sportify.member.dto.MemberInfoResponse;
 import com.tuk.sportify.member.exception.EmptyMemberListException;
 import com.tuk.sportify.member.exception.MemberNotFoundException;
+import com.tuk.sportify.member.jwt.ApiResponseJson;
 import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
+import com.tuk.sportify.member.principle.UserPrinciple;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.member.service.mapper.MemberMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,6 +45,18 @@ public class MemberController {
         log.info("Token issued: {}", tokenInfo);
 
         return tokenInfo; // TokenInfo DTO 직접 반환
+    }
+
+    @PostMapping("/logout")
+    public ApiResponseJson logout(@AuthenticationPrincipal UserPrinciple userPrinciple, @RequestHeader("Authorization") String authHeader) {
+        String email = userPrinciple.getEmail();
+
+        log.info("로그아웃 이메일: {}", email);
+
+        // Bearer 를 문자열에서 제외하기 위해 substring을 사용
+        memberService.logoutMember(authHeader.substring(7), email);
+
+        return new ApiResponseJson(HttpStatus.OK, "로그아웃 성공");
     }
 
     // 모든 회원 조회
