@@ -11,12 +11,11 @@ export const TrendingTicketsContainer = styled.div`
 export const TrendingTicketsTitleContainer = styled.div`
   width: 100%;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   display: flex;
 `;
 
 export const TrendingTickes = styled.div`
-  margin-top: 1.6rem;
   width: 100%;
   display: flex;
   align-items: center;

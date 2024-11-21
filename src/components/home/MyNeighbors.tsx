@@ -4,16 +4,13 @@ import * as S from '@/styles/pagesStyles/homeStyles/MyNeighbors.styled';
 
 import MyNeighborItem from './MyNeighborItem';
 // import circlesImg from '@/assets/icon/etc/homeCircles.png';
+{/* <S.CirclesImg src={circlesImg} /> */}
 
 const MyNeighbors = () => {
   return (
     <S.MyNeighborsContainer>
       <Title title="나만의 운동 이웃" color={true}/>
 
-      {/* <S.MyNeighborsTitle>
-        나만의 운동 이웃
-        <S.CirclesImg src={circlesImg} />
-      </S.MyNeighborsTitle> */}
       <S.MyNeighbors>
         {myNeighborsData.map((title, idx) => (
           <MyNeighborItem key={idx} title={title} />
