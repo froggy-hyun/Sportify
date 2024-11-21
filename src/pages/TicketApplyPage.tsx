@@ -1,4 +1,4 @@
-import { Location, AlertBanner, CategoryContainer } from '../components';
+import { Location, AlertBanner, CategoryContainer, Divide } from '../components';
 
 const TicketApplyPage = () => {
 
@@ -7,7 +7,8 @@ const TicketApplyPage = () => {
       <Location />
       <AlertBanner />
       <CategoryContainer />
-      
+      <Divide />
+
     </div>
   );
 };

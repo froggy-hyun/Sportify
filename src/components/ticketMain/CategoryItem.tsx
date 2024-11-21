@@ -8,7 +8,9 @@ interface CategoryItemProps {
 const CategoryItem = ({ title, img }: CategoryItemProps) => {
   return (
     <S.CategroyItemContainer>
-      <S.CategoryImg src={img} alt="바로가기" />
+      <S.CategoryImgArea>
+        <S.CategoryImg src={img} alt="카테고리 이미지" />
+      </S.CategoryImgArea>
       <S.CategoryTitle>{title}</S.CategoryTitle>
     </S.CategroyItemContainer>
   );
