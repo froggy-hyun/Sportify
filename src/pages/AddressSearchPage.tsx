@@ -5,6 +5,21 @@ const AddressSearchPage = () => {
   const psRef = useRef<kakao.maps.services.Places | null>(null);
   const [places, setPlaces] = useState<kakao.maps.services.PlacesSearchResult>([]); // 검색 결과
   const [pagination, setPagination] = useState<kakao.maps.Pagination | null>(null); // 페이지네이션 정보
+  const [myLocation, setMyLocation] = useState<kakao.maps.LatLng | undefined>(undefined); // 내 위치
+
+  //  현재 위치 가져오기
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const defaultLocation = new window.kakao.maps.LatLng(latitude, longitude);
+        setMyLocation(defaultLocation);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }, []);
 
   useEffect(() => {
     const { kakao } = window;
@@ -20,16 +35,20 @@ const AddressSearchPage = () => {
       return;
     }
 
-    ps?.keywordSearch(keyword, (data, status, pagination) => {
-      if (status === kakao.maps.services.Status.OK) {
-        setPlaces(data); // 검색 결과 저장
-        setPagination(pagination); // 페이지네이션 저장
-      } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        alert('검색 결과가 존재하지 않습니다.');
-      } else if (status === kakao.maps.services.Status.ERROR) {
-        alert('검색 중 오류가 발생했습니다.');
-      }
-    });
+    ps?.keywordSearch(
+      keyword,
+      (data, status, pagination) => {
+        if (status === kakao.maps.services.Status.OK) {
+          setPlaces(data); // 검색 결과 저장
+          setPagination(pagination); // 페이지네이션 저장
+        } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+          alert('검색 결과가 존재하지 않습니다.');
+        } else if (status === kakao.maps.services.Status.ERROR) {
+          alert('검색 중 오류가 발생했습니다.');
+        }
+      },
+      { location: myLocation }
+    );
   };
 
   const renderPagination = () => {
