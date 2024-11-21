@@ -2,6 +2,7 @@ package com.tuk.sportify.sportvoucher.controller;
 
 import com.tuk.sportify.sportvoucher.dto.PopularVoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherResponse;
+import com.tuk.sportify.sportvoucher.dto.VoucherSearchResponse;
 import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,15 @@ public class SportVoucherController {
                 city, gu, fetchSize);
     }
 
-    // 이용권 단건 상세 조회 : TODO 추후 반환 데이터 수정 필요
+    // 이용권 검색
+    @GetMapping("/search")
+    public VoucherSearchResponse searchVoucher(
+        @RequestParam final String city,
+        @RequestParam final String gu,
+        @RequestParam final Long middleCategoryId){
+        return sportVoucherService.searchVoucherByMiddleCategory(city,gu,middleCategoryId);
+    }
+
     @GetMapping("/{sportVoucherId}")
     public VoucherResponse getSingleSportVoucher(@PathVariable final Long sportVoucherId){
         return sportVoucherService.getSingleSportVoucher(sportVoucherId);
