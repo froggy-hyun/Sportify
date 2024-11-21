@@ -1,33 +1,33 @@
-import CatgoryA from '@/assets/icon/category/categoryA_Default.png';
-import CatgoryB from '@/assets/icon/category/categoryB_Default.png';
-import CatgoryC from '@/assets/icon/category/categoryC_Default.png';
-import CatgoryD from '@/assets/icon/category/categoryD_Default.png';
-import CatgoryE from '@/assets/icon/category/categoryE_Default.png';
-import CatgoryF from '@/assets/icon/category/categoryF_Default.png';
+import CategoryA from '@/assets/icon/category/categoryA_Default.png';
+import CategoryB from '@/assets/icon/category/categoryB_Default.png';
+import CategoryC from '@/assets/icon/category/categoryC_Default.png';
+import CategoryD from '@/assets/icon/category/categoryD_Default.png';
+import CategoryE from '@/assets/icon/category/categoryE_Default.png';
+import CategoryF from '@/assets/icon/category/categoryF_Default.png';
 
 export const CategoryData = [
   {
     title: '격투 및 무술',
-    img: CatgoryA,
+    img: CategoryA,
   },
   {
     title: '피트니스 및 체조',
-    img: CatgoryB,
+    img: CategoryB,
   },
   {
     title: '구기 및 라켓',
-    img: CatgoryC,
+    img: CategoryC,
   },
   {
     title: '레저 및 개인',
-    img: CatgoryD,
+    img: CategoryD,
   },
   {
     title: '예술 및 체육',
-    img: CatgoryE,
+    img: CategoryE,
   },
   {
     title: '기타',
-    img: CatgoryF,
+    img: CategoryF,
   },
 ];

@@ -1,4 +1,4 @@
-import { TrendingTickets, Location, ActiveTicketsList, MyNeighbors } from '../components';
+import { TrendingTickets, Location, ActiveTicketsList, MyNeighbors, Divide } from '../components';
 
 const HomePage = () => {
 
@@ -7,6 +7,7 @@ const HomePage = () => {
       <Location />
       <ActiveTicketsList />
       <MyNeighbors />
+      <Divide />
       <TrendingTickets />
     </div>
   );
