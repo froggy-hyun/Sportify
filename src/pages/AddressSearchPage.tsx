@@ -10,12 +10,12 @@ const AddressSearchPage = () => {
   //  현재 위치 가져오기
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      (position: GeolocationPosition) => {
         const { latitude, longitude } = position.coords;
         const defaultLocation = new window.kakao.maps.LatLng(latitude, longitude);
         setMyLocation(defaultLocation);
       },
-      (error) => {
+      (error: GeolocationPositionError) => {
         console.error(error);
       }
     );
@@ -30,8 +30,10 @@ const AddressSearchPage = () => {
     const ps = psRef.current;
     const keyword = inputRef.current?.value;
 
-    if (!keyword?.trim()) {
-      alert('키워드를 입력해주세요!');
+    if (!keyword) {
+      // 키워드가 없을 경우 검색 결과와 페이지네이션 초기화
+      setPlaces([]);
+      setPagination(null);
       return;
     }
 
@@ -41,8 +43,6 @@ const AddressSearchPage = () => {
         if (status === kakao.maps.services.Status.OK) {
           setPlaces(data); // 검색 결과 저장
           setPagination(pagination); // 페이지네이션 저장
-        } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-          alert('검색 결과가 존재하지 않습니다.');
         } else if (status === kakao.maps.services.Status.ERROR) {
           alert('검색 중 오류가 발생했습니다.');
         }
@@ -94,8 +94,7 @@ const AddressSearchPage = () => {
         }}
       >
         <div style={{ textAlign: 'center' }}>
-          <input ref={inputRef} type="text" placeholder="키워드 입력" />
-          <button onClick={searchPlaces}>검색하기</button>
+          <input onChange={searchPlaces} ref={inputRef} type="text" placeholder="키워드 입력" />
         </div>
         <hr style={{ borderTop: '2px solid #5F5F5F', margin: '3px 0' }} />
         <ul id="placesList">
