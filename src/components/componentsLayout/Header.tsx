@@ -1,9 +1,9 @@
-import * as S from '../styles/componentsSyles/Header.styled';
+import * as S from '@/styles/componentsSyles/componentsLayoutStyles/Header.styled'
 
 // Image imports
-import logoImg from '../assets/icon/logo.svg';
-import noticeImg from '../assets/icon/etc/notice_Default.png';
-import searchImg from '../assets/icon/etc/search_Default.png';
+import logoImg from '@/assets/icon/logo.svg';
+import noticeImg from '@/assets/icon/etc/notice_Default.png';
+import searchImg from '@/assets/icon/etc/search_Default.png';
 
 const Header = () => {
 

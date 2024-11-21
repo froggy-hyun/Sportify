@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { navLinks } from '../constants/navLinks';
-import * as S from '../styles/componentsSyles/Navbar.styled';
+import { navLinks } from '@/constants/navLinks';
+import * as S from '@/styles/componentsSyles/componentsLayoutStyles/Navbar.styled'
 
 const Navbar = () => {
   const [activeIdx, setActiveIdx] = useState(0);

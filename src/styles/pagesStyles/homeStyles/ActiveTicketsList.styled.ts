@@ -7,11 +7,6 @@ export const TicketsListContainer = styled.div`
   padding: 3.6rem 0 3.6rem 2rem;
 `;
 
-export const TicketsListTitle = styled.h1`
-  color: var(--white, #FFF);
-  margin-bottom: 1.6rem;
-`;
-
 export const  Tickets =  styled.div`
   overflow-x: auto;
   display: flex;

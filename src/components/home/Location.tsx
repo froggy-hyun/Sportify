@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import { userAddressState } from '../../recoil/userLocation';
 
-import * as S from '@/styles/componentsSyles/homeStyles/Location.styled';
+import * as S from '@/styles/pagesStyles/homeStyles/Location.styled';
 import arrowImg from '@/assets/icon/etc/arrow/rightArrow_White.png';
 
 const Location = () => {

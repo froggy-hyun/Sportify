@@ -64,7 +64,7 @@ footer, header, hgroup, menu, nav, section {
 body {
     margin: 6.4rem 0 8.6rem 0;
 	line-height: 1;
-    background-color: var( --grayBG) ;
+    background-color: var( --white) ;
 }
 
 h1 {

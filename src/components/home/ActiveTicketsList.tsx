@@ -1,12 +1,14 @@
 import { activeTicketsData } from '@/constants/homeData';
-import ActiveTicketItem from './TicketItem';
 import { TicketItemType } from '@/types/ticket';
-import * as S from '@/styles/componentsSyles/homeStyles/ActiveTicketsList.styled';
+import { Title } from '@/components';
+import ActiveTicketItem from './TicketItem';
+
+import * as S from '@/styles/pagesStyles/homeStyles/ActiveTicketsList.styled';
 
 const ActiveTicketsList = () => {
   return (
     <S.TicketsListContainer>
-      <S.TicketsListTitle>현재 활동중인 이용권</S.TicketsListTitle>
+      <Title title="현재 활동중인 이용권" color={false}/>
       <S.Tickets>
         {activeTicketsData.map((item: TicketItemType, index) => (
           <ActiveTicketItem
