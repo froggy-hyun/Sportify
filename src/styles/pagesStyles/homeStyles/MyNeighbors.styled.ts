@@ -9,18 +9,13 @@ export const MyNeighborsContainer= styled.div`
   background: var(--white);
 `;
 
-export const MyNeighborsTitle = styled.h1`
-  margin-bottom: 1.6rem;
-  position: relative;
-`;
-
-export const CirclesImg = styled.img`
-  position: absolute;
-  bottom :2.5rem;
-  width: 5.4rem;
-  height: 2.4rem;
-  flex-shrink: 0;
-`;
+// export const CirclesImg = styled.img`
+//   position: absolute;
+//   bottom :2.5rem;
+//   width: 5.4rem;
+//   height: 2.4rem;
+//   flex-shrink: 0;
+// `;
 
 export const MyNeighbors = styled.div`
   display: flex;

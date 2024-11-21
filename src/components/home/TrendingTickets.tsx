@@ -1,17 +1,17 @@
 import * as S from '@/styles/pagesStyles/homeStyles/TrendingTickets.styled';
 import { activeTicketsData } from '@/constants/homeData';
 import { TicketItemType } from '@/types/ticket';
+import { Title } from '@/components';
+
 import ActiveTicketItem from './TicketItem';
 
 const TrendingTickets = () => {
-
   return (
     <S.TrendingTicketsContainer>
-      <S.TrendingTicketsTitleContainer>
-        <h1>🔥 요즘 HOT한 운동 이용권</h1>
+      <Title title="🔥 요즘 HOT한 운동 이용권" color={true}>
         <S.MoreBtn>더보기</S.MoreBtn>
-      </S.TrendingTicketsTitleContainer>
-      
+      </Title>
+
       <S.TrendingTickes>
         {activeTicketsData.map((item: TicketItemType, index) => (
           <ActiveTicketItem

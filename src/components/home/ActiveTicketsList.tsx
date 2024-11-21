@@ -9,6 +9,7 @@ const ActiveTicketsList = () => {
   return (
     <S.TicketsListContainer>
       <Title title="현재 활동중인 이용권" color={false}/>
+      
       <S.Tickets>
         {activeTicketsData.map((item: TicketItemType, index) => (
           <ActiveTicketItem
