@@ -14,7 +14,7 @@ const AddressSearchPage = () => {
   useEffect(() => {
     const { kakao } = window;
     psRef.current = new kakao.maps.services.Places();
-  }, [places]);
+  }, []);
 
   const searchPlaces = () => {
     const ps = psRef.current;
