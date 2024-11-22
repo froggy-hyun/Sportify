@@ -4,7 +4,6 @@ const AddressSearchPage = () => {
   const inputRef = useRef<HTMLInputElement | null>(null); // 검색어 입력 DOM을 참조하기 위한 ref
   const psRef = useRef<kakao.maps.services.Places | null>(null);
   const [places, setPlaces] = useState<kakao.maps.services.PlacesSearchResult>([]); // 검색 결과
-  const [pagination, setPagination] = useState<kakao.maps.Pagination | null>(null); // 페이지네이션 정보
   const [myLocation, setMyLocation] = useState<kakao.maps.LatLng | undefined>(undefined); // 내 위치
 
   //  현재 위치 가져오기
@@ -33,44 +32,21 @@ const AddressSearchPage = () => {
     if (!keyword) {
       // 키워드가 없을 경우 검색 결과와 페이지네이션 초기화
       setPlaces([]);
-      setPagination(null);
       return;
     }
 
     ps?.keywordSearch(
       keyword,
-      (data, status, pagination) => {
+      (data, status) => {
         if (status === kakao.maps.services.Status.OK) {
-          setPlaces(data); // 검색 결과 저장
-          setPagination(pagination); // 페이지네이션 저장
+          // 검색 결과를 최대 10개로 제한
+          setPlaces(data.slice(0, 10));
         } else if (status === kakao.maps.services.Status.ERROR) {
           alert('검색 중 오류가 발생했습니다.');
         }
       },
       { location: myLocation }
     );
-  };
-
-  const renderPagination = () => {
-    if (!pagination) return null;
-
-    const pages = [];
-    for (let i = 1; i <= pagination.last; i++) {
-      pages.push(
-        <a
-          key={i}
-          href="#"
-          className={pagination.current === i ? 'on' : ''}
-          onClick={(e) => {
-            e.preventDefault();
-            pagination.gotoPage(i);
-          }}
-        >
-          {i}
-        </a>
-      );
-    }
-    return pages;
   };
 
   return (
@@ -109,7 +85,6 @@ const AddressSearchPage = () => {
             </li>
           ))}
         </ul>
-        <div>{renderPagination()}</div>
       </div>
     </div>
   );
