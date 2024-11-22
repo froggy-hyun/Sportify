@@ -29,26 +29,37 @@ public class CrewApplicantService {
     private final VoucherMemberService voucherMemberService;
 
     @Transactional
-    public ApplicationResponse participate(final Long memberId, final Long crewId){
+    public ApplicationResponse participate(final Long memberId, final Long crewId) {
         final Member member = memberService.getMemberById(memberId);
         final Crew crew = crewService.getCrew(crewId);
-        validateDuplication(member,crew);
+        validateDuplication(member, crew);
         final CrewApplicant crewApplicant = new CrewApplicant(crew, member);
         crewApplicantRepository.save(crewApplicant);
         return new ApplicationResponse(crewApplicant.getId());
     }
 
-    private void validateDuplication(final Member member, final Crew crew){
-        if(crewApplicantRepository.existsByMemberAndCrew(member,crew)){
+    private void validateDuplication(final Member member, final Crew crew) {
+        if (crewApplicantRepository.existsByMemberAndCrew(member, crew)) {
             throw new DuplicatedParticipationException(ErrorCode.DUPLICATED_PARTICIPATION);
         }
     }
 
     @Transactional
-    public void approve(final Long memberId, final Long applicantId){
-        final CrewApplicant crewApplicant = crewApplicantRepository.findByIdJoinFetch(applicantId)
-            .orElseThrow(() -> new CrewApplicantNotFound(ErrorCode.CREW_APPLICANT_NOT_FOUND));
+    public void approve(final Long memberId, final Long applicantId) {
+        final CrewApplicant crewApplicant = getCrewApplicant(applicantId);
         final VoucherMember approvedApplicant = crewApplicant.approve(memberId);
         voucherMemberService.participate(approvedApplicant);
+    }
+
+    private CrewApplicant getCrewApplicant(final Long applicantId) {
+        return crewApplicantRepository
+                .findByIdJoinFetch(applicantId)
+                .orElseThrow(() -> new CrewApplicantNotFound(ErrorCode.CREW_APPLICANT_NOT_FOUND));
+    }
+
+    @Transactional
+    public void reject(final Long memberId, final Long applicantId) {
+        final CrewApplicant crewApplicant = getCrewApplicant(applicantId);
+        crewApplicant.reject(memberId);
     }
 }

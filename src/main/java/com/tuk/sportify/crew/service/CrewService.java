@@ -25,18 +25,19 @@ public class CrewService {
     private final MemberService memberService;
     private final CrewMapper crewMapper;
 
-    public IdResponse createCrew(final Long memberId,
-        final Long sportVoucherId, final CreateCrewRequest request){
+    public IdResponse createCrew(
+            final Long memberId, final Long sportVoucherId, final CreateCrewRequest request) {
         final Member member = memberService.getMemberById(memberId);
         final SportVoucher sportVoucher = sportVoucherService.getSportVoucherById(sportVoucherId);
-        final Crew crew = crewMapper.toCrew(member,sportVoucher,request);
+        final Crew crew = crewMapper.toCrew(member, sportVoucher, request);
         crewRepository.save(crew);
-        voucherMemberService.participate(crew,sportVoucher);
+        voucherMemberService.participate(crew, sportVoucher);
         return new IdResponse(crew.getId());
     }
 
-    public Crew getCrew(final Long crewId){
-        return crewRepository.findById(crewId)
-            .orElseThrow(()->new CrewNotFoundExceptionException(ErrorCode.CREW_NOT_FOUND));
+    public Crew getCrew(final Long crewId) {
+        return crewRepository
+                .findById(crewId)
+                .orElseThrow(() -> new CrewNotFoundExceptionException(ErrorCode.CREW_NOT_FOUND));
     }
 }

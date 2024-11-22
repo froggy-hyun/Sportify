@@ -7,6 +7,7 @@ import com.tuk.sportify.global.exception.AuthException;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,17 +49,26 @@ public class CrewApplicant {
         this.applicationStatus = ApplicationStatus.PENDING;
     }
 
-    public void validateGender(){
-        if(GenderRule.isNotValidGender(crew.getGenderRule(),member.getGender())){
+    public void validateGender() {
+        if (GenderRule.isNotValidGender(crew.getGenderRule(), member.getGender())) {
             throw new InvalidGenderException(ErrorCode.INVALID_GENDER);
         }
     }
 
-    public VoucherMember approve(final Long memberId){
-        if(crew.isNotCrewHost(memberId)){
+    public VoucherMember approve(final Long memberId) {
+        validateAuthority(memberId);
+        this.applicationStatus = ApplicationStatus.APPROVED;
+        return new VoucherMember(this.member, crew.getSportVoucher(), crew);
+    }
+
+    public void reject(final Long memberId){
+        validateAuthority(memberId);
+        this.applicationStatus = ApplicationStatus.REJECTED;
+    }
+
+    private void validateAuthority(final Long memberId) {
+        if (crew.isNotCrewHost(memberId)) {
             throw new AuthException(ErrorCode.IS_NOT_CREW_HOST);
         }
-        this.applicationStatus = ApplicationStatus.APPROVED;
-        return new VoucherMember(this.member,crew.getSportVoucher(),crew);
     }
 }

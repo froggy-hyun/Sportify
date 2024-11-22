@@ -30,7 +30,7 @@ public class CrewRule {
         this.rule = rule;
     }
 
-    public void addCrew(final Crew crew){
+    public void addCrew(final Crew crew) {
         this.crew = crew;
     }
 }
