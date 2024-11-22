@@ -17,6 +17,7 @@ public enum ErrorCode {
      * Crew : 크루 관련 에러 코드
      */
     CREW_NOT_FOUND(HttpStatus.BAD_REQUEST, "200", "존재하지 않는 크루입니다."),
+    GENDER_RULE_INVALID(HttpStatus.BAD_REQUEST,"201","지원하지 않는 규칙입니다."),
 
     /**
      * Member : 멤버 관련 에러 코드
