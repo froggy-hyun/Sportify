@@ -63,6 +63,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+    margin: 6.4rem 0 8.6rem 0;
 }
 
 ol, ul {

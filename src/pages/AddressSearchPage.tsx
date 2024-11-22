@@ -1,36 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { locationState } from '../recoil/atom/location';
+import * as S from '../styles/AddressSearch.styled';
+import SearchResults from '../components/SearchResults';
+import MyAddressesList from '../components/MyAddresses';
 
 const AddressSearchPage = () => {
   const inputRef = useRef<HTMLInputElement | null>(null); // 검색어 입력 DOM을 참조하기 위한 ref
   const psRef = useRef<kakao.maps.services.Places | null>(null);
   const [places, setPlaces] = useState<kakao.maps.services.PlacesSearchResult>([]); // 검색 결과
-  const [myLocation, setMyLocation] = useState<kakao.maps.LatLng | undefined>(undefined); // 내 위치
-
-  //  현재 위치 가져오기
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position: GeolocationPosition) => {
-        const { latitude, longitude } = position.coords;
-        const defaultLocation = new window.kakao.maps.LatLng(latitude, longitude);
-        setMyLocation(defaultLocation);
-      },
-      (error: GeolocationPositionError) => {
-        console.error(error);
-      }
-    );
-  }, []);
+  const location = useRecoilValue(locationState);
 
   useEffect(() => {
     const { kakao } = window;
     psRef.current = new kakao.maps.services.Places();
-  }, []);
+  }, [places]);
 
   const searchPlaces = () => {
     const ps = psRef.current;
     const keyword = inputRef.current?.value;
 
     if (!keyword) {
-      // 키워드가 없을 경우 검색 결과와 페이지네이션 초기화
+      // 키워드가 없을 경우 검색 결과
       setPlaces([]);
       return;
     }
@@ -45,48 +36,24 @@ const AddressSearchPage = () => {
           alert('검색 중 오류가 발생했습니다.');
         }
       },
-      { location: myLocation }
+      {
+        location: new window.kakao.maps.LatLng(location.latitude, location.longitude),
+      }
     );
   };
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '500px',
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          bottom: 0,
-          width: '250px',
-          margin: '10px 0 30px 10px',
-          padding: '5px',
-          background: 'rgba(255, 255, 255, 0.7)',
-        }}
-      >
-        <div style={{ textAlign: 'center' }}>
-          <input onChange={searchPlaces} ref={inputRef} type="text" placeholder="키워드 입력" />
-        </div>
-        <hr style={{ borderTop: '2px solid #5F5F5F', margin: '3px 0' }} />
-        <ul id="placesList">
-          {places.map((place) => (
-            <li key={place.id} className="item">
-              <div>
-                <h5>{place.place_name}</h5>
-                {place.road_address_name && <span>{place.road_address_name}</span>}
-                <span>{place.address_name}</span>
-                <span>{place.phone}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <S.SearchContainer>
+      <S.SearchInput
+        onChange={searchPlaces}
+        ref={inputRef}
+        type="text"
+        placeholder={
+          location.address === '' ? '지번,도로명,건물명을 입력해주세요' : location.address
+        }
+      />
+      {inputRef.current?.value ? <SearchResults places={places} /> : <MyAddressesList />}
+    </S.SearchContainer>
   );
 };
 export default AddressSearchPage;
