@@ -49,6 +49,7 @@ public class Crew {
     private DifficultyLevel difficultyLevel;
 
     private Integer capacity;
+    private Integer numberOfParticipant;
 
     @OneToMany(
             fetch = FetchType.LAZY,
@@ -78,8 +79,13 @@ public class Crew {
         this.sportVoucher = sportVoucher;
         this.difficultyLevel = difficultyLevel;
         this.capacity = capacity;
+        this.numberOfParticipant = 1;
         addRules(crewRules);
         addGoals(crewGoals);
+    }
+
+    public void addParticipant(){
+        numberOfParticipant++;
     }
 
     public boolean isNotCrewHost(final Long memberId) {

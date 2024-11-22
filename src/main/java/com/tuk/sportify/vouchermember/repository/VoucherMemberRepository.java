@@ -2,7 +2,6 @@ package com.tuk.sportify.vouchermember.repository;
 
 import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.member.domain.Member;
-import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
 
 import org.springframework.data.domain.Limit;
@@ -49,6 +48,4 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
 
     @Query("select vm from VoucherMember vm join fetch vm.member where vm.crew =:crew")
     List<VoucherMember> findByCrewJoinFetch(Crew crew);
-
-    Integer countByCrew(Crew crew);
 }

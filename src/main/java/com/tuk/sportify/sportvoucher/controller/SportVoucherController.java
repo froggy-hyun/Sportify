@@ -1,6 +1,7 @@
 package com.tuk.sportify.sportvoucher.controller;
 
 import com.tuk.sportify.sportvoucher.dto.PopularVoucherResponse;
+import com.tuk.sportify.sportvoucher.dto.VoucherDetailResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherSearchResponse;
 import com.tuk.sportify.sportvoucher.service.SportVoucherService;
@@ -40,7 +41,7 @@ public class SportVoucherController {
     }
 
     @GetMapping("/{sportVoucherId}")
-    public VoucherResponse getSingleSportVoucher(@PathVariable final Long sportVoucherId){
-        return sportVoucherService.getSingleSportVoucher(sportVoucherId);
+    public VoucherDetailResponse getSportVoucher(@PathVariable final Long sportVoucherId){
+        return sportVoucherService.getSportVoucher(sportVoucherId);
     }
 }

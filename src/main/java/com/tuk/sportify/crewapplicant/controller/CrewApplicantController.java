@@ -40,6 +40,6 @@ public class CrewApplicantController {
     @PatchMapping("/{applicantId}/nack")
     public void reject(
             @AuthenticationMember final Long memberId, @PathVariable final Long applicantId) {
-        crewApplicantService.reject(memberId,applicantId);
+        crewApplicantService.reject(memberId, applicantId);
     }
 }

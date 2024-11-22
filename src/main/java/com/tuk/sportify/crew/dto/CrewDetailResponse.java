@@ -1,8 +1,8 @@
 package com.tuk.sportify.crew.dto;
 
-import com.tuk.sportify.crew.domain.DifficultyLevel;
-import java.util.List;
 import lombok.Builder;
+
+import java.util.List;
 
 @Builder
 public record CrewDetailResponse(
@@ -12,5 +12,6 @@ public record CrewDetailResponse(
     List<String> goals,
     String difficultyLevel,
     Integer capacity,
-    Integer numberOfParticipants
+    Integer numberOfParticipants,
+    String genderRule
 ) {}

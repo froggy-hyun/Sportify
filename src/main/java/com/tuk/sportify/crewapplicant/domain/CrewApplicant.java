@@ -58,6 +58,7 @@ public class CrewApplicant {
     public VoucherMember approve(final Long memberId) {
         validateAuthority(memberId);
         this.applicationStatus = ApplicationStatus.APPROVED;
+        crew.addParticipant();
         return new VoucherMember(this.member, crew.getSportVoucher(), crew);
     }
 

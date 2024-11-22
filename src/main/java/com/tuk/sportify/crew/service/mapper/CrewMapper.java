@@ -32,16 +32,16 @@ public class CrewMapper {
                 .build();
     }
 
-    public CrewDetailResponse toCrewDetailResponse(
-            final Crew crew, final Integer numberOfParticipants) {
+    public CrewDetailResponse toCrewDetailResponse(final Crew crew) {
         return CrewDetailResponse.builder()
                 .crewId(crew.getId())
                 .capacity(crew.getCapacity())
-                .numberOfParticipants(numberOfParticipants)
+                .numberOfParticipants(crew.getNumberOfParticipant())
                 .crewName(crew.getName())
                 .difficultyLevel(crew.getDifficultyLevel().getDescription())
                 .goals(getGoalsToString(crew))
                 .rules(crew.getCrewRules().stream().map(CrewRule::getRule).toList())
+                .genderRule(crew.getGenderRule().getDescription())
                 .build();
     }
 

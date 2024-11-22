@@ -34,7 +34,6 @@ public class VoucherMemberService {
 
     private final VoucherMemberRepository voucherMemberRepository;
     private final VoucherMemberMapper voucherMemberMapper;
-    private final SportVoucherService sportVoucherService;
     private final MemberService memberService;
 
     public PersonalAndCrewVoucherResponse findPersonalAndCrewVouchers(
@@ -107,10 +106,6 @@ public class VoucherMemberService {
     @Transactional
     public void participate(final VoucherMember voucherMember){
         voucherMemberRepository.save(voucherMember);
-    }
-
-    public Integer getNumberOfCrewParticipants(final Crew crew){
-        return voucherMemberRepository.countByCrew(crew);
     }
 
     public List<VoucherMember> getVoucherMembers(final Crew crew){
