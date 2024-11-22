@@ -32,10 +32,4 @@ public class CrewController {
         @PathVariable final Long sportVoucherId){
         return crewService.createCrew(memberId,sportVoucherId,createCrewRequest);
     }
-
-    // 크루 단건(크루 멤버 포함) 조회
-    @GetMapping("/{crewId}")
-    public void getCrewWithMember(@PathVariable final Long crewId){
-        crewService.getCrewWithMembers(crewId);
-    }
 }

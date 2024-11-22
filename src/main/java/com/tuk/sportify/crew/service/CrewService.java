@@ -31,14 +31,12 @@ public class CrewService {
         return new IdResponse(crew.getId());
     }
 
-    public void getCrewWithMembers(final Long crewId){
-        final Crew crew = getCrew(crewId);
-        voucherMemberService.getVoucherMembers(crew);
-        // TODO : Member 구체화 되면 Response
-    }
-
     public Crew getCrew(final Long crewId){
         return crewRepository.findById(crewId)
             .orElseThrow(()->new CrewNotFoundExceptionException(ErrorCode.CREW_NOT_FOUND));
+    }
+
+    public void participate(final Long memberId, final Long crewId){
+
     }
 }
