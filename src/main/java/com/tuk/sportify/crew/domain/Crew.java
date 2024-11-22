@@ -50,10 +50,11 @@ public class Crew {
 
     @Builder
     public Crew(final Member host, final String name, final GenderRule genderRule,
-        final List<CrewRule> crewRules, final List<CrewGoal> crewGoals) {
+        final List<CrewRule> crewRules, final List<CrewGoal> crewGoals, SportVoucher sportVoucher) {
         this.host = host;
         this.name = name;
         this.genderRule = genderRule;
+        this.sportVoucher = sportVoucher;
         addRules(crewRules);
         addGoals(crewGoals);
     }

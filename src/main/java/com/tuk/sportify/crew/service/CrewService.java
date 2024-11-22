@@ -28,8 +28,8 @@ public class CrewService {
     public IdResponse createCrew(final Long memberId,
         final Long sportVoucherId, final CreateCrewRequest request){
         final Member member = memberService.getMemberById(memberId);
-        final Crew crew = crewMapper.toCrew(member, request);
         final SportVoucher sportVoucher = sportVoucherService.getSportVoucherById(sportVoucherId);
+        final Crew crew = crewMapper.toCrew(member,sportVoucher,request);
         crewRepository.save(crew);
         voucherMemberService.participate(crew,sportVoucher);
         return new IdResponse(crew.getId());

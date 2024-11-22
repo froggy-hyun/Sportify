@@ -20,6 +20,7 @@ public enum ErrorCode {
     INVALID_GENDER(HttpStatus.BAD_REQUEST,"201","참여할 수 없는 성별입니다."),
     CREW_APPLICANT_NOT_FOUND(HttpStatus.BAD_REQUEST,"202","지원자를 찾을 수 없습니다."),
     IS_NOT_CREW_HOST(HttpStatus.FORBIDDEN,"203","크루의 호스트에게만 허가된 동작입니다"),
+    DUPLICATED_PARTICIPATION(HttpStatus.BAD_REQUEST,"204","중복된 참여 요청 입니다."),
 
     /**
      * Member : 멤버 관련 에러 코드

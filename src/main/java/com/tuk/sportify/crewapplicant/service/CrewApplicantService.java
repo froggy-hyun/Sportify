@@ -5,6 +5,7 @@ import com.tuk.sportify.crew.service.CrewService;
 import com.tuk.sportify.crewapplicant.domain.CrewApplicant;
 import com.tuk.sportify.crewapplicant.dto.ApplicationResponse;
 import com.tuk.sportify.crewapplicant.exception.CrewApplicantNotFound;
+import com.tuk.sportify.crewapplicant.exception.DuplicatedParticipationException;
 import com.tuk.sportify.crewapplicant.repository.CrewApplicantRepository;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
@@ -31,9 +32,16 @@ public class CrewApplicantService {
     public ApplicationResponse participate(final Long memberId, final Long crewId){
         final Member member = memberService.getMemberById(memberId);
         final Crew crew = crewService.getCrew(crewId);
+        validateDuplication(member,crew);
         final CrewApplicant crewApplicant = new CrewApplicant(crew, member);
         crewApplicantRepository.save(crewApplicant);
         return new ApplicationResponse(crewApplicant.getId());
+    }
+
+    private void validateDuplication(final Member member, final Crew crew){
+        if(crewApplicantRepository.existsByMemberAndCrew(member,crew)){
+            throw new DuplicatedParticipationException(ErrorCode.DUPLICATED_PARTICIPATION);
+        }
     }
 
     @Transactional
