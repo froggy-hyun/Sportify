@@ -1,6 +1,7 @@
 package com.tuk.sportify.crew.domain;
 
 import com.tuk.sportify.member.domain.Member;
+import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -25,9 +26,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Crew {
 
-    private static final Integer GOAL_LIMIT_SIZE = 3;
-    private static final Integer RULE_LIMIT_SIZE = 3;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +33,10 @@ public class Crew {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Member host;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private SportVoucher sportVoucher;
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -54,6 +56,10 @@ public class Crew {
         this.genderRule = genderRule;
         addRules(crewRules);
         addGoals(crewGoals);
+    }
+
+    public boolean isNotCrewHost(final Long memberId){
+        return !host.getId().equals(memberId);
     }
 
     // 연관관계 매핑

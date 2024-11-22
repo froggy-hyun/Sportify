@@ -18,6 +18,8 @@ public enum ErrorCode {
      */
     CREW_NOT_FOUND(HttpStatus.BAD_REQUEST, "200", "존재하지 않는 크루입니다."),
     INVALID_GENDER(HttpStatus.BAD_REQUEST,"201","참여할 수 없는 성별입니다."),
+    CREW_APPLICANT_NOT_FOUND(HttpStatus.BAD_REQUEST,"202","지원자를 찾을 수 없습니다."),
+    IS_NOT_CREW_HOST(HttpStatus.FORBIDDEN,"203","크루의 호스트에게만 허가된 동작입니다"),
 
     /**
      * Member : 멤버 관련 에러 코드
@@ -42,6 +44,8 @@ public enum ErrorCode {
     JWT_TOKEN_HASH_NOT_SUPPORTED(HttpStatus.BAD_REQUEST, "403", "Token hash algorithm not supported"),
     JWT_NO_AUTH_HEADER(HttpStatus.BAD_REQUEST, "404", "Authorization header is missing"),
     JWT_TOKEN_VALIDATION_TRY_FAILED(HttpStatus.BAD_REQUEST, "405", "Token validation attempt failed");
+
+
 
     private final HttpStatus httpStatus;
     private final String code;

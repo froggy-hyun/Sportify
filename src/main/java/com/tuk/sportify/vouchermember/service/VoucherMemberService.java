@@ -1,6 +1,7 @@
 package com.tuk.sportify.vouchermember.service;
 
 import com.tuk.sportify.crew.domain.Crew;
+import com.tuk.sportify.crewapplicant.domain.CrewApplicant;
 import com.tuk.sportify.global.utils.SportifyDateFormatter;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
@@ -98,13 +99,21 @@ public class VoucherMemberService {
     }
 
     @Transactional
-    public void participate(final Crew crew, final Long sportVoucherId){
-        final SportVoucher sportVoucher = sportVoucherService.getSportVoucherById(sportVoucherId);
+    public void participate(final Crew crew, final SportVoucher sportVoucher){
         final VoucherMember voucherMember = new VoucherMember(crew.getHost(), sportVoucher, crew);
+        voucherMemberRepository.save(voucherMember);
+    }
+
+    @Transactional
+    public void participate(final VoucherMember voucherMember){
         voucherMemberRepository.save(voucherMember);
     }
 
     public List<VoucherMember> getVoucherMembers(final Crew crew){
         return voucherMemberRepository.findByCrewJoinFetch(crew);
+    }
+
+    public void joinCrew(final CrewApplicant crewApplicant){
+
     }
 }
