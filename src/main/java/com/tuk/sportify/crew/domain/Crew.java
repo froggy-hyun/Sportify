@@ -45,6 +45,11 @@ public class Crew {
     @Enumerated(EnumType.STRING)
     private GenderRule genderRule;
 
+    @Enumerated(EnumType.STRING)
+    private DifficultyLevel difficultyLevel;
+
+    private Integer capacity;
+
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "crew",
@@ -66,11 +71,13 @@ public class Crew {
             final GenderRule genderRule,
             final List<CrewRule> crewRules,
             final List<CrewGoal> crewGoals,
-            SportVoucher sportVoucher) {
+            SportVoucher sportVoucher, DifficultyLevel difficultyLevel, Integer capacity) {
         this.host = host;
         this.name = name;
         this.genderRule = genderRule;
         this.sportVoucher = sportVoucher;
+        this.difficultyLevel = difficultyLevel;
+        this.capacity = capacity;
         addRules(crewRules);
         addGoals(crewGoals);
     }

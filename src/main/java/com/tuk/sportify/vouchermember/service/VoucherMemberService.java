@@ -109,11 +109,11 @@ public class VoucherMemberService {
         voucherMemberRepository.save(voucherMember);
     }
 
-    public List<VoucherMember> getVoucherMembers(final Crew crew){
-        return voucherMemberRepository.findByCrewJoinFetch(crew);
+    public Integer getNumberOfCrewParticipants(final Crew crew){
+        return voucherMemberRepository.countByCrew(crew);
     }
 
-    public void joinCrew(final CrewApplicant crewApplicant){
-
+    public List<VoucherMember> getVoucherMembers(final Crew crew){
+        return voucherMemberRepository.findByCrewJoinFetch(crew);
     }
 }

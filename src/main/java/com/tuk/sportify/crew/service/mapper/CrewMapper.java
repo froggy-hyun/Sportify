@@ -3,7 +3,9 @@ package com.tuk.sportify.crew.service.mapper;
 import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.crew.domain.CrewGoal;
 import com.tuk.sportify.crew.domain.CrewRule;
+import com.tuk.sportify.crew.domain.Goal;
 import com.tuk.sportify.crew.dto.CreateCrewRequest;
+import com.tuk.sportify.crew.dto.CrewDetailResponse;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
@@ -18,7 +20,6 @@ public class CrewMapper {
             final Member member, final SportVoucher sportVoucher, final CreateCrewRequest request) {
         List<CrewGoal> goals = request.goals().stream().map(CrewGoal::new).toList();
         List<CrewRule> rules = request.rules().stream().map(CrewRule::new).toList();
-
         return Crew.builder()
                 .host(member)
                 .crewGoals(goals)
@@ -26,6 +27,28 @@ public class CrewMapper {
                 .genderRule(request.genderRule())
                 .name(request.crewName())
                 .sportVoucher(sportVoucher)
+                .difficultyLevel(request.difficultyLevel())
+                .capacity(request.capacity())
                 .build();
+    }
+
+    public CrewDetailResponse toCrewDetailResponse(
+            final Crew crew, final Integer numberOfParticipants) {
+        return CrewDetailResponse.builder()
+                .crewId(crew.getId())
+                .capacity(crew.getCapacity())
+                .numberOfParticipants(numberOfParticipants)
+                .crewName(crew.getName())
+                .difficultyLevel(crew.getDifficultyLevel().getDescription())
+                .goals(getGoalsToString(crew))
+                .rules(crew.getCrewRules().stream().map(CrewRule::getRule).toList())
+                .build();
+    }
+
+    private List<String> getGoalsToString(final Crew crew) {
+        return crew.getCrewGoals().stream()
+                .map(CrewGoal::getGoal)
+                .map(Goal::getDescription)
+                .toList();
     }
 }

@@ -2,6 +2,7 @@ package com.tuk.sportify.crew.service;
 
 import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.crew.dto.CreateCrewRequest;
+import com.tuk.sportify.crew.dto.CrewDetailResponse;
 import com.tuk.sportify.crew.exception.CrewNotFoundExceptionException;
 import com.tuk.sportify.crew.repository.CrewRepository;
 import com.tuk.sportify.crew.service.mapper.CrewMapper;
@@ -12,6 +13,7 @@ import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 import com.tuk.sportify.vouchermember.service.VoucherMemberService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +39,13 @@ public class CrewService {
 
     public Crew getCrew(final Long crewId) {
         return crewRepository
-                .findById(crewId)
+                .findByIdJoinFetch(crewId)
                 .orElseThrow(() -> new CrewNotFoundExceptionException(ErrorCode.CREW_NOT_FOUND));
+    }
+
+    public CrewDetailResponse getCrewDetail(final Long crewId){
+        final Crew crew = getCrew(crewId);
+        final Integer numberOfCrewParticipants = voucherMemberService.getNumberOfCrewParticipants(crew);
+        return crewMapper.toCrewDetailResponse(crew,numberOfCrewParticipants);
     }
 }

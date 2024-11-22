@@ -1,6 +1,8 @@
 package com.tuk.sportify.crew.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,13 +26,14 @@ public class CrewGoal {
     @JoinColumn
     private Crew crew;
 
-    private String goal;
+    @Enumerated(EnumType.STRING)
+    private Goal goal;
 
-    public CrewGoal(final String goal) {
+    public CrewGoal(final Goal goal) {
         this.goal = goal;
     }
 
-    public void addCrew(final Crew crew) {
+    public void addCrew(final Crew crew){
         this.crew = crew;
     }
 }
