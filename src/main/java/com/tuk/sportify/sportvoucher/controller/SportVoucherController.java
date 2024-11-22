@@ -31,7 +31,7 @@ public class SportVoucherController {
                 city, gu, fetchSize);
     }
 
-    // 이용권 검색
+    // 이용권들 검색
     @GetMapping("/search")
     public VoucherSearchResponse searchVoucher(
         @RequestParam final String city,
@@ -40,6 +40,7 @@ public class SportVoucherController {
         return sportVoucherService.searchVoucherByMiddleCategory(city,gu,middleCategoryId);
     }
 
+    // 이용권 단건 상세 조회
     @GetMapping("/{sportVoucherId}")
     public VoucherDetailResponse getSportVoucher(@PathVariable final Long sportVoucherId){
         return sportVoucherService.getSportVoucher(sportVoucherId);
