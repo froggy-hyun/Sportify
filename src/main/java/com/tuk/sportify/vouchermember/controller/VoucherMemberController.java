@@ -1,6 +1,8 @@
 package com.tuk.sportify.vouchermember.controller;
 
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
+import com.tuk.sportify.global.response.ApiErrorCodeExample;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
 import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PastPersonalVoucherResponse;
@@ -29,6 +31,7 @@ public class VoucherMemberController {
     // 현재 활동중인 이용권 목록 (개인+크루)
     @GetMapping
     @Operation(summary = "현재 사용 중인 이용권 목록", description = "현재 이용중인 개인이용권과 크루이용권을 모두 포함하여 반환합니다.")
+    @ApiErrorCodeExample(ErrorCode.MEMBER_NOT_FOUND)
     public PersonalAndCrewVoucherResponse findPersonalAndCrewVouchers(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId) {
         return voucherMemberService.findPersonalAndCrewVouchers(memberId);
@@ -36,6 +39,7 @@ public class VoucherMemberController {
 
     @GetMapping("/my-current-crews")
     @Operation(summary = "현재 참여 중인 크루[나만의 운동 이웃] 목록", description = "현재 참여중인 모든 크루 목록을 반환합니다.")
+    @ApiErrorCodeExample(ErrorCode.MEMBER_NOT_FOUND)
     public MyCurrentCrewResponse findMyCurrentCrews(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId) {
         return voucherMemberService.findMyCurrentCrews(memberId);
@@ -45,6 +49,7 @@ public class VoucherMemberController {
     @Operation(
             summary = "과거에 참여한 크루 목록",
             description = "과거에 참여했던 크루 목록을 페이징 처리하여 반환합니다. 페이징 방식은 넘버링이 아닌 스크롤 방식입니다.")
+    @ApiErrorCodeExample(ErrorCode.MEMBER_NOT_FOUND)
     public MyPastCrewResponse findMyPastCrews(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId,
             @RequestParam @Parameter(description = "페이지") Integer page,
@@ -56,6 +61,7 @@ public class VoucherMemberController {
     @Operation(
             summary = "과거에 사용했던 개인 이용권 목록",
             description = "과거에 사용했던 개인 이용권 목록을 페이징 처리하여 반환합니다. 페이징 방식은 넘버링이 아닌 스크롤 방식입니다.")
+    @ApiErrorCodeExample(ErrorCode.MEMBER_NOT_FOUND)
     public PastPersonalVoucherResponse findPastPersonalVouchers(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId,
             @RequestParam @Parameter(description = "페이지") Integer page,

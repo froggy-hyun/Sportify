@@ -16,11 +16,12 @@ public enum ErrorCode {
     /**
      * Crew : 크루 관련 에러 코드
      */
-    CREW_NOT_FOUND(HttpStatus.BAD_REQUEST, "200", "존재하지 않는 크루입니다."),
+    CREW_NOT_FOUND(HttpStatus.NOT_FOUND, "200", "존재하지 않는 크루입니다."),
     INVALID_GENDER(HttpStatus.BAD_REQUEST,"201","참여할 수 없는 성별입니다."),
-    CREW_APPLICANT_NOT_FOUND(HttpStatus.BAD_REQUEST,"202","지원자를 찾을 수 없습니다."),
+    CREW_APPLICANT_NOT_FOUND(HttpStatus.NOT_FOUND,"202","지원자를 찾을 수 없습니다."),
     IS_NOT_CREW_HOST(HttpStatus.FORBIDDEN,"203","크루의 호스트에게만 허가된 동작입니다"),
     DUPLICATED_PARTICIPATION(HttpStatus.BAD_REQUEST,"204","중복된 참여 요청 입니다."),
+    EXCEED_CAPACITY(HttpStatus.BAD_REQUEST,"205","최대 수용 인원을 초과합니다."),
 
     /**
      * Member : 멤버 관련 에러 코드

@@ -7,9 +7,10 @@ import com.tuk.sportify.crew.dto.ImageUrlResponse;
 import com.tuk.sportify.crew.service.CrewService;
 import com.tuk.sportify.crew.service.ImageService;
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
-
 import com.tuk.sportify.global.response.ApiErrorCodeExample;
+import com.tuk.sportify.global.response.ApiErrorCodeExamples;
 import com.tuk.sportify.global.status_code.ErrorCode;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -42,7 +43,7 @@ public class CrewController {
 
     @Operation(summary = "크루 생성", description = "크루를 생성합니다.")
     @PostMapping("/sport-vouchers/{sportVoucherId}")
-    @ApiErrorCodeExample(ErrorCode.CREW_NOT_FOUND)
+    @ApiErrorCodeExamples({ErrorCode.CREW_NOT_FOUND,ErrorCode.SPORT_VOUCHER_NOT_FOUND,ErrorCode.MEMBER_NOT_FOUND})
     @ResponseStatus(HttpStatus.CREATED)
     public CreateCrewResponse createCrew(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId,
@@ -59,6 +60,7 @@ public class CrewController {
     }
 
     @Operation(summary = "크루 단건 상세 조회", description = "크루의 목표,규칙을 포함한 모든 상세 정보를 반환합니다.")
+    @ApiErrorCodeExample(ErrorCode.CREW_NOT_FOUND)
     @GetMapping("/{crewId}")
     public CrewDetailResponse getCrewDetail(@PathVariable @Parameter(description = "크루 ID") final Long crewId) {
         return crewService.getCrewDetail(crewId);

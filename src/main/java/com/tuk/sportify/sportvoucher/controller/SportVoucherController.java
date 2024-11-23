@@ -1,13 +1,15 @@
 package com.tuk.sportify.sportvoucher.controller;
 
+import com.tuk.sportify.global.response.ApiErrorCodeExamples;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.sportvoucher.dto.PopularVoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherDetailResponse;
-import com.tuk.sportify.sportvoucher.dto.VoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherSearchResponse;
 import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +49,7 @@ public class SportVoucherController {
     @Operation(
             summary = "스포츠 이용권 단건 상세 조회",
             description = "스포츠 이용권 단건 조회와 해당 이용권에 생성된 모든 크루들을 반환합니다.")
+    @ApiErrorCodeExamples({ErrorCode.SPORT_VOUCHER_NOT_FOUND, ErrorCode.SPORT_VOUCHER_CLOSED})
     public VoucherDetailResponse getSportVoucher(@PathVariable final Long sportVoucherId) {
         return sportVoucherService.getSportVoucher(sportVoucherId);
     }
