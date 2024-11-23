@@ -10,9 +10,12 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 @EnableConfigurationProperties(JwtProperties.class)
 public class JwtConfig {
+
+    private final AccessTokenBlackList accessTokenBlackList;
+
     @Bean
     public TokenProvider tokenProvider(JwtProperties jwtProperties) {
-        return new TokenProvider(jwtProperties.getSecret(), jwtProperties.getAccessTokenValidityInSeconds());
+        return new TokenProvider(jwtProperties.getSecret(), jwtProperties.getAccessTokenValidityInSeconds(), accessTokenBlackList);
     }
 
     @Bean
