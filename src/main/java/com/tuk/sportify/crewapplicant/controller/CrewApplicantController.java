@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/crew-applicants")
-@Tag(name = "Crew Applicants [운동 이웃 신청, 승인, 거부]")
+@Tag(name = "크루 지원자 [운동 이웃 신청, 승인, 거부]")
 public class CrewApplicantController {
 
     private final CrewApplicantService crewApplicantService;

@@ -1,18 +1,28 @@
 package com.tuk.sportify.global.config;
 
+import com.tuk.sportify.global.response.ApiErrorCodeExample;
+import com.tuk.sportify.global.response.ApiErrorCodeExamples;
+import com.tuk.sportify.global.response.ErrorResponse;
 import com.tuk.sportify.global.response.SuccessResponse;
 
+import com.tuk.sportify.global.status_code.ErrorCode;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.media.Content;
+import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.SneakyThrows;
 
 import org.springdoc.core.customizers.OperationCustomizer;
@@ -23,6 +33,7 @@ import org.springframework.http.HttpStatus;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.web.method.HandlerMethod;
 
 @Configuration
 @OpenAPIDefinition(
@@ -61,12 +72,100 @@ public class SwaggerConfig {
     @Bean
     public OperationCustomizer operationCustomizer() {
         return (operation, handlerMethod) -> {
-            this.addResponseBodyWrapperSchemaExample(operation, SuccessResponse.class,"data");
+            this.wrapSuccessResponse(operation, SuccessResponse.class,"data");
+            this.errorCodeHandle(operation,handlerMethod);
             return operation;
         };
     }
 
-    private void addResponseBodyWrapperSchemaExample(Operation operation,Class<?> type, String wrapFieldName) {
+    private void errorCodeHandle(Operation operation,HandlerMethod handlerMethod){
+        ApiErrorCodeExamples apiErrorCodeExamples = handlerMethod.getMethodAnnotation(
+            ApiErrorCodeExamples.class);
+
+        if (apiErrorCodeExamples != null) {
+            generateErrorCodeResponseExample(operation, apiErrorCodeExamples.value());
+        } else {
+            ApiErrorCodeExample apiErrorCodeExample = handlerMethod.getMethodAnnotation(
+                ApiErrorCodeExample.class);
+            if (apiErrorCodeExample != null) {
+                generateErrorCodeResponseExample(operation, apiErrorCodeExample.value());
+            }
+        }
+    }
+
+    private void generateErrorCodeResponseExample(Operation operation, ErrorCode[] errorCodes) {
+        ApiResponses responses = operation.getResponses();
+
+        // ExampleHolder(에러 응답값) 객체를 만들고 에러 코드별로 그룹화
+        Map<Integer, List<ExampleHolder>> statusWithExampleHolders = Arrays.stream(errorCodes)
+            .map(
+                errorCode -> ExampleHolder.builder()
+                    .holder(getSwaggerExample(errorCode))
+                    .code(errorCode.getHttpStatus().value())
+                    .name(errorCode.name())
+                    .build()
+            )
+            .collect(Collectors.groupingBy(ExampleHolder::code));
+
+        // ExampleHolders를 ApiResponses에 추가
+        addExamplesToResponses(responses, statusWithExampleHolders);
+    }
+
+    // 단일 에러 응답값 예시 추가
+    private void generateErrorCodeResponseExample(Operation operation, ErrorCode errorCode) {
+        ApiResponses responses = operation.getResponses();
+
+        // ExampleHolder 객체 생성 및 ApiResponses에 추가
+        ExampleHolder exampleHolder = ExampleHolder.builder()
+            .holder(getSwaggerExample(errorCode))
+            .code(errorCode.getHttpStatus().value())
+            .name(errorCode.name())
+            .build();
+        addExamplesToResponses(responses, exampleHolder);
+    }
+
+    private Example getSwaggerExample(ErrorCode errorCode) {
+        ErrorResponse errorResponse = new ErrorResponse(errorCode);
+        Example example = new Example();
+        example.setValue(errorResponse);
+        return example;
+    }
+
+    // exampleHolder를 ApiResponses에 추가
+    private void addExamplesToResponses(ApiResponses responses,
+        Map<Integer, List<ExampleHolder>> statusWithExampleHolders) {
+        statusWithExampleHolders.forEach(
+            (status, v) -> {
+                Content content = new Content();
+                MediaType mediaType = new MediaType();
+                ApiResponse apiResponse = new ApiResponse();
+
+                v.forEach(
+                    exampleHolder -> mediaType.addExamples(
+                        exampleHolder.name(),
+                        exampleHolder.holder()
+                    )
+                );
+                content.addMediaType("application/json", mediaType);
+                apiResponse.setContent(content);
+                responses.addApiResponse(String.valueOf(status), apiResponse);
+            }
+        );
+    }
+
+    private void addExamplesToResponses(ApiResponses responses, ExampleHolder exampleHolder) {
+        Content content = new Content();
+        MediaType mediaType = new MediaType();
+        ApiResponse apiResponse = new ApiResponse();
+
+        mediaType.addExamples(exampleHolder.name(), exampleHolder.holder());
+        content.addMediaType("application/json", mediaType);
+        apiResponse.content(content);
+        responses.addApiResponse(String.valueOf(exampleHolder.code()), apiResponse);
+    }
+
+
+    private void wrapSuccessResponse(Operation operation,Class<?> type, String wrapFieldName) {
         for(String code : statusCode){
             ApiResponse apiResponse = operation.getResponses().get(code);
             if( Objects.nonNull(apiResponse)){
@@ -91,7 +190,6 @@ public class SwaggerConfig {
     private <T> Schema<T> wrapSchema(Schema<?> originalSchema, Class<T> type,
         String wrapFieldName,String code) {
         final Schema<T> wrapperSchema = new Schema<>();
-        final T instance = type.getDeclaredConstructor().newInstance();
         for (Field field : type.getDeclaredFields()) {
             field.setAccessible(true);
             if(field.getName().equals("httpStatusCode")){

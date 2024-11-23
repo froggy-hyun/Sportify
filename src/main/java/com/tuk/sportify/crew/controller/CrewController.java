@@ -8,6 +8,8 @@ import com.tuk.sportify.crew.service.CrewService;
 import com.tuk.sportify.crew.service.ImageService;
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 
+import com.tuk.sportify.global.response.ApiErrorCodeExample;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,7 +34,7 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/crews")
-@Tag(name = "Crew")
+@Tag(name = "크루 [운동이웃 생성, 대표 이미지 업로드, 단건 상세 조회]")
 public class CrewController {
 
     private final CrewService crewService;
@@ -40,6 +42,7 @@ public class CrewController {
 
     @Operation(summary = "크루 생성", description = "크루를 생성합니다.")
     @PostMapping("/sport-vouchers/{sportVoucherId}")
+    @ApiErrorCodeExample(ErrorCode.CREW_NOT_FOUND)
     @ResponseStatus(HttpStatus.CREATED)
     public CreateCrewResponse createCrew(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId,
