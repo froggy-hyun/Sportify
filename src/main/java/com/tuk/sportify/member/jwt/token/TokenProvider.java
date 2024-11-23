@@ -1,6 +1,7 @@
 package com.tuk.sportify.member.jwt.token;
 
 import com.tuk.sportify.member.domain.Member;
+import com.tuk.sportify.member.jwt.AccessTokenBlackList;
 import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
 import com.tuk.sportify.member.jwt.token.dto.TokenValidationResult;
 import com.tuk.sportify.member.principle.UserPrinciple;
@@ -28,11 +29,13 @@ public class TokenProvider {
 
     private final Key hashKey;
     private final long accessTokenValidationInMilliseconds;
+    private final AccessTokenBlackList accessTokenBlackList;
 
-    public TokenProvider(String secrete, long accessTokenValidationInSeconds) {
-        byte[] keyBytes = Decoders.BASE64.decode(secrete);
+    public TokenProvider(String key, long accessTokenValidationInSeconds, AccessTokenBlackList accessTokenBlackList) {
+        byte[] keyBytes = Decoders.BASE64.decode(key);
         this.hashKey = Keys.hmacShaKeyFor(keyBytes);
         this.accessTokenValidationInMilliseconds = accessTokenValidationInSeconds * 1000;
+        this.accessTokenBlackList = accessTokenBlackList;
     }
 
     //토큰 생성
@@ -98,6 +101,14 @@ public class TokenProvider {
         UserPrinciple principle = new UserPrinciple(claims.getSubject(), claims.get(USERNAME_KEY, String.class), authorities,claims.get(ID,Long.class));
 
         return new UsernamePasswordAuthenticationToken(principle, token, authorities);
+    }
+
+    public boolean isAccessTokenBlackList(String accessToken) {
+        if (accessTokenBlackList.isTokenBlackList(accessToken)) {
+            log.info("BlackListed Access Token");
+            return true;
+        }
+        return false;
     }
 }
 

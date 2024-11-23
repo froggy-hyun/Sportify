@@ -27,7 +27,8 @@ public class SecurityConfig {
         "/error",
         "/members/login",
         "/v3/api-docs/**",
-        "/swagger-ui/**"
+        "/swagger-ui/**",
+        "/members/logout"
     };
     private final String[] anonymousUrl = {"/members/**"};
 

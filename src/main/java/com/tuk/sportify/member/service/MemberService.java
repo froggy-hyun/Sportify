@@ -7,6 +7,7 @@ import com.tuk.sportify.member.dto.MemberInfoResponse;
 import com.tuk.sportify.member.exception.LoginFailedException;
 import com.tuk.sportify.member.exception.MemberNotFoundException;
 import com.tuk.sportify.member.exception.RegisterFailedException;
+import com.tuk.sportify.member.jwt.AccessTokenBlackList;
 import com.tuk.sportify.member.jwt.token.TokenProvider;
 import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
 import com.tuk.sportify.member.repository.MemberRepository;
@@ -37,6 +38,7 @@ public class MemberService {
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
+    private final AccessTokenBlackList accessTokenBlackList;
 
     public Member createMember(CreateMemberRequest request) {
         checkPasswordStrength(request.password());
@@ -71,6 +73,10 @@ public class MemberService {
         } catch (BadCredentialsException e) {
             throw new LoginFailedException(ErrorCode.MEMBER_LOGIN_PASSWORD_INCORRECT);
         }
+    }
+
+    public void logoutMember(String accessToken, String email) {
+        accessTokenBlackList.setBlackList(accessToken, email);
     }
 
     private void checkPassword(String password, Member member) {
