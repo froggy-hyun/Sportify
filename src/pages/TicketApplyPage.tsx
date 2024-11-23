@@ -9,6 +9,8 @@ const TicketApplyPage = () => {
       <CategoryContainer />
       <Divide />
 
+      {/* 티켓 카테고리 구현 */}
+
     </div>
   );
 };
