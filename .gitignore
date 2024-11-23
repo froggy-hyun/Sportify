@@ -45,6 +45,6 @@ out/
 ### YML ###
 application-vworld.yml
 application-local.yml
-
+application-prod.yml
 ### PRODUCTION SECRET ###
 gcs-secret.json
