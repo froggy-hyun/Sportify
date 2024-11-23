@@ -11,34 +11,11 @@ export const SearchContainer = styled.div`
  
 `;
 
-export const SearchInput= styled.input`
-  display: flex;
-  width: 100%;
-  padding: 1.2rem 1.6rem;
-  height: 4.1rem;
-  border-radius: 0.8rem;
-  outline: 0;
-  /* 배경색과 이미지 통합 */
-  background: var(--grayBG) url('src/assets/icon/etc/search_Default.png') no-repeat left  center;
-  background-size: 1.6rem; 
-  background-position: 1.6rem center;
-
-  padding-left: 4.3rem; 
-
-  margin-bottom: 2.3rem;
-  ::placeholder {
-    font-size: 1.4rem;
-    font-weight: 400;
-     line-height: normal;
-    color: var(--textC8);
-  }
-`;
-
-
 
 export const SearchListContainer = styled.ul`
   width: 100%;
   height: fit-content;
+  margin-top: 2.3rem;
 `;
 
 export const SearchMyItem = styled.li`
