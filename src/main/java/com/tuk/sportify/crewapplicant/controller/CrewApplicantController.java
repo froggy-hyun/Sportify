@@ -4,6 +4,10 @@ import com.tuk.sportify.crewapplicant.dto.ApplicationResponse;
 import com.tuk.sportify.crewapplicant.service.CrewApplicantService;
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -17,29 +21,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/crew-applicants")
+@Tag(name = "Crew Applicants [운동 이웃 신청, 승인, 거부]")
 public class CrewApplicantController {
 
     private final CrewApplicantService crewApplicantService;
 
-    // 크루 참여 요청
     @PostMapping("/crew/{crewId}")
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "크루 참여", description = "특정 크루에 참여 요청을 생성합니다.")
     public ApplicationResponse participateRequest(
-            @AuthenticationMember final Long memberId, @PathVariable final Long crewId) {
+            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
+            @PathVariable @Parameter(description = "크루 ID") final Long crewId) {
         return crewApplicantService.participate(memberId, crewId);
     }
 
-    // 참여 승인
     @PatchMapping("/{applicantId}/ack")
+    @Operation(summary = "크루 참여 승인", description = "참여 요청을 승인합니다.")
     public void approve(
-            @AuthenticationMember final Long memberId, @PathVariable final Long applicantId) {
+            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
+                @PathVariable @Parameter(description = "지원자 ID") final Long applicantId) {
         crewApplicantService.approve(memberId, applicantId);
     }
 
-    // 참여 거절
     @PatchMapping("/{applicantId}/nack")
+    @Operation(summary = "크루 참여 거절", description = "참여 요청을 거절합니다.")
     public void reject(
-            @AuthenticationMember final Long memberId, @PathVariable final Long applicantId) {
+            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
+                @PathVariable @Parameter(description = "지원자 ID") final Long applicantId) {
         crewApplicantService.reject(memberId, applicantId);
     }
 }

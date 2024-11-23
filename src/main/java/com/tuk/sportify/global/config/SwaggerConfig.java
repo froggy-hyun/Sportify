@@ -105,7 +105,6 @@ public class SwaggerConfig {
             }
             field.setAccessible(false);
         }
-
         wrapperSchema.addProperty(wrapFieldName, originalSchema);
         return wrapperSchema;
     }

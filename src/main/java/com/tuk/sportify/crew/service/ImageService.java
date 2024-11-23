@@ -24,7 +24,6 @@ public class ImageService {
 
     @Value("${spring.cloud.gcp.storage.credentials.location}")
     private String secretPath;
-
     @Value("${spring.cloud.gcp.storage.bucket}")
     private String bucketName;
 
@@ -47,8 +46,7 @@ public class ImageService {
         } else {
             BlobInfo blobInfo =
                     BlobInfo.newBuilder(bucketName, uuid).setContentType(extention).build();
-
-            Blob blob = storage.create(blobInfo, multipartFile.getInputStream());
+            storage.create(blobInfo, multipartFile.getInputStream());
         }
 
         return new ImageUrlResponse(imgUrl);

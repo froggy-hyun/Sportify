@@ -9,9 +9,7 @@ import com.tuk.sportify.crew.service.ImageService;
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import jakarta.validation.Valid;
@@ -34,37 +32,32 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/crews")
-// @Tag(name = "Crew", description = "Crew 관련 요청")
+@Tag(name = "Crew")
 public class CrewController {
 
     private final CrewService crewService;
     private final ImageService imageService;
 
-    // 크루 생성
-        @Operation(summary = "크루 생성", description = "크루를 생성합니다.")
-        @ApiResponse(
-                responseCode = "201",
-                description = "CREATED",
-                useReturnTypeSchema = true,
-                content = @Content(schema = @Schema(implementation = CreateCrewResponse.class)))
+    @Operation(summary = "크루 생성", description = "크루를 생성합니다.")
     @PostMapping("/sport-vouchers/{sportVoucherId}")
     @ResponseStatus(HttpStatus.CREATED)
     public CreateCrewResponse createCrew(
-            @AuthenticationMember final Long memberId,
+            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
             @RequestBody @Valid final CreateCrewRequest createCrewRequest,
-            @PathVariable final Long sportVoucherId) {
+            @PathVariable @Parameter(description = "스포츠 이용권 ID") final Long sportVoucherId) {
         return crewService.createCrew(memberId, sportVoucherId, createCrewRequest);
     }
 
-    // 이미지 등록
+    @Operation(summary = "크루 대표 이미지 설정", description = "Google Cloud Storage에 이미지를 업로드합니다.")
     @PostMapping("/images")
-    public ImageUrlResponse saveThumbnail(@RequestParam MultipartFile image) throws IOException {
+    @ResponseStatus(HttpStatus.CREATED)
+    public ImageUrlResponse saveThumbnail(@RequestParam @Parameter(description = "Image 파일") MultipartFile image) throws IOException {
         return imageService.upload(image);
     }
 
-    // 크루 상세 조회
+    @Operation(summary = "크루 단건 상세 조회", description = "크루의 목표,규칙을 포함한 모든 상세 정보를 반환합니다.")
     @GetMapping("/{crewId}")
-    public CrewDetailResponse getCrewDetail(@PathVariable final Long crewId) {
+    public CrewDetailResponse getCrewDetail(@PathVariable @Parameter(description = "크루 ID") final Long crewId) {
         return crewService.getCrewDetail(crewId);
     }
 }
