@@ -62,7 +62,20 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
+    margin: 6.4rem 0 8.6rem 0;
 	line-height: 1;
+    background-color: var( --white) ;
+}
+
+h1 {
+    color: var(--textC3);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+button {
+	border-radius: 0.8rem;
 }
 
 ol, ul {
