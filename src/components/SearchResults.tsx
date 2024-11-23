@@ -1,5 +1,3 @@
-// SearchResults.tsx
-import React from 'react';
 import * as S from '../styles/AddressSearch.styled';
 
 interface SearchResultsProps {

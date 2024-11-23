@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { locationState } from '../recoil/atom/location';
 import * as S from '../styles/AddressSearch.styled';
 import SearchResults from '../components/SearchResults';
 import MyAddressesList from '../components/MyAddresses';
-import { addressModealState } from '../recoil/atom/addressModal';
+import { addressModalState } from '../recoil/atom/addressModal';
 import AddressPopup from '../components/AddressPopup';
 import BaseInput from '../components/BaseInput';
 
@@ -16,7 +16,7 @@ const AddressSearchPage = () => {
 
   const [selectedPlace, setSelectedPlace] =
     useState<kakao.maps.services.PlacesSearchResultItem | null>(null); // 주소 클릭 후  저장
-  const [modalOpen, setModalOpen] = useRecoilState(addressModealState);
+  const [modalOpen, setModalOpen] = useRecoilState(addressModalState);
 
   useEffect(() => {
     const { kakao } = window;

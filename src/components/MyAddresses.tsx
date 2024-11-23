@@ -1,6 +1,5 @@
 // MyAddresses.tsx
-import React from 'react';
-import * as S from '../styles/AddressSearch.styled';
+import * as S from '@/styles/AddressSearch.styled';
 import { myAddresses, MyAddresses } from '../constants/myAddresses';
 import { locationState } from '../recoil/atom/location';
 import { useRecoilValue } from 'recoil';

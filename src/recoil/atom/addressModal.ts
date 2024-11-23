@@ -1,6 +1,7 @@
 import { atom } from 'recoil';
-export const addressModealState = atom<boolean>({
-  key: 'addressModeal',
+
+export const addressModalState = atom<boolean>({
+  key: 'addressModal',
   default: false,
   effects: [
     ({ onSet }) => {

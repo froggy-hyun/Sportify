@@ -1,4 +1,4 @@
-import * as S from '@/styles/componentsSyles/componentsLayoutStyles/AlertBanner.styled'
+import * as S from '@/styles/componentsStyles/componentsLayoutStyles/AlertBanner.styled'
 
 // Image imports
 import alertImg from '@/assets/icon/etc/notice_Default.png';

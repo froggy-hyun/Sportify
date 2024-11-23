@@ -4,18 +4,15 @@ export const SearchContainer = styled.div`
   width: 100%;
   height: fit-content;
   align-items: center;
-  padding: 0 2rem;
-  margin-top: 1.5rem;
+  padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
- 
 `;
-
 
 export const SearchListContainer = styled.ul`
   width: 100%;
   height: fit-content;
-  margin-top: 2.3rem;
+  margin-top: 3.2rem;
 `;
 
 export const SearchMyItem = styled.li`

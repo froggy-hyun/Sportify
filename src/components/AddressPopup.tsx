@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { addressModealState } from '../recoil/atom/addressModal';
+import { addressModalState } from '../recoil/atom/addressModal';
+
 import * as S from '../styles/AddressPopup';
 import BaseInput from './BaseInput';
 const AddressPopup = ({ place }: { place: kakao.maps.services.PlacesSearchResultItem }) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [modalOpen, setModalOpen] = useRecoilState(addressModealState);
+  const [modalOpen, setModalOpen] = useRecoilState(addressModalState);
 
   useEffect(() => {
     const closeModal = (e: MouseEvent) => {
@@ -21,7 +22,7 @@ const AddressPopup = ({ place }: { place: kakao.maps.services.PlacesSearchResult
     return () => {
       document.removeEventListener('mousedown', closeModal);
     };
-  }, [modalOpen]);
+  }, [modalOpen, setModalOpen]);
 
   return (
     <S.Background>

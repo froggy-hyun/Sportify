@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from '../styles/componentsSyles/Input.styled';
+import * as S from '../styles/componentsStyles/Input.styled';
 import { forwardRef } from 'react';
 
 interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputElement> {

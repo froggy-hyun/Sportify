@@ -11,6 +11,7 @@ const CategoryItem = ({ title, img }: CategoryItemProps) => {
       <S.CategoryImgArea>
         <S.CategoryImg src={img} alt="카테고리 이미지" />
       </S.CategoryImgArea>
+      
       <S.CategoryTitle>{title}</S.CategoryTitle>
     </S.CategroyItemContainer>
   );
