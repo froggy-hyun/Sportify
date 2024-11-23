@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths';
 import VitePluginHtmlEnv from 'vite-plugin-html-env'
 
 export default defineConfig({
-  plugins: [react(),VitePluginHtmlEnv(),VitePluginHtmlEnv({
+  plugins: [react(), tsconfigPaths(), VitePluginHtmlEnv(),VitePluginHtmlEnv({
       compiler: true
     })
   ]
