@@ -2,13 +2,13 @@ package com.tuk.sportify.crew.service;
 
 import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.crew.dto.CreateCrewRequest;
+import com.tuk.sportify.crew.dto.CreateCrewResponse;
 import com.tuk.sportify.crew.dto.CrewDetailResponse;
 import com.tuk.sportify.crew.exception.CrewNotFoundExceptionException;
 import com.tuk.sportify.crew.repository.CrewRepository;
 import com.tuk.sportify.crew.service.mapper.CrewMapper;
 import com.tuk.sportify.crewvoucher.service.CrewVoucherProxyService;
 import com.tuk.sportify.global.status_code.ErrorCode;
-import com.tuk.sportify.global.response.IdResponse;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
@@ -28,14 +28,14 @@ public class CrewService {
     private final MemberService memberService;
     private final CrewMapper crewMapper;
 
-    public IdResponse createCrew(
+    public CreateCrewResponse createCrew(
             final Long memberId, final Long sportVoucherId, final CreateCrewRequest request) {
         final Member member = memberService.getMemberById(memberId);
         final SportVoucher sportVoucher = crewVoucherProxyService.getSportVoucherById(sportVoucherId);
         final Crew crew = crewMapper.toCrew(member, sportVoucher, request);
         crewRepository.save(crew);
         voucherMemberService.participate(crew, sportVoucher);
-        return new IdResponse(crew.getId());
+        return new CreateCrewResponse(crew.getId());
     }
 
     public Crew getCrew(final Long crewId) {

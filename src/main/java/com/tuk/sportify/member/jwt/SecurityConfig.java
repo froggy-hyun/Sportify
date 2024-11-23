@@ -1,6 +1,7 @@
 package com.tuk.sportify.member.jwt;
 
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,36 +21,45 @@ public class SecurityConfig {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final JwtFilter jwtFilter;
 
-    //권한별 url
+    // 권한별 url
     private final String[] adminUrl = {"/admin/**"};
-    private final String[] permitAllUrl = {"/error", "/members/login"};
+    private final String[] permitAllUrl = {
+        "/error",
+        "/members/login",
+        "/v3/api-docs/**",
+        "/swagger-ui/**"
+    };
     private final String[] anonymousUrl = {"/members/**"};
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .exceptionHandling(handle -> handle
-                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                        .accessDeniedHandler(jwtAccessDeniedHandler)
-                )
+                .sessionManagement(
+                        session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(
+                        handle ->
+                                handle.authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                                        .accessDeniedHandler(jwtAccessDeniedHandler))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests(auth -> auth //접근 url 권한 관리
-                        .requestMatchers(adminUrl).hasAnyRole("ADMIN")
-                        .requestMatchers(permitAllUrl).permitAll()
-                        .requestMatchers(anonymousUrl).anonymous()
-                        .anyRequest().authenticated() //이 외의 url은 인증받은 사용자만 접근 가능
-                );
+                .authorizeHttpRequests(
+                        auth ->
+                                auth // 접근 url 권한 관리
+                                        .requestMatchers(adminUrl)
+                                        .hasAnyRole("ADMIN")
+                                        .requestMatchers(permitAllUrl)
+                                        .permitAll()
+                                        .requestMatchers(anonymousUrl)
+                                        .anonymous()
+                                        .anyRequest()
+                                        .authenticated() // 이 외의 url은 인증받은 사용자만 접근 가능
+                        );
         return httpSecurity.build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() { //비밀번호 암호화
+    public PasswordEncoder passwordEncoder() { // 비밀번호 암호화
         return new BCryptPasswordEncoder();
     }
 }
