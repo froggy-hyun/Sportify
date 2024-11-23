@@ -1,2 +1,3 @@
-import { navLinks } from "./navLinks";
-export { navLinks }
+import { navLinks} from "./navLinks";
+
+export {navLinks}
