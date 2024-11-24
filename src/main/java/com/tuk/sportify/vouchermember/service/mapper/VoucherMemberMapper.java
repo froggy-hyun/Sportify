@@ -8,8 +8,11 @@ import com.tuk.sportify.vouchermember.dto.CrewVoucher;
 import com.tuk.sportify.vouchermember.dto.MyCrew;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
 import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
+import com.tuk.sportify.vouchermember.dto.PastPersonalVoucherResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
 
+import java.util.Objects;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,12 +20,21 @@ import java.util.List;
 @Component
 public class VoucherMemberMapper {
 
-    public List<PersonalVoucher> toCurrentPersonalVoucher(
-            final List<VoucherMember> voucherMembers) {
-        return voucherMembers.stream().map(this::createCurrentPersonalVoucher).toList();
+    public List<PersonalVoucher> toPersonalVoucher(final List<VoucherMember> voucherMembers) {
+        return voucherMembers.stream().map(this::createPersonalVoucher).toList();
     }
 
-    private PersonalVoucher createCurrentPersonalVoucher(final VoucherMember voucherMember) {
+    public PastPersonalVoucherResponse toPastPersonalVoucherResponse(
+            Slice<VoucherMember> voucherMemberSlice) {
+        return PastPersonalVoucherResponse.builder()
+                .pastPersonalVouchers(toPersonalVoucher(voucherMemberSlice.getContent()))
+                .requestFetchSize(voucherMemberSlice.getSize())
+                .hasNextPage(voucherMemberSlice.hasNext())
+                .numberOfElement(voucherMemberSlice.getNumberOfElements())
+                .build();
+    }
+
+    private PersonalVoucher createPersonalVoucher(final VoucherMember voucherMember) {
         final SportVoucher sportVoucher = voucherMember.getSportVoucher();
         final Course course = sportVoucher.getCourse();
         return new PersonalVoucher(sportVoucher.getId(), course.getName(), course.getDuration());
@@ -44,14 +56,32 @@ public class VoucherMemberMapper {
         return new MyCurrentCrewResponse(myCrews);
     }
 
-    public MyPastCrewResponse toMyPastCrewResponse(final List<VoucherMember> voucherMembers) {
-        final List<MyCrew> myCrews = voucherMembers.stream().map(this::toMyCrew).toList();
-        return new MyPastCrewResponse(myCrews);
+    public MyPastCrewResponse toMyPastCrewResponse(final Slice<VoucherMember> voucherMembers) {
+        List<VoucherMember> content = voucherMembers.getContent();
+        final List<MyCrew> myCrews = content.stream().map(this::toMyCrew).toList();
+        return MyPastCrewResponse.builder()
+                .myPastCrews(myCrews)
+                .requestFetchSize(voucherMembers.getSize())
+                .hasNextPage(voucherMembers.hasNext())
+                .numberOfElement(voucherMembers.getNumberOfElements())
+                .build();
     }
 
     private MyCrew toMyCrew(final VoucherMember voucherMember) {
         final Crew crew = voucherMember.getCrew();
         final Course course = voucherMember.getSportVoucher().getCourse();
-        return new MyCrew(crew.getId(), crew.getName(), course.getName(), course.getDuration());
+        return new MyCrew(
+                crew.getId(),
+                crew.getName(),
+                course.getName(),
+                course.getDuration(),
+                findImage(crew));
+    }
+
+    private String findImage(final Crew crew) {
+        if( Objects.isNull(crew.getCrewImage())){
+            return null;
+        }
+        return crew.getCrewImage().getImageUrl();
     }
 }

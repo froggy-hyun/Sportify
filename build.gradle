@@ -48,6 +48,9 @@ dependencies {
 
 	//Swagger
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
+
+	//Google Cloud Storage
+	implementation group: 'com.google.cloud', name: 'google-cloud-storage', version: '2.45.0'
 }
 
 tasks.named('test') {

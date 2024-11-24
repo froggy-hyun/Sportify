@@ -5,6 +5,8 @@ import com.tuk.sportify.global.exception.*;
 import com.tuk.sportify.global.response.ErrorResponse;
 
 import com.tuk.sportify.member.exception.RegisterDtoValidationException;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 @Slf4j
+@Hidden
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)

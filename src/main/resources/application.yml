@@ -5,6 +5,6 @@ spring:
   profiles:
     active: local
     group:
-      local: local, vworld
+      local: local,vworld
       dev:
-      prod:
+      prod: prod, vworld
