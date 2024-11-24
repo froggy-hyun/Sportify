@@ -29,10 +29,8 @@ public class ImageService {
 
     public ImageUrlResponse upload(final MultipartFile multipartFile) throws IOException {
         InputStream path = ResourceUtils.getURL(secretPath).openStream();
-
         final String uuid = UUID.randomUUID().toString();
-        final String extention = multipartFile.getContentType();
-
+        final String extension = multipartFile.getContentType();
         final Storage storage =
                 StorageOptions.newBuilder()
                         .setCredentials(GoogleCredentials.fromStream(path))
@@ -45,7 +43,7 @@ public class ImageService {
             imgUrl = null;
         } else {
             BlobInfo blobInfo =
-                    BlobInfo.newBuilder(bucketName, uuid).setContentType(extention).build();
+                    BlobInfo.newBuilder(bucketName, uuid).setContentType(extension).build();
             storage.create(blobInfo, multipartFile.getInputStream());
         }
 

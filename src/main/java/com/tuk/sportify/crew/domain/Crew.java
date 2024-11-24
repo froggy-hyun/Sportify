@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -44,6 +45,9 @@ public class Crew {
 
     @Enumerated(EnumType.STRING)
     private GenderRule genderRule;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private CrewImage crewImage;
 
     @Enumerated(EnumType.STRING)
     private DifficultyLevel difficultyLevel;
