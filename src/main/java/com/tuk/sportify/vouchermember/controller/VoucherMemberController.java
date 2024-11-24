@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/voucher-members")
+@RequestMapping("/api/voucher-members")
 @Tag(name = "스포츠 이용권 이용자 [현재 참여중인 개인,크루 이용권 | 과거에 참여했던 개인,크루 이용권]")
 public class VoucherMemberController {
 

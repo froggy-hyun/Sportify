@@ -27,15 +27,15 @@ public class SecurityConfig {
     private static final String AUTHORIZATION_HEADER = "Authorization";
 
     // 권한별 url
-    private final String[] adminUrl = {"/admin/**"};
+    private final String[] adminUrl = {"/api/admin/**"};
     private final String[] permitAllUrl = {
         "/error",
-        "/members/login",
+        "/api/members/login",
         "/v3/api-docs/**",
         "/swagger-ui/**",
-        "/members/logout"
+        "/api/members/logout"
     };
-    private final String[] anonymousUrl = {"/members/**"};
+    private final String[] anonymousUrl = {"/api/members/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -79,7 +79,7 @@ public class SecurityConfig {
         configuration.setAllowCredentials(true);
         configuration.addExposedHeader(AUTHORIZATION_HEADER);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/api/**", configuration);
         return source;
     }
 }

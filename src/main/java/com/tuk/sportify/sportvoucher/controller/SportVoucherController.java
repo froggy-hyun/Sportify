@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/sport-voucher")
+@RequestMapping("/api/sport-voucher")
 @Tag(name = "스포츠 이용권")
 public class SportVoucherController {
 

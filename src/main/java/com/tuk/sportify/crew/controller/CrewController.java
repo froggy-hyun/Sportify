@@ -34,7 +34,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/crews")
+@RequestMapping("/api/crews")
 @Tag(name = "크루 [운동이웃 생성, 대표 이미지 업로드, 단건 상세 조회]")
 public class CrewController {
 
