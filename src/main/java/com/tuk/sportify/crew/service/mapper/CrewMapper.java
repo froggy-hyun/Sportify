@@ -47,6 +47,7 @@ public class CrewMapper {
                 .goals(getGoalsToString(crew))
                 .rules(crew.getCrewRules().stream().map(CrewRule::getRule).toList())
                 .genderRule(crew.getGenderRule().getDescription())
+                .imageUrl(crew.getCrewImage().getImageUrl())
                 .build();
     }
 
