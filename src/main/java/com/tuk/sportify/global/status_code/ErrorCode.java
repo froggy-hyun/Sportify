@@ -22,6 +22,8 @@ public enum ErrorCode {
     IS_NOT_CREW_HOST(HttpStatus.FORBIDDEN,"203","크루의 호스트에게만 허가된 동작입니다"),
     DUPLICATED_PARTICIPATION(HttpStatus.BAD_REQUEST,"204","중복된 참여 요청 입니다."),
     EXCEED_CAPACITY(HttpStatus.BAD_REQUEST,"205","최대 수용 인원을 초과합니다."),
+    CANNOT_UPLOAD_IMAGE(HttpStatus.SERVICE_UNAVAILABLE,"206","이미지 업로드에 실패했습니다. 다시 시도해주세요."),
+    CREW_IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND,"207","등록된 이미지를 찾을 수 없습니다."),
 
     /**
      * Member : 멤버 관련 에러 코드

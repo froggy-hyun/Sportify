@@ -1,6 +1,7 @@
 package com.tuk.sportify.crew.service;
 
 import com.tuk.sportify.crew.domain.Crew;
+import com.tuk.sportify.crew.domain.CrewImage;
 import com.tuk.sportify.crew.dto.CreateCrewRequest;
 import com.tuk.sportify.crew.dto.CreateCrewResponse;
 import com.tuk.sportify.crew.dto.CrewDetailResponse;
@@ -12,10 +13,11 @@ import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
-import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 import com.tuk.sportify.vouchermember.service.VoucherMemberService;
-import java.util.List;
+
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,13 +28,15 @@ public class CrewService {
     private final VoucherMemberService voucherMemberService;
     private final CrewVoucherProxyService crewVoucherProxyService;
     private final MemberService memberService;
+    private final ImageService imageService;
     private final CrewMapper crewMapper;
 
     public CreateCrewResponse createCrew(
             final Long memberId, final Long sportVoucherId, final CreateCrewRequest request) {
         final Member member = memberService.getMemberById(memberId);
         final SportVoucher sportVoucher = crewVoucherProxyService.getSportVoucherById(sportVoucherId);
-        final Crew crew = crewMapper.toCrew(member, sportVoucher, request);
+        final CrewImage image = imageService.findImage(request.imageId());
+        final Crew crew = crewMapper.toCrew(member, sportVoucher,image, request);
         crewRepository.save(crew);
         voucherMemberService.participate(crew, sportVoucher);
         return new CreateCrewResponse(crew.getId());

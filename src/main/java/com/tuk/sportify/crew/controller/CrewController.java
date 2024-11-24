@@ -3,7 +3,7 @@ package com.tuk.sportify.crew.controller;
 import com.tuk.sportify.crew.dto.CreateCrewRequest;
 import com.tuk.sportify.crew.dto.CreateCrewResponse;
 import com.tuk.sportify.crew.dto.CrewDetailResponse;
-import com.tuk.sportify.crew.dto.ImageUrlResponse;
+import com.tuk.sportify.crew.dto.ImageUploadResponse;
 import com.tuk.sportify.crew.service.CrewService;
 import com.tuk.sportify.crew.service.ImageService;
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
@@ -55,7 +55,7 @@ public class CrewController {
     @Operation(summary = "크루 대표 이미지 설정", description = "Google Cloud Storage에 이미지를 업로드합니다.")
     @PostMapping("/images")
     @ResponseStatus(HttpStatus.CREATED)
-    public ImageUrlResponse saveThumbnail(@RequestParam @Parameter(description = "Image 파일") MultipartFile image) throws IOException {
+    public ImageUploadResponse saveThumbnail(@RequestParam @Parameter(description = "Image 파일") MultipartFile image) throws IOException {
         return imageService.upload(image);
     }
 

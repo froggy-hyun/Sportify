@@ -18,4 +18,5 @@ public record CreateCrewRequest(
         @Size(max = 3, message = "규칙은 3개까지 지정 가능합니다.") @Schema(description = "규칙")
                 List<String> rules,
         @Schema(description = "난이도") DifficultyLevel difficultyLevel,
-        @Schema(description = "수용 인원") Integer capacity) {}
+        @Schema(description = "수용 인원") Integer capacity,
+        @Schema(description = "이미지 ID") Long imageId) {}

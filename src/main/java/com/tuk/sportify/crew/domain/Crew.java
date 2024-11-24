@@ -76,11 +76,12 @@ public class Crew {
             final GenderRule genderRule,
             final List<CrewRule> crewRules,
             final List<CrewGoal> crewGoals,
-            SportVoucher sportVoucher, DifficultyLevel difficultyLevel, Integer capacity) {
+            SportVoucher sportVoucher, CrewImage crewImage, DifficultyLevel difficultyLevel, Integer capacity) {
         this.host = host;
         this.name = name;
         this.genderRule = genderRule;
         this.sportVoucher = sportVoucher;
+        this.crewImage = crewImage;
         this.difficultyLevel = difficultyLevel;
         this.capacity = capacity;
         this.numberOfParticipant = 1;

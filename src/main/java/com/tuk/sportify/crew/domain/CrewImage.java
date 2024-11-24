@@ -18,5 +18,10 @@ public class CrewImage {
     private Long id;
 
     private String uuid;
-    private String url;
+    private String imageUrl;
+
+    public CrewImage(final String uuid, final String imageUrl) {
+        this.uuid = uuid;
+        this.imageUrl = imageUrl;
+    }
 }
