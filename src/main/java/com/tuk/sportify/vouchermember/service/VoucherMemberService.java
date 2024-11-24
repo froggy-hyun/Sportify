@@ -55,7 +55,7 @@ public class VoucherMemberService {
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         final PageRequest pageRequest = PageRequest.of(page, fetchSize);
         Slice<VoucherMember> voucherMemberSlice = voucherMemberRepository.findPastCrewsByMemberJoinFetch(
-            member, currentDate, pageRequest);
+            member,currentDate, pageRequest);
         return voucherMemberMapper.toMyPastCrewResponse(voucherMemberSlice);
     }
 

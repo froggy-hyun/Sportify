@@ -10,6 +10,7 @@ import com.tuk.sportify.crew.dto.CrewDetailResponse;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
+import java.util.Objects;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -47,8 +48,15 @@ public class CrewMapper {
                 .goals(getGoalsToString(crew))
                 .rules(crew.getCrewRules().stream().map(CrewRule::getRule).toList())
                 .genderRule(crew.getGenderRule().getDescription())
-                .imageUrl(crew.getCrewImage().getImageUrl())
+                .imageUrl(findImage(crew))
                 .build();
+    }
+
+    private String findImage(final Crew crew) {
+        if( Objects.isNull(crew.getCrewImage())){
+            return null;
+        }
+        return crew.getCrewImage().getImageUrl();
     }
 
     private List<String> getGoalsToString(final Crew crew) {

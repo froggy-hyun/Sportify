@@ -9,4 +9,5 @@ public record CrewResponse(
         String difficultyLevel,
         Integer capacity,
         String genderRule,
-        Integer numberOfParticipants) {}
+        Integer numberOfParticipants,
+        String imageUrl) {}

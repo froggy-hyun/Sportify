@@ -14,6 +14,6 @@ public interface CrewRepository extends JpaRepository<Crew, Long> {
     @Query("select c from Crew c join fetch c.crewGoals join fetch c.crewImage where c.id = :crewId")
     Optional<Crew> findByIdJoinFetch(Long crewId);
 
+    @Query("select c from Crew c join fetch c.crewImage where c.sportVoucher=:sportVoucher")
     List<Crew> findBySportVoucher(SportVoucher sportVoucher);
-
 }

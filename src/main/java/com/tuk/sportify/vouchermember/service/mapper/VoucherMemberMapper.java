@@ -11,6 +11,7 @@ import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PastPersonalVoucherResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
 
+import java.util.Objects;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
 
@@ -69,6 +70,18 @@ public class VoucherMemberMapper {
     private MyCrew toMyCrew(final VoucherMember voucherMember) {
         final Crew crew = voucherMember.getCrew();
         final Course course = voucherMember.getSportVoucher().getCourse();
-        return new MyCrew(crew.getId(), crew.getName(), course.getName(), course.getDuration());
+        return new MyCrew(
+                crew.getId(),
+                crew.getName(),
+                course.getName(),
+                course.getDuration(),
+                findImage(crew));
+    }
+
+    private String findImage(final Crew crew) {
+        if( Objects.isNull(crew.getCrewImage())){
+            return null;
+        }
+        return crew.getCrewImage().getImageUrl();
     }
 }

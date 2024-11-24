@@ -4,7 +4,8 @@ public record MyCrew(
     Long crewId,
     String crewName,
     String voucherCourseName,
-    String duration
+    String duration,
+    String imageUrl
 ) {
 
 }

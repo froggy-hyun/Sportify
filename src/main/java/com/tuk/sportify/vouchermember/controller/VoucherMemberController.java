@@ -38,7 +38,7 @@ public class VoucherMemberController {
     }
 
     @GetMapping("/my-current-crews")
-    @Operation(summary = "현재 참여 중인 크루[나만의 운동 이웃] 목록", description = "현재 참여중인 모든 크루 목록을 반환합니다.")
+    @Operation(summary = "현재 참여 중인 크루 목록", description = "현재 참여중인 모든 크루 목록을 반환합니다.")
     @ApiErrorCodeExample(ErrorCode.MEMBER_NOT_FOUND)
     public MyCurrentCrewResponse findMyCurrentCrews(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId) {
