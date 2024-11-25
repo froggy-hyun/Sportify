@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 
 interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
-  placeholder?: string;
+  placeholder: string;
   search?: boolean; // 검색 스타일 여부
 }
 

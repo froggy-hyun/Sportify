@@ -21,18 +21,6 @@ export const MyNeighbors = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 0.4rem;
 `;
 
-export const ManageBtn  = styled.button`
-  display: flex;
-  margin-top: 0.4rem;
-  padding: 1.2rem 0;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-  color: var(--white);
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: normal;
-  background-color: var(--brandColor);
-`;

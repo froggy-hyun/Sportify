@@ -61,7 +61,6 @@ const AddressSearchPage = () => {
         search={true}
         onChange={searchPlaces}
         ref={inputRef}
-        type="text"
         placeholder={
           location.address === '' ? '지번,도로명,건물명을 입력해주세요' : location.address
         }
