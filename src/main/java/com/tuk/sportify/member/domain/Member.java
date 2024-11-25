@@ -1,5 +1,6 @@
 package com.tuk.sportify.member.domain;
 
+import com.tuk.sportify.address.domain.Address;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -32,14 +33,9 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(nullable = false)
-    private int age;
-
-    @Column(nullable = false)
-    private String phone;
-
-    @Column(nullable = false)
-    private String address;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Address address;
 
     //장애인 비장애인 여부
     @Column(nullable = false)
@@ -51,4 +47,8 @@ public class Member {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public void changeAddress(Address address){
+        this.address = address;
+    }
 }

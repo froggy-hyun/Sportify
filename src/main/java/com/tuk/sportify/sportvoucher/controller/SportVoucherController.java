@@ -8,6 +8,7 @@ import com.tuk.sportify.sportvoucher.dto.VoucherSearchResponse;
 import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.RequiredArgsConstructor;
@@ -28,20 +29,30 @@ public class SportVoucherController {
 
     // 인기 이용권 조회
     @GetMapping("/popularity")
-    public PopularVoucherResponse findPopularVoucher(
-            @RequestParam final String city,
-            @RequestParam final String gu,
-            @RequestParam Integer fetchSize) {
-        return sportVoucherService.findPopularVoucher(city, gu, fetchSize);
+    @Operation(summary = "인기 이용권 조회", description = "아직 좌표에 따른 위치연산이 완료되지 않아서 서울시 강남구를 기준으로 반환합니다.")
+    public PopularVoucherResponse findPopularVoucher(@RequestParam Integer fetchSize) {
+        return sportVoucherService.findPopularVoucher(fetchSize);
     }
 
     // 이용권들 검색
     @GetMapping("/search")
+    @Operation(
+            summary = "중분류에 따른 이용권 검색",
+            description =
+                    "VoucherGroups 목록 -> 격투 및 무술: [태권도, 합기도, 복싱, 유도, 검도, 주짓수, 펜싱],"
+                            + "피트니스 및 체조: [헬스, 필라테스, 요가, 에어로빅, 크로스핏],"
+                            + "구기 및 라켓: [축구(풋살), 농구, 배구, 야구, 탁구, 테니스, 배드민턴, 스쿼시],"
+                            + "레저 및 개인: [골프, 클라이밍(암벽등반), 롤러인라인, 줄넘기, 볼링, 당구, 승마,수영,빙상(스케이트)],"
+                            + "예술 및 체육: [댄스(줌바 등), 무용(발레 등)],"
+                            + "기타: [기타종목, 종합체육시설]"
+                            + "아직 좌표에 따른 위치연산이 완료되지 않아서 서울시 강남구를 기준으로 반환합니다.")
     public VoucherSearchResponse searchVoucher(
-            @RequestParam final String city,
-            @RequestParam final String gu,
-            @RequestParam final Long middleCategoryId) {
-        return sportVoucherService.searchVoucherByMiddleCategory(city, gu, middleCategoryId);
+            @RequestParam
+                    @Parameter(
+                            description =
+                                    "1:격투 및 무술|2:피트니스 및 체조|3:구기 및 라켓|4:레저 및 개인|5:예술 및 체육|6:기타")
+                    final Long middleCategoryId) {
+        return sportVoucherService.searchVoucherByMiddleCategory(middleCategoryId);
     }
 
     // 이용권 단건 상세 조회

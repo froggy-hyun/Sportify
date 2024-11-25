@@ -1,20 +1,18 @@
-package com.tuk.sportify.crewvoucher.service;
+package com.tuk.sportify.facade.service;
 
 import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.crew.repository.CrewRepository;
-import com.tuk.sportify.crew.service.CrewService;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.sportvoucher.exception.SportVoucherNotFoundException;
 import com.tuk.sportify.sportvoucher.repository.SportVoucherRepository;
-import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CrewVoucherProxyService {
+public class CrewVoucherFacadeService {
 
     private final SportVoucherRepository sportVoucherRepository;
     private final CrewRepository crewRepository;
