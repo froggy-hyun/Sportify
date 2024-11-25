@@ -8,14 +8,13 @@ import com.tuk.sportify.crew.dto.CrewDetailResponse;
 import com.tuk.sportify.crew.exception.CrewNotFoundExceptionException;
 import com.tuk.sportify.crew.repository.CrewRepository;
 import com.tuk.sportify.crew.service.mapper.CrewMapper;
-import com.tuk.sportify.crewvoucher.service.CrewVoucherProxyService;
+import com.tuk.sportify.facade.service.CrewVoucherFacadeService;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.service.VoucherMemberService;
 
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class CrewService {
 
     private final CrewRepository crewRepository;
     private final VoucherMemberService voucherMemberService;
-    private final CrewVoucherProxyService crewVoucherProxyService;
+    private final CrewVoucherFacadeService crewVoucherFacadeService;
     private final MemberService memberService;
     private final ImageService imageService;
     private final CrewMapper crewMapper;
@@ -34,7 +33,7 @@ public class CrewService {
     public CreateCrewResponse createCrew(
             final Long memberId, final Long sportVoucherId, final CreateCrewRequest request) {
         final Member member = memberService.getMemberById(memberId);
-        final SportVoucher sportVoucher = crewVoucherProxyService.getSportVoucherById(sportVoucherId);
+        final SportVoucher sportVoucher = crewVoucherFacadeService.getSportVoucherById(sportVoucherId);
         final CrewImage image = imageService.findImage(request.imageId());
         final Crew crew = crewMapper.toCrew(member, sportVoucher,image, request);
         crewRepository.save(crew);

@@ -29,19 +29,15 @@ public class SportVoucherController {
     // 인기 이용권 조회
     @GetMapping("/popularity")
     public PopularVoucherResponse findPopularVoucher(
-            @RequestParam final String city,
-            @RequestParam final String gu,
             @RequestParam Integer fetchSize) {
-        return sportVoucherService.findPopularVoucher(city, gu, fetchSize);
+        return sportVoucherService.findPopularVoucher(fetchSize);
     }
 
     // 이용권들 검색
     @GetMapping("/search")
     public VoucherSearchResponse searchVoucher(
-            @RequestParam final String city,
-            @RequestParam final String gu,
             @RequestParam final Long middleCategoryId) {
-        return sportVoucherService.searchVoucherByMiddleCategory(city, gu, middleCategoryId);
+        return sportVoucherService.searchVoucherByMiddleCategory(middleCategoryId);
     }
 
     // 이용권 단건 상세 조회
