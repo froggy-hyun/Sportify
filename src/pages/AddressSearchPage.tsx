@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { locationState } from '../recoil/atom/location';
-import * as S from '../styles/AddressSearch.styled';
-import SearchResults from '../components/SearchResults';
-import MyAddressesList from '../components/MyAddresses';
-import { addressModalState } from '../recoil/atom/addressModal';
-import AddressPopup from '../components/AddressPopup';
-import BaseInput from '../components/BaseInput';
+import { locationState } from '@/recoil/atom/location';
+import * as S from '@/styles/componentsStyles/AddressSearch.styled';
+import SearchResults from '@/components/addressSearch/SearchResults';
+import MyAddressesList from '@/components/addressSearch/MyAddresses';
+import { addressModalState } from '@/recoil/atom/addressModal';
+import AddressPopup from '@/components/addressSearch/AddressPopup';
+import BaseInput from '@/components/ui/BaseInput';
 
 const AddressSearchPage = () => {
   const inputRef = useRef<HTMLInputElement | null>(null); // 검색어 입력 DOM을 참조하기 위한 ref
