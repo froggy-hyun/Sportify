@@ -1,5 +1,7 @@
 package com.tuk.sportify.member.controller;
 
+import com.tuk.sportify.global.response.ApiErrorCodeExample;
+import com.tuk.sportify.global.response.ApiErrorCodeExamples;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
@@ -15,6 +17,7 @@ import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.member.service.mapper.MemberMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,16 +41,17 @@ public class MemberController {
 
     @PostMapping("/register")
     @Operation(summary = "회원 가입")
+    @ApiErrorCodeExample(ErrorCode.MEMBER_REGISTER_EMAIL_ALREADY_EXIST)
     public Map<String, String> register(@Valid @RequestBody CreateMemberRequest request) {
         Member member = memberService.createMember(request);
         log.info("계정 생성 성공: {}", member);
-
         return Map.of("email", member.getEmail(), "username", member.getName(),"memberId",
             member.getId().toString());
     }
 
     @PostMapping("/login")
     @Operation(summary = "로그인", description = "토큰과 회원가입 시 설정한 주소를 같이 반환합니다.")
+    @ApiErrorCodeExample(ErrorCode.MEMBER_LOGIN_PASSWORD_INCORRECT)
     public LoginResponse login(@Valid @RequestBody LoginMemberRequest request) {
         LoginResponse loginResponse= memberService.loginMember(request.getEmail(),
             request.getPassword());
@@ -82,6 +86,7 @@ public class MemberController {
     // ID로 특정 회원 조회
     @GetMapping("/{id}")
     @Operation(summary = "회원 단건 조회")
+    @ApiErrorCodeExample(ErrorCode.MEMBER_NOT_FOUND)
     public MemberInfoResponse getMemberById(@PathVariable("id") @Parameter(description = "회원 Id") Long id) {
         Member member = memberService.getMemberById(id);
         return memberMapper.MembertoMemberInfoResponse(member);
