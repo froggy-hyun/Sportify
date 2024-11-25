@@ -48,3 +48,6 @@ application-local.yml
 application-prod.yml
 ### PRODUCTION SECRET ###
 gcs-secret.json
+
+### API KEY ###
+kakao_api_key.txt
