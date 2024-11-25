@@ -39,7 +39,9 @@ def geocode(address):
             latitude = data['documents'][0]['y']
             longitude = data['documents'][0]['x']
             return latitude, longitude
-    return None, None
+    else:
+        print(f"Geocoding API 요청 실패: 상태 코드 {response.status_code}, 메시지: {response.text}")
+        raise RuntimeError("카카오 API 요청 실패")
 
 # CSV 데이터 처리
 def process_csv(file_path, output_csv_path, table_name, has_disability_column=False):
