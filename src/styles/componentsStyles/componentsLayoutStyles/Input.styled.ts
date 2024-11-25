@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
-export const SearchInput= styled.input<{ search?: boolean }>`
+export const SearchInput= styled.input.withConfig({
+  shouldForwardProp: (prop) => prop !== 'search', // search는 DOM에 전달되지 않음
+})<{ search?: boolean }>`
   display: flex;
   width: 100%;
   padding: 1.2rem 1.6rem;
   height: 4.1rem;
   border-radius: 0.8rem;
   outline: 0;
+
   background: var(--grayBG);
   /* 배경색과 이미지 통합 */
  
@@ -21,11 +24,10 @@ export const SearchInput= styled.input<{ search?: boolean }>`
 
 
 
-
   ::placeholder {
     font-size: 1.4rem;
     font-weight: 400;
-     line-height: normal;
+    line-height: normal;
     color: var(--textC8);
   }
 `;

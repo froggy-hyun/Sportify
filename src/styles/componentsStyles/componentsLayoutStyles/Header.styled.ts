@@ -45,7 +45,7 @@ font-weight: 400;
 line-height: normal;
 `;
 
-export const HeaderConstants = styled.p`
+export const HeaderConstants = styled.div`
 display: flex;
 align-items: center;
 gap:1.2rem;
