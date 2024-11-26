@@ -38,8 +38,7 @@ def save_to_mysql(csv_path, table_name, has_disability_column=False):
                 disability_type VARCHAR(200),
                 course_begin_date DATE,
                 course_end_date DATE,
-                latitude DECIMAL(10, 8),
-                longitude DECIMAL(11, 8)
+                point point SRID 4326
             );
             """)
         else:
@@ -50,8 +49,7 @@ def save_to_mysql(csv_path, table_name, has_disability_column=False):
                 facility_detail_address VARCHAR(255),
                 course_begin_date DATE,
                 course_end_date DATE,
-                latitude DECIMAL(10, 8),
-                longitude DECIMAL(11, 8)
+                point point SRID 4326
             );
             """)
         conn.commit()

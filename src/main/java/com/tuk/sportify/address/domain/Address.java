@@ -1,6 +1,7 @@
 package com.tuk.sportify.address.domain;
 
 import com.tuk.sportify.member.domain.Member;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ public class Address {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    @Column(columnDefinition = "POINT SRID 4326")
     private Point point;
 
     private String detailAddress;

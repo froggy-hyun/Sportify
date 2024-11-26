@@ -1,7 +1,7 @@
 package com.tuk.sportify.member.service.mapper;
 
 import com.tuk.sportify.address.domain.Address;
-import com.tuk.sportify.geometry.GeometryConverter;
+import com.tuk.sportify.global.utils.GeometryConverter;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.domain.Role;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class MemberMapper {
-
-    private final GeometryConverter geometryConverter;
 
     // CreateMemberRequest를 Member로 변환
     public Member CreateMemberRequestToMember(
@@ -34,7 +32,7 @@ public class MemberMapper {
         return Address.builder()
                 .detailAddress(request.address())
                 .addressName(request.addressName())
-                .point(geometryConverter.coordinateToPoint(request.latitude(), request.longitude()))
+                .point(GeometryConverter.coordinateToPoint(request.latitude(), request.longitude()))
                 .build();
     }
 

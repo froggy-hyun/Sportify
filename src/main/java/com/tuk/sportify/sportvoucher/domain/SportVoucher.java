@@ -18,6 +18,7 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.locationtech.jts.geom.Point;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -42,10 +43,8 @@ public class SportVoucher {
     @JoinColumn
     private MiddleCategory middleCategory;
 
-    @Column(name = "LATITUDE")
-    private double latitude;
-    @Column(name = "LONGITUDE")
-    private double longitude;
+    @Column(columnDefinition = "POINT SRID 4326")
+    private Point point;
 
     public void validateOpening(final Integer currentDate) {
         Integer endAt = course.getEndAt();
