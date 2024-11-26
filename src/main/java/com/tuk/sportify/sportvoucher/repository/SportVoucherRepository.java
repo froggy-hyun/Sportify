@@ -15,7 +15,8 @@ public interface SportVoucherRepository extends JpaRepository<SportVoucher, Long
 
     @Query(
             "select sv from SportVoucher sv where st_contains(st_buffer(:memberLocation, :radius)"
-                + ", sv.point) order by sv.course.requestNumberOfPerson")
+                + ", sv.point) and sv.course.endAt > :currentDate order by sv.course"
+                + ".requestNumberOfPerson desc")
     List<SportVoucher> findPopularVoucherByMemberLocation(
             Point memberLocation, Integer radius,Integer currentDate, Limit limit);
 

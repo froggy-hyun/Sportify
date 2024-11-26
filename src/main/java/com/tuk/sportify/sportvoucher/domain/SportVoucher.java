@@ -43,6 +43,8 @@ public class SportVoucher {
     @Column(columnDefinition = "POINT SRID 4326", nullable = false)
     private Point point;
 
+    private boolean disabled;
+
     public void validateOpening(final Integer currentDate) {
         Integer endAt = course.getEndAt();
         if (currentDate > endAt) {
