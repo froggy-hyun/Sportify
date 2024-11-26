@@ -26,7 +26,7 @@ public class Address {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @Column(columnDefinition = "POINT SRID 4326")
+    @Column(columnDefinition = "POINT SRID 4326",nullable = false)
     private Point point;
 
     private String detailAddress;

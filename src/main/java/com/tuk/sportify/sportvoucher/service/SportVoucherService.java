@@ -4,6 +4,8 @@ import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.facade.service.CrewVoucherFacadeService;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.global.utils.SportifyDateFormatter;
+import com.tuk.sportify.member.domain.Member;
+import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.sportvoucher.dto.PopularVoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherDetailResponse;
@@ -16,6 +18,7 @@ import com.tuk.sportify.sportvoucher.service.mapper.SportVoucherMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
+import org.locationtech.jts.geom.Point;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 
@@ -26,18 +29,23 @@ public class SportVoucherService {
     private final SportVoucherRepository sportVoucherRepository;
     private final SportVoucherMapper sportVoucherMapper;
     private final CrewVoucherFacadeService crewVoucherFacadeService;
+    private final MemberService memberService;
 
-    public PopularVoucherResponse findPopularVoucher(final Integer fetchSize) {
+    public PopularVoucherResponse findPopularVoucher(final Long memberId,final Integer fetchSize) {
+        Member member = memberService.getMemberById(memberId);
         Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        return new PopularVoucherResponse(findPopularVouchers(fetchSize, currentDate));
+        return new PopularVoucherResponse(findPopularVouchers(member.getAddress().getPoint(),7000,
+            fetchSize,
+            currentDate));
     }
 
     private List<VoucherResponse> findPopularVouchers(
+            final Point memberLocation,
+            final Integer radius,
             final Integer fetchSize,
             final Integer currentDate) {
         List<SportVoucher> sportVouchers =
-                // TODO : 위도 경도 변환 끝나면 수정
-                sportVoucherRepository.findPopularVoucherByCityAndGu("서울","강남구",currentDate,
+                sportVoucherRepository.findPopularVoucherByCityAndGu(memberLocation,radius,
                     Limit.of(fetchSize));
         return sportVoucherMapper.toVouchersResponse(sportVouchers);
     }

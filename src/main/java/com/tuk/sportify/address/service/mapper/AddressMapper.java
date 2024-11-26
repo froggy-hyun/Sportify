@@ -4,6 +4,7 @@ import com.tuk.sportify.address.domain.Address;
 import com.tuk.sportify.address.dto.AddressListResponse;
 import com.tuk.sportify.address.dto.AddressRegisterRequest;
 import com.tuk.sportify.address.dto.AddressResponse;
+import com.tuk.sportify.global.utils.GeometryConverter;
 import com.tuk.sportify.member.domain.Member;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -14,8 +15,7 @@ public class AddressMapper {
     public Address toAddress(final AddressRegisterRequest request, final Member member) {
         return Address.builder()
                 .member(member)
-                .latitude(request.latitude())
-                .longitude(request.longitude())
+                .point(GeometryConverter.coordinateToPoint(request.latitude(), request.longitude()))
                 .addressName(request.addressName())
                 .detailAddress(request.address())
                 .build();

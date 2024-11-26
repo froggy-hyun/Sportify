@@ -11,8 +11,10 @@ public class GeometryConverter {
     private static final int SRID_VALUE = 4326;
 
     public static Point coordinateToPoint(final double latitude,final double longitude){
-        final GeometryFactory geometryFactory = new GeometryFactory(new PrecisionModel(),SRID_VALUE);
-        final Coordinate coordinate = new Coordinate(latitude,longitude);
-        return geometryFactory.createPoint(coordinate);
+        final GeometryFactory geometryFactory = new GeometryFactory();
+        final Coordinate coordinate = new Coordinate(longitude,latitude);
+        Point point = geometryFactory.createPoint(coordinate);
+        point.setSRID(SRID_VALUE);
+        return point;
     }
 }

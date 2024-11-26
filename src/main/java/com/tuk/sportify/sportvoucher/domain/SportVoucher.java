@@ -10,7 +10,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -23,9 +22,7 @@ import org.locationtech.jts.geom.Point;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(
-        name = "sport_voucher",
-        indexes = @Index(name = "idx_city_gu", columnList = "city_name, gu_name, course_begin_at"))
+@Table(name = "sport_voucher")
 public class SportVoucher {
 
     @Id
@@ -43,7 +40,7 @@ public class SportVoucher {
     @JoinColumn
     private MiddleCategory middleCategory;
 
-    @Column(columnDefinition = "POINT SRID 4326")
+    @Column(columnDefinition = "POINT SRID 4326", nullable = false)
     private Point point;
 
     public void validateOpening(final Integer currentDate) {

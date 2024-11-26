@@ -2,6 +2,7 @@ package com.tuk.sportify.sportvoucher.repository;
 
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
+import org.locationtech.jts.geom.Point;
 import org.springframework.data.domain.Limit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,10 +14,9 @@ import java.util.List;
 public interface SportVoucherRepository extends JpaRepository<SportVoucher, Long> {
 
     @Query(
-            "select sv from SportVoucher sv where sv.facility.city =:city and sv.facility.gu =:gu "
-                    + " and sv.course.endAt > :currentDate order by sv.popularity desc")
+            "select sv from SportVoucher sv where st_contains(st_buffer(:memberLocation, :radius), sv.point)")
     List<SportVoucher> findPopularVoucherByCityAndGu(
-            String city, String gu, Integer currentDate, Limit limit);
+            Point memberLocation, Integer radius, Limit limit);
 
     @Query(
             "select sv from SportVoucher sv join fetch sv.middleCategory where sv.facility.city =:city and sv.facility.gu =:gu "
