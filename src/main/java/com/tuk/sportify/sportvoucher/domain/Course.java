@@ -10,28 +10,28 @@ import lombok.Getter;
 @Getter
 public class Course {
 
-    @Column(name = "course_name")
+    @Column(name = "COURSE_NM")
     private String name;
 
-    @Column(name = "course_code")
+    @Column(name = "COURSE_NO")
     private String code;
 
-    @Column(name = "course_begin_at")
+    @Column(name = "COURSE_BEGIN_DE")
     private Integer beginAt;
 
-    @Column(name = "course_end_at")
+    @Column(name = "COURSE_END_DE")
     private Integer endAt;
 
-    @Column(name = "course_price")
+    @Column(name = "COURSE_PRC")
     private Integer price;
 
-    @Column(name = "course_request_number_of_person")
+    @Column(name = "COURSE_REQST_NMPR_CO")
     private Integer requestNumberOfPerson;
 
-    @Column(name = "course_established_year")
+    @Column(name = "COURSE_ESTBL_YEAR")
     private String establishedYear;
 
-    @Column(name = "course_established_month")
+    @Column(name = "COURSE_ESTBL_MT")
     private String establishedMonth;
 
     public String getDuration(){

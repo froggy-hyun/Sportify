@@ -9,30 +9,30 @@ import lombok.Getter;
 @Embeddable
 @Getter
 public class Facility {
-    @Column(name = "facility_name")
+    @Column(name = "FCLTY_NM")
     private String name;
 
-    @Column(name = "city_name")
+    @Column(name = "CTPRVN_NM")
     private String city;
 
-    @Column(name = "gu_name")
+    @Column(name = "SIGNGU_NM")
     private String gu;
 
-    @Column(name = "city_code")
+    @Column(name = "CTPRVN_CD")
     private String cityCode;
 
-    @Column(name = "city_gu_code")
+    @Column(name = "SIGNGU_CD")
     private String cityGuCode;
 
-    @Column(name = "zip_code")
+    @Column(name = "ZIP_NO")
     private String zipCode;
 
-    @Column(name = "detail_address")
+    @Column(name = "FCLTY_DETAIL_ADDR")
     private String detailAddress;
 
-    @Column(name = "address")
+    @Column(name = "FCLTY_ADDR")
     private String basicAddress;
 
-    @Column(name = "tel_number")
+    @Column(name = "TEL_NO")
     private String telNumber;
 }

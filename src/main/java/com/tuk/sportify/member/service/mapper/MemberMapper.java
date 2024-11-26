@@ -1,15 +1,21 @@
 package com.tuk.sportify.member.service.mapper;
 
 import com.tuk.sportify.address.domain.Address;
+import com.tuk.sportify.geometry.GeometryConverter;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.domain.Role;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
 import com.tuk.sportify.member.dto.MemberInfoResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class MemberMapper {
+
+    private final GeometryConverter geometryConverter;
+
     // CreateMemberRequest를 Member로 변환
     public Member CreateMemberRequestToMember(
             CreateMemberRequest createMemberRequest, PasswordEncoder passwordEncoder) {
@@ -28,8 +34,7 @@ public class MemberMapper {
         return Address.builder()
                 .detailAddress(request.address())
                 .addressName(request.addressName())
-                .latitude(request.latitude())
-                .longitude(request.longitude())
+                .point(geometryConverter.coordinateToPoint(request.latitude(), request.longitude()))
                 .build();
     }
 

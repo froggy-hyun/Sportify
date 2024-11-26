@@ -24,33 +24,37 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(
         name = "sport_voucher",
-        indexes = @Index(name = "idx_city_gu",
-            columnList = "city_name, gu_name, course_begin_at"))
+        indexes = @Index(name = "idx_city_gu", columnList = "city_name, gu_name, course_begin_at"))
 public class SportVoucher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "bussine_number")
+    @Column(name = "BSNS_NO")
     private String businessNumber;
 
     @Embedded private Facility facility;
     @Embedded private Course course;
     @Embedded private Item item;
-    private Long popularity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private MiddleCategory middleCategory;
 
-    public void validateOpening(final Integer currentDate){
+    @Column(name = "LATITUDE")
+    private double latitude;
+    @Column(name = "LONGITUDE")
+    private double longitude;
+
+    public void validateOpening(final Integer currentDate) {
         Integer endAt = course.getEndAt();
-        if(currentDate > endAt){
+        if (currentDate > endAt) {
             throw new SportVoucherClosedException(ErrorCode.SPORT_VOUCHER_CLOSED);
         }
     }
-    public String getSubCategory(){
+
+    public String getSubCategory() {
         return item.getSubCategory();
     }
 }
