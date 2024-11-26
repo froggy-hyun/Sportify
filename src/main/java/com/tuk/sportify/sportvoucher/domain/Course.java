@@ -1,6 +1,7 @@
 package com.tuk.sportify.sportvoucher.domain;
 
-import com.tuk.sportify.global.utils.StringFormatter;
+import com.tuk.sportify.global.utils.SportifyDateFormatter;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -35,6 +36,6 @@ public class Course {
     private String establishedMonth;
 
     public String getDuration(){
-        return StringFormatter.createCourseDuration(beginAt.toString(),endAt.toString());
+        return SportifyDateFormatter.createCourseDuration(beginAt.toString(),endAt.toString());
     }
 }
