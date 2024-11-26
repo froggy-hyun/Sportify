@@ -1,14 +1,27 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 interface DetailCategoryProps {
   data: string[];
+  onMiddleCategoryClick: (idx: number) => void;
 }
 
-const DetailCategoryTitle = ({ data }: DetailCategoryProps) => {
+const DetailCategoryTitle = ({ data, onMiddleCategoryClick }: DetailCategoryProps) => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
+
+  const handleClick = (idx: number) => {
+    if (activeIndex !== idx) {
+      setActiveIndex(idx);
+      onMiddleCategoryClick(idx);
+    }
+  };
+
   return (
     <Wrapper>
       {data.map((item, idx) => (
-        <Title key={idx}>{item}</Title>
+        <Title key={idx} isActive={activeIndex === idx} onClick={() => handleClick(idx)}>
+          {item}
+        </Title>
       ))}
     </Wrapper>
   );
@@ -16,17 +29,17 @@ const DetailCategoryTitle = ({ data }: DetailCategoryProps) => {
 
 const Wrapper = styled.div`
   display: flex;
-  gap:2.4rem;
+  gap: 2.4rem;
   white-space: nowrap;
 `;
 
-const Title = styled.button`
-  width:fit-content;
+const Title = styled.button<{ isActive: boolean }>`
+  width: fit-content;
   font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--textC8);
+  font-weight: ${({ isActive }) => (isActive ? '700' : '400')};
+  color: ${({ isActive }) => (isActive ? 'var(--brandColor)' : 'var(--textC8)')};
 
-  background:none;
+  background: none;
 `;
 
 export default DetailCategoryTitle;

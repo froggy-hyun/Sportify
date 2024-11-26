@@ -10,7 +10,7 @@ const CategoryList = () => {
   const [selectedCategory, setSelectedCategory] = useRecoilState(currentCategoryState);
   
   const handleCategoryClick = (idx: number) => {
-    setSelectedCategory({ title: CategoryData[idx].title, idx });
+    setSelectedCategory({ title: CategoryData[idx].title, majorCategory_idx: idx, middleCategory_idx: 0 });
   };
 
   return (
@@ -19,8 +19,8 @@ const CategoryList = () => {
         <CategoryItem
           key={idx}
           title={category.title}
-          img={selectedCategory.idx === idx ? category.img_active : category.img}
-          isSelected={selectedCategory.idx === idx}
+          img={selectedCategory.majorCategory_idx === idx ? category.img_active : category.img}
+          isSelected={selectedCategory.majorCategory_idx === idx}
           onClick={() => handleCategoryClick(idx)}
         />
       ))}

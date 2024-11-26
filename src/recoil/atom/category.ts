@@ -5,7 +5,8 @@ export const currentCategoryState = atom<CatergoryState>({
   key: 'category',
   default: {
     title: '격투 및 무술',
-    idx: 0,
+    majorCategory_idx: 0,
+    middleCategory_idx: 0,
   },
 });
 

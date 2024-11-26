@@ -6,10 +6,10 @@ const TicketApplyPage = () => {
     <div>
       <Location />
       <AlertBanner />
-      <CategoryContainer />
-      <Divide />
 
       {/* 티켓 카테고리 구현 */}
+      <CategoryContainer />
+      <Divide />
       <TicketList />
 
     </div>

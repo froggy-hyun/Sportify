@@ -6,5 +6,6 @@ export interface LocationState {
 
 export interface CatergoryState {
   title: string;
-  idx : number;
+  majorCategory_idx : number;
+  middleCategory_idx : number;
 }
