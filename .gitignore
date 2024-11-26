@@ -51,3 +51,6 @@ gcs-secret.json
 
 ### API KEY ###
 kakao_api_key.txt
+
+### CSV ###
+!**/geocoding/data/
