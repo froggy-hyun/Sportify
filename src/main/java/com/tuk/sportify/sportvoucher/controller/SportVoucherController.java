@@ -1,5 +1,6 @@
 package com.tuk.sportify.sportvoucher.controller;
 
+import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 import com.tuk.sportify.global.response.ApiErrorCodeExamples;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.sportvoucher.dto.PopularVoucherResponse;
@@ -29,9 +30,10 @@ public class SportVoucherController {
 
     // 인기 이용권 조회
     @GetMapping("/popularity")
-    @Operation(summary = "인기 이용권 조회", description = "아직 좌표에 따른 위치연산이 완료되지 않아서 서울시 강남구를 기준으로 반환합니다.")
-    public PopularVoucherResponse findPopularVoucher(@RequestParam Integer fetchSize) {
-        return sportVoucherService.findPopularVoucher(fetchSize);
+    @Operation(summary = "인기 이용권 조회", description = "설정된 주소를 기반으로 인기 이용권을 조회합니다. 인기 이용권의 기준은 신청 "
+        + "인원수 이고 내림차순 정렬하여 반환합니다.")
+    public PopularVoucherResponse findPopularVoucher(@AuthenticationMember Long memberId, @RequestParam Integer fetchSize) {
+        return sportVoucherService.findPopularVoucher(memberId,fetchSize);
     }
 
     // 이용권들 검색

@@ -41,6 +41,7 @@ public class SportVoucherMapper {
                 .address(facility.getBasicAddress())
                 .duration(course.getDuration())
                 .subCategory(sportVoucher.getSubCategory())
+                .requestNumberOfPerson(sportVoucher.getCourse().getRequestNumberOfPerson())
                 .build();
     }
 

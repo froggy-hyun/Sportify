@@ -9,9 +9,9 @@ import lombok.Getter;
 @Getter
 public class Item {
 
-    @Column(name = "sub_category")
+    @Column(name = "ITEM_NM")
     private String subCategory;
 
-    @Column(name = "item_code")
+    @Column(name = "ITEM_CD")
     private String code;
 }

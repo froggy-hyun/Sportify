@@ -1,6 +1,7 @@
 package com.tuk.sportify.address.domain;
 
 import com.tuk.sportify.member.domain.Member;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.locationtech.jts.geom.Point;
 
 @Entity
 @Getter
@@ -24,20 +26,18 @@ public class Address {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    private double latitude;
-
-    private double longitude;
+    @Column(columnDefinition = "POINT SRID 4326",nullable = false)
+    private Point point;
 
     private String detailAddress;
 
     private String addressName;
 
     @Builder
-    public Address(final Member member, final double latitude, final double longitude,
+    public Address(final Member member, final Point point,
         final String detailAddress, final String addressName) {
         this.member = member;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.point = point;
         this.detailAddress = detailAddress;
         this.addressName = addressName;
     }
