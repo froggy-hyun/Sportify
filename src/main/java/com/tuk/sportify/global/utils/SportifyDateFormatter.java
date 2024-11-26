@@ -10,7 +10,9 @@ public class SportifyDateFormatter {
     public static Integer getCurrentDate(){
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        return Integer.parseInt(date.format(formatter));
+//        return Integer.parseInt(date.format(formatter));
+        // 우선 10월을 현 시점으로 고정
+        return 241001;
     }
 
     public static String createCourseDuration(final String beginAt, final String endAt){

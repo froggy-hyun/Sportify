@@ -13,40 +13,39 @@ import com.tuk.sportify.sportvoucher.dto.VoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherSearchResponse;
 import com.tuk.sportify.sportvoucher.exception.SportVoucherNotFoundException;
 import com.tuk.sportify.sportvoucher.repository.SportVoucherRepository;
-
 import com.tuk.sportify.sportvoucher.service.mapper.SportVoucherMapper;
-import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 
 import org.locationtech.jts.geom.Point;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class SportVoucherService {
 
+    private static final Integer SEARCH_RADIUS = 5000;
     private final SportVoucherRepository sportVoucherRepository;
     private final SportVoucherMapper sportVoucherMapper;
     private final CrewVoucherFacadeService crewVoucherFacadeService;
     private final MemberService memberService;
 
-    public PopularVoucherResponse findPopularVoucher(final Long memberId,final Integer fetchSize) {
-        Member member = memberService.getMemberById(memberId);
-        Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        return new PopularVoucherResponse(findPopularVouchers(member.getAddress().getPoint(),7000,
-            fetchSize,
-            currentDate));
+    public PopularVoucherResponse findPopularVoucher(final Long memberId, final Integer fetchSize) {
+        final Member member = memberService.getMemberById(memberId);
+        final Point memberLocation = member.getAddress().getPoint();
+        final Integer currentDate = SportifyDateFormatter.getCurrentDate();
+        return new PopularVoucherResponse(
+                findPopularVouchers(memberLocation, currentDate, fetchSize));
     }
 
     private List<VoucherResponse> findPopularVouchers(
-            final Point memberLocation,
-            final Integer radius,
-            final Integer fetchSize,
-            final Integer currentDate) {
+            final Point memberLocation, final Integer currentDate, final Integer fetchSize) {
         List<SportVoucher> sportVouchers =
-                sportVoucherRepository.findPopularVoucherByCityAndGu(memberLocation,radius,
-                    Limit.of(fetchSize));
+                sportVoucherRepository.findPopularVoucherByMemberLocation(
+                        memberLocation, SEARCH_RADIUS, currentDate, Limit.of(fetchSize));
         return sportVoucherMapper.toVouchersResponse(sportVouchers);
     }
 
@@ -69,7 +68,8 @@ public class SportVoucherService {
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         final List<SportVoucher> sportVouchers =
                 // TODO : 위도 경도 변환 끝나면 수정
-                sportVoucherRepository.findByMiddleCategoryJoinFetch("서울","강남구",middleCategoryId,currentDate);
+                sportVoucherRepository.findByMiddleCategoryJoinFetch(
+                        "서울", "강남구", middleCategoryId, currentDate);
         return sportVoucherMapper.toVoucherSearchResponse(sportVouchers);
     }
 }

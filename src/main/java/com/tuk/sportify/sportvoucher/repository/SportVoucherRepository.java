@@ -14,9 +14,10 @@ import java.util.List;
 public interface SportVoucherRepository extends JpaRepository<SportVoucher, Long> {
 
     @Query(
-            "select sv from SportVoucher sv where st_contains(st_buffer(:memberLocation, :radius), sv.point)")
-    List<SportVoucher> findPopularVoucherByCityAndGu(
-            Point memberLocation, Integer radius, Limit limit);
+            "select sv from SportVoucher sv where st_contains(st_buffer(:memberLocation, :radius)"
+                + ", sv.point) order by sv.course.requestNumberOfPerson")
+    List<SportVoucher> findPopularVoucherByMemberLocation(
+            Point memberLocation, Integer radius,Integer currentDate, Limit limit);
 
     @Query(
             "select sv from SportVoucher sv join fetch sv.middleCategory where sv.facility.city =:city and sv.facility.gu =:gu "
