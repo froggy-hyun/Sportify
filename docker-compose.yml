@@ -36,6 +36,8 @@ services:
       MYSQL_DATABASE: sportify
       TZ: Asia/Seoul
     restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
     networks:
       sportify:
 
