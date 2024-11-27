@@ -1,4 +1,4 @@
-import { Location, AlertBanner, CategoryContainer, Divide } from '../components';
+import { Location, AlertBanner, CategoryContainer, Divide, TicketList } from '../components';
 
 const TicketApplyPage = () => {
 
@@ -6,8 +6,11 @@ const TicketApplyPage = () => {
     <div>
       <Location />
       <AlertBanner />
+
+      {/* 티켓 카테고리 구현 */}
       <CategoryContainer />
       <Divide />
+      <TicketList />
 
     </div>
   );

@@ -9,16 +9,17 @@ export const CategroyItemContainer = styled.div`
   align-items: center;
 `;
 
-export const CategoryImgArea = styled.div`
-  padding: 2rem;
-
-  background-color: var(--grayBG);
+export const CategoryImgArea = styled.div<{ isSelected: boolean }>`
+  padding: 1.6rem;
+  background-color: ${({ isSelected }) => (isSelected ? "var(--brandColor)" : "var(--grayBG)")};
   border-radius: 10rem;
+
+  transition:all 0.3s;
 `;
 
 export const CategoryImg = styled.img`
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 4.8rem;
+  height: 4.8rem;
 `;
 
 export const CategoryTitle = styled.p`
