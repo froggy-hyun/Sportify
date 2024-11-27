@@ -2,7 +2,6 @@ package com.tuk.sportify.address.controller;
 
 import com.tuk.sportify.address.dto.AddressListResponse;
 import com.tuk.sportify.address.dto.AddressRegisterRequest;
-import com.tuk.sportify.address.dto.AddressRegisterResponse;
 import com.tuk.sportify.address.dto.AddressResponse;
 import com.tuk.sportify.address.dto.ChangedAddressResponse;
 import com.tuk.sportify.address.service.AddressService;
@@ -32,7 +31,7 @@ public class AddressController {
 
     @PostMapping
     @Operation(summary = "주소지 등록", description = "새로운 주소를 등록합니다.")
-    public AddressRegisterResponse register(
+    public AddressResponse register(
             @AuthenticationMember @Parameter(hidden = true) Long memberId,
             @RequestBody final AddressRegisterRequest request) {
         return addressService.register(request, memberId);

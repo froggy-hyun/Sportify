@@ -2,7 +2,6 @@ package com.tuk.sportify.member.service;
 
 import com.tuk.sportify.address.domain.Address;
 import com.tuk.sportify.address.dto.AddressResponse;
-import com.tuk.sportify.facade.service.MemberAddressFacadeService;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
@@ -14,8 +13,10 @@ import com.tuk.sportify.member.jwt.AccessTokenBlackList;
 import com.tuk.sportify.member.jwt.token.TokenProvider;
 import com.tuk.sportify.member.repository.MemberRepository;
 import com.tuk.sportify.member.service.mapper.MemberMapper;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,6 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final AccessTokenBlackList accessTokenBlackList;
-    private final MemberAddressFacadeService memberAddressFacadeService;
 
     public Member createMember(CreateMemberRequest request) {
         checkPasswordStrength(request.password());
@@ -76,7 +76,7 @@ public class MemberService {
 
     public AddressResponse getAddressResponse(final Address address){
         return address == null ?
-            new AddressResponse(null,null,null) :
+            null :
             new AddressResponse(address.getId(),address.getDetailAddress(), address.getAddressName());
     }
 
