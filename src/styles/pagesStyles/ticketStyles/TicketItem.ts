@@ -6,7 +6,7 @@ export const TicketContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
   margin-top: 2.8rem;
 `;
 
@@ -15,6 +15,8 @@ export const Ticket = styled.div`
   height: fit-content;
 
   display: flex;
+  border-bottom:1px solid var(--grayBG);
+  padding-bottom:16px;
 `;
 
 export const TicketImageFrame = styled.div`
@@ -36,6 +38,7 @@ export const TicketInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap:20px;
 `;
 
 export const TicketLocation = styled.p`
