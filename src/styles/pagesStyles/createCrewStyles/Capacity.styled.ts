@@ -26,7 +26,7 @@ export const CapacityCount= styled.p`
   line-height: normal;
 `;
 
-export const ArrowIcon = styled.img<{ isOpen: boolean }>`
+export const ArrowIcon = styled.img<{ isopen: boolean }>`
   width: 2rem;
   height:  2rem;
   transform: ${({ isOpen }) => (isOpen ? "rotate(-180deg)" : "rotate(0)")};

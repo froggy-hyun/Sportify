@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const SearchInput= styled.input.withConfig({
-  shouldForwardProp: (prop) => prop !== 'search', // search는 DOM에 전달되지 않음
-})<{ search?: boolean }>`
+  shouldForwardProp: (prop) => prop !== 'search'&&  prop !== '$margin', // search는 DOM에 전달되지 않음
+})<{ search?: boolean , $margin? : string}>`
   display: flex;
   width: 100%;
   padding: 1.2rem 1.6rem;
   height: 4.1rem;
   border-radius: 0.8rem;
   outline: 0;
+  margin:  ${(props) =>
+    props.$margin ? props.$margin: 0};
+
 
   background: var(--grayBG);
   /* 배경색과 이미지 통합 */

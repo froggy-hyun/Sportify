@@ -11,12 +11,10 @@ interface SelectorProps<T> {
   title: string;
   items: Record<string, T>;
   selectedItems: T | T[];
-  limit?: number;
-  isMultiple?: boolean;
   type: 'gender' | 'level' | 'goal';
 }
 
-const SelectorList = <T extends string>({
+const SelectorList = <T extends GoalKeyType | GenderRuleKeyType | DifficultyLevelKeyType>({
   title,
   items,
   selectedItems,
