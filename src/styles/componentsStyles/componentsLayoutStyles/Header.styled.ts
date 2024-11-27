@@ -17,7 +17,7 @@ export const HeaderContainer = styled.div`
 
 export const NoticeAndSearch = styled.img`
   height: 2.4rem;
-  width: fit-content;
+  width:  2.4rem;
   flex-shrink: 0;
 
   &.search {
