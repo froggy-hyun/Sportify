@@ -2,6 +2,7 @@ package com.tuk.sportify.member.domain;
 
 import com.tuk.sportify.address.domain.Address;
 import jakarta.persistence.*;
+import java.util.Objects;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 

@@ -49,7 +49,7 @@ public class AddressService {
         Member member = memberService.getMemberById(memberId);
         Address address = addressRepository.findById(addressId)
             .orElseThrow(() -> new AddressNotFoundException(
-                ErrorCode.CREW_NOT_FOUND));
+                ErrorCode.ADDRESS_NOT_FOUND));
         member.changeAddress(address);
         return new ChangedAddressResponse(address.getId(),address.getDetailAddress());
     }

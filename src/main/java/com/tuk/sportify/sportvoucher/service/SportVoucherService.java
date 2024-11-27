@@ -1,5 +1,7 @@
 package com.tuk.sportify.sportvoucher.service;
 
+import com.tuk.sportify.address.domain.Address;
+import com.tuk.sportify.address.exception.AddressNotFoundException;
 import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.facade.service.CrewVoucherFacadeService;
 import com.tuk.sportify.global.status_code.ErrorCode;
@@ -15,6 +17,7 @@ import com.tuk.sportify.sportvoucher.exception.SportVoucherNotFoundException;
 import com.tuk.sportify.sportvoucher.repository.SportVoucherRepository;
 import com.tuk.sportify.sportvoucher.service.mapper.SportVoucherMapper;
 
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 
 import org.locationtech.jts.geom.Point;
@@ -35,17 +38,18 @@ public class SportVoucherService {
 
     public PopularVoucherResponse findPopularVoucher(final Long memberId, final Integer fetchSize) {
         final Member member = memberService.getMemberById(memberId);
+        isAddressExists(member.getAddress());
         final Point address = member.getAddress().getPoint();
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         return new PopularVoucherResponse(
-                findPopularVouchersByAddress(address, currentDate, fetchSize));
+                findPopularVouchersByAddress(address, currentDate,member.isDisabled(), fetchSize));
     }
 
     private List<VoucherResponse> findPopularVouchersByAddress(
-            final Point address, final Integer currentDate, final Integer fetchSize) {
+            final Point address, final Integer currentDate,boolean disabled, final Integer fetchSize) {
         List<SportVoucher> sportVouchers =
                 sportVoucherRepository.findPopularVoucherByAddress(
-                        address, SEARCH_RADIUS, currentDate, Limit.of(fetchSize));
+                        address, SEARCH_RADIUS, currentDate,disabled, Limit.of(fetchSize));
         return sportVoucherMapper.toVouchersResponse(sportVouchers);
     }
 
@@ -69,19 +73,28 @@ public class SportVoucherService {
         final int middleCategoryCode,
         final Long memberId) {
         final Member member = memberService.getMemberById(memberId);
+        isAddressExists(member.getAddress());
+        final Point point = member.getAddress().getPoint();
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         final List<SportVoucher> sportVouchers = getSportVouchers(majorCategoryCode,
-            middleCategoryCode, member.getAddress().getPoint(), currentDate);
+            middleCategoryCode, point,member.isDisabled(), currentDate);
         return sportVoucherMapper.toVoucherSearchResponse(sportVouchers);
     }
 
+    private void isAddressExists(final Address adderss) {
+        if(Objects.isNull(adderss)){
+            throw new AddressNotFoundException(ErrorCode.ADDRESS_NOT_FOUND);
+        }
+    }
+
     private List<SportVoucher> getSportVouchers(final int majorCategoryCode,
-        final int middleCategoryCode, final Point address, final Integer currentDate) {
+        final int middleCategoryCode, final Point address,boolean disabled, final Integer currentDate) {
         return sportVoucherRepository.findByCategoryAndAddressJoinFetch(
                     address,
                     SEARCH_RADIUS,
                     majorCategoryCode,
                     middleCategoryCode,
+                    disabled,
                     currentDate);
     }
 }
