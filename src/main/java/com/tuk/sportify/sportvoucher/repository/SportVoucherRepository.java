@@ -14,15 +14,21 @@ import java.util.List;
 public interface SportVoucherRepository extends JpaRepository<SportVoucher, Long> {
 
     @Query(
-            "select sv from SportVoucher sv where st_contains(st_buffer(:memberLocation, :radius)"
-                + ", sv.point) and sv.course.endAt > :currentDate order by sv.course"
-                + ".requestNumberOfPerson desc")
-    List<SportVoucher> findPopularVoucherByMemberLocation(
-            Point memberLocation, Integer radius,Integer currentDate, Limit limit);
+            "select sv from SportVoucher sv where st_contains(st_buffer(:address, :radius)"
+                    + ", sv.point) and sv.course.endAt > :currentDate order by sv.course"
+                    + ".requestNumberOfPerson desc")
+    List<SportVoucher> findPopularVoucherByAddress(
+            Point address, Integer radius, Integer currentDate, Limit limit);
 
     @Query(
-            "select sv from SportVoucher sv join fetch sv.middleCategory where sv.facility.city =:city and sv.facility.gu =:gu "
-                    + " and sv.middleCategory.id = :middleCategoryId and sv.course.endAt > :currentDate")
-    List<SportVoucher> findByMiddleCategoryJoinFetch(
-            String city, String gu, Long middleCategoryId, Integer currentDate);
+            "select sv from SportVoucher sv join fetch sv.majorCategory mjc join fetch sv"
+                    + ".middleCategory mic where st_contains(st_buffer(:address, :radius) , sv.point) "
+                    + " and mjc.code = :majorCategoryCode and mic.code =:middleCategoryCode and sv"
+                    + ".course.endAt > :currentDate")
+    List<SportVoucher> findByCategoryAndAddressJoinFetch(
+            Point address,
+            Integer radius,
+            int majorCategoryCode,
+            int middleCategoryCode,
+            Integer currentDate);
 }

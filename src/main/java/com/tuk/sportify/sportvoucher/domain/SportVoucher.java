@@ -38,6 +38,10 @@ public class SportVoucher {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
+    private MajorCategory majorCategory;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
     private MiddleCategory middleCategory;
 
     @Column(columnDefinition = "POINT SRID 4326", nullable = false)
@@ -50,9 +54,5 @@ public class SportVoucher {
         if (currentDate > endAt) {
             throw new SportVoucherClosedException(ErrorCode.SPORT_VOUCHER_CLOSED);
         }
-    }
-
-    public String getSubCategory() {
-        return item.getSubCategory();
     }
 }

@@ -25,22 +25,18 @@ public class SportVoucherMapper {
     public VoucherSearchResponse toVoucherSearchResponse(final List<SportVoucher> sportVouchers) {
         final List<VoucherResponse> voucherResponses =
                 sportVouchers.stream().map(this::toVoucherResponse).toList();
-        final Map<String, List<VoucherResponse>> groupedVoucherResponses =
-                voucherResponses.stream()
-                        .collect(Collectors.groupingBy(VoucherResponse::subCategory));
-        return new VoucherSearchResponse(groupedVoucherResponses);
+        return new VoucherSearchResponse(voucherResponses);
     }
 
     public VoucherResponse toVoucherResponse(final SportVoucher sportVoucher) {
         Course course = sportVoucher.getCourse();
         Facility facility = sportVoucher.getFacility();
-
         return VoucherResponse.builder()
                 .voucherId(sportVoucher.getId())
                 .voucherCourseName(course.getName())
                 .address(facility.getBasicAddress())
                 .duration(course.getDuration())
-                .subCategory(sportVoucher.getSubCategory())
+                .subCategory(sportVoucher.getMiddleCategory().getName())
                 .requestNumberOfPerson(sportVoucher.getCourse().getRequestNumberOfPerson())
                 .build();
     }
@@ -56,7 +52,7 @@ public class SportVoucherMapper {
                 .crews(crews.stream().map(this::toCrewResponse).toList())
                 .address(facility.getBasicAddress())
                 .duration(course.getDuration())
-                .subCategory(sportVoucher.getSubCategory())
+                .subCategory(sportVoucher.getMiddleCategory().getName())
                 .build();
     }
 

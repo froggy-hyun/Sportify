@@ -30,11 +30,13 @@ public class SportVoucherController {
 
     // 인기 이용권 조회
     @GetMapping("/popularity")
-    @Operation(summary = "인기 이용권 조회", description = "설정된 주소를 기반으로 인기 이용권을 조회합니다. 인기 이용권의 기준은 신청 "
-        + "인원수 이고 내림차순 정렬하여 반환합니다.")
-    public PopularVoucherResponse findPopularVoucher(@AuthenticationMember @Parameter(hidden = true) Long memberId,
-        @RequestParam @Parameter(description = "한 번에 가져올 크기") Integer fetchSize) {
-        return sportVoucherService.findPopularVoucher(memberId,fetchSize);
+    @Operation(
+            summary = "인기 이용권 조회",
+            description = "설정된 주소를 기반으로 인기 이용권을 조회합니다. 인기 이용권의 기준은 신청 " + "인원수 이고 내림차순 정렬하여 반환합니다.")
+    public PopularVoucherResponse findPopularVoucher(
+            @AuthenticationMember @Parameter(hidden = true) Long memberId,
+            @RequestParam @Parameter(description = "한 번에 가져올 크기") Integer fetchSize) {
+        return sportVoucherService.findPopularVoucher(memberId, fetchSize);
     }
 
     // 이용권들 검색
@@ -50,12 +52,12 @@ public class SportVoucherController {
                             + "기타: [기타종목, 종합체육시설]"
                             + "아직 좌표에 따른 위치연산이 완료되지 않아서 서울시 강남구를 기준으로 반환합니다.")
     public VoucherSearchResponse searchVoucher(
-            @RequestParam
-                    @Parameter(
-                            description =
-                                    "1:격투 및 무술|2:피트니스 및 체조|3:구기 및 라켓|4:레저 및 개인|5:예술 및 체육|6:기타")
-                    final Long middleCategoryId) {
-        return sportVoucherService.searchVoucherByMiddleCategory(middleCategoryId);
+            @RequestParam @Parameter(description = "대분류 ex:격투 및 무술, 피트니스 및 체조")
+                    final int majorCategoryCode,
+            @RequestParam @Parameter(description = "중분류 ex:태권도, 합기도")
+                    final int middleCategoryCode,
+            @AuthenticationMember @Parameter(hidden = true) final Long memberId) {
+        return sportVoucherService.searchVoucherByCategoryAndAddress(majorCategoryCode,middleCategoryCode, memberId);
     }
 
     // 이용권 단건 상세 조회

@@ -35,17 +35,17 @@ public class SportVoucherService {
 
     public PopularVoucherResponse findPopularVoucher(final Long memberId, final Integer fetchSize) {
         final Member member = memberService.getMemberById(memberId);
-        final Point memberLocation = member.getAddress().getPoint();
+        final Point address = member.getAddress().getPoint();
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         return new PopularVoucherResponse(
-                findPopularVouchers(memberLocation, currentDate, fetchSize));
+                findPopularVouchersByAddress(address, currentDate, fetchSize));
     }
 
-    private List<VoucherResponse> findPopularVouchers(
-            final Point memberLocation, final Integer currentDate, final Integer fetchSize) {
+    private List<VoucherResponse> findPopularVouchersByAddress(
+            final Point address, final Integer currentDate, final Integer fetchSize) {
         List<SportVoucher> sportVouchers =
-                sportVoucherRepository.findPopularVoucherByMemberLocation(
-                        memberLocation, SEARCH_RADIUS, currentDate, Limit.of(fetchSize));
+                sportVoucherRepository.findPopularVoucherByAddress(
+                        address, SEARCH_RADIUS, currentDate, Limit.of(fetchSize));
         return sportVoucherMapper.toVouchersResponse(sportVouchers);
     }
 
@@ -64,12 +64,24 @@ public class SportVoucherService {
                         () -> new SportVoucherNotFoundException(ErrorCode.SPORT_VOUCHER_NOT_FOUND));
     }
 
-    public VoucherSearchResponse searchVoucherByMiddleCategory(final Long middleCategoryId) {
+    public VoucherSearchResponse searchVoucherByCategoryAndAddress(
+        final int majorCategoryCode,
+        final int middleCategoryCode,
+        final Long memberId) {
+        final Member member = memberService.getMemberById(memberId);
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        final List<SportVoucher> sportVouchers =
-                // TODO : 위도 경도 변환 끝나면 수정
-                sportVoucherRepository.findByMiddleCategoryJoinFetch(
-                        "서울", "강남구", middleCategoryId, currentDate);
+        final List<SportVoucher> sportVouchers = getSportVouchers(majorCategoryCode,
+            middleCategoryCode, member.getAddress().getPoint(), currentDate);
         return sportVoucherMapper.toVoucherSearchResponse(sportVouchers);
+    }
+
+    private List<SportVoucher> getSportVouchers(final int majorCategoryCode,
+        final int middleCategoryCode, final Point address, final Integer currentDate) {
+        return sportVoucherRepository.findByCategoryAndAddressJoinFetch(
+                    address,
+                    SEARCH_RADIUS,
+                    majorCategoryCode,
+                    middleCategoryCode,
+                    currentDate);
     }
 }

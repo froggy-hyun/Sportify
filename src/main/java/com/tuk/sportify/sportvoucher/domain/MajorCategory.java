@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class MiddleCategory {
+public class MajorCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
