@@ -1,4 +1,5 @@
 import { DifficultyLevelType, GenderRuleType, GoalType } from "@/constants/newCrew"
+import { Disabled, Gender } from "@/constants/signUpInfo"
 
 export interface LocationState{ 
   longitude : number,
@@ -22,3 +23,15 @@ export interface NewCrewState{
 }
 
 
+
+export interface SignUpState {
+  email: string,
+  password:string,
+  name: string,
+  gender: typeof Gender[GenderKey]
+  disabled: boolean
+}
+
+
+export type GenderKey = keyof typeof Gender
+export type DisabledKey = keyof typeof Disabled

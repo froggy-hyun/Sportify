@@ -5,9 +5,10 @@ interface TitleProps {
   title: string;
   color: boolean;
   children?: React.ReactNode;
+  login?: boolean;
 }
 
-const Title = memo(({ title, color, children }: TitleProps) => {
+const Title = memo(({ title, color, children, login = false }: TitleProps) => {
   // 더보기가 있으면
   if (children) {
     return (
@@ -19,12 +20,16 @@ const Title = memo(({ title, color, children }: TitleProps) => {
   }
 
   // 더보기가 없으면
-  return <TitleStyle $color={color}>{title}</TitleStyle>;
+  return (
+    <TitleStyle $color={color} $size={login}>
+      {title}
+    </TitleStyle>
+  );
 });
 
-const TitleStyle = styled.p<{ $color: boolean }>`
+const TitleStyle = styled.p<{ $color: boolean; $size?: boolean }>`
   width: fit-content;
-  font-size: 20px;
+  font-size: ${(props) => (props.$size ? '2.8rem' : '2rem')};
   font-weight: bold;
   color: ${(props) => (props.$color ? 'var(--textC3, #333)' : 'var(--white, #fff)')};
   margin-bottom: 1.6rem;

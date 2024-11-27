@@ -1,16 +1,22 @@
-import { DifficultyLevelKeyType, GenderRuleKeyType, GoalKeyType } from '@/recoil/atom/types';
-import React from 'react';
+import {
+  DifficultyLevelKeyType,
+  DisabledKey,
+  GenderKey,
+  GenderRuleKeyType,
+  GoalKeyType,
+} from '@/recoil/atom/types';
+
 import styled from 'styled-components';
 
 interface selectItem {
-  title: GoalKeyType | GenderRuleKeyType | DifficultyLevelKeyType;
+  title: GoalKeyType | GenderRuleKeyType | DifficultyLevelKeyType | GenderKey | DisabledKey;
   select: boolean;
   onClick: () => void;
 }
 
 const SelectItem = ({ title, onClick, select }: selectItem) => {
   return (
-    <Item select={select} onClick={onClick}>
+    <Item type="button" select={select} onClick={onClick}>
       {title}
     </Item>
   );

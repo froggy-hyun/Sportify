@@ -17,7 +17,7 @@ const CreateCrewPage = () => {
     <S.CreateCrewPageContainer>
       <S.CrewInfoContainer>
         <Title title="모임 기본 정보" color={true} />
-        <S.Divide />
+        <Divide thin={true} />
         <S.InfoTitle>모임명</S.InfoTitle>
         <BaseInput placeholder="모임명을 입력하세요." />
         <S.InfoTitle>대표 이미지</S.InfoTitle>

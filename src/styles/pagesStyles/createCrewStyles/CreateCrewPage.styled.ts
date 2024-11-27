@@ -16,12 +16,6 @@ export const SelectListContainer= styled.div`
   margin-top: 6rem;
 `;
 
-export const Divide = styled.div`
-  height: 1px;
-  width: 100%;
-  background-color: var(--grayBG);
-`;
-
 
 export const InfoTitle = styled.h2`
   margin: 2.4rem 0 1.2rem 0;
