@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import * as S from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';
 import PlusImg from '@/assets/icon/etc/plus_Default.png';
 import { useRecoilState } from 'recoil';
@@ -34,7 +34,7 @@ const ImageUpload = () => {
           src={preview}
           alt="preview이미지"
           onClick={() => {
-            setPreview(null);
+            setPreview('');
           }}
         />
       ) : (
