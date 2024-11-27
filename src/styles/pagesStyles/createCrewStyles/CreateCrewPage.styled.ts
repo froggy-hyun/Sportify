@@ -2,17 +2,18 @@ import styled from 'styled-components';
 
 export const CreateCrewPageContainer= styled.div`
   width: 100%;
+  margin-top:4rem;
   height: fit-content;
   display: flex;
   flex-direction: column;
 `;
 
-export const CrewBasicInfoContainer= styled.div`
-  margin-top: 4rem;
+export const CrewInfoContainer= styled.div`
   padding: 0 2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+`;
+
+export const SelectListContainer= styled.div`
+  margin-top: 6rem;
 `;
 
 export const Divide = styled.div`
@@ -56,4 +57,26 @@ export const PreviewImg= styled.img`
   width:100%;
   height: 100%;
 
+`;
+
+export const SelectContainer = styled.div`
+  width:100%;
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 1.2rem; 
+`;
+
+export const LimitText = styled.p`
+  color: var(--funcC1);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: normal; 
+  margin-top: 1.2rem;
+`;
+
+export const BtnContainer = styled.div`
+  margin: 10rem 0 4rem 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
 `;
