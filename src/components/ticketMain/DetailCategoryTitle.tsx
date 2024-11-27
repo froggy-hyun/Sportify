@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface DetailCategoryProps {
   data: string[];
@@ -8,6 +8,10 @@ interface DetailCategoryProps {
 
 const DetailCategoryTitle = ({ data, onMiddleCategoryClick }: DetailCategoryProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [data]);
 
   const handleClick = (idx: number) => {
     if (activeIndex !== idx) {

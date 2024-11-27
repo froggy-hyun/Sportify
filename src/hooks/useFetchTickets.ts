@@ -1,18 +1,13 @@
 import { useState, useEffect } from 'react';
+import { Ticket } from '@/types/ticket';
 
-interface Ticket {
-  id: number;
-  title: string;
-  description: string;
-}
-
-const useFetchTickets = (majorCategory: number) => {
-  const [tickets, setTickets] = useState<Ticket>();
+const useFetchTickets = (majorCategory: number, middleCategory: number) => {
+  const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (majorCategory === null) return;
+    if (majorCategory === null || middleCategory === null) return;
 
     // 0.3초 사이에 클릭 방지
     const timer = setTimeout(() => {
@@ -22,12 +17,12 @@ const useFetchTickets = (majorCategory: number) => {
           setError(null);
 
           const response = await fetch(
-            `https://sportify.co.kr/api/sport-voucher/search?middleCategoryId=${majorCategory + 1}`,
+            `https://sportify.co.kr/api/sport-voucher/search?majorCategoryCode=${majorCategory}&middleCategoryCode=${middleCategory}`,
             {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzcG9ydGlmeTFAbmF2ZXIuY29tIiwiaWQiOjEsImF1dGgiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6IuynleynleydtCIsInRva2VuSWQiOiI3NGJmZTFhNS1lMGFlLTRhY2UtYjZlZS1iOGUyNTBjOWZlOTQiLCJleHAiOjE3MzMwMzM0NTF9.6zUtQe-BPMrf8jqdwhgqk5duyq2pH9aJ8DVYp_y9F-H0By7uykLInbBPYG0VbB8KTujfgBYCJTckSn6DbXTJ5g`, // 인증 토큰 추가
+                Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzcG9ydGlmeTFAbmF2ZXIuY29tIiwiaWQiOjEsImF1dGgiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6IuynleynleydtCIsInRva2VuSWQiOiIzNDg3ZDBmYS0yMWY2LTQ5YmEtYjNlNy1iYTFmYTYyYWZiNjUiLCJleHAiOjE3MzMwNjkwMDR9.mkfK0OEltL1lBWLuj4f1Rmy610sS5V8BecLr5n9ORsKfw_mEhGdyTpQb_64mMkVkXQL8CX-Wkbu2PpqBo6z6MA`, // 인증 토큰 추가
               },
             }
           );
@@ -35,8 +30,8 @@ const useFetchTickets = (majorCategory: number) => {
             throw new Error(`Error fetching tickets: ${response.statusText}`);
           }
           const data = await response.json();
-          console.log(data);
-          setTickets(data);
+          // console.log(data.data.voucherResponses);
+          setTickets(data.data.voucherResponses);
         } catch (err) {
           if (err instanceof Error) {
             setError(err.message);
@@ -52,7 +47,7 @@ const useFetchTickets = (majorCategory: number) => {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [majorCategory]);
+  }, [majorCategory, middleCategory]);
 
   return { tickets, loading, error };
 };
