@@ -33,7 +33,7 @@ public class SportVoucherController {
     @Operation(summary = "인기 이용권 조회", description = "설정된 주소를 기반으로 인기 이용권을 조회합니다. 인기 이용권의 기준은 신청 "
         + "인원수 이고 내림차순 정렬하여 반환합니다.")
     public PopularVoucherResponse findPopularVoucher(@AuthenticationMember @Parameter(hidden = true) Long memberId,
-        @RequestParam Integer fetchSize) {
+        @RequestParam @Parameter(description = "한 번에 가져올 크기") Integer fetchSize) {
         return sportVoucherService.findPopularVoucher(memberId,fetchSize);
     }
 

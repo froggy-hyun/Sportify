@@ -72,24 +72,5 @@ public class MemberController {
 
         return new ApiResponseJson(HttpStatus.OK, "로그아웃 성공");
     }
-
-    // 모든 회원 조회
-//    @GetMapping("/all")
-//    public List<MemberInfoResponse> getAllMembers() {
-//        List<Member> members = memberService.getAllMembers();
-//
-//        return members.stream()
-//                .map(memberMapper::MembertoMemberInfoResponse)
-//                .toList();
-//    }
-
-    // ID로 특정 회원 조회
-    @GetMapping("/{id}")
-    @Operation(summary = "회원 단건 조회")
-    @ApiErrorCodeExample(ErrorCode.MEMBER_NOT_FOUND)
-    public MemberInfoResponse getMemberById(@PathVariable("id") @Parameter(description = "회원 Id") Long id) {
-        Member member = memberService.getMemberById(id);
-        return memberMapper.MembertoMemberInfoResponse(member);
-    }
 }
 
