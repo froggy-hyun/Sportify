@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { addressModalState } from '../recoil/atom/addressModal';
+import { addressModalState } from '@/recoil/atom/addressModal';
 
-import * as S from '../styles/AddressPopup';
-import BaseInput from './BaseInput';
+import * as S from '@/styles/componentsStyles/AddressPopup';
+import BaseInput from '@/components/ui/BaseInput';
 const AddressPopup = ({ place }: { place: kakao.maps.services.PlacesSearchResultItem }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [modalOpen, setModalOpen] = useRecoilState(addressModalState);

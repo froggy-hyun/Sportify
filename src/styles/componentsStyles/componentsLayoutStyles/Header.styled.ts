@@ -17,7 +17,7 @@ export const HeaderContainer = styled.div`
 
 export const NoticeAndSearch = styled.img`
   height: 2.4rem;
-  width: fit-content;
+  width:  2.4rem;
   flex-shrink: 0;
 
   &.search {
@@ -33,7 +33,7 @@ export const LogoImg = styled.img`
 
 export const BackImg = styled.img`
   width: 1.6rem;
-  height: fit-content;
+  height:  1.6rem;
   flex-shrink: 0;
 `;
 
@@ -45,7 +45,7 @@ font-weight: 400;
 line-height: normal;
 `;
 
-export const HeaderConstants = styled.p`
+export const HeaderConstants = styled.div`
 display: flex;
 align-items: center;
 gap:1.2rem;

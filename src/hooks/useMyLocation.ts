@@ -1,5 +1,5 @@
 import React from 'react';
-import { locationState  } from '../recoil/atom/location';
+import { locationState  } from '@/recoil/atom/location';
 import { useSetRecoilState } from 'recoil';
 const useMyLocation = () => {
   const setMyLocation =useSetRecoilState(locationState ) 
@@ -16,7 +16,6 @@ const useMyLocation = () => {
       }
    );
   }
-
 
 
 

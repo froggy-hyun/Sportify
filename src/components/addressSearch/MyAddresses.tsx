@@ -1,9 +1,9 @@
 // MyAddresses.tsx
-import * as S from '@/styles/AddressSearch.styled';
-import { myAddresses, MyAddresses } from '../constants/myAddresses';
-import { locationState } from '../recoil/atom/location';
+import * as S from '@/styles/componentsStyles/AddressSearch.styled';
+import { myAddresses, MyAddresses } from '@/constants/myAddresses';
+import { locationState } from '@/recoil/atom/location';
 import { useRecoilValue } from 'recoil';
-import useMyLocation from '../hooks/useMyLocation';
+import useMyLocation from '@/hooks/useMyLocation';
 const MyAddressesList = () => {
   const location = useRecoilValue(locationState);
   const { updateLocation } = useMyLocation();

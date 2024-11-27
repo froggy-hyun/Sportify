@@ -1,4 +1,4 @@
-import * as S from '../styles/AddressSearch.styled';
+import * as S from '@/styles/componentsStyles/AddressSearch.styled';
 
 interface SearchResultsProps {
   places: kakao.maps.services.PlacesSearchResult;
