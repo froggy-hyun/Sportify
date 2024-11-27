@@ -7,7 +7,7 @@ interface Ticket {
 }
 
 const useFetchTickets = (majorCategory: number) => {
-  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [tickets, setTickets] = useState<Ticket>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,12 +22,12 @@ const useFetchTickets = (majorCategory: number) => {
           setError(null);
 
           const response = await fetch(
-            `https://sportify.co.kr/api/sport-voucher/search?middleCategoryId=${majorCategory}`,
+            `https://sportify.co.kr/api/sport-voucher/search?middleCategoryId=${majorCategory + 1}`,
             {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer test`,
+                Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzcG9ydGlmeTFAbmF2ZXIuY29tIiwiaWQiOjEsImF1dGgiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6IuynleynleydtCIsInRva2VuSWQiOiI3NGJmZTFhNS1lMGFlLTRhY2UtYjZlZS1iOGUyNTBjOWZlOTQiLCJleHAiOjE3MzMwMzM0NTF9.6zUtQe-BPMrf8jqdwhgqk5duyq2pH9aJ8DVYp_y9F-H0By7uykLInbBPYG0VbB8KTujfgBYCJTckSn6DbXTJ5g`, // 인증 토큰 추가
               },
             }
           );
@@ -35,6 +35,7 @@ const useFetchTickets = (majorCategory: number) => {
             throw new Error(`Error fetching tickets: ${response.statusText}`);
           }
           const data = await response.json();
+          console.log(data);
           setTickets(data);
         } catch (err) {
           if (err instanceof Error) {

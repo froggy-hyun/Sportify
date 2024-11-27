@@ -15,7 +15,7 @@ const TicketList = () => {
   const majorCategory = CategoryData[currentCategory.majorCategory_idx]?.detailCategory || []; // 대분류 -> 하위 전달
 
   // 이용권 데이터 불러오기
-  const { tickets, loading, error } = useFetchTickets(currentCategory.majorCategory_idx);
+  const { loading, error } = useFetchTickets(currentCategory.majorCategory_idx);
 
   const handleMiddleCategoryClick = (idx: number) => {
     setMiddleCategory({
@@ -39,9 +39,7 @@ const TicketList = () => {
       </S.DetailCategoryList>
 
       {/* 티켓 이용권 */}
-      {tickets.map((item) => (
-        <>{item}</>
-      ))}
+      {/* <p>{tickets}</p> */}
       <p>{loading}</p>
       <p>{error}</p>
     </S.TicketListContainer>
