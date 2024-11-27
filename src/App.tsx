@@ -12,6 +12,7 @@ import {
   AddressSearchPage,
   LoginPage,
   SignUpPage,
+  CreateCrewPage,
 } from './pages';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/my" element={<MyPage />} />
             <Route path="/addressSearch" element={<AddressSearchPage />} />
             <Route path="/signUp" element={<SignUpPage />} />
+            <Route path="/createCrew" element={<CreateCrewPage />} />
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />
         </BrowserRouter>
