@@ -33,7 +33,7 @@ export const LogoImg = styled.img`
 
 export const BackImg = styled.img`
   width: 1.6rem;
-  height: fit-content;
+  height:  1.6rem;
   flex-shrink: 0;
 `;
 
