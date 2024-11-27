@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const LoginContainer = styled.div`
+export const LoginContainer = styled.form`
   margin-top: 27.3rem;
   display: flex;
   width: 100%;
