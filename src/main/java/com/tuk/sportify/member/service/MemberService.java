@@ -1,6 +1,7 @@
 package com.tuk.sportify.member.service;
 
 import com.tuk.sportify.address.domain.Address;
+import com.tuk.sportify.address.dto.AddressResponse;
 import com.tuk.sportify.facade.service.MemberAddressFacadeService;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
@@ -49,8 +50,6 @@ public class MemberService {
         }
         Member member = memberMapper.CreateMemberRequestToMember(request, passwordEncoder);
         memberRepository.save(member);
-        Address address = memberAddressFacadeService.createAddress(member, request);
-        member.changeAddress(address);
         return member;
     }
 
@@ -69,10 +68,16 @@ public class MemberService {
             Member member = findMemberByEmail(email);
             checkPassword(password, member);
             return new LoginResponse(tokenProvider.createToken(member),
-                member.getAddress().getDetailAddress());
+                getAddressResponse(member.getAddress()));
         } catch (BadCredentialsException e) {
             throw new LoginFailedException(ErrorCode.MEMBER_LOGIN_PASSWORD_INCORRECT);
         }
+    }
+
+    public AddressResponse getAddressResponse(final Address address){
+        return address == null ?
+            new AddressResponse(null,null,null) :
+            new AddressResponse(address.getId(),address.getDetailAddress(), address.getAddressName());
     }
 
     public void logoutMember(String accessToken, String email) {

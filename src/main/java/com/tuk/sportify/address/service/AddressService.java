@@ -3,7 +3,6 @@ package com.tuk.sportify.address.service;
 import com.tuk.sportify.address.domain.Address;
 import com.tuk.sportify.address.dto.AddressListResponse;
 import com.tuk.sportify.address.dto.AddressRegisterRequest;
-import com.tuk.sportify.address.dto.AddressRegisterResponse;
 import com.tuk.sportify.address.dto.AddressResponse;
 import com.tuk.sportify.address.dto.ChangedAddressResponse;
 import com.tuk.sportify.address.exception.AddressNotFoundException;
@@ -12,10 +11,13 @@ import com.tuk.sportify.address.service.mapper.AddressMapper;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
-import java.util.List;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,11 +29,13 @@ public class AddressService {
     private final AddressMapper addressMapper;
 
     @Transactional
-    public AddressRegisterResponse register(final AddressRegisterRequest request,final Long memberId){
+    public AddressResponse register(final AddressRegisterRequest request,final Long memberId){
         final Member member = memberService.getMemberById(memberId);
         final Address address = addressMapper.toAddress(request, member);
+        member.changeAddress(address);
         addressRepository.save(address);
-        return new AddressRegisterResponse(address.getId(), address.getDetailAddress());
+        return new AddressResponse(
+                address.getId(), address.getDetailAddress(), address.getAddressName());
     }
 
     public AddressListResponse findAddresses(final Long memberId){

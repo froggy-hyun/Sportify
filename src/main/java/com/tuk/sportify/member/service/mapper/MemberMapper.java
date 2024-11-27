@@ -22,19 +22,18 @@ public class MemberMapper {
                 .password(passwordEncoder.encode(createMemberRequest.password())) // 비밀번호 암호화
                 .name(createMemberRequest.name())
                 .gender(createMemberRequest.gender())
-                .address(createAddress(createMemberRequest))
                 .disabled(createMemberRequest.disabled())
                 .role(Role.ROLE_USER) // 기본 사용자 역할 설정
                 .build();
     }
 
-    public Address createAddress(CreateMemberRequest request) {
-        return Address.builder()
-                .detailAddress(request.address())
-                .addressName(request.addressName())
-                .point(GeometryConverter.coordinateToPoint(request.latitude(), request.longitude()))
-                .build();
-    }
+//    public Address createAddress(CreateMemberRequest request) {
+//        return Address.builder()
+//                .detailAddress(request.address())
+//                .addressName(request.addressName())
+//                .point(GeometryConverter.coordinateToPoint(request.latitude(), request.longitude()))
+//                .build();
+//    }
 
     public MemberInfoResponse MembertoMemberInfoResponse(Member member) {
         return MemberInfoResponse.builder()

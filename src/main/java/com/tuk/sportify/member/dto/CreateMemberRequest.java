@@ -36,17 +36,6 @@ public record CreateMemberRequest(
         @NotNull(message = "성별은 필수 입력 값입니다.")
                 @Schema(description = "성별 [MALE, FEMALE, OTHER] 대문자를 준수해주세요.", example = "OTHER")
                 Gender gender,
-        @NotNull(message = "위도는 필수 입력 값입니다.")
-                @Schema(description = "위도", example = "37.57167115202715")
-                double latitude,
-        @NotNull(message = "경도는 필수 입력 값입니다.")
-                @Schema(description = "경도", example = "126.9765114350925")
-                double longitude,
-        @NotNull(message = "주소지 이름은 필수 입력 값입니다.") @Schema(description = "주소 별칭", example = "징징이 집")
-                String addressName,
-        @NotNull(message = "주소는 필수 입력 값입니다.")
-                @Schema(description = "주소", example = "서울시 종로구 통일로 18길 34")
-                String address,
         @NotNull(message = "장애인 비장애인 여부는 필수 입력 값입니다.")
                 @Schema(description = "장애 여부", example = "false")
                 boolean disabled) {}

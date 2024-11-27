@@ -56,7 +56,6 @@ public class MemberController {
         LoginResponse loginResponse= memberService.loginMember(request.getEmail(),
             request.getPassword());
         log.info("Token issued: {}", loginResponse.tokenInfo());
-
         return loginResponse; // TokenInfo DTO 직접 반환
     }
 
