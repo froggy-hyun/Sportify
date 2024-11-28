@@ -41,7 +41,6 @@ const useMyLocation = () => {
         }
       );
     }
-    return address
       
     }
   
