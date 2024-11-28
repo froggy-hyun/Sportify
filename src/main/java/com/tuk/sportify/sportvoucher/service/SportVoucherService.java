@@ -27,7 +27,6 @@ import java.util.List;
 @Service
 public class SportVoucherService {
 
-    private static final Integer SEARCH_RADIUS = 5000;
     private final SportVoucherRepository sportVoucherRepository;
     private final SportVoucherMapper sportVoucherMapper;
     private final CrewVoucherFacadeService crewVoucherFacadeService;
@@ -38,14 +37,21 @@ public class SportVoucherService {
         final Point address = member.getAddress().getPoint();
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         return new PopularVoucherResponse(
-                findPopularVouchersByAddress(address, currentDate,member.isDisabled(), fetchSize));
+                findPopularVouchersByAddress(address, currentDate, member.isDisabled(), fetchSize));
     }
 
     private List<VoucherResponse> findPopularVouchersByAddress(
-            final Point address, final Integer currentDate,boolean disabled, final Integer fetchSize) {
+            final Point address,
+            final Integer currentDate,
+            boolean disabled,
+            final Integer fetchSize) {
         List<SportVoucher> sportVouchers =
                 sportVoucherRepository.findPopularVoucherByAddress(
-                        address, SEARCH_RADIUS, currentDate,disabled, Limit.of(fetchSize));
+                        address,
+                        SportVoucherConst.POPULAR_VOUCHER_SEARCH_RADIUS.getValue(),
+                        currentDate,
+                        disabled,
+                        Limit.of(fetchSize));
         return sportVoucherMapper.toVouchersResponse(sportVouchers);
     }
 
@@ -65,25 +71,32 @@ public class SportVoucherService {
     }
 
     public VoucherSearchResponse searchVoucherByCategoryAndAddress(
-        final int majorCategoryCode,
-        final int middleCategoryCode,
-        final Long memberId) {
+            final int majorCategoryCode, final int middleCategoryCode, final Long memberId) {
         final Member member = memberService.getMemberById(memberId);
         final Point point = member.getAddress().getPoint();
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        final List<SportVoucher> sportVouchers = getSportVouchers(majorCategoryCode,
-            middleCategoryCode, point,member.isDisabled(), currentDate);
+        final List<SportVoucher> sportVouchers =
+                getSportVouchersByCategory(
+                        majorCategoryCode,
+                        middleCategoryCode,
+                        point,
+                        member.isDisabled(),
+                        currentDate);
         return sportVoucherMapper.toVoucherSearchResponse(sportVouchers);
     }
 
-    private List<SportVoucher> getSportVouchers(final int majorCategoryCode,
-        final int middleCategoryCode, final Point address,boolean disabled, final Integer currentDate) {
+    private List<SportVoucher> getSportVouchersByCategory(
+            final int majorCategoryCode,
+            final int middleCategoryCode,
+            final Point address,
+            boolean disabled,
+            final Integer currentDate) {
         return sportVoucherRepository.findByCategoryAndAddressJoinFetch(
-                    address,
-                    SEARCH_RADIUS,
-                    majorCategoryCode,
-                    middleCategoryCode,
-                    disabled,
-                    currentDate);
+                address,
+                SportVoucherConst.VOUCHER_CATEGORY_SEARCH_RADIUS.getValue(),
+                majorCategoryCode,
+                middleCategoryCode,
+                disabled,
+                currentDate);
     }
 }
