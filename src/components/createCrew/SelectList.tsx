@@ -14,7 +14,7 @@ interface SelectorProps<T> {
   type: 'gender' | 'level' | 'goal';
 }
 
-const SelectorList = <T extends GoalKeyType | GenderRuleKeyType | DifficultyLevelKeyType>({
+const SelectorList = <T extends string>({
   title,
   items,
   selectedItems,

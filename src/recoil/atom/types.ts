@@ -7,10 +7,15 @@ export interface LocationState{
   address : string
 }
 
+export interface CatergoryState {
+  title: string;
+  majorCategory_idx : number;
+  middleCategory_idx : number;
+}
+
 export type GoalKeyType = keyof typeof GoalType
 export type GenderRuleKeyType = keyof typeof GenderRuleType
 export type DifficultyLevelKeyType = keyof typeof DifficultyLevelType
-
 
 export interface NewCrewState{
   crewName: string,
@@ -22,13 +27,12 @@ export interface NewCrewState{
   imageId:number
 }
 
-
-
 export interface SignUpState extends LoginState  {
   name: string,
   gender: typeof Gender[GenderKey]
   disabled: boolean
 }
+
 
 export interface LoginState {
   email: string,
