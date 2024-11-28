@@ -14,8 +14,6 @@ const HomePage = () => {
     [null, null, null] // params (각 API에 필요한 파라미터)
   );
 
-  console.log('성공', data);
-
   return (
     <div>
       <Location />

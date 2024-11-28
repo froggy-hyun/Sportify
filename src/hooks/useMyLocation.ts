@@ -11,6 +11,7 @@ const useMyLocation = () => {
   (position: GeolocationPosition) => {
         const { latitude, longitude } = position.coords; 
         updateLocation(latitude, longitude);
+        // console.log(latitude, longitude)
    
      },
        (error: GeolocationPositionError) => {
@@ -18,7 +19,6 @@ const useMyLocation = () => {
       }
    );
   }
-
 
 
   // 위도,경도 -> 주소

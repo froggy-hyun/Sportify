@@ -20,3 +20,10 @@ export const addressSelectApi = async (id:  number) => {
 };
 
 
+export const addressesApi = async () => {
+  const data = await authAPI.post("/addresses");
+  return data;
+};
+
+
+
