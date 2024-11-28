@@ -29,7 +29,7 @@ public class MemberMapper {
 
 //    public Address createAddress(CreateMemberRequest request) {
 //        return Address.builder()
-//                .detailAddress(request.address())
+//                .detailAddress(request.voucherAddress())
 //                .addressName(request.addressName())
 //                .point(GeometryConverter.coordinateToPoint(request.latitude(), request.longitude()))
 //                .build();

@@ -49,4 +49,8 @@ public class VoucherMember {
     public String crewName(){
         return crew.getName();
     }
+
+    public String getVoucherAddress(){
+        return sportVoucher.getFacility().getBasicAddress();
+    }
 }

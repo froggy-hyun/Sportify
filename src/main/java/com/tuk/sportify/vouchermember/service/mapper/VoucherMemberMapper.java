@@ -37,7 +37,11 @@ public class VoucherMemberMapper {
     private PersonalVoucher createPersonalVoucher(final VoucherMember voucherMember) {
         final SportVoucher sportVoucher = voucherMember.getSportVoucher();
         final Course course = sportVoucher.getCourse();
-        return new PersonalVoucher(sportVoucher.getId(), course.getName(), course.getDuration());
+        return new PersonalVoucher(
+                sportVoucher.getId(),
+                course.getName(),
+                course.getDuration(),
+                voucherMember.getVoucherAddress());
     }
 
     public List<CrewVoucher> toCrewVoucher(final List<VoucherMember> voucherMembers) {
@@ -47,7 +51,8 @@ public class VoucherMemberMapper {
                                 new CrewVoucher(
                                         vm.getSportVoucher().getId(),
                                         vm.getSportVoucherName(),
-                                        vm.crewName()))
+                                        vm.crewName(),
+                                        vm.getVoucherAddress()))
                 .toList();
     }
 
@@ -75,6 +80,7 @@ public class VoucherMemberMapper {
                 crew.getName(),
                 course.getName(),
                 course.getDuration(),
+                voucherMember.getVoucherAddress(),
                 findImage(crew));
     }
 
