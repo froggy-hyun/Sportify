@@ -14,11 +14,13 @@ import {
   SignUpPage,
   CreateCrewPage,
 } from './pages';
+import GlobalStyle from './styles/GlobalStyle';
 
 function App() {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
+      <GlobalStyle />
       <RecoilRoot>
         <BrowserRouter>
           <Header />
