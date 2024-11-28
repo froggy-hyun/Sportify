@@ -1,28 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-
 import * as S from '@/styles/componentsStyles/AddressSearch.styled';
 import SearchResults from '@/components/addressSearch/SearchResults';
 import MyAddressesList from '@/components/addressSearch/MyAddresses';
 import { addressModalState } from '@/recoil/atom/addressModal';
 import AddressPopup from '@/components/addressSearch/AddressPopup';
 import BaseInput from '@/components/ui/BaseInput';
-import { userAddressState } from '@/recoil/atom/userLocation';
 import useSerchAddress from '@/hooks/useSerchAddress';
 import { useQuery } from '@tanstack/react-query';
 import { myAddressesApi } from '@/service/queries';
 import { myAddressesState } from '@/recoil/atom/myAddresses';
+import { currentLocationState } from '@/recoil/atom/currentLocation';
 
 const AddressSearchPage = () => {
   const inputRef = useRef<HTMLInputElement | null>(null); // 검색어 입력 DOM을 참조하기 위한 ref
   const [places, setPlaces] = useState<kakao.maps.services.PlacesSearchResult>([]); // 검색 결과
-  const location = useRecoilValue(userAddressState);
+  const setMyAddresses = useSetRecoilState(myAddressesState);
 
+  const myLocation = useRecoilValue(currentLocationState);
   const [selectedPlace, setSelectedPlace] =
     useState<kakao.maps.services.PlacesSearchResultItem | null>(null); // 주소 클릭 후  저장
   const [modalOpen, setModalOpen] = useRecoilState(addressModalState);
   const { searchPlaces } = useSerchAddress();
-  const setMyAddresses = useSetRecoilState(myAddressesState);
 
   const { isLoading, data, isError } = useQuery({
     queryKey: ['myAddresses'],
@@ -49,7 +48,7 @@ const AddressSearchPage = () => {
         onChange={() => searchPlaces({ inputRef, setPlaces })}
         ref={inputRef}
         placeholder={
-          location.address === '' ? '지번,도로명,건물명을 입력해주세요' : location.address
+          myLocation.address === '' ? '지번,도로명,건물명을 입력해주세요' : myLocation.address
         }
       />
       {inputRef.current?.value ? (

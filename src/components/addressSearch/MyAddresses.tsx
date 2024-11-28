@@ -1,15 +1,29 @@
 // MyAddresses.tsx
 import * as S from '@/styles/componentsStyles/AddressSearch.styled';
-import { myAddresses, MyAddresses } from '@/constants/myAddresses';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAddressState } from '@/recoil/atom/userLocation';
 import { myAddressesState } from '@/recoil/atom/myAddresses';
 import { MyAddressesState } from '@/recoil/atom/types';
+import { addressSelectApi } from '@/service/mutations';
+import { useGenericMutation } from '@/service/mutations/customMutation';
+import { useNavigate } from 'react-router-dom';
 
 const MyAddressesList = () => {
-  const location = useRecoilValue(userAddressState);
+  const [location, setLocation] = useRecoilState(userAddressState);
   const myAddressesList = useRecoilValue(myAddressesState);
-  const isCurrentLocation = (place: MyAddressesState) => place.address === location.address;
+  const navigate = useNavigate();
+
+  const isCurrentLocation = (place: MyAddressesState) => place.address === location;
+
+  const onSelectSuccess = (data) => {
+    const newData = data.data.data.address;
+    setLocation(newData);
+    navigate('/ticket');
+  };
+  const { mutation: signUpMutation } = useGenericMutation({
+    mutationFn: addressSelectApi,
+    onSuccessCb: onSelectSuccess,
+  });
 
   return (
     <S.SearchListContainer>
@@ -17,7 +31,7 @@ const MyAddressesList = () => {
         <S.SearchMyItem
           key={place.addressId}
           onClick={() => {
-            // updateLocation(place.latitude, place.longitude, place.address);
+            signUpMutation.mutate(place.addressId);
           }}
         >
           <S.AddressNameContainer>

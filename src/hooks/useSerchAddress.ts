@@ -1,4 +1,5 @@
-import { userAddressState } from '@/recoil/atom/userLocation';
+import { currentLocationState } from '@/recoil/atom/currentLocation';
+
 import React, { useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -9,7 +10,7 @@ interface  useSerchAddress {
 
 const useSerchAddress = () => {
   const psRef = useRef<kakao.maps.services.Places | null>(null);
-  const location = useRecoilValue(userAddressState);
+  const location = useRecoilValue(currentLocationState);
   
   useEffect(() => {
     const { kakao } = window;
