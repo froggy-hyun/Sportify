@@ -42,3 +42,12 @@ export interface LoginState {
 
 export type GenderKey = keyof typeof Gender
 export type DisabledKey = keyof typeof Disabled
+
+
+
+export interface MyAddressesState {
+  addressId : number,
+  address : string,
+  addressName: string
+
+}

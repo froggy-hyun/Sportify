@@ -3,23 +3,27 @@ import * as S from '@/styles/componentsStyles/AddressSearch.styled';
 import { myAddresses, MyAddresses } from '@/constants/myAddresses';
 import { useRecoilValue } from 'recoil';
 import { userAddressState } from '@/recoil/atom/userLocation';
+import { myAddressesState } from '@/recoil/atom/myAddresses';
+import { MyAddressesState } from '@/recoil/atom/types';
 
 const MyAddressesList = () => {
   const location = useRecoilValue(userAddressState);
-
-  const isCurrentLocation = (place: MyAddresses) => place.address === location.address;
+  const myAddressesList = useRecoilValue(myAddressesState);
+  const isCurrentLocation = (place: MyAddressesState) => place.address === location.address;
 
   return (
     <S.SearchListContainer>
-      {myAddresses.map((place: MyAddresses) => (
+      {myAddressesList.map((place: MyAddressesState) => (
         <S.SearchMyItem
-          key={place.id}
+          key={place.addressId}
           onClick={() => {
             // updateLocation(place.latitude, place.longitude, place.address);
           }}
         >
           <S.AddressNameContainer>
-            <S.MyAddressName isCurrent={isCurrentLocation(place)}>{place.name}</S.MyAddressName>
+            <S.MyAddressName isCurrent={isCurrentLocation(place)}>
+              {place.addressName}
+            </S.MyAddressName>
 
             {isCurrentLocation(place) && (
               <S.CurrentAddressContainer>

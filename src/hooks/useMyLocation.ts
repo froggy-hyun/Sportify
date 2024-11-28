@@ -43,9 +43,7 @@ const useMyLocation = () => {
     }
       
     }
-    
-
-
+  
   
   
 
