@@ -46,7 +46,8 @@ public class Crew {
     @Enumerated(EnumType.STRING)
     private GenderRule genderRule;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
     private CrewImage crewImage;
 
     @Enumerated(EnumType.STRING)
