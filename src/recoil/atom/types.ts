@@ -27,13 +27,18 @@ export interface NewCrewState{
   imageId:number
 }
 
-export interface SignUpState {
-  email: string,
-  password:string,
+export interface SignUpState extends LoginState  {
   name: string,
   gender: typeof Gender[GenderKey]
   disabled: boolean
 }
+
+
+export interface LoginState {
+  email: string,
+  password:string,
+}
+
 
 export type GenderKey = keyof typeof Gender
 export type DisabledKey = keyof typeof Disabled
