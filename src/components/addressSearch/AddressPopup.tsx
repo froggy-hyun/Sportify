@@ -7,7 +7,7 @@ import BaseInput from '@/components/ui/BaseInput';
 const AddressPopup = ({ place }: { place: kakao.maps.services.PlacesSearchResultItem }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [modalOpen, setModalOpen] = useRecoilState(addressModalState);
-
+  console.log(place);
   useEffect(() => {
     const closeModal = (e: MouseEvent) => {
       if (modalOpen && modalRef.current && !modalRef.current.contains(e.target as Node)) {

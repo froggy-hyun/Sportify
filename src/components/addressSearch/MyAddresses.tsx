@@ -1,15 +1,13 @@
 // MyAddresses.tsx
 import * as S from '@/styles/componentsStyles/AddressSearch.styled';
 import { myAddresses, MyAddresses } from '@/constants/myAddresses';
-import { locationState } from '@/recoil/atom/location';
 import { useRecoilValue } from 'recoil';
-import useMyLocation from '@/hooks/useMyLocation';
-const MyAddressesList = () => {
-  const location = useRecoilValue(locationState);
-  const { updateLocation } = useMyLocation();
+import { userAddressState } from '@/recoil/atom/userLocation';
 
-  const isCurrentLocation = (place: MyAddresses) =>
-    place.latitude === location.latitude && place.longitude === location.longitude;
+const MyAddressesList = () => {
+  const location = useRecoilValue(userAddressState);
+
+  const isCurrentLocation = (place: MyAddresses) => place.address === location.address;
 
   return (
     <S.SearchListContainer>
@@ -17,7 +15,7 @@ const MyAddressesList = () => {
         <S.SearchMyItem
           key={place.id}
           onClick={() => {
-            updateLocation(place.latitude, place.longitude, place.address);
+            // updateLocation(place.latitude, place.longitude, place.address);
           }}
         >
           <S.AddressNameContainer>

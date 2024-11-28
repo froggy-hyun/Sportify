@@ -1,8 +1,9 @@
+import { userAddressState } from '@/recoil/atom/userLocation';
 import React from 'react';
-import { locationState  } from '@/recoil/atom/location';
+
 import { useSetRecoilState } from 'recoil';
 const useMyLocation = () => {
-  const setMyLocation =useSetRecoilState(locationState ) 
+  const setMyLocation =useSetRecoilState(userAddressState  ) 
 
   // 위치 가져오기
   const searchMyAddress =  () =>{
@@ -10,6 +11,7 @@ const useMyLocation = () => {
   (position: GeolocationPosition) => {
         const { latitude, longitude } = position.coords; 
         updateLocation(latitude, longitude);
+        console.log(latitude, longitude);
      },
        (error: GeolocationPositionError) => {
         console.error(error);
