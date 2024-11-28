@@ -3,7 +3,7 @@ import * as S from '@/styles/pagesStyles/ticketStyles/TicketList';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { currentCategoryState } from '@/recoil/atom/category';
-import useFetchTickets from '@/hooks/useFetchTickets';
+import useFetchTicketsList from '@/hooks/useFetchTicketsList';
 
 import { CategoryData } from '@/constants/categoryData';
 import DetailCategoryTitle from './DetailCategoryTitle';
@@ -18,7 +18,7 @@ const TicketList = () => {
   const majorCategory = CategoryData[currentCategory.majorCategory_idx]?.detailCategory || []; // 대분류 -> 하위 전달
 
   // 이용권 데이터 불러오기
-  const { tickets} = useFetchTickets(
+  const { tickets } = useFetchTicketsList(
     currentCategory.majorCategory_idx,
     currentCategory.middleCategory_idx
   );

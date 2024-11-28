@@ -1,19 +1,20 @@
-import { TicketCompItemProps } from '@/types/ticket';
-import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import useFetchTicketsDetail from '@/hooks/useFetchTicketDetail';
 
-const TicketDetailViewPage = ( data : TicketCompItemProps) => {
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+const TicketDetailViewPage = () => {
+  const postId = useParams().id;
+  const { data } = useFetchTicketsDetail(Number(postId));
 
   return (
     <>
-     <div>{data}세부 이용권 정보 페이지</div>;
+      {data && (
+        <div>
+          <h1>{data.address}</h1>
+          <h2>{data.duration}</h2>
+        </div>
+      )}
     </>
-  
-  )
- 
+  );
 };
 
 export default TicketDetailViewPage;
