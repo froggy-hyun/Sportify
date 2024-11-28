@@ -1,9 +1,9 @@
 import * as S from '@/styles/pagesStyles/ticketStyles/TicketItem';
-import { Ticket } from '@/types/ticket';
+import { TicketCompItemProps } from '@/types/ticket';
 
 import TicketImage from '@/assets/icon/category/categoryA_Default.png';
 
-const TicketItem = ({ data }: { data: Ticket[] }) => {
+const TicketCompItem = ({ data, onClickItem } : TicketCompItemProps ) => {
 
   if (!data || data.length === 0) {
     return <S.NoneData>현재 제공중인 이용권이 없습니다.</S.NoneData>;
@@ -11,8 +11,8 @@ const TicketItem = ({ data }: { data: Ticket[] }) => {
 
   return (
     <S.TicketContainer>
-      {data.map((ticket, idx) => (
-        <S.Ticket key={idx}>
+      {data.map((ticket) => (
+        <S.Ticket key={ticket.voucherId} onClick={() => onClickItem(ticket)}>
           <S.TicketImageFrame>
             <S.TicketImage src={TicketImage} />
           </S.TicketImageFrame>
@@ -32,4 +32,4 @@ const TicketItem = ({ data }: { data: Ticket[] }) => {
   );
 };
 
-export default TicketItem;
+export default TicketCompItem;

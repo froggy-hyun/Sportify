@@ -1,5 +1,6 @@
 import * as S from '@/styles/pagesStyles/ticketStyles/TicketList';
 
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { currentCategoryState } from '@/recoil/atom/category';
 import useFetchTickets from '@/hooks/useFetchTickets';
@@ -9,6 +10,8 @@ import DetailCategoryTitle from './DetailCategoryTitle';
 import TicketCompItem from './TicketCompItem';
 
 const TicketList = () => {
+  const navigate = useNavigate();
+
   // 현재 카테고리(대-중) 상태 관리
   const currentCategory = useRecoilValue(currentCategoryState);
   const setMiddleCategory = useSetRecoilState(currentCategoryState); // DetailCategoryTitle로 받아온 세부 카테고리 idx 상태관리 -> recoil 최신화
@@ -38,7 +41,7 @@ const TicketList = () => {
       </S.DetailCategoryList>
 
       {/* 티켓 이용권 */}
-      <TicketCompItem data={tickets}/>
+      <TicketCompItem data={tickets} onClickItem={(e) => { navigate('/ticketItem/' + e.voucherId)}}/>
     </S.TicketListContainer>
   );
 };

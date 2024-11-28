@@ -30,7 +30,7 @@ const useFetchTickets = (majorCategory: number, middleCategory: number) => {
             throw new Error(`Error fetching tickets: ${response.statusText}`);
           }
           const data = await response.json();
-          // console.log(data.data.voucherResponses);
+          console.log(data.data.voucherResponses);
           setTickets(data.data.voucherResponses);
         } catch (err) {
           if (err instanceof Error) {

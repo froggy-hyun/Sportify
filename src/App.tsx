@@ -33,7 +33,7 @@ function App() {
             <Route path="/addressSearch" element={<AddressSearchPage />} />
             <Route path="/signUp" element={<SignUpPage />} />
             <Route path="/createCrew" element={<CreateCrewPage />} />
-            <Route path="/ticketDetail" element={<TicketDetailViewPage />} />
+            <Route path="/ticketItem/:id" element={<TicketDetailViewPage />} />
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />
         </BrowserRouter>
