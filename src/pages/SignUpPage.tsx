@@ -8,7 +8,7 @@ import { DisabledKey, GenderKey } from '@/recoil/atom/types';
 import SelectItem from '@/components/createCrew/SelectItem';
 import Button from '@/components/ui/Button';
 import { useGenericMutation } from '@/service/mutations/customMutation';
-import { signUpApi } from '@/service/mutations/useSignUp';
+import { signUpApi } from '@/service/mutations';
 import { useNavigate } from 'react-router-dom';
 const SignUpPage = () => {
   const [signUpstate, setSignUpState] = useRecoilState(signUpState);

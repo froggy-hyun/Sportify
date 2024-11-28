@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import circlesImg from '@/assets/icon/etc/loginCircles.png';
 import { LoginState } from '@/recoil/atom/types';
 import { useGenericMutation } from '@/service/mutations/customMutation';
-import { loginApi } from '@/service/mutations/useLogin';
+import { loginApi } from '@/service/mutations';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
