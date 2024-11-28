@@ -1,27 +1,43 @@
 // MyAddresses.tsx
 import * as S from '@/styles/componentsStyles/AddressSearch.styled';
-import { myAddresses, MyAddresses } from '@/constants/myAddresses';
-import { locationState } from '@/recoil/atom/location';
-import { useRecoilValue } from 'recoil';
-import useMyLocation from '@/hooks/useMyLocation';
-const MyAddressesList = () => {
-  const location = useRecoilValue(locationState);
-  const { updateLocation } = useMyLocation();
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userAddressState } from '@/recoil/atom/userLocation';
+import { myAddressesState } from '@/recoil/atom/myAddresses';
+import { MyAddressesState } from '@/recoil/atom/types';
+import { addressSelectApi } from '@/service/mutations';
+import { useGenericMutation } from '@/service/mutations/customMutation';
+import { useNavigate } from 'react-router-dom';
 
-  const isCurrentLocation = (place: MyAddresses) =>
-    place.latitude === location.latitude && place.longitude === location.longitude;
+const MyAddressesList = () => {
+  const [location, setLocation] = useRecoilState(userAddressState);
+  const myAddressesList = useRecoilValue(myAddressesState);
+  const navigate = useNavigate();
+
+  const isCurrentLocation = (place: MyAddressesState) => place.address === location;
+
+  const onSelectSuccess = (data) => {
+    const newData = data.data.data.address;
+    setLocation(newData);
+    navigate('/ticket');
+  };
+  const { mutation: signUpMutation } = useGenericMutation({
+    mutationFn: addressSelectApi,
+    onSuccessCb: onSelectSuccess,
+  });
 
   return (
     <S.SearchListContainer>
-      {myAddresses.map((place: MyAddresses) => (
+      {myAddressesList.map((place: MyAddressesState) => (
         <S.SearchMyItem
-          key={place.id}
+          key={place.addressId}
           onClick={() => {
-            updateLocation(place.latitude, place.longitude, place.address);
+            signUpMutation.mutate(place.addressId);
           }}
         >
           <S.AddressNameContainer>
-            <S.MyAddressName isCurrent={isCurrentLocation(place)}>{place.name}</S.MyAddressName>
+            <S.MyAddressName isCurrent={isCurrentLocation(place)}>
+              {place.addressName}
+            </S.MyAddressName>
 
             {isCurrentLocation(place) && (
               <S.CurrentAddressContainer>

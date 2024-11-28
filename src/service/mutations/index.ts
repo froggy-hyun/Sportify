@@ -1,5 +1,5 @@
 import { LoginState , SignUpState } from "@/recoil/atom/types";
-import { baseAPI } from "../customApi";
+import { authAPI, baseAPI } from "../customApi";
 
 
 export const loginApi = async (loginState: LoginState ) => {
@@ -12,3 +12,18 @@ export const signUpApi = async (signUpState: SignUpState) => {
   const data = await baseAPI.post("/members/register", signUpState);
   return data;
 };
+
+
+export const addressSelectApi = async (id:  number) => {
+  const data = await authAPI.patch(`/addresses/${id}`);
+  return data;
+};
+
+
+export const addressesApi = async () => {
+  const data = await authAPI.post("/addresses");
+  return data;
+};
+
+
+

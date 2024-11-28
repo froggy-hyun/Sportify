@@ -21,3 +21,10 @@ export const trendingTicketsApi = async () => {
   )
   return data;
 };
+
+
+
+export const myAddressesApi = async () => {
+  const data = await authAPI.get("/addresses");
+  return data;
+};
