@@ -41,4 +41,10 @@ public class Address {
         this.detailAddress = detailAddress;
         this.addressName = addressName;
     }
+
+    protected Address(final Point point, final String detailAddress, final String addressName) {
+        this.point = point;
+        this.detailAddress = detailAddress;
+        this.addressName = addressName;
+    }
 }

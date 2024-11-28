@@ -1,7 +1,5 @@
 package com.tuk.sportify.sportvoucher.service;
 
-import com.tuk.sportify.address.domain.Address;
-import com.tuk.sportify.address.exception.AddressNotFoundException;
 import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.facade.service.CrewVoucherFacadeService;
 import com.tuk.sportify.global.status_code.ErrorCode;
@@ -17,7 +15,6 @@ import com.tuk.sportify.sportvoucher.exception.SportVoucherNotFoundException;
 import com.tuk.sportify.sportvoucher.repository.SportVoucherRepository;
 import com.tuk.sportify.sportvoucher.service.mapper.SportVoucherMapper;
 
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 
 import org.locationtech.jts.geom.Point;
@@ -38,7 +35,6 @@ public class SportVoucherService {
 
     public PopularVoucherResponse findPopularVoucher(final Long memberId, final Integer fetchSize) {
         final Member member = memberService.getMemberById(memberId);
-        isAddressExists(member.getAddress());
         final Point address = member.getAddress().getPoint();
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         return new PopularVoucherResponse(
@@ -73,18 +69,11 @@ public class SportVoucherService {
         final int middleCategoryCode,
         final Long memberId) {
         final Member member = memberService.getMemberById(memberId);
-        isAddressExists(member.getAddress());
         final Point point = member.getAddress().getPoint();
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         final List<SportVoucher> sportVouchers = getSportVouchers(majorCategoryCode,
             middleCategoryCode, point,member.isDisabled(), currentDate);
         return sportVoucherMapper.toVoucherSearchResponse(sportVouchers);
-    }
-
-    private void isAddressExists(final Address adderss) {
-        if(Objects.isNull(adderss)){
-            throw new AddressNotFoundException(ErrorCode.ADDRESS_NOT_FOUND);
-        }
     }
 
     private List<SportVoucher> getSportVouchers(final int majorCategoryCode,
