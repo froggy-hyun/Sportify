@@ -1,5 +1,6 @@
 package com.tuk.sportify.global.utils;
 
+import com.tuk.sportify.sportvoucher.service.SportVoucherConst;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -8,11 +9,11 @@ public class SportifyDateFormatter {
     private static final String COURSE_DURATION = "%s~%s";
 
     public static Integer getCurrentDate(){
-//        LocalDate date = LocalDate.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-//        return Integer.parseInt(date.format(formatter));
+        //        LocalDate date = LocalDate.now();
+        //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        //        return Integer.parseInt(date.format(formatter));
         // 우선 10월을 현 시점으로 고정
-        return 20241001;
+        return SportVoucherConst.CURRENT_DATE.getValue();
     }
 
     public static String createCourseDuration(final String beginAt, final String endAt){

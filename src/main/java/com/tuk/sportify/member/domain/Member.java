@@ -1,6 +1,7 @@
 package com.tuk.sportify.member.domain;
 
 import com.tuk.sportify.address.domain.Address;
+import com.tuk.sportify.global.DefaultAddress;
 import jakarta.persistence.*;
 import java.util.Objects;
 import lombok.*;
@@ -51,5 +52,12 @@ public class Member {
 
     public void changeAddress(Address address){
         this.address = address;
+    }
+
+    public Address getAddress(){
+        if(Objects.isNull(address)){
+            return DefaultAddress.getInstance();
+        }
+        return address;
     }
 }
