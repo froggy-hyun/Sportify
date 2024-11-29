@@ -4,9 +4,12 @@ import { useQueries } from '@/service/queries/useQueries';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { trendingTicketsState } from '@/recoil/atom/trendingTickets';
+import { myCrewsState } from '@/recoil/atom/myCrews';
 
 const HomePage = () => {
   const setTrending = useSetRecoilState(trendingTicketsState);
+  const setMyCrews = useSetRecoilState(myCrewsState);
+
   const { data, errorCode, isLoading } = useQueries(
     ['activityTickets', 'myNeighbors', 'trendingTickets'], // queryKey
     {
@@ -21,7 +24,9 @@ const HomePage = () => {
   useEffect(() => {
     if (data) {
       const tredingData = data.trendingTickets.data.popularVouchers;
+      const myCrewData = data.myNeighbors.data.myCrews;
       setTrending(tredingData);
+      setMyCrews(myCrewData);
     }
   }, [data]);
 

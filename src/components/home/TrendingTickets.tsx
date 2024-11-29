@@ -17,7 +17,7 @@ const TrendingTickets = () => {
 
       <S.TrendingTickes>
         {trendingTicketData && trendingTicketData.length > 0 ? (
-          trendingTicketData.map((item, index) => (
+          trendingTicketData.map((item) => (
             <ActiveTicketItem
               ticket="trending"
               key={item.voucherId}

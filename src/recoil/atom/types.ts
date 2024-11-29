@@ -71,3 +71,5 @@ export interface TrendingTicketsState {
   voucherCourseName : string,
   voucherId? : number,
 }
+
+
