@@ -11,5 +11,4 @@ public record VoucherResponse(
         @Schema(description = "이용권 세부 카테고리 ex: 태권도, 요가, 필라테스") String subCategory,
         @Schema(description = "이용권 주소") String address,
         @Schema(description = "이용권 기간") String duration,
-        @Schema(description = "신청 인원수") Integer requestNumberOfPerson,
-        @Schema(description = "해당 이용권을 이용중인 크루 목록") List<CrewResponse> crews) {}
+        @Schema(description = "신청 인원수") Integer requestNumberOfPerson) {}
