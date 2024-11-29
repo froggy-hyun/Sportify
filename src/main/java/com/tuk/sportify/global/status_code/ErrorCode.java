@@ -13,6 +13,9 @@ public enum ErrorCode {
     SPORT_VOUCHER_NOT_FOUND(HttpStatus.NOT_FOUND, "100", "존재하지 않는 스포츠 이용권입니다."),
     SPORT_VOUCHER_CLOSED(HttpStatus.NOT_FOUND, "101", "해당 이용권은 종료됐습니다."),
 
+    POPULAR_SPORT_NOT_FOUND(HttpStatus.NOT_FOUND, "110", "해당 위치에서 인기 스포츠를 찾을 수 없습니다."),
+    INVALID_POPULAR_SPORT_REQUEST(HttpStatus.BAD_REQUEST, "111", "잘못된 인기 스포츠 요청입니다."),
+
     /**
      * Crew : 크루 관련 에러 코드
      */
