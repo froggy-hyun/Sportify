@@ -9,6 +9,7 @@ import com.tuk.sportify.crew.exception.ImageUploadException;
 import com.tuk.sportify.crew.repository.CrewImageRepository;
 import com.tuk.sportify.global.status_code.ErrorCode;
 
+import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -60,5 +61,9 @@ public class ImageService {
         }
         return crewImageRepository.findById(crewImageId)
             .orElseThrow(()-> new ImageNotFoundException(ErrorCode.CREW_IMAGE_NOT_FOUND));
+    }
+
+    public void saveImages(List<MultipartFile> files){
+        files.forEach(this::upload);
     }
 }

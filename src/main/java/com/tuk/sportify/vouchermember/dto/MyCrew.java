@@ -5,6 +5,7 @@ public record MyCrew(
     String crewName,
     String voucherCourseName,
     String duration,
+    String voucherAddress,
     String imageUrl
 ) {
 
