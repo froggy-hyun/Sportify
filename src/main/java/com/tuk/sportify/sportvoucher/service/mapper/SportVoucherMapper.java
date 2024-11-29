@@ -36,6 +36,7 @@ public class SportVoucherMapper {
                 .duration(course.getDuration())
                 .subCategory(sportVoucher.getMiddleCategory().getName())
                 .requestNumberOfPerson(sportVoucher.getCourse().getRequestNumberOfPerson())
+                .price(sportVoucher.getCourse().getPrice())
                 .build();
     }
 
@@ -51,6 +52,7 @@ public class SportVoucherMapper {
                 .address(facility.getBasicAddress())
                 .duration(course.getDuration())
                 .subCategory(sportVoucher.getMiddleCategory().getName())
+                .price(sportVoucher.getCourse().getPrice())
                 .build();
     }
 
