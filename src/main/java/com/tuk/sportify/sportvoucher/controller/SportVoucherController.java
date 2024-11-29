@@ -74,6 +74,15 @@ public class SportVoucherController {
 
     // 내 근처 최근 3개월 인기 스포츠 종목 반환
     @PostMapping("/popular-sports")
+    @Operation(
+            summary = "내 근처 인기 스포츠 조회",
+            description = "로그인한 사용자의 위치를 기준으로 인기 있는 스포츠를 조회합니다."
+    )
+    @ApiErrorCodeExamples({
+            ErrorCode.MEMBER_NOT_FOUND, // 회원이 존재하지 않는 경우
+            ErrorCode.ADDRESS_NOT_FOUND, // 주소가 설정되지 않은 경우
+            ErrorCode.SPORT_VOUCHER_NOT_FOUND // 스포츠 이용권이 없는 경우
+    })
     public List<PopularSportResponse> getPopularSports(
             @AuthenticationPrincipal Member member,
             @RequestBody PopularSportRequest request) {
