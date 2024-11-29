@@ -51,3 +51,12 @@ export interface MyAddressesState {
   addressName: string
 
 }
+
+
+
+export interface addressesType{
+  longitude : number,
+  latitude  : number,  
+  address : string
+  addressName: string
+}

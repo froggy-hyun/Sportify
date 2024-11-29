@@ -26,8 +26,8 @@ const AddressPopup = ({ place }: { place: kakao.maps.services.PlacesSearchResult
 
   const onRegisterHandler = () => {
     const data = {
-      latitude: place.y,
-      longitude: place.x,
+      latitude: Number(place.y),
+      longitude: Number(place.x),
       address: place.road_address_name + ' ' + place.place_name,
       addressName: userInput,
     };
