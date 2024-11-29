@@ -56,7 +56,7 @@ public class CrewController {
     @Operation(summary = "크루 대표 이미지 설정", description = "Google Cloud Storage에 이미지를 업로드합니다.")
     @PostMapping("/images")
     @ResponseStatus(HttpStatus.CREATED)
-    public ImageUploadResponse saveThumbnail(@RequestParam @Parameter(description = "Image 파일") MultipartFile image) throws IOException {
+    public ImageUploadResponse saveThumbnail(@RequestParam @Parameter(description = "Image 파일") MultipartFile image) {
         return imageService.upload(image);
     }
 
