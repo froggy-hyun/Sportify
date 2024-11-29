@@ -57,6 +57,7 @@ const LoginPage = () => {
           placeholder="비밀번호를 입력하세요"
           value={loginState.password}
           onChange={(e) => handleChange('password', e.target?.value)}
+          type="password"
         />
       </S.LogininputContainer>
       <Button title="로그인" />
