@@ -60,3 +60,14 @@ export interface addressesType{
   address : string
   addressName: string
 }
+
+
+
+export interface TrendingTicketsState {
+  address : string ,
+  duration:  string,
+  requestNumberOfPerson :number,
+  subCategory: string,
+  voucherCourseName : string,
+  voucherId? : number,
+}

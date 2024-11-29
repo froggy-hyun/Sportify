@@ -4,6 +4,9 @@ import styled from 'styled-components';
   interface TicketItemProps {
     ticket : TicketStatus
   }
+  interface TagColorProps {
+     color? : boolean
+  }
 
 export const TicketItemContainer = styled.button<TicketItemProps>`
   padding: 2rem;
@@ -61,9 +64,9 @@ export const TicketTagAndUsage= styled.div`
 `;
 
 
-export const Tag= styled.div`
+export const Tag= styled.div<TagColorProps>`
   border-radius: 5.7rem;
-  background: var(--funcC1);
+  background: ${(props) => (props.color ? "var(--funcC1)" : "var(--brandColor)")};
   height: 2.2rem;
   margin-left: 0.8rem;
   padding: 0.4rem 1.2rem;
