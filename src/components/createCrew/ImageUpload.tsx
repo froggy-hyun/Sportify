@@ -7,11 +7,15 @@ import { newCrewImgState } from '@/recoil/atom/newCrew';
 const ImageUpload = () => {
   const photoInput = useRef<HTMLInputElement | null>(null);
 
+  const [localPreview, setLocalPreview] = useState<string | null>(null);
   const [preview, setPreview] = useRecoilState(newCrewImgState);
 
   const handlePreview = () => {
-    if (photoInput.current?.files != null)
-      setPreview(URL.createObjectURL(photoInput.current?.files[0]));
+    const file = photoInput.current?.files?.[0];
+    if (!file) return;
+
+    setLocalPreview(URL.createObjectURL(file));
+    setPreview(URL.createObjectURL(file));
   };
 
   return (
@@ -29,9 +33,9 @@ const ImageUpload = () => {
         ref={photoInput}
         type="file"
       />
-      {preview ? (
+      {localPreview ? (
         <S.PreviewImg
-          src={preview}
+          src={localPreview}
           alt="preview이미지"
           onClick={() => {
             setPreview('');
