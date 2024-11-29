@@ -3,6 +3,8 @@ package com.tuk.sportify.sportvoucher.controller;
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 import com.tuk.sportify.global.response.ApiErrorCodeExamples;
 import com.tuk.sportify.global.status_code.ErrorCode;
+import com.tuk.sportify.member.domain.Member;
+import com.tuk.sportify.sportvoucher.dto.PopularSportRequest;
 import com.tuk.sportify.sportvoucher.dto.PopularVoucherResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherDetailResponse;
 import com.tuk.sportify.sportvoucher.dto.VoucherSearchResponse;
@@ -14,11 +16,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -68,5 +67,13 @@ public class SportVoucherController {
     @ApiErrorCodeExamples({ErrorCode.SPORT_VOUCHER_NOT_FOUND, ErrorCode.SPORT_VOUCHER_CLOSED})
     public VoucherDetailResponse getSportVoucher(@PathVariable final Long sportVoucherId) {
         return sportVoucherService.getSportVoucher(sportVoucherId);
+    }
+
+    // 내 근처 최근 3개월 인기 스포츠 종목 반환
+    @PostMapping("/popular-sports")
+    public PopularVoucherResponse getPopularSports(
+            @AuthenticationPrincipal Member member,
+            @RequestBody PopularSportRequest request) {
+        return sportVoucherService.findPopularVoucher(member.getId(), request.getFetchSize());
     }
 }
