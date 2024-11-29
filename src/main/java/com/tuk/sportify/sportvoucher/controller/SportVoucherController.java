@@ -4,10 +4,8 @@ import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 import com.tuk.sportify.global.response.ApiErrorCodeExamples;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
-import com.tuk.sportify.sportvoucher.dto.PopularSportRequest;
-import com.tuk.sportify.sportvoucher.dto.PopularVoucherResponse;
-import com.tuk.sportify.sportvoucher.dto.VoucherDetailResponse;
-import com.tuk.sportify.sportvoucher.dto.VoucherSearchResponse;
+import com.tuk.sportify.sportvoucher.dto.*;
+import com.tuk.sportify.sportvoucher.service.PopularSportService;
 import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -69,11 +69,14 @@ public class SportVoucherController {
         return sportVoucherService.getSportVoucher(sportVoucherId);
     }
 
+
+    private final PopularSportService popularSportService;
+
     // 내 근처 최근 3개월 인기 스포츠 종목 반환
     @PostMapping("/popular-sports")
-    public PopularVoucherResponse getPopularSports(
+    public List<PopularSportResponse> getPopularSports(
             @AuthenticationPrincipal Member member,
             @RequestBody PopularSportRequest request) {
-        return sportVoucherService.findPopularVoucher(member.getId(), request.getFetchSize());
+        return popularSportService.findPopularSports(member.getId(), request);
     }
 }
