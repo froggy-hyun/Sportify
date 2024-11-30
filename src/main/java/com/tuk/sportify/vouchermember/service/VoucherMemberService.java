@@ -1,6 +1,8 @@
 package com.tuk.sportify.vouchermember.service;
 
 import com.tuk.sportify.crew.domain.Crew;
+import com.tuk.sportify.crewapplicant.exception.DuplicatedParticipationException;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.global.utils.SportifyDateFormatter;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
@@ -96,7 +98,15 @@ public class VoucherMemberService {
 
     @Transactional
     public void participate(final VoucherMember voucherMember) {
+        validateDuplication(voucherMember);
         voucherMemberRepository.save(voucherMember);
+    }
+
+    private void validateDuplication(final VoucherMember voucherMember) {
+        if(voucherMemberRepository.existsByMemberAndCrew(voucherMember.getMember(),
+            voucherMember.getCrew())){
+            throw new DuplicatedParticipationException(ErrorCode.DUPLICATED_PARTICIPATION);
+        }
     }
 
     public CrewMembersResponse findCrewMembers(final Long crewId){

@@ -46,9 +46,8 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
     Slice<VoucherMember> findPastSportVoucherByMemberJoinFetch(
             Member member, Integer currentDate, Pageable pageable);
 
-    @Query("select vm from VoucherMember vm join fetch vm.member where vm.crew =:crew")
-    List<VoucherMember> findByCrewJoinFetch(Crew crew);
-
     @Query("select vm from VoucherMember vm join fetch vm.member where vm.crew.id = :crewId")
     List<VoucherMember> findByCrewId(Long crewId);
+
+    boolean existsByMemberAndCrew(Member member, Crew crew);
 }

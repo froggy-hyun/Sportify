@@ -73,7 +73,7 @@ public class VoucherMemberController {
 
     @GetMapping("/{crewId}")
     @Operation(summary = "크루에 속한 크루원들 목록",
-        description = "과거에 사용했던 개인 이용권 목록을 페이징 처리하여 반환합니다. 페이징 방식은 넘버링이 아닌 스크롤 방식입니다.")
+        description = "크루에 속한 모든 크루원들을 반환합니다.")
     public CrewMembersResponse findCrewMembers(
         @PathVariable @Parameter(description = "크루 ID") final Long crewId
     ){
