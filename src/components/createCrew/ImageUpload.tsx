@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';
 import PlusImg from '@/assets/icon/etc/plus_Default.png';
 import { useRecoilState } from 'recoil';
@@ -7,40 +7,54 @@ import { newCrewImgState } from '@/recoil/atom/newCrew';
 const ImageUpload = () => {
   const photoInput = useRef<HTMLInputElement | null>(null);
 
+  const [localPreview, setLocalPreview] = useState<string | null>(null);
   const [preview, setPreview] = useRecoilState(newCrewImgState);
 
   const handlePreview = () => {
-    if (photoInput.current?.files != null)
-      setPreview(URL.createObjectURL(photoInput.current?.files[0]));
+    const file = photoInput.current?.files?.[0];
+    if (!file) return;
+
+    setLocalPreview(URL.createObjectURL(file));
+    setPreview(file);
+  };
+
+  const handleImageReset = () => {
+    setLocalPreview(null);
+    setPreview(null);
+
+    if (photoInput.current) {
+      photoInput.current.value = '';
+    }
   };
 
   return (
-    <S.UploadImg
-      onClick={() => {
-        if (!preview) {
-          photoInput.current?.click();
-        }
-      }}
-    >
-      <input
-        style={{ display: 'none' }}
-        accept="image/*"
-        onChange={handlePreview}
-        ref={photoInput}
-        type="file"
-      />
-      {preview ? (
-        <S.PreviewImg
-          src={preview}
-          alt="preview이미지"
-          onClick={() => {
-            setPreview('');
-          }}
+    <S.UploadImgContainer>
+      <S.UploadImg
+        onClick={() => {
+          if (preview === null) {
+            photoInput.current?.click();
+          }
+        }}
+      >
+        <input
+          style={{ display: 'none' }}
+          accept="image/*"
+          onChange={handlePreview}
+          ref={photoInput}
+          type="file"
         />
-      ) : (
-        <S.PlusImg src={PlusImg} alt="이미지업로드" />
+        {localPreview ? (
+          <S.PreviewImg src={localPreview} alt="preview이미지" />
+        ) : (
+          <S.PlusImg src={PlusImg} alt="이미지업로드" />
+        )}
+      </S.UploadImg>
+      {localPreview && (
+        <S.DeleteImgBtn type="button" onClick={handleImageReset}>
+          삭제
+        </S.DeleteImgBtn>
       )}
-    </S.UploadImg>
+    </S.UploadImgContainer>
   );
 };
 

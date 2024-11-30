@@ -30,7 +30,7 @@ const Capacity = () => {
 
   return (
     <K.SelectListContainer>
-      <Title title="수용인원을 설정하세요." color={true} />
+      <Title cut={4} title="수용인원을 설정하세요." color={'brand'} />
       <S.DropdownContainer
         ref={selectRef}
         onClick={() => {

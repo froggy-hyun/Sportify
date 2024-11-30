@@ -1,4 +1,4 @@
-import { addressesType, LoginState , SignUpState } from "@/recoil/atom/types";
+import { addressesType, LoginState , NewCrewState, SignUpState } from "@/recoil/atom/types";
 import { authAPI, baseAPI } from "../customApi";
 
 
@@ -26,4 +26,19 @@ export const addressesApi = async (address : addressesType) => {
 };
 
 
+export const crewImgApi = async (img: File) => {
+  const formData = new FormData();
+  formData.append('image', img); 
 
+  const data = await authAPI.post("/crews/images", formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return data;
+};
+
+
+export const newCrewApi = async ({ newCrewInfo, sportVoucherId }: { newCrewInfo: NewCrewState; sportVoucherId: number }) => {
+  console.log(newCrewInfo)
+  const data = await authAPI.post(`/crews/sport-vouchers/${sportVoucherId }`,newCrewInfo );
+  return data;
+};

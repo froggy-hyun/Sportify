@@ -5,7 +5,7 @@ interface ButtonProps {
   title: string;
   width?: string;
   color?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = memo(({ title, onClick, width, color = false }: ButtonProps) => {

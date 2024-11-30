@@ -17,7 +17,7 @@ export const  newCrewState = atom< NewCrewState>({
 });
 
 
-export const newCrewImgState = atom<string|null>({
+export const newCrewImgState = atom<File |null>({
   key: '',
   default: null
 });
