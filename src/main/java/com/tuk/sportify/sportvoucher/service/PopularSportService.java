@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Point;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -31,8 +33,11 @@ public class PopularSportService {
         final int currentDate = SportVoucherConst.CURRENT_DATE.getValue();
         final int radius = SportVoucherConst.POPULAR_VOUCHER_SEARCH_RADIUS.getValue();
 
+        // 현재 날짜와 3개월 전 날짜를 계산
+        int threeMonthsAgo = calculateThreeMonthsAgo(currentDate);
+
         List<SportVoucher> popularVouchers = popularSportRepository.findPopularSports(
-                locationPoint, radius, currentDate, member.isDisabled());
+                locationPoint, radius, threeMonthsAgo, currentDate, member.isDisabled());
 
         if (popularVouchers.isEmpty()) {
             throw new PopularSportNotFoundException(ErrorCode.POPULAR_SPORT_NOT_FOUND);
@@ -55,5 +60,18 @@ public class PopularSportService {
                                 Map.Entry::getValue
                         ))
         );
+    }
+
+    private int calculateThreeMonthsAgo(int currentDate) {
+        // int -> LocalDate 변환
+        String currentDateString = String.valueOf(currentDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        LocalDate currentLocalDate = LocalDate.parse(currentDateString, formatter);
+
+        // 3개월 전 날짜 계산
+        LocalDate threeMonthsAgoDate = currentLocalDate.minusMonths(3);
+
+        // LocalDate -> int 변환
+        return Integer.parseInt(threeMonthsAgoDate.format(formatter));
     }
 }

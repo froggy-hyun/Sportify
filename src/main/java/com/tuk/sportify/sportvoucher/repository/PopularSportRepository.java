@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -16,12 +17,16 @@ public interface PopularSportRepository extends JpaRepository<SportVoucher, Long
             FROM SportVoucher sv
             WHERE ST_Distance_Sphere(sv.point, :locationPoint) <= :radius
             AND sv.disabled = :disabled
-            AND sv.course.endAt >= :currentDate
+            AND (
+                sv.course.beginAt BETWEEN :threeMonthsAgo AND :currentDate
+                OR sv.course.endAt BETWEEN :threeMonthsAgo AND :currentDate
+            )
             ORDER BY sv.course.requestNumberOfPerson DESC
             """)
     List<SportVoucher> findPopularSports(
             @Param("locationPoint") Point locationPoint,
             @Param("radius") int radius,
+            @Param("threeMonthsAgo") int threeMonthsAgo,
             @Param("currentDate") int currentDate,
             @Param("disabled") boolean disabled);
 }
