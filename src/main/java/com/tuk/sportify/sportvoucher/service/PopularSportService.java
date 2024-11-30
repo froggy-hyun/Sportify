@@ -31,7 +31,7 @@ public class PopularSportService {
         }
 
         final Member member = memberService.getMemberById(memberId);
-        final String locationWKT = String.format("POINT(%f %f)", request.getLongitude(), request.getLatitude());
+        final String locationWKT = String.format("POINT(%f %f)", request.getLatitude(), request.getLongitude());
         final int currentDate = SportVoucherConst.CURRENT_DATE.getValue();
         final int radius = SportVoucherConst.POPULAR_VOUCHER_SEARCH_RADIUS.getValue();
 

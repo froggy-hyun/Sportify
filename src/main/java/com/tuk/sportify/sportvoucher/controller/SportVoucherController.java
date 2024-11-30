@@ -84,8 +84,8 @@ public class SportVoucherController {
             ErrorCode.SPORT_VOUCHER_NOT_FOUND // 스포츠 이용권이 없는 경우
     })
     public List<PopularSportResponse> getPopularSports(
-            @AuthenticationPrincipal Member member,
+            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
             @RequestBody PopularSportRequest request) {
-        return popularSportService.findPopularSports(member.getId(), request);
+        return popularSportService.findPopularSports(memberId, request);
     }
 }
