@@ -29,31 +29,32 @@ public class CrewApplicantController {
 
     private final CrewApplicantService crewApplicantService;
 
-    @PostMapping("/crew/{crewId}")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ApiErrorCodeExamples({ErrorCode.DUPLICATED_PARTICIPATION,ErrorCode.CREW_NOT_FOUND,ErrorCode.MEMBER_NOT_FOUND})
-    @Operation(summary = "크루 참여", description = "특정 크루에 참여 요청을 생성합니다.")
-    public ApplicationResponse participateRequest(
-            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
-            @PathVariable @Parameter(description = "크루 ID") final Long crewId) {
-        return crewApplicantService.participate(memberId, crewId);
-    }
-
-    @PatchMapping("/{applicantId}/ack")
-    @Operation(summary = "크루 참여 승인", description = "참여 요청을 승인합니다.")
-    @ApiErrorCodeExamples({ErrorCode.CREW_APPLICANT_NOT_FOUND, ErrorCode.EXCEED_CAPACITY})
-    public void approve(
-            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
-                @PathVariable @Parameter(description = "지원자 ID") final Long applicantId) {
-        crewApplicantService.approve(memberId, applicantId);
-    }
-
-    @PatchMapping("/{applicantId}/nack")
-    @Operation(summary = "크루 참여 거절", description = "참여 요청을 거절합니다.")
-    @ApiErrorCodeExample(ErrorCode.CREW_APPLICANT_NOT_FOUND)
-    public void reject(
-            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
-                @PathVariable @Parameter(description = "지원자 ID") final Long applicantId) {
-        crewApplicantService.reject(memberId, applicantId);
-    }
+    //    @PostMapping("/crew/{crewId}")
+    //    @ResponseStatus(HttpStatus.CREATED)
+    //
+    // @ApiErrorCodeExamples({ErrorCode.DUPLICATED_PARTICIPATION,ErrorCode.CREW_NOT_FOUND,ErrorCode.MEMBER_NOT_FOUND})
+    //    @Operation(summary = "크루 참여", description = "특정 크루에 참여 요청을 생성합니다.")
+    //    public ApplicationResponse participateRequest(
+    //            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
+    //            @PathVariable @Parameter(description = "크루 ID") final Long crewId) {
+    //        return crewApplicantService.participate(memberId, crewId);
+    //    }
+    //
+    //    @PatchMapping("/{applicantId}/ack")
+    //    @Operation(summary = "크루 참여 승인", description = "참여 요청을 승인합니다.")
+    //    @ApiErrorCodeExamples({ErrorCode.CREW_APPLICANT_NOT_FOUND, ErrorCode.EXCEED_CAPACITY})
+    //    public void approve(
+    //            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
+    //                @PathVariable @Parameter(description = "지원자 ID") final Long applicantId) {
+    //        crewApplicantService.approve(memberId, applicantId);
+    //    }
+    //
+    //    @PatchMapping("/{applicantId}/nack")
+    //    @Operation(summary = "크루 참여 거절", description = "참여 요청을 거절합니다.")
+    //    @ApiErrorCodeExample(ErrorCode.CREW_APPLICANT_NOT_FOUND)
+    //    public void reject(
+    //            @AuthenticationMember @Parameter(hidden = true) final Long memberId,
+    //                @PathVariable @Parameter(description = "지원자 ID") final Long applicantId) {
+    //        crewApplicantService.reject(memberId, applicantId);
+    //    }
 }

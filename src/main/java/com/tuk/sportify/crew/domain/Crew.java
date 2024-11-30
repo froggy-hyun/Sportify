@@ -1,5 +1,8 @@
 package com.tuk.sportify.crew.domain;
 
+import com.tuk.sportify.crewapplicant.exception.ExceedCapacityException;
+import com.tuk.sportify.crewapplicant.exception.InvalidGenderException;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
@@ -14,8 +17,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-
 import jakarta.persistence.OneToOne;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,46 +32,37 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Crew {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private Member host;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private SportVoucher sportVoucher;
-
-    private String name;
-
-    @Enumerated(EnumType.STRING)
-    private GenderRule genderRule;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private CrewImage crewImage;
-
-    @Enumerated(EnumType.STRING)
-    private DifficultyLevel difficultyLevel;
-
-    private Integer capacity;
-    private Integer numberOfParticipant;
-
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "crew",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private final List<CrewRule> crewRules = new ArrayList<>();
-
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "crew",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private final List<CrewGoal> crewGoals = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Member host;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private SportVoucher sportVoucher;
+    private String name;
+    @Enumerated(EnumType.STRING)
+    private GenderRule genderRule;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private CrewImage crewImage;
+    @Enumerated(EnumType.STRING)
+    private DifficultyLevel difficultyLevel;
+    private Integer capacity;
+    private Integer numberOfParticipant;
 
     @Builder
     public Crew(
@@ -77,7 +71,10 @@ public class Crew {
             final GenderRule genderRule,
             final List<CrewRule> crewRules,
             final List<CrewGoal> crewGoals,
-            SportVoucher sportVoucher, CrewImage crewImage, DifficultyLevel difficultyLevel, Integer capacity) {
+            SportVoucher sportVoucher,
+            CrewImage crewImage,
+            DifficultyLevel difficultyLevel,
+            Integer capacity) {
         this.host = host;
         this.name = name;
         this.genderRule = genderRule;
@@ -85,13 +82,25 @@ public class Crew {
         this.crewImage = crewImage;
         this.difficultyLevel = difficultyLevel;
         this.capacity = capacity;
-        this.numberOfParticipant = 1;
+        this.numberOfParticipant = 0;
         addRules(crewRules);
         addGoals(crewGoals);
     }
 
-    public void addParticipant(){
+    public void increaseParticipant() {
         numberOfParticipant++;
+    }
+
+    public void validateGender(final Member member) {
+        if (GenderRule.isNotValidGender(this.getGenderRule(), member.getGender())) {
+            throw new InvalidGenderException(ErrorCode.INVALID_GENDER);
+        }
+    }
+
+    public void validateCapacity(){
+        if(this.getNumberOfParticipant() + 1 > this.getCapacity()){
+            throw new ExceedCapacityException(ErrorCode.EXCEED_CAPACITY);
+        }
     }
 
     public boolean isNotCrewHost(final Long memberId) {

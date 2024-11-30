@@ -53,13 +53,14 @@ public class SportVoucherMapper {
                 .duration(course.getDuration())
                 .subCategory(sportVoucher.getMiddleCategory().getName())
                 .price(sportVoucher.getCourse().getPrice())
+                .requestNumberOfPerson(sportVoucher.getCourse().getRequestNumberOfPerson())
                 .build();
     }
 
     private CrewResponse toCrewResponse(final Crew crew) {
         return CrewResponse.builder()
                 .crewId(crew.getId())
-                .capacity(crew.getCapacity())
+                .crewCapacity(crew.getCapacity())
                 .crewName(crew.getName())
                 .difficultyLevel(crew.getDifficultyLevel().getDescription())
                 .genderRule(crew.getGenderRule().getDescription())

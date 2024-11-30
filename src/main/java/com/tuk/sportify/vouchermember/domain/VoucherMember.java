@@ -40,6 +40,9 @@ public class VoucherMember {
         this.member = member;
         this.sportVoucher = sportVoucher;
         this.crew = crew;
+        this.crew.validateGender(member);
+        this.crew.validateCapacity();
+        this.crew.increaseParticipant();
     }
 
     public String getSportVoucherName(){

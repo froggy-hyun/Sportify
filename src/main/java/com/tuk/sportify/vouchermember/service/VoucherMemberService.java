@@ -1,11 +1,14 @@
 package com.tuk.sportify.vouchermember.service;
 
 import com.tuk.sportify.crew.domain.Crew;
+import com.tuk.sportify.crewapplicant.exception.DuplicatedParticipationException;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.global.utils.SportifyDateFormatter;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
+import com.tuk.sportify.vouchermember.dto.CrewMembersResponse;
 import com.tuk.sportify.vouchermember.dto.CrewVoucher;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
 import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
@@ -95,10 +98,19 @@ public class VoucherMemberService {
 
     @Transactional
     public void participate(final VoucherMember voucherMember) {
+        validateDuplication(voucherMember);
         voucherMemberRepository.save(voucherMember);
     }
 
-    public List<VoucherMember> getVoucherMembers(final Crew crew) {
-        return voucherMemberRepository.findByCrewJoinFetch(crew);
+    private void validateDuplication(final VoucherMember voucherMember) {
+        if(voucherMemberRepository.existsByMemberAndCrew(voucherMember.getMember(),
+            voucherMember.getCrew())){
+            throw new DuplicatedParticipationException(ErrorCode.DUPLICATED_PARTICIPATION);
+        }
+    }
+
+    public CrewMembersResponse findCrewMembers(final Long crewId){
+        List<VoucherMember> crewMembers = voucherMemberRepository.findByCrewId(crewId);
+        return voucherMemberMapper.toCrewMembersResponse(crewMembers);
     }
 }
