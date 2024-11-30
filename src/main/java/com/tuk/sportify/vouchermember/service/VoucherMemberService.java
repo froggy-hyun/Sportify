@@ -6,6 +6,7 @@ import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
+import com.tuk.sportify.vouchermember.dto.CrewMembersResponse;
 import com.tuk.sportify.vouchermember.dto.CrewVoucher;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
 import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
@@ -98,7 +99,8 @@ public class VoucherMemberService {
         voucherMemberRepository.save(voucherMember);
     }
 
-    public List<VoucherMember> getVoucherMembers(final Crew crew) {
-        return voucherMemberRepository.findByCrewJoinFetch(crew);
+    public CrewMembersResponse findCrewMembers(final Long crewId){
+        List<VoucherMember> crewMembers = voucherMemberRepository.findByCrewId(crewId);
+        return voucherMemberMapper.toCrewMembersResponse(crewMembers);
     }
 }

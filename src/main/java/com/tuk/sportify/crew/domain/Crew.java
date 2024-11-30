@@ -1,5 +1,8 @@
 package com.tuk.sportify.crew.domain;
 
+import com.tuk.sportify.crewapplicant.exception.ExceedCapacityException;
+import com.tuk.sportify.crewapplicant.exception.InvalidGenderException;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
@@ -86,6 +89,18 @@ public class Crew {
 
     public void addParticipant() {
         numberOfParticipant++;
+    }
+
+    public void validateGender(final Member member) {
+        if (GenderRule.isNotValidGender(this.getGenderRule(), member.getGender())) {
+            throw new InvalidGenderException(ErrorCode.INVALID_GENDER);
+        }
+    }
+
+    public void validateCapacity(){
+        if(this.getNumberOfParticipant() + 1 > this.getCapacity()){
+            throw new ExceedCapacityException(ErrorCode.EXCEED_CAPACITY);
+        }
     }
 
     public boolean isNotCrewHost(final Long memberId) {

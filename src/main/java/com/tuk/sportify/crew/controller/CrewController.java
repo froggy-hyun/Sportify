@@ -72,6 +72,7 @@ public class CrewController {
 
     @PostMapping("/{crewId}")
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiErrorCodeExamples({ErrorCode.CREW_NOT_FOUND,ErrorCode.INVALID_GENDER,ErrorCode.EXCEED_CAPACITY})
     @Operation(summary = "크루 참여", description = "크루에 참여합니다.")
     public void participateCrew(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId,
