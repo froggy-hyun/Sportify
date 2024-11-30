@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class PopularSportRequest {
     private double latitude;
     private double longitude;
-    private int fetchSize; // 가져올 데이터 개수
 }

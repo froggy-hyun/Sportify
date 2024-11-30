@@ -15,7 +15,6 @@ public interface PopularSportRepository extends JpaRepository<SportVoucher, Long
             WHERE function('ST_Distance_Sphere', sv.point, function('ST_GeomFromText', :location, 4326)) <= :radius
             AND sv.disabled = :disabled
             AND sv.course.endAt >= :currentDate
-            ORDER BY sv.course.requestNumberOfPerson DESC
             """)
     List<SportVoucher> findPopularSports(
             @Param("location") String locationWKT,

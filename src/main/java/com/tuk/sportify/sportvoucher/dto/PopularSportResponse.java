@@ -7,10 +7,12 @@ import lombok.Getter;
 @Getter
 @Builder
 public class PopularSportResponse {
-    private Long voucherId;
+
     private String sportName;
-    private String address;
-    private String duration;
-    private String subCategory;
-    private int requestNumberOfPerson;
+    private int totalRequestNumber;
+
+    public PopularSportResponse(String sportName, int totalRequestNumber) {
+        this.sportName = sportName;
+        this.totalRequestNumber = totalRequestNumber;
+    }
 }

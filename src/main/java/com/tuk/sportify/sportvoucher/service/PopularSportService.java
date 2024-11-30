@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +28,8 @@ public class PopularSportService {
     public List<PopularSportResponse> findPopularSports(Long memberId, PopularSportRequest request) {
 
         // 요청 유효성 검증
-        if (request.getFetchSize() <= 0 || request.getLatitude() == 0 || request.getLongitude() == 0) {
+        if (request.getLatitude() < -90 || request.getLatitude() > 90 ||
+                request.getLongitude() < -180 || request.getLongitude() > 180) {
             throw new InvalidPopularSportRequestException(ErrorCode.INVALID_POPULAR_SPORT_REQUEST);
         }
 
@@ -42,8 +45,22 @@ public class PopularSportService {
             throw new PopularSportNotFoundException(ErrorCode.POPULAR_SPORT_NOT_FOUND);
         }
 
-        return popularSportMapper.toPopularSportResponses(popularVouchers.stream()
-                .limit(request.getFetchSize())
-                .toList());
+        // 종목별로 신청자 수를 그룹화하고 총합 계산
+        Map<String, Integer> sportNameToCount = popularVouchers.stream()
+                .collect(Collectors.groupingBy(
+                        voucher -> voucher.getMiddleCategory().getName(),
+                        Collectors.summingInt(voucher -> voucher.getCourse().getRequestNumberOfPerson())
+                ));
+
+        // 상위 3개 종목 반환
+        return popularSportMapper.toPopularSportResponses(
+                sportNameToCount.entrySet().stream()
+                        .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
+                        .limit(3)
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey,
+                                Map.Entry::getValue
+                        ))
+        );
     }
 }
