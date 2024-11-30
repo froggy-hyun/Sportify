@@ -11,4 +11,5 @@ public record VoucherDetailResponse(
     String address,
     String duration,
     Integer price,
+    Integer requestNumberOfPerson,
     List<CrewResponse> crews) {}

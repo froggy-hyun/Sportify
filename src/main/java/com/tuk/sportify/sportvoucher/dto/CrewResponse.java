@@ -7,7 +7,7 @@ public record CrewResponse(
         Long crewId,
         String crewName,
         String difficultyLevel,
-        Integer capacity,
+        Integer crewCapacity,
         String genderRule,
         Integer numberOfParticipants,
         String imageUrl) {}
