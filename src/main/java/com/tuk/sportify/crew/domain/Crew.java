@@ -87,7 +87,7 @@ public class Crew {
         addGoals(crewGoals);
     }
 
-    public void addParticipant() {
+    public void increaseParticipant() {
         numberOfParticipant++;
     }
 
