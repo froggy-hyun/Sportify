@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CreateCrewPageContainer= styled.div`
+export const CreateCrewPageContainer= styled.form`
   width: 100%;
   margin-top:4rem;
   height: fit-content;

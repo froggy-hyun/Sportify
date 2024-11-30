@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';
 import PlusImg from '@/assets/icon/etc/plus_Default.png';
 import { useRecoilState } from 'recoil';
@@ -15,7 +15,16 @@ const ImageUpload = () => {
     if (!file) return;
 
     setLocalPreview(URL.createObjectURL(file));
-    setPreview(URL.createObjectURL(file));
+    setPreview(file);
+  };
+
+  const handleImageReset = () => {
+    setLocalPreview(null);
+    setPreview(null);
+
+    if (photoInput.current) {
+      photoInput.current.value = '';
+    }
   };
 
   return (
@@ -34,13 +43,7 @@ const ImageUpload = () => {
         type="file"
       />
       {localPreview ? (
-        <S.PreviewImg
-          src={localPreview}
-          alt="preview이미지"
-          onClick={() => {
-            setPreview('');
-          }}
-        />
+        <S.PreviewImg src={localPreview} alt="preview이미지" onClick={handleImageReset} />
       ) : (
         <S.PlusImg src={PlusImg} alt="이미지업로드" />
       )}
