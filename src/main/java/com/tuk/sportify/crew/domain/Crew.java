@@ -82,7 +82,7 @@ public class Crew {
         this.crewImage = crewImage;
         this.difficultyLevel = difficultyLevel;
         this.capacity = capacity;
-        this.numberOfParticipant = 1;
+        this.numberOfParticipant = 0;
         addRules(crewRules);
         addGoals(crewGoals);
     }
