@@ -4,6 +4,9 @@ import styled from 'styled-components';
   interface TicketItemProps {
     ticket : TicketStatus
   }
+  interface TagColorProps {
+     color? : boolean
+  }
 
 export const TicketItemContainer = styled.button<TicketItemProps>`
   padding: 2rem;
@@ -39,13 +42,35 @@ export const TicketAddress= styled.p`
   line-height: normal;
 `;
 
-export const TickeUsageTitle= styled.p`
-  color: var(   --textC8);
-  font-size: 1.2rem;
+export const TicketInfoContainer = styled.div<TicketItemProps>`
+  display: flex;
+  align-items: start;
+  flex-direction:${(props) => (props.ticket === "trending"? 'row' : 'column')};
+  gap:${(props) => (props.ticket === "trending"? '' : '0.4rem')};
+`;
+
+export const NumPerson = styled.span`
+  color: var(--brandColor);
+  font-size: 1.4rem;
+  font-weight: 700;
   line-height: normal;
-  font-weight: 500;
+`;
+
+export const InfoImg = styled.img`
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+  margin-right: 0.8rem;
+`;
+
+export const TickekRequestPerson = styled.p`
+  color: var(--textC3);
+  font-size: 1.4rem;
+  line-height: normal;
+  font-weight: 400;
   margin-bottom: 0.4rem;
 `;
+
 
 export const TickeUsagePeriod= styled.p`
   color: var(   --textC3);
@@ -61,9 +86,9 @@ export const TicketTagAndUsage= styled.div`
 `;
 
 
-export const Tag= styled.div`
+export const Tag= styled.div<TagColorProps>`
   border-radius: 5.7rem;
-  background: var(--funcC1);
+  background: ${(props) => (props.color ? "var(--funcC1)" : "var(--brandColor)")};
   height: 2.2rem;
   margin-left: 0.8rem;
   padding: 0.4rem 1.2rem;

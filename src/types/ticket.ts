@@ -1,10 +1,3 @@
-export interface TicketItemType {
-  title :string,
-  address: string,
-  start : string,
-  end: string,
-  tags? :string[]
-}
 
 // Ticket List
 export interface Ticket {

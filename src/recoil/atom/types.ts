@@ -60,3 +60,31 @@ export interface addressesType{
   address : string
   addressName: string
 }
+
+
+
+export interface TrendingTicketsState  {
+  voucherId?:  number,
+  voucherCourseName:string ,
+  subCategory?: string ,
+  address?: string ,
+  duration?: string ,
+  requestNumberOfPerson?: number,
+  price?: number
+}
+
+
+export interface MyCrewsState {
+  crewId: number,
+  crewName: string,
+  voucherCourseName:string,
+  duration: string,
+  voucherAddress: string,
+  imageUrl: string,
+}
+export interface ActivityTicketsState {
+  voucherId?: number,
+  voucherCourseName: string,
+  crewName?: string,
+  voucherAddress?: string,
+}
