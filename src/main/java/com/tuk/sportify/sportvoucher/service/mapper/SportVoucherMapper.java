@@ -60,7 +60,7 @@ public class SportVoucherMapper {
     private CrewResponse toCrewResponse(final Crew crew) {
         return CrewResponse.builder()
                 .crewId(crew.getId())
-                .capacity(crew.getCapacity())
+                .crewCapacity(crew.getCapacity())
                 .crewName(crew.getName())
                 .difficultyLevel(crew.getDifficultyLevel().getDescription())
                 .genderRule(crew.getGenderRule().getDescription())
