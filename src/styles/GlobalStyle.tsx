@@ -64,7 +64,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-	line-height: 1;
+	line-height: 1.4;
     background-color: var( --white) ;
 }
 

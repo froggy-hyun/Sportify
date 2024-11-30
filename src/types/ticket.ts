@@ -13,6 +13,7 @@ export interface Ticket {
   voucherCourseName: string;
   requestNumberOfPerson: number;
   duration: string;
+  price: number;
 }
 
 export interface TicketCompItemProps {
