@@ -33,7 +33,7 @@ public class CrewGoal {
         this.goal = goal;
     }
 
-    public void addCrew(final Crew crew){
+    public void addCrew(final Crew crew) {
         this.crew = crew;
     }
 }

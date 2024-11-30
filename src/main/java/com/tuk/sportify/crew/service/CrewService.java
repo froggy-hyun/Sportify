@@ -37,9 +37,10 @@ public class CrewService {
     public CreateCrewResponse createCrew(
             final Long memberId, final Long sportVoucherId, final CreateCrewRequest request) {
         final Member member = memberService.getMemberById(memberId);
-        final SportVoucher sportVoucher = crewVoucherFacadeService.getSportVoucherById(sportVoucherId);
+        final SportVoucher sportVoucher =
+                crewVoucherFacadeService.getSportVoucherById(sportVoucherId);
         final CrewImage image = imageService.findImage(request.imageId());
-        final Crew crew = crewMapper.toCrew(member, sportVoucher,image, request);
+        final Crew crew = crewMapper.toCrew(member, sportVoucher, image, request);
         crewRepository.save(crew);
         voucherMemberService.participate(crew, sportVoucher);
         return new CreateCrewResponse(crew.getId());
@@ -51,16 +52,19 @@ public class CrewService {
                 .orElseThrow(() -> new CrewNotFoundExceptionException(ErrorCode.CREW_NOT_FOUND));
     }
 
-    public CrewDetailResponse getCrewDetail(final Long crewId){
+    public CrewDetailResponse getCrewDetail(final Long crewId) {
         final Crew crew = getCrew(crewId);
         return crewMapper.toCrewDetailResponse(crew);
     }
 
     @Transactional
-    public void participate(final Long memberId, final Long crewId){
+    public void participate(final Long memberId, final Long crewId) {
         final Member member = memberService.getMemberById(memberId);
-        final Crew crew = crewRepository.findByIdJoinFetchSportVoucher(crewId)
-            .orElseThrow(() -> new CrewNotFoundExceptionException(ErrorCode.CREW_NOT_FOUND));
+        final Crew crew =
+                crewRepository
+                        .findByIdJoinFetchSportVoucher(crewId)
+                        .orElseThrow(
+                                () -> new CrewNotFoundExceptionException(ErrorCode.CREW_NOT_FOUND));
         final VoucherMember voucherMember = new VoucherMember(member, crew.getSportVoucher(), crew);
         voucherMemberService.participate(voucherMember);
     }

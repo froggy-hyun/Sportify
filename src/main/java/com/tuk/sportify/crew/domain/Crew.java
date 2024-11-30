@@ -14,8 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-
 import jakarta.persistence.OneToOne;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,46 +29,37 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Crew {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private Member host;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private SportVoucher sportVoucher;
-
-    private String name;
-
-    @Enumerated(EnumType.STRING)
-    private GenderRule genderRule;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private CrewImage crewImage;
-
-    @Enumerated(EnumType.STRING)
-    private DifficultyLevel difficultyLevel;
-
-    private Integer capacity;
-    private Integer numberOfParticipant;
-
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "crew",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private final List<CrewRule> crewRules = new ArrayList<>();
-
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "crew",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private final List<CrewGoal> crewGoals = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Member host;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private SportVoucher sportVoucher;
+    private String name;
+    @Enumerated(EnumType.STRING)
+    private GenderRule genderRule;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private CrewImage crewImage;
+    @Enumerated(EnumType.STRING)
+    private DifficultyLevel difficultyLevel;
+    private Integer capacity;
+    private Integer numberOfParticipant;
 
     @Builder
     public Crew(
@@ -77,7 +68,10 @@ public class Crew {
             final GenderRule genderRule,
             final List<CrewRule> crewRules,
             final List<CrewGoal> crewGoals,
-            SportVoucher sportVoucher, CrewImage crewImage, DifficultyLevel difficultyLevel, Integer capacity) {
+            SportVoucher sportVoucher,
+            CrewImage crewImage,
+            DifficultyLevel difficultyLevel,
+            Integer capacity) {
         this.host = host;
         this.name = name;
         this.genderRule = genderRule;
@@ -90,7 +84,7 @@ public class Crew {
         addGoals(crewGoals);
     }
 
-    public void addParticipant(){
+    public void addParticipant() {
         numberOfParticipant++;
     }
 
