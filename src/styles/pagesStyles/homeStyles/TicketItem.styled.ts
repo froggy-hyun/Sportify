@@ -42,13 +42,33 @@ export const TicketAddress= styled.p`
   line-height: normal;
 `;
 
-export const TickeUsageTitle= styled.p`
-  color: var(   --textC8);
-  font-size: 1.2rem;
+export const TicketInfoContainer = styled.div`
+  display: flex;
+  align-items: center; 
+`;
+
+export const NumPerson = styled.span`
+  color: var(--brandColor);
+  font-size: 1.4rem;
+  font-weight: 700;
   line-height: normal;
-  font-weight: 500;
+`;
+
+export const InfoImg = styled.img`
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+  margin-right: 0.8rem;
+`;
+
+export const TickekRequestPerson = styled.p`
+  color: var(--textC3);
+  font-size: 1.4rem;
+  line-height: normal;
+  font-weight: 400;
   margin-bottom: 0.4rem;
 `;
+
 
 export const TickeUsagePeriod= styled.p`
   color: var(   --textC3);

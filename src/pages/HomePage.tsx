@@ -26,7 +26,7 @@ const HomePage = () => {
       const tredingData = data.trendingTickets.data.popularVouchers;
       const myCrewData = data.myNeighbors.data.myCrews;
       setTrending(tredingData);
-      setMyCrews(myCrewData);
+      // setMyCrews(myCrewData);
     }
   }, [data]);
 

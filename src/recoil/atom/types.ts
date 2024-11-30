@@ -63,13 +63,13 @@ export interface addressesType{
 
 
 
-export interface TrendingTicketsState {
-  address : string ,
-  duration:  string,
-  requestNumberOfPerson :number,
-  subCategory: string,
-  voucherCourseName : string,
-  voucherId? : number,
+export interface TrendingTicketsState  {
+  voucherId?:  number,
+  voucherCourseName:string ,
+  subCategory: string ,
+  address: string ,
+  duration: string ,
+  requestNumberOfPerson: number,
+  price: number
 }
-
 
