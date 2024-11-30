@@ -4,13 +4,12 @@ import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
-import com.tuk.sportify.sportvoucher.dto.PopularSportRequest;
 import com.tuk.sportify.sportvoucher.dto.PopularSportResponse;
-import com.tuk.sportify.sportvoucher.exception.InvalidPopularSportRequestException;
 import com.tuk.sportify.sportvoucher.exception.PopularSportNotFoundException;
 import com.tuk.sportify.sportvoucher.repository.PopularSportRepository;
 import com.tuk.sportify.sportvoucher.service.mapper.PopularSportMapper;
 import lombok.RequiredArgsConstructor;
+import org.locationtech.jts.geom.Point;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,21 +24,15 @@ public class PopularSportService {
     private final MemberService memberService;
     private final PopularSportMapper popularSportMapper;
 
-    public List<PopularSportResponse> findPopularSports(Long memberId, PopularSportRequest request) {
-
-        // 요청 유효성 검증
-        if (request.getLatitude() < -90 || request.getLatitude() > 90 ||
-                request.getLongitude() < -180 || request.getLongitude() > 180) {
-            throw new InvalidPopularSportRequestException(ErrorCode.INVALID_POPULAR_SPORT_REQUEST);
-        }
+    public List<PopularSportResponse> findPopularSports(Long memberId) {
 
         final Member member = memberService.getMemberById(memberId);
-        final String locationWKT = String.format("POINT(%f %f)", request.getLatitude(), request.getLongitude());
+        final Point locationPoint = member.getAddress().getPoint();
         final int currentDate = SportVoucherConst.CURRENT_DATE.getValue();
         final int radius = SportVoucherConst.POPULAR_VOUCHER_SEARCH_RADIUS.getValue();
 
         List<SportVoucher> popularVouchers = popularSportRepository.findPopularSports(
-                locationWKT, radius, currentDate, member.isDisabled());
+                locationPoint, radius, currentDate, member.isDisabled());
 
         if (popularVouchers.isEmpty()) {
             throw new PopularSportNotFoundException(ErrorCode.POPULAR_SPORT_NOT_FOUND);
