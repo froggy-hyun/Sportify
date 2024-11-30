@@ -1,4 +1,3 @@
-import { myNeighborsData } from '@/constants/homeData';
 import { Title } from '@/components';
 import * as S from '@/styles/pagesStyles/homeStyles/MyNeighbors.styled';
 
@@ -20,7 +19,7 @@ const MyNeighbors = () => {
       <S.MyNeighbors>
         {' '}
         {myCrewsData && myCrewsData.length > 0 ? (
-          myCrewsData.map((title, idx) => <MyNeighborItem key={idx} title={title} />)
+          myCrewsData.map((crew, idx) => <MyNeighborItem key={idx} title={crew.crewName} />)
         ) : (
           <p>현재 나만의 운동 이웃이 없습니다.</p>
         )}

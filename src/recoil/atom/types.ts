@@ -73,3 +73,12 @@ export interface TrendingTicketsState  {
   price: number
 }
 
+
+export interface MyCrewsState {
+  crewId: number,
+  crewName: string,
+  voucherCourseName:string,
+  duration: string,
+  voucherAddress: string,
+  imageUrl: string,
+},
