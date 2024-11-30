@@ -10,10 +10,10 @@ import com.tuk.sportify.crew.dto.CrewDetailResponse;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
-import java.util.Objects;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class CrewMapper {
@@ -53,7 +53,7 @@ public class CrewMapper {
     }
 
     private String findImage(final Crew crew) {
-        if( Objects.isNull(crew.getCrewImage())){
+        if (Objects.isNull(crew.getCrewImage())) {
             return null;
         }
         return crew.getCrewImage().getImageUrl();

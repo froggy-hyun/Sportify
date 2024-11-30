@@ -3,6 +3,7 @@ package com.tuk.sportify.vouchermember.controller;
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 import com.tuk.sportify.global.response.ApiErrorCodeExample;
 import com.tuk.sportify.global.status_code.ErrorCode;
+import com.tuk.sportify.vouchermember.dto.CrewMembersResponse;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
 import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PastPersonalVoucherResponse;
@@ -16,6 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,5 +69,14 @@ public class VoucherMemberController {
             @RequestParam @Parameter(description = "페이지") Integer page,
             @RequestParam @Parameter(description = "한 번에 가져올 크기") Integer fetchSize) {
         return voucherMemberService.findPastPersonalVouchers(memberId, page, fetchSize);
+    }
+
+    @GetMapping("/{crewId}")
+    @Operation(summary = "크루에 속한 크루원들 목록",
+        description = "크루에 속한 모든 크루원들을 반환합니다.")
+    public CrewMembersResponse findCrewMembers(
+        @PathVariable @Parameter(description = "크루 ID") final Long crewId
+    ){
+        return voucherMemberService.findCrewMembers(crewId);
     }
 }

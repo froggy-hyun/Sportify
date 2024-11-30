@@ -1,9 +1,12 @@
 package com.tuk.sportify.vouchermember.service.mapper;
 
 import com.tuk.sportify.crew.domain.Crew;
+import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.Course;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
+import com.tuk.sportify.vouchermember.dto.CrewMember;
+import com.tuk.sportify.vouchermember.dto.CrewMembersResponse;
 import com.tuk.sportify.vouchermember.dto.CrewVoucher;
 import com.tuk.sportify.vouchermember.dto.MyCrew;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
@@ -11,17 +14,27 @@ import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PastPersonalVoucherResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
 
-import java.util.Objects;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class VoucherMemberMapper {
 
     public List<PersonalVoucher> toPersonalVoucher(final List<VoucherMember> voucherMembers) {
         return voucherMembers.stream().map(this::createPersonalVoucher).toList();
+    }
+
+    public CrewMembersResponse toCrewMembersResponse(final List<VoucherMember> voucherMembers) {
+        List<CrewMember> crewMembers = voucherMembers.stream().map(this::toCrewMember).toList();
+        return new CrewMembersResponse(crewMembers);
+    }
+
+    private CrewMember toCrewMember(final VoucherMember voucherMember) {
+        final Member member = voucherMember.getMember();
+        return new CrewMember(member.getId(), member.getName());
     }
 
     public PastPersonalVoucherResponse toPastPersonalVoucherResponse(
@@ -85,7 +98,7 @@ public class VoucherMemberMapper {
     }
 
     private String findImage(final Crew crew) {
-        if( Objects.isNull(crew.getCrewImage())){
+        if (Objects.isNull(crew.getCrewImage())) {
             return null;
         }
         return crew.getCrewImage().getImageUrl();

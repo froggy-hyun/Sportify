@@ -60,7 +60,7 @@ public class CrewApplicant {
         validateAuthority(memberId);
         validateCapacity();
         this.applicationStatus = ApplicationStatus.APPROVED;
-        crew.addParticipant();
+        crew.increaseParticipant();
         return new VoucherMember(this.member, crew.getSportVoucher(), crew);
     }
 
