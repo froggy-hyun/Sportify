@@ -13,14 +13,17 @@ import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
+import com.tuk.sportify.vouchermember.domain.VoucherMember;
 import com.tuk.sportify.vouchermember.service.VoucherMemberService;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class CrewService {
 
     private final CrewRepository crewRepository;
@@ -30,6 +33,7 @@ public class CrewService {
     private final ImageService imageService;
     private final CrewMapper crewMapper;
 
+    @Transactional
     public CreateCrewResponse createCrew(
             final Long memberId, final Long sportVoucherId, final CreateCrewRequest request) {
         final Member member = memberService.getMemberById(memberId);
@@ -50,5 +54,14 @@ public class CrewService {
     public CrewDetailResponse getCrewDetail(final Long crewId){
         final Crew crew = getCrew(crewId);
         return crewMapper.toCrewDetailResponse(crew);
+    }
+
+    @Transactional
+    public void participate(final Long memberId, final Long crewId){
+        final Member member = memberService.getMemberById(memberId);
+        final Crew crew = crewRepository.findByIdJoinFetchSportVoucher(crewId)
+            .orElseThrow(() -> new CrewNotFoundExceptionException(ErrorCode.CREW_NOT_FOUND));
+        final VoucherMember voucherMember = new VoucherMember(member, crew.getSportVoucher(), crew);
+        voucherMemberService.participate(voucherMember);
     }
 }

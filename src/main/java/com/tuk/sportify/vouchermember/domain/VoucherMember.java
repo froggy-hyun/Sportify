@@ -1,6 +1,8 @@
 package com.tuk.sportify.vouchermember.domain;
 
 import com.tuk.sportify.crew.domain.Crew;
+import com.tuk.sportify.crewapplicant.exception.ExceedCapacityException;
+import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
@@ -37,9 +39,16 @@ public class VoucherMember {
 
     @Builder
     public VoucherMember(final Member member, final SportVoucher sportVoucher, final Crew crew) {
+        validateCrewCapacity();
         this.member = member;
         this.sportVoucher = sportVoucher;
         this.crew = crew;
+    }
+
+    public void validateCrewCapacity(){
+        if(crew.getNumberOfParticipant() + 1 > crew.getCapacity()){
+            throw new ExceedCapacityException(ErrorCode.EXCEED_CAPACITY);
+        }
     }
 
     public String getSportVoucherName(){

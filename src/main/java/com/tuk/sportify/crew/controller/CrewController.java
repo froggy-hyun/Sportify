@@ -36,7 +36,7 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/crews")
-@Tag(name = "크루 [운동이웃 생성, 대표 이미지 업로드, 단건 상세 조회]")
+@Tag(name = "크루 [운동이웃 생성,운동이웃 참여 ,대표 이미지 업로드, 단건 상세 조회]")
 public class CrewController {
 
     private final CrewService crewService;
@@ -65,5 +65,13 @@ public class CrewController {
     @GetMapping("/{crewId}")
     public CrewDetailResponse getCrewDetail(@PathVariable @Parameter(description = "크루 ID") final Long crewId) {
         return crewService.getCrewDetail(crewId);
+    }
+
+    @PostMapping("/{crewId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "크루 참여", description = "크루에 참여합니다.")
+    public void participateCrew(@AuthenticationMember @Parameter(hidden = true) final Long memberId,
+        @PathVariable @Parameter(description = "크루 ID") final Long crewId){
+        crewService.participate(memberId,crewId);
     }
 }
