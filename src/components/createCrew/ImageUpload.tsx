@@ -28,26 +28,33 @@ const ImageUpload = () => {
   };
 
   return (
-    <S.UploadImg
-      onClick={() => {
-        if (!preview) {
-          photoInput.current?.click();
-        }
-      }}
-    >
-      <input
-        style={{ display: 'none' }}
-        accept="image/*"
-        onChange={handlePreview}
-        ref={photoInput}
-        type="file"
-      />
-      {localPreview ? (
-        <S.PreviewImg src={localPreview} alt="preview이미지" onClick={handleImageReset} />
-      ) : (
-        <S.PlusImg src={PlusImg} alt="이미지업로드" />
+    <S.UploadImgContainer>
+      <S.UploadImg
+        onClick={() => {
+          if (preview === null) {
+            photoInput.current?.click();
+          }
+        }}
+      >
+        <input
+          style={{ display: 'none' }}
+          accept="image/*"
+          onChange={handlePreview}
+          ref={photoInput}
+          type="file"
+        />
+        {localPreview ? (
+          <S.PreviewImg src={localPreview} alt="preview이미지" />
+        ) : (
+          <S.PlusImg src={PlusImg} alt="이미지업로드" />
+        )}
+      </S.UploadImg>
+      {localPreview && (
+        <S.DeleteImgBtn type="button" onClick={handleImageReset}>
+          삭제
+        </S.DeleteImgBtn>
       )}
-    </S.UploadImg>
+    </S.UploadImgContainer>
   );
 };
 

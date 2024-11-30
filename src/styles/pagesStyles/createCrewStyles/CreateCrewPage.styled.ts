@@ -25,6 +25,23 @@ export const InfoTitle = styled.h2`
   line-height: normal;
 `;
 
+export const UploadImgContainer= styled.div`
+  display: flex;
+  align-items: end;
+  height: 10.7rem;
+  margin-bottom: 6rem;
+`;
+
+export const DeleteImgBtn= styled.button`
+  color: var(--textC8);
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 1.2rem;
+  background-color: transparent;
+  cursor: pointer;
+
+`;
 
 export const UploadImg= styled.div`
   width: 10.7rem;
@@ -34,7 +51,6 @@ export const UploadImg= styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 0.8rem;
-  margin-bottom: 6rem;
   background-color: var(--grayBG);
   cursor: pointer;
 `;
@@ -49,7 +65,8 @@ export const PlusImg= styled.img`
 
 export const PreviewImg= styled.img`
   width:100%;
-  height: 100%;
+  height:100%;
+  border-radius: 0.8rem;
 
 `;
 
