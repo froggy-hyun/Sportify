@@ -42,9 +42,11 @@ export const TicketAddress= styled.p`
   line-height: normal;
 `;
 
-export const TicketInfoContainer = styled.div`
+export const TicketInfoContainer = styled.div<TicketItemProps>`
   display: flex;
-  align-items: center; 
+  align-items: start;
+  flex-direction:${(props) => (props.ticket === "trending"? 'row' : 'column')};
+  gap:${(props) => (props.ticket === "trending"? '' : '0.4rem')};
 `;
 
 export const NumPerson = styled.span`
