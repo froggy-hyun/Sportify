@@ -25,14 +25,18 @@ const CreateCrewPage = () => {
       ...prev,
       imageId: newCrewImgId,
     }));
-    // 추후 받아온 이용권 id로 등록하기로 수정예정 (현재는 1로 고정)
-    newCrewMutation.mutate({ newCrewInfo: newCrew, sportVoucherId: 1 });
   };
-
+  // 감지 후 mutate 실행
+  useEffect(() => {
+    if (newCrew.imageId) {
+      // 추후 받아온 이용권 id로 등록하기로 수정예정 (현재는 100으로 고정)
+      newCrewMutation.mutate({ newCrewInfo: newCrew, sportVoucherId: 100 });
+    }
+  }, [newCrew.imageId]); // imageId 변경 시 실행
   const onCreateSuccess = (res) => {
     console.log(res);
     alert('크루 생성 성공');
-    navigate('/');
+    // navigate('/');
   };
 
   const { mutation: newCrewImgMutation } = useGenericMutation({
