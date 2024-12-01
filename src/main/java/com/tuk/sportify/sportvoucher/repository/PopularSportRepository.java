@@ -15,7 +15,13 @@ public interface PopularSportRepository extends JpaRepository<SportVoucher, Long
     @Query(value = """
             SELECT sv
             FROM SportVoucher sv
-            WHERE ST_Distance_Sphere(sv.point, :locationPoint) <= :radius
+            WHERE ST_Contains(
+                ST_Buffer(
+                    :locationPoint,
+                    :radius
+                ),
+                sv.point
+            )
             AND sv.disabled = :disabled
             AND (
                 sv.course.beginAt BETWEEN :threeMonthsAgo AND :currentDate
