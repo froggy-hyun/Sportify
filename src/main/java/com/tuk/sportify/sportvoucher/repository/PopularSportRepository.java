@@ -14,6 +14,7 @@ public interface PopularSportRepository extends JpaRepository<SportVoucher, Long
     @Query(value = """
             SELECT sv
             FROM SportVoucher sv
+            JOIN FETCH sv.middleCategory mc
             WHERE ST_Contains(
                 ST_Buffer(
                     :locationPoint,
