@@ -7,6 +7,9 @@ import CrewPopUp from '@/components/ticketMain/CrewPopUp';
 import { useRecoilState } from 'recoil';
 import { modalState } from '@/recoil/atom/addressModal';
 
+import PeopleImage from '@/assets/icon/navigation/마이_DeActive.png'
+import DateImage from '@/assets/icon/etc/period_Default.png'
+
 const TicketDetailViewPage = () => {
   const postId = useParams().id;
   const { data } = useFetchTicketsDetail(Number(postId));
@@ -35,16 +38,27 @@ const TicketDetailViewPage = () => {
 
         {data && (
           <S.TicketDataArea>
-            <S.TicketBasicDataArea>
-              <S.TicketPrice>{formatToKRW(data.price)}원</S.TicketPrice>
-              <S.TicketName>{data.voucherCourseName}</S.TicketName>
-              <S.TicketAddress>{data.address}</S.TicketAddress>
-            </S.TicketBasicDataArea>
+            <S.TicketData>
+              <S.TicketBasicDataArea>
+                <S.TicketPrice>{formatToKRW(data.price)}원</S.TicketPrice>
+                <S.TicketName>{data.voucherCourseName}</S.TicketName>
+                <S.TicketAddress>{data.address}</S.TicketAddress>
+              </S.TicketBasicDataArea>
 
-            <S.TicketUtilDataArea>
-              <S.TicketPreson>{data.requestNumberOfPerson}명이 신청했어요</S.TicketPreson>
-              <S.TicketDuration>{data.duration}</S.TicketDuration>
-            </S.TicketUtilDataArea>
+              <S.UtilInfo>
+                <S.DetailArea>
+                  <S.IconImage src={PeopleImage} alt="person" />
+                  <S.People>
+                    <S.Highlights>{data.requestNumberOfPerson}명</S.Highlights>이 신청했어요
+                  </S.People>
+                </S.DetailArea>
+
+                <S.DetailArea>
+                  <S.IconImage src={DateImage} alt="person" />
+                  <S.Date>{data.duration}</S.Date>
+                </S.DetailArea>
+              </S.UtilInfo>
+            </S.TicketData>
 
             <Button title="신청하기" />
           </S.TicketDataArea>
