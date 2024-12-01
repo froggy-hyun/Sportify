@@ -25,10 +25,13 @@ const Title = memo(({ title, color, children, login = false, cut }: TitleProps) 
   // 더보기가 없으면
   return (
     <TitleContainer>
-      <TitleStyle $color={color} $size={login}>
-        {title.slice(0, cut)}
-      </TitleStyle>
-      <TitleStyle $color={true} $size={login}>
+      {cut && (
+        <TitleStyle $color={color} $size={login}>
+          {title.slice(0, cut)}
+        </TitleStyle>
+      )}
+
+      <TitleStyle $color={cut ? true : color} $size={login}>
         {itemTitle}
       </TitleStyle>
     </TitleContainer>
