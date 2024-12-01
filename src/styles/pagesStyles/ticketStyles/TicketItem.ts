@@ -56,7 +56,7 @@ export const UtilInfo = styled.div`
 export const DetailArea = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 `;
 
 export const IconImage = styled.img`
