@@ -14,7 +14,7 @@
         <th>사진</th>
         <td width="100" align="center">
             <a href="https://github.com/songhaechan">
-                <img width="175" alt="스크린샷 2024-12-01 오후 11 13 15" src="https://github.com/user-attachments/assets/72400d74-3347-437a-ae60-6f31ee2fdcb7" width="150" height="150">
+                
             </a>
         </td>
         <td width="100" align="center">
