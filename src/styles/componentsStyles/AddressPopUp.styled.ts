@@ -1,30 +1,5 @@
 import styled from 'styled-components';
 
-export const Background = styled.div`
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-
-`;
-
-export const Modal = styled.div`
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  background: var(--white);
-  bottom: 0;
-  width: 100%;
-  height: 31.5rem;
-  flex-shrink: 0;
-  border-radius: 2rem 2rem 0 0;
-  padding: 0 2.4rem;
-`;
 
 export const Title = styled.h1`
   color: var(--textC3);
@@ -36,7 +11,7 @@ export const Title = styled.h1`
 
 `;
 
-export const AddressName = styled.h2`
+export const Name = styled.h2`
   margin : 2.4rem 0 1.2rem 0;
   color: var(--textC3);
   font-size: 1.4rem;
