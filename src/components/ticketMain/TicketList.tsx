@@ -3,7 +3,7 @@ import * as S from '@/styles/pagesStyles/ticketStyles/TicketList';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { currentCategoryState } from '@/recoil/atom/category';
-import useFetchTicketsList from '@/hooks/useFetchTicketsList';
+import useFetchTicketsList from '@/service/useFetchTicketsList';
 
 import { CategoryData } from '@/constants/categoryData';
 import DetailCategoryTitle from './DetailCategoryTitle';
@@ -41,7 +41,12 @@ const TicketList = () => {
       </S.DetailCategoryList>
 
       {/* 티켓 이용권 */}
-      <TicketCompItem data={tickets} onClickItem={(e) => { navigate('/ticketItem/' + e.voucherId)}}/>
+      <TicketCompItem
+        data={tickets}
+        onClickItem={(e) => {
+          navigate('/ticketItem/' + e.voucherId);
+        }}
+      />
     </S.TicketListContainer>
   );
 };

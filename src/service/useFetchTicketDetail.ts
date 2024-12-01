@@ -5,6 +5,7 @@ const useFetchTicketsDetail = (postId: number) => {
   const [data, setData] = useState<Ticket | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchTicketDetails = async () => {
@@ -17,7 +18,7 @@ const useFetchTicketsDetail = (postId: number) => {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzcG9ydGlmeTFAbmF2ZXIuY29tIiwiaWQiOjEsImF1dGgiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6IuynleynleydtCIsInRva2VuSWQiOiI0NDQ0MmJmOC0yNWM1LTQ0MzctYmM5OC00ZTc4OGMxODI5ZjUiLCJleHAiOjE3MzMxNjM3MDl9.0z2oYNfl2iWs0ZoEOjk20Sr4ntFApjhcUDtR2B9NUXleMyg2PJVMRLkFQsaeHT88nF0H7zSBoMByriVmIw5sVA`, // 인증 토큰 추가
+              Authorization: `Bearer ${token}`, // 인증 토큰 추가
             },
           }
         );

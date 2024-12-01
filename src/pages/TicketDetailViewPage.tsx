@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import useFetchTicketsDetail from '@/hooks/useFetchTicketDetail';
+import useFetchTicketsDetail from '@/service/useFetchTicketDetail';
 import * as S from '@/styles/pagesStyles/ticketStyles/TicketDetailViewPage.styled';
 import { useEffect } from 'react';
 

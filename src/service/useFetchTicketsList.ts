@@ -5,7 +5,8 @@ const useFetchTicketsList = (majorCategory: number, middleCategory: number) => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-
+  const token = localStorage.getItem("accessToken");
+  
   useEffect(() => {
     if (majorCategory === null || middleCategory === null) return;
 
@@ -22,7 +23,7 @@ const useFetchTicketsList = (majorCategory: number, middleCategory: number) => {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzcG9ydGlmeTFAbmF2ZXIuY29tIiwiaWQiOjEsImF1dGgiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6IuynleynleydtCIsInRva2VuSWQiOiIzNDg3ZDBmYS0yMWY2LTQ5YmEtYjNlNy1iYTFmYTYyYWZiNjUiLCJleHAiOjE3MzMwNjkwMDR9.mkfK0OEltL1lBWLuj4f1Rmy610sS5V8BecLr5n9ORsKfw_mEhGdyTpQb_64mMkVkXQL8CX-Wkbu2PpqBo6z6MA`, // 인증 토큰 추가
+                Authorization: `Bearer ${token}`,
               },
             }
           );
