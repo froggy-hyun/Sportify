@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -81,8 +82,8 @@ public class SportVoucherController {
             ErrorCode.ADDRESS_NOT_FOUND, // 주소가 설정되지 않은 경우
             ErrorCode.SPORT_VOUCHER_NOT_FOUND // 스포츠 이용권이 없는 경우
     })
-    public List<PopularSportResponse> getPopularSports(
+    public Map<String, List<PopularSportResponse>> getPopularSports(
             @AuthenticationMember @Parameter(hidden = true) final Long memberId) {
-        return popularSportService.findPopularSports(memberId);
+        return popularSportService.findPopularSportsByMonth(memberId);
     }
 }
