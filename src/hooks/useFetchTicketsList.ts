@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Ticket } from '@/types/ticket';
 
-const useFetchTickets = (majorCategory: number, middleCategory: number) => {
+const useFetchTicketsList = (majorCategory: number, middleCategory: number) => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -30,7 +30,6 @@ const useFetchTickets = (majorCategory: number, middleCategory: number) => {
             throw new Error(`Error fetching tickets: ${response.statusText}`);
           }
           const data = await response.json();
-          // console.log(data.data.voucherResponses);
           setTickets(data.data.voucherResponses);
         } catch (err) {
           if (err instanceof Error) {
@@ -52,4 +51,4 @@ const useFetchTickets = (majorCategory: number, middleCategory: number) => {
   return { tickets, loading, error };
 };
 
-export default useFetchTickets;
+export default useFetchTicketsList;

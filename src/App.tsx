@@ -8,6 +8,7 @@ import {
   HomePage,
   NeighborPage,
   TicketApplyPage,
+  TicketDetailViewPage,
   MyPage,
   AddressSearchPage,
   LoginPage,
@@ -34,6 +35,7 @@ function App() {
             <Route path="/addressSearch" element={<AddressSearchPage />} />
             <Route path="/signUp" element={<SignUpPage />} />
             <Route path="/createCrew" element={<CreateCrewPage />} />
+            <Route path="/ticketItem/:id" element={<TicketDetailViewPage />} />
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />
         </BrowserRouter>

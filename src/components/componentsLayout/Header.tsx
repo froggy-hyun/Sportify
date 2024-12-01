@@ -14,6 +14,13 @@ import { headerConstants } from '@/constants/headerConstants';
 const Header = () => {
   const navigate = useNavigate();
   const { searchMyAddress } = useMyLocation();
+
+  const classifyPath = (path: string): string => {
+    if (path.startsWith('/ticketItem')) return headerConstants['/ticketItem'];
+
+    return headerConstants[location.pathname];
+  };
+
   return (
     <>
       <S.HeaderContainer>
@@ -22,7 +29,7 @@ const Header = () => {
         ) : (
           <S.HeaderConstants>
             <S.BackImg src={backImg} alt="뒤로가기" onClick={() => navigate(-1)} />
-            <S.Headertitle>{headerConstants[location.pathname]}</S.Headertitle>
+            <S.Headertitle>{classifyPath(location.pathname)}</S.Headertitle>
           </S.HeaderConstants>
         )}
         <div>

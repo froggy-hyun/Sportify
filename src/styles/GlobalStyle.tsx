@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 :root {
-    margin: 6.4rem 0 8.6rem 0;
+    margin: 6.7rem 0 8.88rem 0;
     // BrandColor
     --brandColor:#0096C7;
     
@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
     
     font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     margin:0;
-    padding:0;
+    padding:0;  
 	box-sizing: border-box;
     text-decoration: none;
 }
@@ -64,7 +64,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-	line-height: 1;
+	line-height: 1.4;
     background-color: var( --white) ;
 }
 
