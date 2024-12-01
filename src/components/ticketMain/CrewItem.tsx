@@ -2,19 +2,16 @@ import * as S from '@/styles/pagesStyles/ticketStyles/CrewItem.styled';
 import { DeatilTicketCrewListProps } from '@/types/ticket';
 
 import CapacityIcon from '@/assets/icon/navigation/마이_DeActive.png';
-import { modalState } from '@/recoil/atom/addressModal';
-import { useRecoilState } from 'recoil';
-import CrewPopUp from './CrewPopUp';
 
-const CrewItem = ({ crews }: { crews: DeatilTicketCrewListProps }) => {
-  const [modalOpen, setModalOpen] = useRecoilState(modalState);
-
+const CrewItem = ({
+  crews,
+  onClick,
+}: {
+  crews: DeatilTicketCrewListProps;
+  onClick: () => void;
+}) => {
   return (
-    <S.CrewItemContainer
-      onClick={() => {
-        setModalOpen(true);
-      }}
-    >
+    <S.CrewItemContainer onClick={onClick}>
       <S.Image src={crews.imageUrl} />
       <S.InfoArea>
         <S.Info>
@@ -28,7 +25,6 @@ const CrewItem = ({ crews }: { crews: DeatilTicketCrewListProps }) => {
           </S.Capacity>
         </S.CapacityArea>
       </S.InfoArea>
-      {modalOpen && <CrewPopUp crewId={crews.crewId} />}
     </S.CrewItemContainer>
   );
 };

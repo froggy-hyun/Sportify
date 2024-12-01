@@ -56,6 +56,7 @@ const AddressSearchPage = () => {
       ) : (
         <MyAddressesList />
       )}
+
       {modalOpen && selectedPlace && <AddressPopup place={selectedPlace} />}
     </S.SearchContainer>
   );

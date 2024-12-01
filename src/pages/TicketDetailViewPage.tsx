@@ -1,14 +1,18 @@
 import { useParams } from 'react-router-dom';
 import useFetchTicketsDetail from '@/service/useFetchTicketDetail';
 import * as S from '@/styles/pagesStyles/ticketStyles/TicketDetailViewPage.styled';
-import { useEffect } from 'react';
-
+import { useEffect, useState } from 'react';
 import { Button, Divide, Title, CrewItem } from '@/components';
+import CrewPopUp from '@/components/ticketMain/CrewPopUp';
+import { useRecoilState } from 'recoil';
+import { modalState } from '@/recoil/atom/addressModal';
 
 const TicketDetailViewPage = () => {
   const postId = useParams().id;
   const { data } = useFetchTicketsDetail(Number(postId));
   const crewData = data?.crews || [];
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
+  const [selectedCrewId, setSelectedCrewId] = useState<number>(0);
 
   useEffect(() => {
     console.log(data);
@@ -16,6 +20,12 @@ const TicketDetailViewPage = () => {
 
   const formatToKRW = (number: number) => {
     return Intl.NumberFormat('ko-KR').format(number);
+  };
+
+  // 모달 열기
+  const handleOpenModal = (crewId: number) => {
+    setSelectedCrewId(crewId);
+    setModalOpen(true);
   };
 
   return (
@@ -50,11 +60,12 @@ const TicketDetailViewPage = () => {
 
         <S.CrewList>
           {crewData.map((crew, idx) => (
-            <CrewItem key={idx} crews={crew} />
+            <CrewItem key={idx} crews={crew} onClick={() => handleOpenModal(crew.crewId)} />
           ))}
         </S.CrewList>
 
         <Button title="내가 이웃 모아보기" outStorke></Button>
+        {modalOpen && <CrewPopUp crewId={selectedCrewId} />}
       </S.DetailCrewContainer>
     </div>
   );
