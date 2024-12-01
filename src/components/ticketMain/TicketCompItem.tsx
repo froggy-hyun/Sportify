@@ -28,7 +28,7 @@ const TicketCompItem = ({ data, onClickItem }: TicketCompItemProps) => {
               <S.UtilInfo>
                 <S.DetailArea>
                   <S.IconImage src={PeopleImage} alt="person" />
-                  <S.People>{ticket.requestNumberOfPerson}명이 신청했어요</S.People>
+                  <S.People><S.Highlights>{ticket.requestNumberOfPerson}명</S.Highlights>이 신청했어요</S.People>
                 </S.DetailArea>
 
                 <S.DetailArea>

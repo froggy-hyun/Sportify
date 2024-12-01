@@ -66,7 +66,7 @@ export const IconImage = styled.img`
 export const People = styled.p`
   font-size: 1.4rem;
   font-weight: 400;
-  color: var(--brandColor);
+  color: var(--textC3);
   line-height:normal;
 `;
 
@@ -95,4 +95,9 @@ export const NoneData = styled.div`
   border-radius: 8px;
   
   margin-top: 2.8rem;
+`;
+
+export const Highlights = styled.span`
+  font-weight: bold;
+  color: var(--brandColor);
 `;
