@@ -2,7 +2,7 @@ import HomePage from './HomePage';
 import MyPage from './MyPage';
 import TicketApplyPage from './TicketApplyPage';
 import TicketDetailViewPage from './TicketDetailViewPage';
-import NeighborPage from './NeighborPage';
+import ManageCrewPage from './ManageCrewPage';
 import AddressSearchPage from './AddressSearchPage';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
@@ -13,7 +13,7 @@ export {
   MyPage,
   TicketApplyPage,
   TicketDetailViewPage,
-  NeighborPage,
+  ManageCrewPage,
   AddressSearchPage,
   LoginPage,
   SignUpPage,
