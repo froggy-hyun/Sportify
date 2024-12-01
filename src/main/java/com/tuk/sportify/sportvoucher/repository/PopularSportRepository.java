@@ -24,15 +24,15 @@ public interface PopularSportRepository extends JpaRepository<SportVoucher, Long
             )
             AND sv.disabled = :disabled
             AND (
-                sv.course.beginAt BETWEEN :threeMonthsAgo AND :currentDate
-                OR sv.course.endAt BETWEEN :threeMonthsAgo AND :currentDate
+                sv.course.beginAt BETWEEN :monthStart AND :monthEnd
+                OR sv.course.endAt BETWEEN :monthStart AND :monthEnd
             )
             ORDER BY sv.course.requestNumberOfPerson DESC
             """)
     List<SportVoucher> findPopularSportsForMonth(
             @Param("locationPoint") Point locationPoint,
             @Param("radius") int radius,
-            @Param("threeMonthsAgo") int threeMonthsAgo,
-            @Param("currentDate") int currentDate,
+            @Param("monthStart") int monthStart,
+            @Param("monthEnd") int monthEnd,
             @Param("disabled") boolean disabled);
 }

@@ -34,13 +34,13 @@ public class PopularSportService {
         final int currentDate = SportVoucherConst.CURRENT_DATE.getValue();
         final int radius = SportVoucherConst.POPULAR_VOUCHER_SEARCH_RADIUS.getValue();
 
-        // 3개월 전부터 1개월 전까지의 기간 계산
-        Map<String, int[]> periods = calculateMonthlyPeriods(currentDate);
+        // 저번 달과 저저번 달의 기간 계산
+        Map<String, int[]> periods = calculateLastTwoMonths(currentDate);
 
         // 각 월별 인기 스포츠를 조회하여 결과를 맵으로 저장
         Map<String, List<PopularSportResponse>> monthlyResponses = new LinkedHashMap<>();
         for (Map.Entry<String, int[]> entry : periods.entrySet()) {
-            String periodKey = entry.getKey();
+            String periodKey = entry.getKey(); // "지난 달", "지지난 달"
             int monthStart = entry.getValue()[0];
             int monthEnd = entry.getValue()[1];
 
@@ -74,16 +74,18 @@ public class PopularSportService {
         return monthlyResponses;
     }
 
-    private Map<String, int[]> calculateMonthlyPeriods(int currentDate) {
+    private Map<String, int[]> calculateLastTwoMonths(int currentDate) {
+        // int -> LocalDate 변환
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate currentLocalDate = LocalDate.parse(String.valueOf(currentDate), formatter);
 
-        // 3개월 전, 2개월 전, 1개월 전 각각의 시작/끝 날짜 계산
+        // 지난 달과 지지난 달 각각의 시작/끝 날짜 계산
         Map<String, int[]> periods = new LinkedHashMap<>();
-        for (int i = 3; i >= 1; i--) {
+        for (int i = 2; i >= 1; i--) {
             LocalDate monthStart = currentLocalDate.minusMonths(i).withDayOfMonth(1);
             LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
-            periods.put(i + "개월 전", new int[]{
+            String periodName = i == 1 ? "지난 달" : "지지난 달"; // 표시 텍스트 설정
+            periods.put(periodName, new int[]{
                     Integer.parseInt(monthStart.format(formatter)),
                     Integer.parseInt(monthEnd.format(formatter))
             });
