@@ -19,20 +19,7 @@ export const Ticket = styled.div`
   padding-bottom:16px;
 `;
 
-export const TicketImageFrame = styled.div`
-  width: fit-content;
-  margin-right: 1.6rem;
-`;
-
-export const TicketImage = styled.img`
-  width: 80px;
-  height: auto;
-  background-color: var(--grayBG);
-  border-radius: 8px;
-  padding: 12px;
-`;
-
-export const TicketInfo = styled.div`
+export const Info = styled.div`
   width: 100%;
 
   display: flex;
@@ -41,23 +28,58 @@ export const TicketInfo = styled.div`
   gap:20px;
 `;
 
-export const TicketLocation = styled.p`
-  font-size: 14px;
+export const Location = styled.p`
+  font-size: 1.4rem;
   font-weight: 400;
   color: var(--textC8);
-  line-height: 1.2;
 `;
 
-export const TicketTitle = styled.p`
-  font-size: 18px;
+export const Title = styled.p`
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--textC3);
-  line-height: 1.4;
 `;
 
-export const TicketPeople = styled.p`
-  font-size: 16px;
+export const UtilInfoArea = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+`;
+
+export const UtilInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const DetailArea = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const IconImage = styled.img`
+  width:2rem;
+`;
+
+export const People = styled.p`
+  font-size: 1.4rem;
   font-weight: 400;
+  color: var(--brandColor);
+  line-height:normal;
+`;
+
+export const Date = styled.p`
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--textC3);
+  line-height:normal;
+`;
+
+export const Price = styled.p`
+  font-size: 1.8rem;
+  font-weight: 700;
   color: var(--brandColor);
 `;
 
