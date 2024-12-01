@@ -11,6 +11,7 @@ export interface Ticket {
 }
 
 export interface DeatilTicketCrewListProps {
+  crewId: number;
   crewName: string;
   imageUrl: string;
   difficultyLevel: string;
