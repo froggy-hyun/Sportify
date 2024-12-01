@@ -65,7 +65,8 @@ public class VoucherMemberMapper {
                                         vm.getSportVoucher().getId(),
                                         vm.getSportVoucherName(),
                                         vm.crewName(),
-                                        vm.getVoucherAddress()))
+                                        vm.getVoucherAddress(),
+                                        vm.getSportVoucher().getCourse().getDuration()))
                 .toList();
     }
 

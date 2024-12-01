@@ -4,5 +4,6 @@ public record CrewVoucher(
     Long voucherId,
     String voucherCourseName,
     String crewName,
-    String voucherAddress
+    String voucherAddress,
+    String duration
 ) {}
