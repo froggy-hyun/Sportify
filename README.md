@@ -1,5 +1,8 @@
 # SPORTIFY : 2024년 국민체육진흥공단 공공데이터활용 경진대회
 
+# Architecture
+<img width="683" alt="스크린샷 2024-12-01 오후 11 28 05" src="https://github.com/user-attachments/assets/9aea9637-2453-466b-adeb-734a89c21dab">
+
 # Team
 
 <table width="950">
