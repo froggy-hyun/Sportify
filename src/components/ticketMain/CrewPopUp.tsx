@@ -8,11 +8,15 @@ import personImg from '@/assets/icon/etc/notice_Default.png';
 import { useQuery } from '@tanstack/react-query';
 import { crewInfoApi } from '@/service/queries';
 import { crewInfoState } from '@/recoil/atom/crewInfo';
+import { useGenericMutation } from '@/service/mutations/customMutation';
+import { participateCrewApi } from '@/service/mutations';
+import { useNavigate } from 'react-router-dom';
 
 const CrewPopUp = ({ crewId }: { crewId: number }) => {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [isChecked, setIsChecked] = useState(false);
   const [crewInfo, setCrewInfo] = useRecoilState(crewInfoState);
+  const navigate = useNavigate();
 
   const { isLoading, data, isError } = useQuery({
     queryKey: ['crewInfo'],
@@ -26,13 +30,27 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
     }
   }, [data]);
 
+  const onParticipateSuccess = (res) => {
+    alert('크루에 참여하였습니다');
+    navigate('/');
+  };
+
+  const onParticipateError = (res) => {
+    const errorCode = res.response.data;
+    alert(errorCode.serverErrorMessage);
+  };
+
+  const { mutation: participateCrewMutation } = useGenericMutation({
+    mutationFn: participateCrewApi,
+    onSuccessCb: onParticipateSuccess,
+    onErrorCb: onParticipateError,
+  });
+
   if (!modalOpen) return null;
 
-  // 장소 저장
-  // const handleCrewInfo = () => {
-  //   setSelectedPlace(place);
-  //   setModalOpen(true);
-  // };
+  const handleCrew = () => {
+    participateCrewMutation.mutate(crewId);
+  };
 
   return (
     <PopUpModal page="crew" onClose={() => setModalOpen(false)}>
@@ -95,13 +113,13 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
       </S.CheckContainer>
       <S.BtnContainer>
         <Button title="다음에 하기" width="12.3rem" color={true} />
-        {/* <Button
+        <Button
           disabled={!isChecked}
           title="이웃 참여하기"
           width="21.4rem"
           color={!isChecked}
-          onClick={}
-        /> */}
+          onClick={handleCrew}
+        />
       </S.BtnContainer>
     </PopUpModal>
   );

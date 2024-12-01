@@ -42,3 +42,9 @@ export const newCrewApi = async ({ newCrewInfo, sportVoucherId }: { newCrewInfo:
   const data = await authAPI.post(`/crews/sport-vouchers/${sportVoucherId }`,newCrewInfo );
   return data;
 };
+
+
+export const participateCrewApi = async (crewId:number) => {
+  const data = await authAPI.post(`/crews/${crewId}`);
+  return data;
+};
