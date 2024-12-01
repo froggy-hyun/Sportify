@@ -10,22 +10,22 @@
         <th>사진</th>
         <td width="100" align="center">
             <a href="https://github.com/gmlstjq123">
-                <img src="./image/byeon.jpeg" width="150" height="150">
+                <img src="" width="150" height="150">
             </a>
         </td>
         <td width="100" align="center">
             <a href="https://github.com/rossssa">
-                <img src="./image/lee.png" width="150" height="150">
+                <img src="![image](https://github.com/user-attachments/assets/c595d5b8-d3cf-4180-b182-2b2373720cfa)" width="150" height="150">
             </a>
         </td>
         <td width="100" align="center">
             <a href="https://github.com/songhaechan">
-                <img src="./image/song.jpeg" width="150" height="150">
+                <img src="![image](https://github.com/user-attachments/assets/2b1ddf49-7edd-46ab-babf-b8041c04d9ee)" width="150" height="150">
             </a>
         </td>
         <td width="100" align="center">
             <a href="https://github.com/duddn2012">
-                <img src="./image/go.png" width="150" height="150">
+                <img src="![image](https://github.com/user-attachments/assets/0bd24c01-1378-4152-9c2d-4ffabfaad30e)" width="150" height="150">
             </a>
         </td>
     </tr>
