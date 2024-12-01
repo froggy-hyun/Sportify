@@ -9,23 +9,23 @@
     <tr>
         <th>사진</th>
         <td width="100" align="center">
-            <a href="https://github.com/gmlstjq123">
+            <a href="https://github.com/songhaechan">
                 <img src="" width="150" height="150">
             </a>
         </td>
         <td width="100" align="center">
-            <a href="https://github.com/rossssa">
-                <img src="![image](https://github.com/user-attachments/assets/c595d5b8-d3cf-4180-b182-2b2373720cfa)" width="150" height="150">
+            <a href="https://github.com/jihye9549">
+                <img src="![gu](https://github.com/user-attachments/assets/58fb742e-d54e-433c-b77a-ba147aaf86b9)" width="150" height="150">
             </a>
         </td>
         <td width="100" align="center">
-            <a href="https://github.com/songhaechan">
-                <img src="![image](https://github.com/user-attachments/assets/2b1ddf49-7edd-46ab-babf-b8041c04d9ee)" width="150" height="150">
+            <a href="https://github.com/froggy-hyun">
+                <img src="![choi](https://github.com/user-attachments/assets/7da4b28e-cd10-49bb-87a8-e9b8b430566d)" width="150" height="150">
             </a>
         </td>
         <td width="100" align="center">
-            <a href="https://github.com/duddn2012">
-                <img src="![image](https://github.com/user-attachments/assets/0bd24c01-1378-4152-9c2d-4ffabfaad30e)" width="150" height="150">
+            <a href="https://github.com/76Dosu">
+                <img src="![kim](https://github.com/user-attachments/assets/b28e5438-528e-47aa-9576-d7a646907109)" width="150" height="150">
             </a>
         </td>
     </tr>
