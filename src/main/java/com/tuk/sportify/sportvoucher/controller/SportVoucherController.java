@@ -72,7 +72,7 @@ public class SportVoucherController {
     private final PopularSportService popularSportService;
 
     // 내 근처 최근 3개월 인기 스포츠 종목 반환
-    @GetMapping("/popular-sports")
+    @GetMapping("/past-popularity")
     @Operation(
             summary = "내 근처 인기 스포츠 조회",
             description = "로그인한 사용자의 위치를 기준으로 인기 있는 스포츠를 조회합니다."
