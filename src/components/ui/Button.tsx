@@ -7,15 +7,24 @@ interface ButtonProps {
   color?: boolean;
   outStorke?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 }
 
-const Button = memo(({ title, onClick, width, color = false, outStorke = false }: ButtonProps) => {
-  return (
-    <Btn onClick={onClick} $width={width} $color={color} $outStorke={outStorke}>
-      {title}
-    </Btn>
-  );
-});
+const Button = memo(
+  ({ disabled = false, title, onClick, width, color = false, outStorke = false }: ButtonProps) => {
+    return (
+      <Btn
+        disabled={disabled}
+        onClick={onClick}
+        $width={width}
+        $color={color}
+        $outStorke={outStorke}
+      >
+        {title}
+      </Btn>
+    );
+  }
+);
 
 export default Button;
 

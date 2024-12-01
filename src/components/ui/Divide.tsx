@@ -12,7 +12,6 @@ export default Divide;
 
 const DivideContainer = styled.div<{ $thin?: boolean; $margin?: string }>`
   width: 100%;
-  height: 1.2rem;
   height: ${(props) => (props.$thin ? '1px' : '1.2rem')};
   margin: ${(props) => (props.$margin ? props.$margin : 0)};
   background-color: var(--grayBG);

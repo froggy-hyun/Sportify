@@ -23,8 +23,12 @@ export const trendingTicketsApi = async () => {
 };
 
 
-
 export const myAddressesApi = async () => {
   const data = await authAPI.get("/addresses");
+  return data;
+};
+
+export const crewInfoApi = async (crewId:number) => {
+  const data = await authAPI.get(`/crews/${crewId}`);
   return data;
 };
