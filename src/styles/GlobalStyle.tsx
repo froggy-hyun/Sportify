@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 :root {
-    margin: 6.4rem 0 8.6rem 0;
+    margin: 6.7rem 0 8.88rem 0;
     // BrandColor
     --brandColor:#0096C7;
     
