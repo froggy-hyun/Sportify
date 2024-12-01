@@ -4,9 +4,10 @@ import styled from 'styled-components';
 interface PopUpModalProps {
   children: React.ReactNode;
   onClose: () => void;
+  page: 'main' | 'crew' | 'address';
 }
 
-const PopUpModal = ({ children, onClose }: PopUpModalProps) => {
+const PopUpModal = ({ children, onClose, page }: PopUpModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,7 +28,9 @@ const PopUpModal = ({ children, onClose }: PopUpModalProps) => {
 
   return (
     <Background>
-      <Modal ref={modalRef}>{children}</Modal>
+      <Modal $page={page} ref={modalRef}>
+        {children}
+      </Modal>
     </Background>
   );
 };
@@ -46,7 +49,7 @@ export const Background = styled.div`
   background: rgba(0, 0, 0, 0.4);
 `;
 
-export const Modal = styled.div`
+export const Modal = styled.div<{ $page: 'main' | 'crew' | 'address' }>`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -54,7 +57,8 @@ export const Modal = styled.div`
   bottom: 0;
   width: 100%;
   height: 31.5rem;
+  height: ${({ $page }) => ($page === 'main' ? '31.5rem' : $page === 'crew' ? '62rem' : '31.5rem')};
   flex-shrink: 0;
   border-radius: 2rem 2rem 0 0;
-  padding: 0 2.4rem;
+  padding: 4.8rem 2.4rem 4rem 2.4rem;
 `;

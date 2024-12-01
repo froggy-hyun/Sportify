@@ -82,9 +82,22 @@ export interface MyCrewsState {
   voucherAddress: string,
   imageUrl: string,
 }
+
 export interface ActivityTicketsState {
   voucherId?: number,
   voucherCourseName: string,
   crewName?: string,
   voucherAddress?: string,
+}
+
+export interface CrewInfoState {
+  crewId: null|number,
+  crewName: string,
+  rules:string [],
+   goals: string [],
+   difficultyLevel: string,
+   capacity: number,
+   numberOfParticipants: number,
+   genderRule: string,
+   imageUrl: string,
 }

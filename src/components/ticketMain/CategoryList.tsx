@@ -2,15 +2,18 @@ import * as S from '@/styles/pagesStyles/ticketStyles/CategoryList.styled';
 import { useRecoilState } from 'recoil';
 import { currentCategoryState } from '@/recoil/atom/category';
 
-import { CategoryData  } from "@/constants/categoryData";
-import CategoryItem from "./CategoryItem";
+import { CategoryData } from '@/constants/categoryData';
+import CategoryItem from './CategoryItem';
 
 const CategoryList = () => {
-
   const [selectedCategory, setSelectedCategory] = useRecoilState(currentCategoryState);
-  
+
   const handleCategoryClick = (idx: number) => {
-    setSelectedCategory({ title: CategoryData[idx].title, majorCategory_idx: idx, middleCategory_idx: 0 });
+    setSelectedCategory({
+      title: CategoryData[idx].title,
+      majorCategory_idx: idx,
+      middleCategory_idx: 0,
+    });
   };
 
   return (

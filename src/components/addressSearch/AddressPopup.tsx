@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { addressModalState } from '@/recoil/atom/addressModal';
+import { modalState } from '@/recoil/atom/addressModal';
 
 import * as S from '@/styles/componentsStyles/AddressPopUp.styled';
 import BaseInput from '@/components/ui/BaseInput';
@@ -8,7 +8,7 @@ import { useGenericMutation } from '@/service/mutations/customMutation';
 import { addressesApi } from '@/service/mutations';
 import { PopUpModal } from '../ui';
 const AddressPopup = ({ place }: { place: kakao.maps.services.PlacesSearchResultItem }) => {
-  const [modalOpen, setModalOpen] = useRecoilState(addressModalState);
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [userInput, setUserInput] = useState<string>('');
   const onRegisterSuccess = () => {
     alert('등록 성공');
@@ -36,7 +36,7 @@ const AddressPopup = ({ place }: { place: kakao.maps.services.PlacesSearchResult
 
   if (!modalOpen) return null;
   return (
-    <PopUpModal onClose={() => setModalOpen(false)}>
+    <PopUpModal page="address" onClose={() => setModalOpen(false)}>
       <S.Title>주소에 대해 설명해주세요.</S.Title>
       <S.Name>주소 이름</S.Name>
       <BaseInput

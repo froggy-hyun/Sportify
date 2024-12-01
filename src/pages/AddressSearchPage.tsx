@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import * as S from '@/styles/componentsStyles/AddressSearch.styled';
 import SearchResults from '@/components/addressSearch/SearchResults';
 import MyAddressesList from '@/components/addressSearch/MyAddresses';
-import { addressModalState } from '@/recoil/atom/addressModal';
+import { modalState } from '@/recoil/atom/addressModal';
 import AddressPopup from '@/components/addressSearch/AddressPopup';
 import BaseInput from '@/components/ui/BaseInput';
 import useSerchAddress from '@/hooks/useSerchAddress';
@@ -20,7 +20,7 @@ const AddressSearchPage = () => {
   const myLocation = useRecoilValue(currentLocationState);
   const [selectedPlace, setSelectedPlace] =
     useState<kakao.maps.services.PlacesSearchResultItem | null>(null); // 주소 클릭 후  저장
-  const [modalOpen, setModalOpen] = useRecoilState(addressModalState);
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const { searchPlaces } = useSerchAddress();
 
   const { isLoading, data, isError } = useQuery({
