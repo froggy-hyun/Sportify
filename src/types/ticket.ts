@@ -14,7 +14,16 @@ export interface Ticket {
   requestNumberOfPerson: number;
   duration: string;
   price: number;
+  crews: DeatilTicketCrewListProps[];
 }
+
+export interface DeatilTicketCrewListProps {
+  crewName: string;
+  imageUrl: string;
+  difficultyLevel: string;
+  numberOfParticipants: number;
+  crewCapacity: number;
+};
 
 export interface TicketCompItemProps {
   data: Ticket[];

@@ -74,3 +74,7 @@ export const MoreBtn  = styled.button`
   line-height: normal;
   background: var(--white); 
 `;
+
+export const CrewList  = styled.div`
+  width: 100%;
+`;

@@ -3,5 +3,6 @@ import CategoryList from './CategoryList';
 import CategoryItem from './CategoryItem';
 import TicketList from './TicketList';
 import TicketCompItem from './TicketCompItem';
+import CrewItem from './CrewItem';
 
-export { CategoryContainer, CategoryList, CategoryItem, TicketList, TicketCompItem };
+export { CategoryContainer, CategoryList, CategoryItem, TicketList, TicketCompItem, CrewItem };
