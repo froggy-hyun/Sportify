@@ -58,14 +58,14 @@
                 <img src="http://img.shields.io/badge/songhaechan-green?style=social&logo=github"/>
             </a>
         </td>
-        <td width="100" align="center">https://github.com/froggy-hyun
+        <td width="100" align="center">
             <a href="https://github.com/jihye9549">
                 <img src="http://img.shields.io/badge/jihye9549-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
             <a href="https://github.com/froggy-hyun">
-                <img src="http://img.shields.io/badge/froggy-hyun-green?style=social&logo=github"/>
+                <img src="http://img.shields.io/badge/froggyhyun-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
