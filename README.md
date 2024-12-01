@@ -1,4 +1,4 @@
-# SPORTIFY : 2024년 국민체육진흥공단 공공데이터활용 경진대회 출품작
+# SPORTIFY : 2024년 국민체육진흥공단 공공데이터활용 경진대회
 
 # Team
 
@@ -54,23 +54,23 @@
     <tr>
         <th>GitHub</th>
         <td width="100" align="center">
-            <a href="https://github.com/gmlstjq123">
-                <img src="http://img.shields.io/badge/gmlstjq123-green?style=social&logo=github"/>
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/rossssa">
-                <img src="http://img.shields.io/badge/rossssa-green?style=social&logo=github"/>
-            </a>
-        </td>
-        <td width="100" align="center">
             <a href="https://github.com/songhaechan">
                 <img src="http://img.shields.io/badge/songhaechan-green?style=social&logo=github"/>
             </a>
         </td>
+        <td width="100" align="center">https://github.com/froggy-hyun
+            <a href="https://github.com/jihye9549">
+                <img src="http://img.shields.io/badge/jihye9549-green?style=social&logo=github"/>
+            </a>
+        </td>
         <td width="100" align="center">
-            <a href="https://github.com/duddn2012">
-                <img src="http://img.shields.io/badge/duddn2012-green?style=social&logo=github"/>
+            <a href="https://github.com/froggy-hyun">
+                <img src="http://img.shields.io/badge/froggy-hyun-green?style=social&logo=github"/>
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/76Dosu">
+                <img src="http://img.shields.io/badge/76Dosu-green?style=social&logo=github"/>
             </a>
         </td>
     </tr>
