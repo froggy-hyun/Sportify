@@ -56,11 +56,13 @@ public class PopularSportService {
 
             List<PopularSportResponse> top3Sports = popularSportMapper.toPopularSportResponses(
                     sportNameToCount.entrySet().stream()
-                            .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
-                            .limit(3)
+                            .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue())) // 내림차순 정렬
+                            .limit(3) // 상위 3개 제한
                             .collect(Collectors.toMap(
                                     Map.Entry::getKey,
-                                    Map.Entry::getValue
+                                    Map.Entry::getValue,
+                                    (e1, e2) -> e1, // 병합 함수
+                                    LinkedHashMap::new // 정렬 순서를 유지하기 위해 LinkedHashMap 사용
                             ))
             );
 
@@ -81,11 +83,14 @@ public class PopularSportService {
 
         // 지난 달과 지지난 달 각각의 시작/끝 날짜 계산
         Map<String, int[]> periods = new LinkedHashMap<>();
-        for (int i = 2; i >= 1; i--) {
+        for (int i = 2; i >= 1; i--) { // 1달 전과 2달 전
             LocalDate monthStart = currentLocalDate.minusMonths(i).withDayOfMonth(1);
             LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
-            String periodName = i == 1 ? "지난 달" : "지지난 달"; // 표시 텍스트 설정
-            periods.put(periodName, new int[]{
+
+            // "MM월" 형식으로 표시
+            String monthLabel = monthStart.getMonthValue() + "월";
+
+            periods.put(monthLabel, new int[]{
                     Integer.parseInt(monthStart.format(formatter)),
                     Integer.parseInt(monthEnd.format(formatter))
             });
