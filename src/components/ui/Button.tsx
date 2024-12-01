@@ -7,15 +7,24 @@ interface ButtonProps {
   color?: boolean;
   outStorke?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 }
 
-const Button = memo(({ title, onClick, width, color = false, outStorke = false }: ButtonProps) => {
-  return (
-    <Btn onClick={onClick} $width={width} $color={color} $outStorke={outStorke}>
-      {title}
-    </Btn>
-  );
-});
+const Button = memo(
+  ({ disabled = false, title, onClick, width, color = false, outStorke = false }: ButtonProps) => {
+    return (
+      <Btn
+        disabled={disabled}
+        onClick={onClick}
+        $width={width}
+        $color={color}
+        $outStorke={outStorke}
+      >
+        {title}
+      </Btn>
+    );
+  }
+);
 
 export default Button;
 
@@ -30,11 +39,15 @@ export const Btn = styled.button<{ $color: boolean; $width?: string; $outStorke:
     props.$outStorke ? 'var(--brandColor)' : !props.$color ? 'var(--white)' : 'var(--textC8)'};
   align-self: stretch;
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: ${(props) => (props.$color ? 400 : 700)};
   line-height: normal;
   background-color: ${(props) =>
     props.$outStorke ? 'transparent' : !props.$color ? 'var(--brandColor)' : 'var(--grayBG)'};
   width: ${(props) => props.$width || '100%'};
   border: ${(props) =>
-    props.$outStorke ? '1px solid var(--brandColor)' : !props.$color ? '1px solid var(--brandColor)' : '1px solid var(--grayBG)'};
+    props.$outStorke
+      ? '1px solid var(--brandColor)'
+      : !props.$color
+        ? '1px solid var(--brandColor)'
+        : '1px solid var(--grayBG)'};
 `;

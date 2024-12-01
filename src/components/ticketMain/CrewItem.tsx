@@ -3,9 +3,15 @@ import { DeatilTicketCrewListProps } from '@/types/ticket';
 
 import CapacityIcon from '@/assets/icon/navigation/마이_DeActive.png';
 
-const CrewItem = ({ crews }: { crews: DeatilTicketCrewListProps }) => {
+const CrewItem = ({
+  crews,
+  onClick,
+}: {
+  crews: DeatilTicketCrewListProps;
+  onClick: () => void;
+}) => {
   return (
-    <S.CrewItemContainer>
+    <S.CrewItemContainer onClick={onClick}>
       <S.Image src={crews.imageUrl} />
       <S.InfoArea>
         <S.Info>
@@ -13,8 +19,10 @@ const CrewItem = ({ crews }: { crews: DeatilTicketCrewListProps }) => {
           <S.Name>{crews.crewName}</S.Name>
         </S.Info>
         <S.CapacityArea>
-          <S.CapacityIcon src={CapacityIcon}/>
-          <S.Capacity>{crews.numberOfParticipants}/{crews.crewCapacity}</S.Capacity>
+          <S.CapacityIcon src={CapacityIcon} />
+          <S.Capacity>
+            {crews.numberOfParticipants}/{crews.crewCapacity}
+          </S.Capacity>
         </S.CapacityArea>
       </S.InfoArea>
     </S.CrewItemContainer>
