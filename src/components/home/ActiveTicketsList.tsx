@@ -1,23 +1,24 @@
-import { activeTicketsData } from '@/constants/homeData';
-import { TicketItemType } from '@/types/ticket';
 import { Title } from '@/components';
 import ActiveTicketItem from './TicketItem';
 
 import * as S from '@/styles/pagesStyles/homeStyles/ActiveTicketsList.styled';
+import { ActivityTicketsState } from '@/recoil/atom/types';
+import { useRecoilValue } from 'recoil';
+import { activityTicketsState } from '@/recoil/atom/activityTickets';
 
 const ActiveTicketsList = () => {
+  const activityData = useRecoilValue(activityTicketsState);
   return (
     <S.TicketsListContainer>
-      <Title title="현재 활동중인 이용권" color={false}/>
-      
+      <Title title="현재 활동중인 이용권" color={false} />
+
       <S.Tickets>
-        {activeTicketsData.map((item: TicketItemType, index) => (
+        {activityData.map((item: ActivityTicketsState) => (
           <ActiveTicketItem
-            key={index}
-            title={item.title}
-            address={item.address}
-            start={item.start}
-            end={item.end}
+            key={item.voucherId}
+            voucherCourseName={item.voucherCourseName}
+            voucherAddress={item.voucherAddress}
+            duration={'2010.10.22~2013.01.30'}
             ticket="active"
           />
         ))}

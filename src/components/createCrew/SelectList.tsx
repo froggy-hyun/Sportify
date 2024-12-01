@@ -60,7 +60,7 @@ const SelectorList = <T extends string>({
 
   return (
     <S.SelectListContainer>
-      <Title title={title} color={true} />
+      <Title cut={2} title={title} color={'brand'} />
       <S.SelectContainer>
         {keys.map((key) => (
           <SelectItem

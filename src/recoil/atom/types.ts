@@ -27,13 +27,64 @@ export interface NewCrewState{
   imageId:number
 }
 
-export interface SignUpState {
-  email: string,
-  password:string,
+export interface SignUpState extends LoginState  {
   name: string,
   gender: typeof Gender[GenderKey]
   disabled: boolean
 }
 
+
+export interface LoginState {
+  email: string,
+  password:string,
+}
+
+
 export type GenderKey = keyof typeof Gender
 export type DisabledKey = keyof typeof Disabled
+
+
+
+export interface MyAddressesState {
+  addressId : number,
+  address : string,
+  addressName: string
+
+}
+
+
+
+export interface addressesType{
+  longitude : number,
+  latitude  : number,  
+  address : string
+  addressName: string
+}
+
+
+
+export interface TrendingTicketsState  {
+  voucherId?:  number,
+  voucherCourseName:string ,
+  subCategory?: string ,
+  address?: string ,
+  duration?: string ,
+  requestNumberOfPerson?: number,
+  price?: number
+}
+
+
+export interface MyCrewsState {
+  crewId: number,
+  crewName: string,
+  voucherCourseName:string,
+  duration: string,
+  voucherAddress: string,
+  imageUrl: string,
+}
+export interface ActivityTicketsState {
+  voucherId?: number,
+  voucherCourseName: string,
+  crewName?: string,
+  voucherAddress?: string,
+}

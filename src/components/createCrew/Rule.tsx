@@ -39,7 +39,7 @@ const Rule = () => {
 
   return (
     <K.SelectListContainer>
-      <Title title="규칙을 설정하세요." color={true} />
+      <Title cut={2} title="규칙을 설정하세요." color={'brand'} />
       <S.RulesContainer>
         {newCrew.rules.map((item, index) => (
           <RuleItem

@@ -1,29 +1,36 @@
 import * as S from '@/styles/pagesStyles/homeStyles/TrendingTickets.styled';
-import { activeTicketsData } from '@/constants/homeData';
-import { TicketItemType } from '@/types/ticket';
+
 import { Title } from '@/components';
 
 import ActiveTicketItem from './TicketItem';
+import { useRecoilValue } from 'recoil';
+import { trendingTicketsState } from '@/recoil/atom/trendingTickets';
 
 const TrendingTickets = () => {
+  const trendingTicketData = useRecoilValue(trendingTicketsState);
   return (
     <S.TrendingTicketsContainer>
-      <Title title="🔥 요즘 HOT한 운동 이용권" color={true}>
+      <Title title="🔥 우리 지역 트렌드 이용권" color={true}>
         <S.MoreBtn>더보기</S.MoreBtn>
       </Title>
 
       <S.TrendingTickes>
-        {activeTicketsData.map((item: TicketItemType, index) => (
-          <ActiveTicketItem
-            ticket="trending"
-            key={index}
-            title={item.title}
-            address={item.address}
-            start={item.start}
-            end={item.end}
-            tags={item.tags}
-          />
-        ))}
+        {trendingTicketData && trendingTicketData.length > 0 ? (
+          trendingTicketData.map((item) => (
+            <ActiveTicketItem
+              ticket="trending"
+              key={item.voucherId}
+              voucherCourseName={item.voucherCourseName}
+              address={item.address}
+              duration={item.duration}
+              requestNumberOfPerson={item.requestNumberOfPerson}
+              subCategory={item.subCategory}
+              price={item.price}
+            />
+          ))
+        ) : (
+          <p>현재 HOT한 운동 이용권이 없습니다.</p>
+        )}
       </S.TrendingTickes>
     </S.TrendingTicketsContainer>
   );

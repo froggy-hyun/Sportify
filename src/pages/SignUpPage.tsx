@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as S from '@/styles/pagesStyles/SignUpPage.styled';
 import { Title, LabelTitle, BaseInput, Divide } from '@/components/ui';
 import { useRecoilState } from 'recoil';
@@ -7,8 +7,12 @@ import { Disabled, Gender } from '@/constants/signUpInfo';
 import { DisabledKey, GenderKey } from '@/recoil/atom/types';
 import SelectItem from '@/components/createCrew/SelectItem';
 import Button from '@/components/ui/Button';
+import { useGenericMutation } from '@/service/mutations/customMutation';
+import { signUpApi } from '@/service/mutations';
+import { useNavigate } from 'react-router-dom';
 const SignUpPage = () => {
   const [signUpstate, setSignUpState] = useRecoilState(signUpState);
+  const navigate = useNavigate();
 
   const selectGender = (item: GenderKey) => {
     setSignUpState((prev) => ({
@@ -31,11 +35,32 @@ const SignUpPage = () => {
     }));
   };
 
+  const onSignUpSuccess = () => {
+    alert('회원가입 성공');
+    navigate('/login');
+  };
+
+  const onSignUpError = (res) => {
+    if (res.response.status === 400) {
+      alert('이미 존재하는 이메일입니다');
+    }
+  };
+  const { mutation: signUpMutation } = useGenericMutation({
+    mutationFn: signUpApi,
+    onSuccessCb: onSignUpSuccess,
+    onErrorCb: onSignUpError,
+  });
+
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signUpMutation.mutate(signUpstate);
+  };
+
   // 반복되는 부분 추후 컴포넌트화
   return (
     <S.SignUpContainer>
       <Title login={true} title="회원가입" color={true} />
-      <S.SignUpInfoContainer>
+      <S.SignUpInfoContainer onSubmit={onSubmitHandler}>
         <LabelTitle title="이메일" />
         <BaseInput
           placeholder="email@email.com"
