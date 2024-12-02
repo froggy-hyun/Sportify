@@ -13,7 +13,6 @@ import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class CrewMapper {
@@ -42,7 +41,7 @@ public class CrewMapper {
         return CrewDetailResponse.builder()
                 .crewId(crew.getId())
                 .capacity(crew.getCapacity())
-                .numberOfParticipants(crew.getNumberOfParticipants())
+                .numberOfParticipants(crew.getNumberOfParticipant())
                 .crewName(crew.getName())
                 .difficultyLevel(crew.getDifficultyLevel().getDescription())
                 .goals(getGoalsToString(crew))

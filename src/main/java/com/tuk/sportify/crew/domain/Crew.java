@@ -63,7 +63,7 @@ public class Crew {
     @Enumerated(EnumType.STRING)
     private DifficultyLevel difficultyLevel;
     private Integer capacity;
-    private Integer numberOfParticipants;
+    private Integer numberOfParticipant;
 
     @Builder
     public Crew(
@@ -83,13 +83,13 @@ public class Crew {
         this.crewImage = crewImage;
         this.difficultyLevel = difficultyLevel;
         this.capacity = capacity;
-        this.numberOfParticipants = 0;
+        this.numberOfParticipant = 0;
         addRules(crewRules);
         addGoals(crewGoals);
     }
 
     public void increaseParticipant() {
-        numberOfParticipants++;
+        numberOfParticipant++;
     }
 
     public void validateGender(final Member member) {
@@ -99,7 +99,7 @@ public class Crew {
     }
 
     public void validateCapacity(){
-        if(this.getNumberOfParticipants() + 1 > this.getCapacity()){
+        if(this.getNumberOfParticipant() + 1 > this.getCapacity()){
             throw new ExceedCapacityException(ErrorCode.EXCEED_CAPACITY);
         }
     }

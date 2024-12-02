@@ -93,6 +93,7 @@ public class VoucherMemberMapper {
                 .crewId(crew.getId())
                 .crewCapacity(crew.getCapacity())
                 .difficultyLevel(crew.getDifficultyLevel().getDescription())
+                .numberOfParticipants(crew.getNumberOfParticipant())
                 .crewName(crew.getName())
                 .genderRule(crew.getGenderRule().getDescription())
                 .imageUrl(crew.getCrewImage())
