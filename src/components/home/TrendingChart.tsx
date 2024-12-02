@@ -25,7 +25,7 @@ const TrendingChart: React.FC = () => {
           const sportData = dataForMonth.find((item) => item.sportName === sport);
           return sportData ? sportData.totalRequestNumber : 0;
         }),
-        backgroundColor: chartColorPalette[idx].background,
+        backgroundColor: chartColorPalette[idx],
         borderColor: 'transparent',
         borderWidth: 1,
         barThickness: 40,
