@@ -56,8 +56,6 @@ export const Modal = styled.div<{ $page: 'main' | 'crew' | 'address' }>`
   background: var(--white);
   bottom: 0;
   width: 100%;
-
-  height: 31.5rem;
   height: ${({ $page }) => ($page === 'main' ? '31.5rem' : $page === 'crew' ? '62rem' : '31.5rem')};
   flex-shrink: 0;
   border-radius: 2rem 2rem 0 0;
