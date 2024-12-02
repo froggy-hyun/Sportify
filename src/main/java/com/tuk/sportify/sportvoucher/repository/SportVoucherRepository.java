@@ -2,6 +2,7 @@ package com.tuk.sportify.sportvoucher.repository;
 
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
+import java.util.Optional;
 import org.locationtech.jts.geom.Point;
 import org.springframework.data.domain.Limit;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +33,8 @@ public interface SportVoucherRepository extends JpaRepository<SportVoucher, Long
             int middleCategoryCode,
             boolean disabled,
             Integer currentDate);
+
+    @Query("select sv from SportVoucher sv join fetch sv.middleCategory where sv.id = "
+        + ":sportVoucherId")
+    Optional<SportVoucher> findByIdJoinFetchMiddleCategory(Long sportVoucherId);
 }

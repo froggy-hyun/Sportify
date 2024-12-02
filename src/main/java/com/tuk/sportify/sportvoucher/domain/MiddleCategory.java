@@ -20,6 +20,6 @@ public class MiddleCategory {
     private Integer code;
 
     private String name;
-    
+
     private String middleCategoryImageUrl;
 }
