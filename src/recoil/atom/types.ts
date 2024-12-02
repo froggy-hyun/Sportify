@@ -101,3 +101,11 @@ export interface CrewInfoState {
    genderRule: string,
    imageUrl: string,
 }
+
+
+export interface TrendingPastItem {
+  sportName: string;
+  totalRequestNumber: number;
+}
+
+export type TrendingPastState = Record<string, TrendingPastItem[]>;
