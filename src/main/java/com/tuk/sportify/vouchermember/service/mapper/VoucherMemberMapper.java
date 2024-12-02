@@ -88,20 +88,14 @@ public class VoucherMemberMapper {
 
     private MyCrew toMyCrew(final VoucherMember voucherMember) {
         final Crew crew = voucherMember.getCrew();
-        final Course course = voucherMember.getSportVoucher().getCourse();
-        return new MyCrew(
-                crew.getId(),
-                crew.getName(),
-                course.getName(),
-                course.getDuration(),
-                voucherMember.getVoucherAddress(),
-                findImage(crew));
-    }
-
-    private String findImage(final Crew crew) {
-        if (Objects.isNull(crew.getCrewImage())) {
-            return null;
-        }
-        return crew.getCrewImage().getImageUrl();
+        return MyCrew.builder()
+                .crewCapacity(crew.getCapacity())
+                .crewId(crew.getId())
+                .crewCapacity(crew.getCapacity())
+                .difficultyLevel(crew.getDifficultyLevel().getDescription())
+                .crewName(crew.getName())
+                .genderRule(crew.getGenderRule().getDescription())
+                .imageUrl(crew.getCrewImage())
+                .build();
     }
 }

@@ -65,7 +65,7 @@ public class CrewApplicant {
     }
 
     public void validateCapacity(){
-        if(crew.getNumberOfParticipant() + 1 > crew.getCapacity()){
+        if(crew.getNumberOfParticipants() + 1 > crew.getCapacity()){
             throw new ExceedCapacityException(ErrorCode.EXCEED_CAPACITY);
         }
     }

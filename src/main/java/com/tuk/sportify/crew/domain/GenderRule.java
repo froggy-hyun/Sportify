@@ -10,7 +10,7 @@ import java.util.List;
 public enum GenderRule {
     MALE_ONLY(List.of(Gender.MALE), "남자만"),
     FEMALE_ONLY(List.of(Gender.FEMALE), "여자만"),
-    DONT_CARE(List.of(Gender.FEMALE, Gender.MALE, Gender.OTHER), "무관");
+    DONT_CARE(List.of(Gender.FEMALE, Gender.MALE, Gender.OTHER), "성별 무관");
 
     private final List<Gender> availableGenders;
     private final String description;

@@ -1,11 +1,15 @@
 package com.tuk.sportify.vouchermember.dto;
 
+import lombok.Builder;
+
+@Builder
 public record MyCrew(
     Long crewId,
     String crewName,
-    String voucherCourseName,
-    String duration,
-    String voucherAddress,
+    String genderRule,
+    String difficultyLevel,
+    Integer crewCapacity,
+    Integer numberOfParticipants,
     String imageUrl
 ) {
 

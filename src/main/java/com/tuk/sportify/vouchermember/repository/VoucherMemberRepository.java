@@ -29,7 +29,7 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
     List<VoucherMember> findByMemberJoinFetch(Member member, Integer currentDate);
 
     @Query(
-            "select vm from VoucherMember vm join fetch vm.sportVoucher join fetch vm.crew c join"
+            "select vm from VoucherMember vm join fetch vm.sportVoucher join fetch vm.crew c left join"
                 + " fetch c.crewImage where vm"
                 + ".member =:member and vm.sportVoucher.course.endAt > :currentDate")
     List<VoucherMember> findCurrentCrewsByMember(Member member, Integer currentDate);

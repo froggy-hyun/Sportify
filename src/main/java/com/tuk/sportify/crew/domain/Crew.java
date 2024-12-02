@@ -19,6 +19,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
+import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -62,7 +63,7 @@ public class Crew {
     @Enumerated(EnumType.STRING)
     private DifficultyLevel difficultyLevel;
     private Integer capacity;
-    private Integer numberOfParticipant;
+    private Integer numberOfParticipants;
 
     @Builder
     public Crew(
@@ -82,13 +83,13 @@ public class Crew {
         this.crewImage = crewImage;
         this.difficultyLevel = difficultyLevel;
         this.capacity = capacity;
-        this.numberOfParticipant = 0;
+        this.numberOfParticipants = 0;
         addRules(crewRules);
         addGoals(crewGoals);
     }
 
     public void increaseParticipant() {
-        numberOfParticipant++;
+        numberOfParticipants++;
     }
 
     public void validateGender(final Member member) {
@@ -98,13 +99,20 @@ public class Crew {
     }
 
     public void validateCapacity(){
-        if(this.getNumberOfParticipant() + 1 > this.getCapacity()){
+        if(this.getNumberOfParticipants() + 1 > this.getCapacity()){
             throw new ExceedCapacityException(ErrorCode.EXCEED_CAPACITY);
         }
     }
 
     public boolean isNotCrewHost(final Long memberId) {
         return !host.getId().equals(memberId);
+    }
+
+    public String getCrewImage(){
+        if (Objects.isNull(this.getCrewImage())) {
+            return null;
+        }
+        return this.getCrewImage().getImageUrl();
     }
 
     // 연관관계 매핑

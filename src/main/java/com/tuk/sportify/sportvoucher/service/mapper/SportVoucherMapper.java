@@ -64,7 +64,7 @@ public class SportVoucherMapper {
                 .crewName(crew.getName())
                 .difficultyLevel(crew.getDifficultyLevel().getDescription())
                 .genderRule(crew.getGenderRule().getDescription())
-                .numberOfParticipants(crew.getNumberOfParticipant())
+                .numberOfParticipants(crew.getNumberOfParticipants())
                 .imageUrl(crew.getCrewImage().getImageUrl())
                 .build();
     }

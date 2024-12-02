@@ -42,7 +42,7 @@ public class CrewMapper {
         return CrewDetailResponse.builder()
                 .crewId(crew.getId())
                 .capacity(crew.getCapacity())
-                .numberOfParticipants(crew.getNumberOfParticipant())
+                .numberOfParticipants(crew.getNumberOfParticipants())
                 .crewName(crew.getName())
                 .difficultyLevel(crew.getDifficultyLevel().getDescription())
                 .goals(getGoalsToString(crew))
