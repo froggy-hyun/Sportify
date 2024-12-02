@@ -28,7 +28,7 @@ const TrendingChart: React.FC = () => {
         backgroundColor: chartColorPalette[idx],
         borderColor: 'transparent',
         borderWidth: 1,
-        barThickness: 40,
+        barThickness: 37,
       })),
     };
 
@@ -40,7 +40,7 @@ const TrendingChart: React.FC = () => {
           labels: {
             color: '#333333',
             font: {
-              size: 10,
+              size: 9,
             },
 
             usePointStyle: true, // 동그랗게
@@ -54,7 +54,7 @@ const TrendingChart: React.FC = () => {
           beginAtZero: true,
 
           grid: {
-            color: 'transparent',
+            color: '#f0f0f0',
           },
           ticks: {
             font: {
@@ -66,7 +66,7 @@ const TrendingChart: React.FC = () => {
 
         x: {
           grid: {
-            color: 'transparent',
+            color: '#f0f0f0',
           },
           ticks: {
             font: {
@@ -125,4 +125,5 @@ const ChartContainer = styled.div`
 
 const ChartCanvas = styled.canvas`
   width: 100%;
+  padding-top: 1rem;
 `;
