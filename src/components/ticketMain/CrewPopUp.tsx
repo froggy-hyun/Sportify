@@ -32,7 +32,7 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
 
   const onParticipateSuccess = (res) => {
     alert('크루에 참여하였습니다');
-    navigate('/');
+    navigate('/home');
   };
 
   const onParticipateError = (res) => {

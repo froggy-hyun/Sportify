@@ -27,8 +27,8 @@ function App() {
           <Header />
           <Navbar />
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<LoginPage />} />
             <Route path="/ticket" element={<TicketApplyPage />} />
             <Route path="/neighbor" element={<NeighborPage />} />
             <Route path="/my" element={<MyPage />} />

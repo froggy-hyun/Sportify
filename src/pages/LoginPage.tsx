@@ -24,7 +24,7 @@ const LoginPage = () => {
     const token = res.data.data.tokenInfo.accessToken;
     localStorage.setItem('accessToken', token);
     alert('로그인 성공');
-    navigate('/');
+    navigate('/home');
   };
 
   const onLoginError = (res) => {
