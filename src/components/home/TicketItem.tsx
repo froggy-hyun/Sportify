@@ -1,4 +1,4 @@
-import { TicketItemType, TicketStatus } from '@/types/ticket';
+import { TicketStatus } from '@/types/ticket';
 import * as S from '@/styles/pagesStyles/homeStyles/TicketItem.styled';
 import { ActivityTicketsState, TrendingTicketsState } from '@/recoil/atom/types';
 import personImg from '@/assets/icon/etc/notice_Default.png';
@@ -12,7 +12,6 @@ const TicketItem = ({
   duration,
   address,
   requestNumberOfPerson,
-  price,
   voucherAddress,
   subCategory,
   voucherCourseName,
