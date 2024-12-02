@@ -109,10 +109,10 @@ public class Crew {
     }
 
     public String getCrewImage(){
-        if (Objects.isNull(this.getCrewImage())) {
+        if (Objects.isNull(this.crewImage)) {
             return null;
         }
-        return this.getCrewImage().getImageUrl();
+        return this.crewImage.getImageUrl();
     }
 
     // 연관관계 매핑
