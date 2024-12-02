@@ -11,13 +11,18 @@ export const CrewItemContainer = styled.div`
   &:last-child {
     margin-bottom:16px;
   }
+
+  &:first-child {
+    padding:0px 0px 1.6rem 0px;
+  }
 `;
 
 export const Image = styled.img`
-  width: 10.7rem;
-  height: 10.7rem;
+  width:8rem;
+  height: 8rem;
   object-fit: cover;
   border-radius: 8px;
+  border: 1px solid var(--grayBG);
 `;
 
 export const InfoArea = styled.div`
@@ -49,7 +54,7 @@ export const CapacityArea = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 `;
 
 export const CapacityIcon = styled.img`
