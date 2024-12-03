@@ -9,9 +9,9 @@ const Location = () => {
   const userAddress = useRecoilValue(userAddressState);
   const navigate = useNavigate();
   return (
-    <S.LocationContainer>
+    <S.LocationContainer onClick={() => navigate('/addressSearch')}>
       <S.LocationTitle>{userAddress}</S.LocationTitle>
-      <S.LocationImg src={arrowImg} alt="우측 화살표" onClick={() => navigate('/addressSearch')} />
+      <S.LocationImg src={arrowImg} alt="우측 화살표" />
     </S.LocationContainer>
   );
 };
