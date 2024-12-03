@@ -2,6 +2,7 @@ package com.tuk.sportify.vouchermember.controller;
 
 import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 import com.tuk.sportify.global.response.ApiErrorCodeExample;
+import com.tuk.sportify.global.response.ApiErrorCodeExamples;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.vouchermember.dto.CrewMembersResponse;
 import com.tuk.sportify.vouchermember.dto.MyCurrentCrewResponse;
@@ -16,6 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.RequiredArgsConstructor;
 
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -87,6 +89,7 @@ public class VoucherMemberController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "개인 이용권 신청",
         description = "크루가 아닌 개인으로 이용권을 신청합니다.")
+    @ApiErrorCodeExamples({ErrorCode.DUPLICATED_PARTICIPATION})
     public void createPersonalVoucherMember(
         @AuthenticationMember @Parameter(hidden = true) final Long memberId,
         @PathVariable @Parameter(description = "이용권 Id") final Long sportVoucherId){

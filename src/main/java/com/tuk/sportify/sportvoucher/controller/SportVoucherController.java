@@ -25,6 +25,7 @@ import java.util.Map;
 public class SportVoucherController {
 
     private final SportVoucherService sportVoucherService;
+    private final PopularSportService popularSportService;
 
     // 인기 이용권 조회
     @GetMapping("/popularity")
@@ -67,9 +68,6 @@ public class SportVoucherController {
     public VoucherDetailResponse getSportVoucher(@PathVariable(name = "sportVoucherId") final Long sportVoucherId) {
         return sportVoucherService.getDetailSportVoucher(sportVoucherId);
     }
-
-
-    private final PopularSportService popularSportService;
 
     // 내 근처 최근 3개월 인기 스포츠 종목 반환
     @GetMapping("/past-popularity")
