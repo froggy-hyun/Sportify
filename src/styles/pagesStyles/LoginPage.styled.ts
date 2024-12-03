@@ -13,7 +13,7 @@ export const LoginContainer = styled.form`
 export const CirclesImg = styled.img`
   position: absolute;
   top : -7rem;
-  left: 7.3rem ; 
+  left: 9rem ; 
   width: 5rem;
   height: 6.7rem;
 

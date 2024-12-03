@@ -46,7 +46,7 @@ const LoginPage = () => {
   return (
     <S.LoginContainer onSubmit={onSubmitHandler}>
       <S.CirclesImg src={circlesImg} />
-      <Title title="로그인" color={true} />
+      <Title login={true} title="로그인" color={true} />
       <S.LogininputContainer>
         <BaseInput
           placeholder="아이디를 입력하세요."
