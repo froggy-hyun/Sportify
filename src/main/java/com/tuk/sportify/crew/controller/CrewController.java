@@ -44,8 +44,7 @@ public class CrewController {
     @ApiErrorCodeExamples({
         ErrorCode.CREW_NOT_FOUND,
         ErrorCode.SPORT_VOUCHER_NOT_FOUND,
-        ErrorCode.MEMBER_NOT_FOUND,
-        ErrorCode.DUPLICATED_CREW_CREATION
+        ErrorCode.MEMBER_NOT_FOUND
     })
     @ResponseStatus(HttpStatus.CREATED)
     public CreateCrewResponse createCrew(
