@@ -16,10 +16,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -78,5 +81,15 @@ public class VoucherMemberController {
         @PathVariable @Parameter(description = "크루 ID") final Long crewId
     ){
         return voucherMemberService.findCrewMembers(crewId);
+    }
+
+    @PostMapping("/{sportVoucherId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "개인 이용권 신청",
+        description = "크루가 아닌 개인으로 이용권을 신청합니다.")
+    public void createPersonalVoucherMember(
+        @AuthenticationMember @Parameter(hidden = true) final Long memberId,
+        @PathVariable @Parameter(description = "이용권 Id") final Long sportVoucherId){
+        voucherMemberService.createPersonalVoucherMember(memberId,sportVoucherId);
     }
 }

@@ -45,6 +45,12 @@ public class VoucherMember {
         this.crew.increaseParticipant();
     }
 
+    @Builder
+    public VoucherMember(final Member member, final SportVoucher sportVoucher) {
+        this.member = member;
+        this.sportVoucher = sportVoucher;
+    }
+
     public String getSportVoucherName(){
         return sportVoucher.getCourse().getName();
     }

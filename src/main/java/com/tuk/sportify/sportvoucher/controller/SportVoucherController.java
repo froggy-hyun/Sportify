@@ -65,7 +65,7 @@ public class SportVoucherController {
             description = "스포츠 이용권 단건 조회와 해당 이용권에 생성된 모든 크루들을 반환합니다.")
     @ApiErrorCodeExamples({ErrorCode.SPORT_VOUCHER_NOT_FOUND, ErrorCode.SPORT_VOUCHER_CLOSED})
     public VoucherDetailResponse getSportVoucher(@PathVariable(name = "sportVoucherId") final Long sportVoucherId) {
-        return sportVoucherService.getSportVoucher(sportVoucherId);
+        return sportVoucherService.getDetailSportVoucher(sportVoucherId);
     }
 
 
