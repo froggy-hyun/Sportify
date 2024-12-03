@@ -55,7 +55,7 @@ public class SportVoucherService {
         return sportVoucherMapper.toVouchersResponse(sportVouchers);
     }
 
-    public VoucherDetailResponse getDetailSportVoucher(final Long sportVoucherId) {
+    public VoucherDetailResponse getSportVoucher(final Long sportVoucherId) {
         final SportVoucher sportVoucher = sportVoucherRepository
             .findByIdJoinFetchMiddleCategory(sportVoucherId)
             .orElseThrow(
@@ -64,15 +64,6 @@ public class SportVoucherService {
         final Integer currentDate = SportifyDateFormatter.getCurrentDate();
         sportVoucher.validateOpening(currentDate);
         return sportVoucherMapper.toVoucherDetailResponse(sportVoucher, crews);
-    }
-
-    public SportVoucher getSportVoucher(final Long sportVoucherId){
-        final SportVoucher sportVoucher = sportVoucherRepository.findById(sportVoucherId)
-            .orElseThrow(
-                () -> new SportVoucherNotFoundException(ErrorCode.SPORT_VOUCHER_NOT_FOUND));
-        final Integer currentDate = SportifyDateFormatter.getCurrentDate();
-        sportVoucher.validateOpening(currentDate);
-        return sportVoucher;
     }
 
     public VoucherSearchResponse searchVoucherByCategoryAndAddress(

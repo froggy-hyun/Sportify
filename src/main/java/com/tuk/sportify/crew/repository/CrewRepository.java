@@ -1,7 +1,6 @@
 package com.tuk.sportify.crew.repository;
 
 import com.tuk.sportify.crew.domain.Crew;
-import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +21,4 @@ public interface CrewRepository extends JpaRepository<Crew, Long> {
 
     @Query("select c from Crew c left join fetch c.crewImage where c.sportVoucher=:sportVoucher")
     List<Crew> findBySportVoucher(SportVoucher sportVoucher);
-
-    boolean existsByHostAndSportVoucher(Member member, SportVoucher sportVoucher);
 }
