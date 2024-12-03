@@ -28,11 +28,18 @@ export const SearchInput= styled.input.withConfig({
 
 
 
-  ::placeholder {
+&::placeholder  { /* 기본 */
     font-size: 1.4rem;
     font-weight: 400;
     line-height: normal;
-    color: var(--textC8);
+    color: var(--textC3);
+}
+
+&::-webkit-input-placeholder { /* Chrome, Safari, Edge */
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--textC3);
   }
 `;
 

@@ -1,8 +1,8 @@
 import { TicketStatus } from '@/types/ticket';
 import * as S from '@/styles/pagesStyles/homeStyles/TicketItem.styled';
 import { ActivityTicketsState, TrendingTicketsState } from '@/recoil/atom/types';
-import personImg from '@/assets/icon/etc/notice_Default.png';
-import clockImg from '@/assets/icon/etc/notice_Default.png';
+import personImg from '@/assets/icon/navigation/마이_DeActive.png';
+import clockImg from '@/assets/icon/etc/period_Default.png';
 
 export interface ActiveTicketItemProps extends TrendingTicketsState, ActivityTicketsState {
   ticket: TicketStatus;
