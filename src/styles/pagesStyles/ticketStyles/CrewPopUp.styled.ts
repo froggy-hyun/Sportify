@@ -84,7 +84,7 @@ export const ItemContainer = styled.div`
 
 
 export const RuleContainer = styled.div`
-  width: 35.3rem;
+  width: 100%;
   height: fit-content;
   justify-content: center;
   flex-shrink: 0;

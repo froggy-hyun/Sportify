@@ -70,12 +70,11 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
           <S.InfoTitle $color={true}>목표</S.InfoTitle>가 있어요.
         </S.InfoTitle>
       </S.TitleContainer>
-
-      {crewInfo.goals.map((goal: string, index) => (
-        <S.ItemContainer key={index}>
-          <S.Item>{goal}</S.Item>
-        </S.ItemContainer>
-      ))}
+      <S.ItemContainer>
+        {crewInfo.goals.map((goal: string, index) => (
+          <S.Item key={index}>{goal}</S.Item>
+        ))}
+      </S.ItemContainer>
 
       <S.TitleContainer>
         <S.InfoTitle $color={false}>
@@ -112,11 +111,16 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
         <S.Rule>모든 내용을 확인했습니다.</S.Rule>
       </S.CheckContainer>
       <S.BtnContainer>
-        <Button title="다음에 하기" width="12.3rem" color={true} />
+        <Button
+          title="다음에 하기"
+          width="10.7rem"
+          color={true}
+          onClick={() => setModalOpen(false)}
+        />
         <Button
           disabled={!isChecked}
           title="이웃 참여하기"
-          width="21.4rem"
+          width="20.3rem"
           color={!isChecked}
           onClick={handleCrew}
         />

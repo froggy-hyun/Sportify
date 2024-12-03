@@ -40,7 +40,7 @@ const HomePopUp = () => {
       </S.InfoContainer>
 
       <S.BtnContainer>
-        <Button title="있어요" width="10.6rem" color={true} onClick={() => closePopUp(false)} />
+        <Button title="있어요" width="10.7rem" color={true} onClick={() => closePopUp(false)} />
         <Button title="주소 설정하기" width="20.3rem" onClick={() => closePopUp(true)} />
       </S.BtnContainer>
       <S.CheckContainer>
