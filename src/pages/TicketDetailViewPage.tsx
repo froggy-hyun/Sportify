@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useFetchTicketsDetail from '@/service/useFetchTicketDetail';
 import * as S from '@/styles/pagesStyles/ticketStyles/TicketDetailViewPage.styled';
 import { useEffect, useState } from 'react';
@@ -7,8 +7,8 @@ import CrewPopUp from '@/components/ticketMain/CrewPopUp';
 import { useRecoilState } from 'recoil';
 import { modalState } from '@/recoil/atom/addressModal';
 
-import PeopleImage from '@/assets/icon/navigation/마이_DeActive.png'
-import DateImage from '@/assets/icon/etc/period_Default.png'
+import PeopleImage from '@/assets/icon/navigation/마이_DeActive.png';
+import DateImage from '@/assets/icon/etc/period_Default.png';
 
 const TicketDetailViewPage = () => {
   const postId = useParams().id;
@@ -16,6 +16,7 @@ const TicketDetailViewPage = () => {
   const crewData = data?.crews || [];
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [selectedCrewId, setSelectedCrewId] = useState<number>(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(data);
@@ -78,7 +79,13 @@ const TicketDetailViewPage = () => {
           ))}
         </S.CrewList>
 
-        <Button title="내가 이웃 모아보기" outStorke></Button>
+        <Button
+          title="내가 이웃 모아보기"
+          outStorke
+          onClick={(e) => {
+            navigate('/createCrew/' + postId);
+          }}
+        ></Button>
         {modalOpen && <CrewPopUp crewId={selectedCrewId} />}
       </S.DetailCrewContainer>
     </div>
