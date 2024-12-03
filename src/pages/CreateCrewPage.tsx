@@ -117,7 +117,7 @@ const CreateCrewPage = () => {
         <Capacity />
       </S.CrewInfoContainer>
       <S.BtnContainer>
-        <Button title="취소하기" width="12.3rem" color={true} onClick={() => navigate(-1)} />
+        <Button title="취소하기" width="12.3rem" color={true} onClick={() => navigate('/ticket')} />
         <Button title="생성하기" width="21.4rem" onClick={onSubmitHandler} />
       </S.BtnContainer>
     </S.CreateCrewPageContainer>
