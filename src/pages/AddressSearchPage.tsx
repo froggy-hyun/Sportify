@@ -53,7 +53,9 @@ const AddressSearchPage = () => {
           onChange={() => searchPlaces({ inputRef, setPlaces })}
           ref={inputRef}
           placeholder={
-            myLocation.address === '' ? '지번,도로명,건물명을 입력해주세요' : myLocation.address
+            myLocation.address === ''
+              ? '지번,도로명,건물명을 입력해주세요'
+              : `내 위치 : ${myLocation.address}`
           }
         />
         {loading && <Loading />}
