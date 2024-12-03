@@ -39,7 +39,7 @@ export const SearchInput= styled.input.withConfig({
     font-size: 1.4rem;
     font-weight: 400;
     line-height: normal;
-    color: var(--textC3);
+    color: var(--textC8);
   }
 `;
 

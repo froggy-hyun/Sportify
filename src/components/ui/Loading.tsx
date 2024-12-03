@@ -17,7 +17,8 @@ export const Background = styled.div`
   height: 100vh;
   top: 0;
   left: 0;
-  background: rgb(255, 255, 255, 0.6);
+  /* background: rgb(255, 255, 255, 0.6); */
+  background: transparent;
   z-index: 999;
   /* 추가: 클릭 차단 */
   pointer-events: all;
