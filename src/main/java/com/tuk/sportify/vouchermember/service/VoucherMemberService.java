@@ -121,6 +121,7 @@ public class VoucherMemberService {
         final Member member = memberService.getMemberById(memberId);
         final SportVoucher sportVoucher = sportVoucherService.getSportVoucher(sportVoucherId);
         final VoucherMember voucherMember = new VoucherMember(member, sportVoucher);
+        validateDuplication(voucherMember);
         voucherMemberRepository.save(voucherMember);
     }
 }
