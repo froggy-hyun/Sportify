@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 interface PopUpModalProps {
@@ -56,10 +56,11 @@ export const Modal = styled.div<{ $page: 'main' | 'crew' | 'address' }>`
   flex-direction: column;
   background: var(--white);
   bottom: 0;
+
   width: 100%;
   z-index: 200;
-  height: ${({ $page }) => ($page === 'main' ? '31.5rem' : $page === 'crew' ? '62rem' : '31.5rem')};
+  /* height: ${({ $page }) => $page === 'main' ? '31.5rem' : $page === 'crew' ? '62rem' : '31.5rem'}; */
   flex-shrink: 0;
   border-radius: 2rem 2rem 0 0;
-  padding: 4.8rem 2.4rem 4rem 2.4rem;
+  padding: 3.2rem 2rem 4rem 2rem;
 `;

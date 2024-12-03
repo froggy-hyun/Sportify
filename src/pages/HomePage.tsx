@@ -21,11 +21,10 @@ const HomePage = () => {
   const setMyCrews = useSetRecoilState(myCrewsState);
   const setActivity = useSetRecoilState(activityTicketsState);
   const setTrendingPast = useSetRecoilState(trendingPastState);
-  
+
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
 
   const HOME_VISITED = Number(localStorage.getItem('homeVisited'));
-  
 
   const { data, errorCode, isLoading } = useQueries(
     ['activityTickets', 'myNeighbors', 'trendingTickets', 'trendingPast'], // queryKey
