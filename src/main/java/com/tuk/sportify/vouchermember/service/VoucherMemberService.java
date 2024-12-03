@@ -7,6 +7,8 @@ import com.tuk.sportify.global.utils.SportifyDateFormatter;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.service.MemberService;
 import com.tuk.sportify.sportvoucher.domain.SportVoucher;
+import com.tuk.sportify.sportvoucher.dto.VoucherDetailResponse;
+import com.tuk.sportify.sportvoucher.service.SportVoucherService;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
 import com.tuk.sportify.vouchermember.dto.CrewMembersResponse;
 import com.tuk.sportify.vouchermember.dto.CrewVoucher;
@@ -35,6 +37,7 @@ public class VoucherMemberService {
     private final VoucherMemberRepository voucherMemberRepository;
     private final VoucherMemberMapper voucherMemberMapper;
     private final MemberService memberService;
+    private final SportVoucherService sportVoucherService;
 
     public PersonalAndCrewVoucherResponse findPersonalAndCrewVouchers(final Long memberId) {
         final Member member = getMember(memberId);
@@ -112,5 +115,14 @@ public class VoucherMemberService {
     public CrewMembersResponse findCrewMembers(final Long crewId){
         List<VoucherMember> crewMembers = voucherMemberRepository.findByCrewId(crewId);
         return voucherMemberMapper.toCrewMembersResponse(crewMembers);
+    }
+
+    @Transactional
+    public void createPersonalVoucherMember(final Long memberId, final Long sportVoucherId){
+        final Member member = memberService.getMemberById(memberId);
+        final SportVoucher sportVoucher = sportVoucherService.getSportVoucher(sportVoucherId);
+        final VoucherMember voucherMember = new VoucherMember(member, sportVoucher);
+        validateDuplication(voucherMember);
+        voucherMemberRepository.save(voucherMember);
     }
 }
