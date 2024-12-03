@@ -7,6 +7,7 @@ export interface Ticket {
   requestNumberOfPerson: number;
   duration: string;
   price: number;
+  subCategoryImageUrl: string;
   crews: DeatilTicketCrewListProps[];
 }
 
@@ -17,7 +18,6 @@ export interface DeatilTicketCrewListProps {
   difficultyLevel: string;
   numberOfParticipants: number;
   crewCapacity: number;
-  crewId:number
 };
 
 export interface TicketCompItemProps {

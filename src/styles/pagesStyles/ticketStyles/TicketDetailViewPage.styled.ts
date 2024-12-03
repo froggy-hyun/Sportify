@@ -8,7 +8,12 @@ export const DetailConatiner = styled.div`
 export const TicketThumArea = styled.div`
   width: 100%;
   height:241px;
-  background: var(--grayBG);
+  overflow: hidden;
+`;
+
+export const TicketImg = styled.img`
+  height:241px;
+  object-fit: cover;
 `;
 
 export const TicketDataArea = styled.div`
