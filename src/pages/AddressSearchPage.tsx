@@ -47,26 +47,24 @@ const AddressSearchPage = () => {
 
   return (
     <S.SearchContainer>
-      <div>
-        <BaseInput
-          search={true}
-          onChange={() => searchPlaces({ inputRef, setPlaces })}
-          ref={inputRef}
-          placeholder={
-            myLocation.address === ''
-              ? '지번,도로명,건물명을 입력해주세요'
-              : `내 위치 : ${myLocation.address}`
-          }
-        />
-        {loading && <Loading />}
-        {inputRef.current?.value ? (
-          <SearchResults places={places} onPlaceClick={handleSavedPlaces} />
-        ) : (
-          <MyAddressesList />
-        )}
+      <BaseInput
+        search={true}
+        onChange={() => searchPlaces({ inputRef, setPlaces })}
+        ref={inputRef}
+        placeholder={
+          myLocation.address === ''
+            ? '지번,도로명,건물명을 입력해주세요'
+            : `내 위치 : ${myLocation.address}`
+        }
+      />
+      {loading && <Loading />}
+      {inputRef.current?.value ? (
+        <SearchResults places={places} onPlaceClick={handleSavedPlaces} />
+      ) : (
+        <MyAddressesList />
+      )}
 
-        {modalOpen && selectedPlace && <AddressPopup place={selectedPlace} />}
-      </div>
+      {modalOpen && selectedPlace && <AddressPopup place={selectedPlace} />}
     </S.SearchContainer>
   );
 };
