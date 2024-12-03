@@ -6,7 +6,7 @@ import { RecoilRoot } from 'recoil';
 import { Header, Navbar } from './components';
 import {
   HomePage,
-  NeighborPage,
+  ManageCrewPage,
   TicketApplyPage,
   TicketDetailViewPage,
   MyPage,
@@ -30,7 +30,7 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/" element={<LoginPage />} />
             <Route path="/ticket" element={<TicketApplyPage />} />
-            <Route path="/neighbor" element={<NeighborPage />} />
+            <Route path="/manageCrew" element={<ManageCrewPage />} />
             <Route path="/my" element={<MyPage />} />
             <Route path="/addressSearch" element={<AddressSearchPage />} />
             <Route path="/signUp" element={<SignUpPage />} />

@@ -11,6 +11,15 @@ export const myNeighborsApi = async () => {
   return data;
 };
 
+export const pastCrewsApi = async () => {
+  const data = await authAPI.get("/voucher-members/my-past-crews", {
+    params : {
+      page: 0,
+      fetchSize: 5
+    } 
+  });
+  return data;
+};
 
 export const trendingTicketsApi = async () => {
   const data = await authAPI.get("/sport-voucher/popularity", {

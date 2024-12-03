@@ -11,14 +11,18 @@ export const CrewItemContainer = styled.div`
   &:last-child {
     margin-bottom:16px;
   }
+
+  &:first-child {
+    padding:0px 0px 1.6rem 0px;
+  }
 `;
 
 export const Image = styled.img`
-  width: 10rem;
-  height: 10rem;
+  width:8rem;
+  height: 8rem;
   object-fit: cover;
   border-radius: 8px;
-  border:1px solid var(--grayBG);
+  border: 1px solid var(--grayBG);
 `;
 
 export const InfoArea = styled.div`

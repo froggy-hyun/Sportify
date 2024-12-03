@@ -25,7 +25,7 @@ export const navLinks :  NavLinks[] = [
   },
   {
       name: "이웃",
-      path: '/neighbor',
+      path: '/manageCrew',
       activeImg:  images[defaultURL+"이웃_Active.png"]?.default,
       deActiveImg :images[defaultURL+"이웃_DeActive.png"]?.default,
   },
