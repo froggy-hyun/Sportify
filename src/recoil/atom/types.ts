@@ -68,7 +68,7 @@ export interface TrendingTicketsState  {
   voucherCourseName:string ,
   subCategory?: string ,
   address?: string ,
-  duration?: string ,
+  duration: string ,
   requestNumberOfPerson?: number,
   price?: number
 }
@@ -87,6 +87,7 @@ export interface ActivityTicketsState {
   voucherId?: number,
   voucherCourseName: string,
   crewName?: string,
+  duration: string,
   voucherAddress?: string,
 }
 
