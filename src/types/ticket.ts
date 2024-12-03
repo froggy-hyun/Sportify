@@ -17,6 +17,7 @@ export interface DeatilTicketCrewListProps {
   difficultyLevel: string;
   numberOfParticipants: number;
   crewCapacity: number;
+  crewId:number
 };
 
 export interface TicketCompItemProps {

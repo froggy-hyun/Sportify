@@ -27,14 +27,14 @@ function App() {
           <Header />
           <Navbar />
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<LoginPage />} />
             <Route path="/ticket" element={<TicketApplyPage />} />
             <Route path="/manageCrew" element={<ManageCrewPage />} />
             <Route path="/my" element={<MyPage />} />
             <Route path="/addressSearch" element={<AddressSearchPage />} />
             <Route path="/signUp" element={<SignUpPage />} />
-            <Route path="/createCrew" element={<CreateCrewPage />} />
+            <Route path="/createCrew/:id" element={<CreateCrewPage />} />
             <Route path="/ticketItem/:id" element={<TicketDetailViewPage />} />
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />

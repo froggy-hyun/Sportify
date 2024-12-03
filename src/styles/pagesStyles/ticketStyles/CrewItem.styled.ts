@@ -39,13 +39,13 @@ export const Info = styled.div`
 `;
 
 export const Difficulty = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
   color: var(--brandColor);
 `;
 
 export const Name = styled.p`
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--textC3);
 `;
@@ -67,4 +67,9 @@ export const Capacity = styled.p`
   font-weight: 400;
   line-height: normal;
   color: var(--textC3);
+`;
+
+export const Highlights = styled.span`
+  font-weight: bold;
+  color: var(--brandColor);
 `;

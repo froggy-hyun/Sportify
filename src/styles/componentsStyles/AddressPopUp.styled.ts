@@ -6,7 +6,7 @@ export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   line-height: normal;
-  padding: 4.8rem 0 0.8rem 0;
+  padding-bottom:0.8rem ;
   border-bottom: solid 1px var(--grayBG);
 
 `;
@@ -25,7 +25,7 @@ export const BtnContainer = styled.div`
   width: 100%;
   height: fit-content;
   justify-content: space-between;
-  margin: 6rem 0 4rem 0 ;
+  margin-top: 6rem;
 `;
 
 export const nextTimeBtn= styled.button`

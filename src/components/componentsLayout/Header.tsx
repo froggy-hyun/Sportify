@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <>
       <S.HeaderContainer>
-        {location.pathname === '/' ? (
+        {location.pathname === '/home' ? (
           <S.LogoImg src={logoImg} alt="sportify" />
         ) : (
           <S.HeaderConstants>

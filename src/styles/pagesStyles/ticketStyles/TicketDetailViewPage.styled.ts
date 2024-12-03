@@ -17,6 +17,15 @@ export const TicketDataArea = styled.div`
 `;
 
 // 
+export const TicketData = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  margin-bottom: 3.2rem;
+`;
+
 export const TicketBasicDataArea = styled.div`
   width: 100%;
 `;
@@ -77,4 +86,41 @@ export const MoreBtn  = styled.button`
 
 export const CrewList  = styled.div`
   width: 100%;
+`;
+
+
+// UtilDetail
+export const UtilInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const DetailArea = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+export const IconImage = styled.img`
+  width:2rem;
+`;
+
+export const People = styled.p`
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--textC3);
+  line-height:normal;
+`;
+
+export const Date = styled.p`
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--textC3);
+  line-height:normal;
+`;
+
+export const Highlights = styled.span`
+  font-weight: bold;
+  color: var(--brandColor);
 `;

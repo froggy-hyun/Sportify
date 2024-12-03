@@ -18,7 +18,7 @@ const ActiveTicketsList = () => {
             key={item.voucherId}
             voucherCourseName={item.voucherCourseName}
             voucherAddress={item.voucherAddress}
-            duration={'2010.10.22~2013.01.30'}
+            duration={item.duration}
             ticket="active"
           />
         ))}

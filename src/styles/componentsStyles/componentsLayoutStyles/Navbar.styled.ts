@@ -11,6 +11,7 @@ export const NavContainer = styled.ul`
   align-items: center;
   display: flex;
   background-color: var(--white);
+  z-index: 100;
   box-shadow: 4px 0px 12px 0px rgba(0, 0, 0, 0.08);
 `;
 

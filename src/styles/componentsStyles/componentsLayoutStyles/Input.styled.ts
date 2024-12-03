@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import searchImg from '@/assets/icon/etc/search_Default.png'
 
 export const SearchInput= styled.input.withConfig({
   shouldForwardProp: (prop) => prop !== 'search'&&  prop !== '$margin', // search는 DOM에 전달되지 않음
@@ -19,7 +20,7 @@ export const SearchInput= styled.input.withConfig({
   ${(props) =>
     props.search &&
     `
-    background: var(--grayBG) url('src/assets/icon/etc/search_Default.png') no-repeat left center;
+    background: var(--grayBG) url(${searchImg}) no-repeat left center;
     background-size: 1.6rem; 
     background-position: 1.6rem center;
     padding-left: 4.3rem;

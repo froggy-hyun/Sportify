@@ -68,7 +68,7 @@ export interface TrendingTicketsState  {
   voucherCourseName:string ,
   subCategory?: string ,
   address?: string ,
-  duration?: string ,
+  duration: string ,
   requestNumberOfPerson?: number,
   price?: number
 }
@@ -82,9 +82,31 @@ export interface MyCrewsState {
   voucherAddress: string,
   imageUrl: string,
 }
+
 export interface ActivityTicketsState {
   voucherId?: number,
   voucherCourseName: string,
   crewName?: string,
+  duration: string,
   voucherAddress?: string,
 }
+
+export interface CrewInfoState {
+  crewId: null|number,
+  crewName: string,
+  rules:string [],
+   goals: string [],
+   difficultyLevel: string,
+   capacity: number,
+   numberOfParticipants: number,
+   genderRule: string,
+   imageUrl: string,
+}
+
+
+export interface TrendingPastItem {
+  sportName: string;
+  totalRequestNumber: number;
+}
+
+export type TrendingPastState = Record<string, TrendingPastItem[]>;

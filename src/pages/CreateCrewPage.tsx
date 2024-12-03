@@ -11,13 +11,14 @@ import Capacity from '@/components/createCrew/Capacity';
 import Button from '@/components/ui/Button';
 import { useGenericMutation } from '@/service/mutations/customMutation';
 import { crewImgApi, newCrewApi } from '@/service/mutations';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CreateCrewPage = () => {
   const [newCrew, setNewCrew] = useRecoilState(newCrewState);
   const newCrewImg = useRecoilValue(newCrewImgState);
   const [waitingForImg, setWaitingForImg] = useState(false);
   const navigate = useNavigate();
+  const postId = useParams().id;
 
   const onCreateImgSuccess = (res) => {
     const newCrewImgId = res.data.data.imageId;
@@ -29,14 +30,13 @@ const CreateCrewPage = () => {
   // 감지 후 mutate 실행
   useEffect(() => {
     if (newCrew.imageId) {
-      // 추후 받아온 이용권 id로 등록하기로 수정예정 (현재는 100으로 고정)
-      newCrewMutation.mutate({ newCrewInfo: newCrew, sportVoucherId: 100 });
+      newCrewMutation.mutate({ newCrewInfo: newCrew, sportVoucherId: Number(postId) });
     }
   }, [newCrew.imageId]); // imageId 변경 시 실행
   const onCreateSuccess = (res) => {
     console.log(res);
     alert('크루 생성 성공');
-    // navigate('/');
+    navigate('/home');
   };
 
   const onCreateError = (res) => {
@@ -71,7 +71,6 @@ const CreateCrewPage = () => {
 
   const onSubmitHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
     if (newCrewImg) {
       newCrewImgMutation.mutate(newCrewImg);
     } else {
@@ -118,7 +117,7 @@ const CreateCrewPage = () => {
         <Capacity />
       </S.CrewInfoContainer>
       <S.BtnContainer>
-        <Button title="취소하기" width="12.3rem" color={true} />
+        <Button title="취소하기" width="12.3rem" color={true} onClick={() => navigate('/ticket')} />
         <Button title="생성하기" width="21.4rem" onClick={onSubmitHandler} />
       </S.BtnContainer>
     </S.CreateCrewPageContainer>
