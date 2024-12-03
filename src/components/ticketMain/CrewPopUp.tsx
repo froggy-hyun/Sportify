@@ -66,7 +66,7 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
 
       <S.TitleContainer>
         <S.InfoTitle $color={false}>
-          우리는 이런
+          우리는 이런&nbsp;
           <S.InfoTitle $color={true}>목표</S.InfoTitle>가 있어요.
         </S.InfoTitle>
       </S.TitleContainer>
@@ -78,7 +78,7 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
 
       <S.TitleContainer>
         <S.InfoTitle $color={false}>
-          우리는 이런
+          우리는 이런&nbsp;
           <S.InfoTitle $color={true}>조건</S.InfoTitle>이 있어요.
         </S.InfoTitle>
       </S.TitleContainer>
@@ -87,7 +87,7 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
       </S.ItemContainer>
       <S.TitleContainer>
         <S.InfoTitle $color={false}>
-          우리는 이런
+          우리는 이런&nbsp;
           <S.InfoTitle $color={true}>규칙</S.InfoTitle>이 있어요.
         </S.InfoTitle>
       </S.TitleContainer>

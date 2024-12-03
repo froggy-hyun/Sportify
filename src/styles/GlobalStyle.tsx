@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 :root {
-    margin: 6.7rem 0 8.88rem 0;
     // BrandColor
     --brandColor:#0096C7;
     
@@ -47,6 +46,7 @@ time, mark, audio, video,input {
 }
 
 html {
+
     font-size: 62.5%; // 10px가 1rem
         /* @media (max-width: 768px) { // 태블릿
             font-size: 50%; // 8px
@@ -64,6 +64,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
+    margin: 6.7rem 0 8.88rem 0;
 	line-height: 1.4;
     background-color: var( --white) ;
 }
