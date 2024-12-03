@@ -7,6 +7,8 @@ import { useRecoilState } from 'recoil';
 import { useQueries } from '@/service/queries/useQueries';
 import { myNeighborsApi, pastCrewsApi } from '@/service/queries';
 
+import FilterIcon from '@/assets/icon/etc/filter_Default.png';
+
 const ManageCrewPage = () => {
   const [myCrews, setMyCrews] = useRecoilState(myCrewsState);
   const [myPastCrews, setMyPastCrews] = useRecoilState(myPastCrewsState);
@@ -24,14 +26,14 @@ const ManageCrewPage = () => {
   useEffect(() => {
     if (data) {
       const myCrewData = data.myNeighbors.data.myCrews;
-      const myPastCrewData = data.myPastCrewsState.data;
+      const myPastCrewData = data.myPastCrewsState.data.myPastCrews;
 
       setMyCrews(myCrewData);
       setMyPastCrews(myPastCrewData);
-      console.log(myCrewData);
-      console.log(myPastCrewData);
+      // console.log(myCrewData);
+      // console.log(myPastCrewData);
     }
-  }, [data]);
+  }, [data, setMyCrews, setMyPastCrews]);
 
   return (
     <div>
@@ -50,7 +52,9 @@ const ManageCrewPage = () => {
       <Divide />
 
       <S.PastCrewListContainer>
-        <Title title="과거의 나의 이웃" color={true} />
+        <Title title="과거의 나의 이웃" color={true}>
+          <S.FilterIcon src={FilterIcon} />
+        </Title>
         <S.PastCrewList>
           {myPastCrews && myPastCrews.length > 0 ? (
             myPastCrews.map((crew) => <CrewItem key={crew.crewId} crews={crew} />)

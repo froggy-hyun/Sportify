@@ -18,3 +18,8 @@ export const PastCrewList  = styled.div`
   width: 100%;
 `;
 
+export const FilterIcon  = styled.img`
+  width:24px;
+  height:24px;
+`;
+

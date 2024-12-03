@@ -14,7 +14,7 @@ export const myNeighborsApi = async () => {
 export const pastCrewsApi = async () => {
   const data = await authAPI.get("/voucher-members/my-past-crews", {
     params : {
-      page: 2,
+      page: 0,
       fetchSize: 5
     } 
   });
