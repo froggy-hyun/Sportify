@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Divide, Title, CrewItem, Button } from '@/components';
 import * as S from '@/styles/pagesStyles/manageCrewStyles/ManageCrewPage.styled';
-import { myCrewsState } from '@/recoil/atom/myCrews';
+import { myCrewsState, myPastCrewsState } from '@/recoil/atom/myCrews';
 import { useRecoilState } from 'recoil';
 
 import { useQueries } from '@/service/queries/useQueries';
@@ -9,7 +9,7 @@ import { myNeighborsApi, pastCrewsApi } from '@/service/queries';
 
 const ManageCrewPage = () => {
   const [myCrews, setMyCrews] = useRecoilState(myCrewsState);
-  // const [myPastCrews, setMyPastCrews] = useRecoilState(myPastCrewsState);
+  const [myPastCrews, setMyPastCrews] = useRecoilState(myPastCrewsState);
 
   const { data } = useQueries(
     ['myNeighbors', 'myPastCrewsState'], // queryKey
@@ -24,12 +24,12 @@ const ManageCrewPage = () => {
   useEffect(() => {
     if (data) {
       const myCrewData = data.myNeighbors.data.myCrews;
-      // const myPastCrewData = data.myPastCrewsState.data;
+      const myPastCrewData = data.myPastCrewsState.data;
 
       setMyCrews(myCrewData);
-      // setMyPastCrews(myPastCrewData);
+      setMyPastCrews(myPastCrewData);
       console.log(myCrewData);
-      // console.log(myPastCrewData);
+      console.log(myPastCrewData);
     }
   }, [data]);
 
@@ -46,7 +46,19 @@ const ManageCrewPage = () => {
         </S.MyCrewList>
         <Button title="이웃 추가하기"></Button>
       </S.MyCrewListContainer>
+
       <Divide />
+
+      <S.PastCrewListContainer>
+        <Title title="과거의 나의 이웃" color={true} />
+        <S.PastCrewList>
+          {myPastCrews && myPastCrews.length > 0 ? (
+            myPastCrews.map((crew) => <CrewItem key={crew.crewId} crews={crew} />)
+          ) : (
+            <p>지난 이웃이 없습니다.</p>
+          )}
+        </S.PastCrewList>
+      </S.PastCrewListContainer>
     </div>
   );
 };
