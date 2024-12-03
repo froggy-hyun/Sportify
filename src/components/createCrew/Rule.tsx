@@ -1,4 +1,3 @@
-import React from 'react';
 import { Title } from '../ui';
 import * as K from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';
 import * as S from '@/styles/pagesStyles/createCrewStyles/Rule.styled';

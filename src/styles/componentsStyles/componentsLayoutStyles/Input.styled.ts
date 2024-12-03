@@ -7,7 +7,6 @@ export const SearchInput= styled.input.withConfig({
   display: flex;
   width: 100%;
   padding: 1.2rem 1.6rem;
-  height: 4.1rem;
   border-radius: 0.8rem;
   outline: 0;
   margin:  ${(props) =>

@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';
 import SelectItem from './SelectItem';
 import { DifficultyLevelKeyType, GenderRuleKeyType, GoalKeyType } from '@/recoil/atom/types';

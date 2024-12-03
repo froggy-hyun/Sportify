@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import * as S from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';
 import PlusImg from '@/assets/icon/etc/plus_Default.png';
 import { useRecoilState } from 'recoil';
