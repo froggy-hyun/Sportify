@@ -11,6 +11,8 @@ import { useQuery } from '@tanstack/react-query';
 import { myAddressesApi } from '@/service/queries';
 import { myAddressesState } from '@/recoil/atom/myAddresses';
 import { currentLocationState } from '@/recoil/atom/currentLocation';
+import { loadingState } from '@/recoil/atom/loading';
+import Loading from '@/components/ui/Loading';
 
 const AddressSearchPage = () => {
   const inputRef = useRef<HTMLInputElement | null>(null); // 검색어 입력 DOM을 참조하기 위한 ref
@@ -22,6 +24,8 @@ const AddressSearchPage = () => {
     useState<kakao.maps.services.PlacesSearchResultItem | null>(null); // 주소 클릭 후  저장
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const { searchPlaces } = useSerchAddress();
+
+  const loading = useRecoilValue(loadingState);
 
   const { isLoading, data, isError } = useQuery({
     queryKey: ['myAddresses'],
@@ -43,21 +47,24 @@ const AddressSearchPage = () => {
 
   return (
     <S.SearchContainer>
-      <BaseInput
-        search={true}
-        onChange={() => searchPlaces({ inputRef, setPlaces })}
-        ref={inputRef}
-        placeholder={
-          myLocation.address === '' ? '지번,도로명,건물명을 입력해주세요' : myLocation.address
-        }
-      />
-      {inputRef.current?.value ? (
-        <SearchResults places={places} onPlaceClick={handleSavedPlaces} />
-      ) : (
-        <MyAddressesList />
-      )}
+      <div>
+        <BaseInput
+          search={true}
+          onChange={() => searchPlaces({ inputRef, setPlaces })}
+          ref={inputRef}
+          placeholder={
+            myLocation.address === '' ? '지번,도로명,건물명을 입력해주세요' : myLocation.address
+          }
+        />
+        {loading && <Loading />}
+        {inputRef.current?.value ? (
+          <SearchResults places={places} onPlaceClick={handleSavedPlaces} />
+        ) : (
+          <MyAddressesList />
+        )}
 
-      {modalOpen && selectedPlace && <AddressPopup place={selectedPlace} />}
+        {modalOpen && selectedPlace && <AddressPopup place={selectedPlace} />}
+      </div>
     </S.SearchContainer>
   );
 };

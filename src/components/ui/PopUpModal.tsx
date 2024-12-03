@@ -45,6 +45,7 @@ export const Background = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 200;
   height: 100vh;
   background: rgba(0, 0, 0, 0.4);
 `;
@@ -56,6 +57,7 @@ export const Modal = styled.div<{ $page: 'main' | 'crew' | 'address' }>`
   background: var(--white);
   bottom: 0;
   width: 100%;
+  z-index: 200;
   height: ${({ $page }) => ($page === 'main' ? '31.5rem' : $page === 'crew' ? '62rem' : '31.5rem')};
   flex-shrink: 0;
   border-radius: 2rem 2rem 0 0;

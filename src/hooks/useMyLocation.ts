@@ -1,17 +1,20 @@
 import { currentLocationState } from '@/recoil/atom/currentLocation';
+import { loadingState } from '@/recoil/atom/loading';
 import React from 'react';
 
 import { useSetRecoilState } from 'recoil';
 const useMyLocation = () => {
   const setMyLocation =useSetRecoilState(currentLocationState) 
+  const setLoading =useSetRecoilState(loadingState) 
 
   // 위치 가져오기
   const searchMyAddress =  () =>{
+    setLoading(true)
   navigator.geolocation.getCurrentPosition(
   (position: GeolocationPosition) => {
+        console.log(position)
         const { latitude, longitude } = position.coords; 
         updateLocation(latitude, longitude);
-        // console.log(latitude, longitude)
    
      },
        (error: GeolocationPositionError) => {
@@ -37,10 +40,13 @@ const useMyLocation = () => {
           if (status === window.kakao.maps.services.Status.OK) {
             const address = result[0]?.address?.address_name || '';
             setMyLocation({ address: address , latitude, longitude });
+          
           }
         }
       );
     }
+
+    setLoading(false)
       
     }
   
