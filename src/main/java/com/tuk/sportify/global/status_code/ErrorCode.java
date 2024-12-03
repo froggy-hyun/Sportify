@@ -27,6 +27,7 @@ public enum ErrorCode {
     EXCEED_CAPACITY(HttpStatus.BAD_REQUEST,"205","최대 수용 인원을 초과합니다."),
     CANNOT_UPLOAD_IMAGE(HttpStatus.SERVICE_UNAVAILABLE,"206","이미지 업로드에 실패했습니다. 다시 시도해주세요."),
     CREW_IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND,"207","등록된 이미지를 찾을 수 없습니다."),
+    DUPLICATED_CREW_CREATION(HttpStatus.BAD_REQUEST,"208","중복된 크루 생성입니다. 이용권 1개 당 1개의 이웃 모임만 생성가능합니다."),
 
     /**
      * Member : 멤버 관련 에러 코드

@@ -6,8 +6,10 @@ import com.tuk.sportify.crew.dto.CreateCrewRequest;
 import com.tuk.sportify.crew.dto.CreateCrewResponse;
 import com.tuk.sportify.crew.dto.CrewDetailResponse;
 import com.tuk.sportify.crew.exception.CrewNotFoundExceptionException;
+import com.tuk.sportify.crew.exception.DuplicatedCrewCreationException;
 import com.tuk.sportify.crew.repository.CrewRepository;
 import com.tuk.sportify.crew.service.mapper.CrewMapper;
+import com.tuk.sportify.crewapplicant.exception.DuplicatedParticipationException;
 import com.tuk.sportify.facade.service.CrewVoucherFacadeService;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
@@ -39,11 +41,18 @@ public class CrewService {
         final Member member = memberService.getMemberById(memberId);
         final SportVoucher sportVoucher =
                 crewVoucherFacadeService.getSportVoucherById(sportVoucherId);
+        validateDuplication(member,sportVoucher);
         final CrewImage image = imageService.findImage(request.imageId());
         final Crew crew = crewMapper.toCrew(member, sportVoucher, image, request);
         crewRepository.save(crew);
         voucherMemberService.participate(crew, sportVoucher);
         return new CreateCrewResponse(crew.getId());
+    }
+
+    private void validateDuplication(final Member member, final SportVoucher sportVoucher){
+        if(crewRepository.existsByHostAndSportVoucher(member,sportVoucher)){
+            throw new DuplicatedCrewCreationException(ErrorCode.DUPLICATED_CREW_CREATION);
+        }
     }
 
     public Crew getCrew(final Long crewId) {
