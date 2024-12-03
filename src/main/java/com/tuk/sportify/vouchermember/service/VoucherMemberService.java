@@ -117,6 +117,7 @@ public class VoucherMemberService {
         return voucherMemberMapper.toCrewMembersResponse(crewMembers);
     }
 
+    @Transactional
     public void createPersonalVoucherMember(final Long memberId, final Long sportVoucherId){
         final Member member = memberService.getMemberById(memberId);
         final SportVoucher sportVoucher = sportVoucherService.getSportVoucher(sportVoucherId);
