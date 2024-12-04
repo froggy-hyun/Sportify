@@ -1,4 +1,7 @@
+import { modalState } from '@/recoil/atom/addressModal';
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 interface PopUpModalProps {
@@ -9,6 +12,8 @@ interface PopUpModalProps {
 
 const PopUpModal = ({ children, onClose, page }: PopUpModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [isModalOpen, setModalState] = useRecoilState(modalState);
+  const location = useLocation();
 
   useEffect(() => {
     const closeModal = (e: MouseEvent) => {
@@ -25,6 +30,15 @@ const PopUpModal = ({ children, onClose, page }: PopUpModalProps) => {
       document.removeEventListener('mousedown', closeModal);
     };
   }, [onClose]);
+
+  useEffect(() => {
+    if (page !== 'main' && isModalOpen) {
+      setModalState(false); // 모달 닫기
+    }
+    return () => {
+      document.body.style.overflow = ''; // 스크롤 복구
+    };
+  }, [location]);
 
   return (
     <Background>
@@ -59,7 +73,8 @@ export const Modal = styled.div<{ $page: 'main' | 'crew' | 'address' }>`
 
   width: 100%;
   z-index: 200;
-  /* height: ${({ $page }) => $page === 'main' ? '31.5rem' : $page === 'crew' ? '62rem' : '31.5rem'}; */
+  /* height: ${({ $page }) =>
+    $page === 'main' ? '31.5rem' : $page === 'crew' ? '62rem' : '31.5rem'}; */
   flex-shrink: 0;
   border-radius: 2rem 2rem 0 0;
   padding: 3.2rem 2rem 4rem 2rem;

@@ -24,7 +24,7 @@ const HomePage = () => {
 
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
 
-  const HOME_VISITED = Number(localStorage.getItem('homeVisited'));
+  // const HOME_VISITED = Number(localStorage.getItem('homeVisited'));
 
   const { data, errorCode, isLoading } = useQueries(
     ['activityTickets', 'myNeighbors', 'trendingTickets', 'trendingPast'], // queryKey
@@ -76,6 +76,7 @@ const HomePage = () => {
       setModalOpen(true);
       sessionStorage.setItem('homeModal', 'true');
     }
+    setModalOpen(true);
   }, []);
 
   return (
