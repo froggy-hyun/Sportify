@@ -39,7 +39,7 @@ const Wrapper = styled.div`
 
 const Title = styled.button<{ isActive: boolean }>`
   width: fit-content;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: ${({ isActive }) => (isActive ? '700' : '400')};
   color: ${({ isActive }) => (isActive ? 'var(--brandColor)' : 'var(--textC8)')};
 
