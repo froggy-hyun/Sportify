@@ -46,9 +46,9 @@ const TrendingChart: React.FC = () => {
             font: {
               size: 14,
             },
-            usePointStyle: true, // 동그랗게
+            boxWidth: 20, // 기호 너비
+            boxHeight: 8, // 기호 높이
           },
-
         },
       },
 
@@ -127,7 +127,7 @@ const ChartContainer = styled.div`
 `;
 
 const ChartCanvas = styled.canvas`
-  width: 92% !important;
+  width: 100% !important;
   margin-top: 2rem;
-  height: 400px !important;
+  height: 360px !important;
 `;
