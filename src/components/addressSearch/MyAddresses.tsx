@@ -10,14 +10,14 @@ import { useNavigate } from 'react-router-dom';
 const MyAddressesList = () => {
   const myAddressesList = useRecoilValue(myAddressesState);
   const navigate = useNavigate();
-  const location = sessionStorage.getItem('currentLocation');
+  const email = localStorage.getItem('email');
+  const location = localStorage.getItem(`currentLocation${email}`);
 
   const isCurrentLocation = (place: MyAddressesState) => place.address === location;
 
   const onSelectSuccess = (data) => {
     const newData = data.data.data.address;
-    // setLocation(newData);
-    sessionStorage.setItem('currentLocation', newData);
+    localStorage.setItem(`currentLocation${email}`, newData);
     navigate('/ticket');
   };
   const { mutation: signUpMutation } = useGenericMutation({

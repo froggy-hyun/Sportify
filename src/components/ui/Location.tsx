@@ -3,7 +3,8 @@ import arrowImg from '@/assets/icon/etc/arrow/rightArrow_White.png';
 import { useNavigate } from 'react-router-dom';
 
 const Location = () => {
-  const location = sessionStorage.getItem('currentLocation');
+  const email = localStorage.getItem('email');
+  const location = localStorage.getItem(`currentLocation${email}`);
 
   const navigate = useNavigate();
   return (

@@ -21,11 +21,10 @@ const HomePage = () => {
   const setMyCrews = useSetRecoilState(myCrewsState);
   const setActivity = useSetRecoilState(activityTicketsState);
   const setTrendingPast = useSetRecoilState(trendingPastState);
-  
+
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
 
   const HOME_VISITED = Number(localStorage.getItem('homeVisited'));
-  
 
   const { data, errorCode, isLoading } = useQueries(
     ['activityTickets', 'myNeighbors', 'trendingTickets', 'trendingPast'], // queryKey
@@ -56,18 +55,28 @@ const HomePage = () => {
     }
   }, [data]);
 
+  // useEffect(() => {
+  //   const today = Number(new Date());
+  //   const handlePopUp = () => {
+  //     if (HOME_VISITED && HOME_VISITED > today) {
+  //       return;
+  //     }
+  //     if (HOME_VISITED || HOME_VISITED < today) {
+  //       setModalOpen(true);
+  //     }
+  //   };
+  //   window.setTimeout(handlePopUp, 1000); //1초뒤 실행
+  // }, [HOME_VISITED]);
+
   useEffect(() => {
-    const today = Number(new Date());
-    const handlePopUp = () => {
-      if (HOME_VISITED && HOME_VISITED > today) {
-        return;
-      }
-      if (HOME_VISITED || HOME_VISITED < today) {
-        setModalOpen(true);
-      }
-    };
-    window.setTimeout(handlePopUp, 1000); //1초뒤 실행
-  }, [HOME_VISITED]);
+    const homeModal = sessionStorage.getItem('homeModal');
+    if (homeModal) {
+      return;
+    } else {
+      setModalOpen(true);
+      sessionStorage.setItem('homeModal', 'true');
+    }
+  }, []);
 
   return (
     <div>
