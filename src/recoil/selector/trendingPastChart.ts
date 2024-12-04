@@ -1,7 +1,6 @@
 import { selector } from 'recoil';
 import { trendingPastState } from '../atom/trendingPast';
 
-
 export const trendingPastChart = selector({
   key: 'trendingPastChart',
   get: ({ get }) => {

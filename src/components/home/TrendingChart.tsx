@@ -30,14 +30,13 @@ const TrendingChart: React.FC = () => {
         backgroundColor: chartColorPalette[idx],
         borderColor: 'transparent',
         borderWidth: 4,
-        barThickness: 36,
+        barThickness: 24,
       })),
     };
 
     // Chart.js 옵션
     const chartOptions: ChartOptions<'bar'> = {
       responsive: true,
-      maintainAspectRatio: false,
       plugins: {
         legend: {
           align: 'end',
@@ -60,7 +59,6 @@ const TrendingChart: React.FC = () => {
             color: '#f0f0f0',
           },
           ticks: {
-            stepSize:50,
             font: {
               size: 12,
             },
@@ -130,5 +128,4 @@ const ChartContainer = styled.div`
 const ChartCanvas = styled.canvas`
   width: 100%;
   margin-top: 2rem;
-  height: 300px !important;
 `;
