@@ -37,6 +37,7 @@ const TrendingChart: React.FC = () => {
     // Chart.js 옵션
     const chartOptions: ChartOptions<'bar'> = {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           align: 'end',
@@ -128,4 +129,5 @@ const ChartContainer = styled.div`
 const ChartCanvas = styled.canvas`
   width: 100%;
   margin-top: 2rem;
+  height: 400px !important;
 `;
