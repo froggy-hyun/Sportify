@@ -29,8 +29,8 @@ const TrendingChart: React.FC = () => {
         }),
         backgroundColor: chartColorPalette[idx],
         borderColor: 'transparent',
-        borderWidth: 2,
-        barThickness: 24,
+        borderWidth: 4,
+        barThickness: 36,
       })),
     };
 
@@ -55,7 +55,6 @@ const TrendingChart: React.FC = () => {
       scales: {
         y: {
           beginAtZero: false,
-          min: 0,
 
           grid: {
             color: '#f0f0f0',
@@ -131,5 +130,5 @@ const ChartContainer = styled.div`
 const ChartCanvas = styled.canvas`
   width: 100%;
   margin-top: 2rem;
-  height: 400px !important;
+  height: 300px !important;
 `;
