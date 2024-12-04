@@ -16,6 +16,7 @@ import {
   CreateCrewPage,
 } from './pages';
 import GlobalStyle from './styles/GlobalStyle';
+import ScrollToTop from './util/ScrollToTop';
 
 function App() {
   const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ function App() {
       <GlobalStyle />
       <RecoilRoot>
         <BrowserRouter>
+          <ScrollToTop />
           <Header />
           <Navbar />
           <Routes>
