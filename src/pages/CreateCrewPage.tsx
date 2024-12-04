@@ -38,7 +38,7 @@ const CreateCrewPage = () => {
   const onCreateSuccess = (res) => {
     console.log(res);
     alert('크루 생성 성공');
-    navigate('/home');
+    navigate('/');
   };
 
   const onCreateError = (res) => {

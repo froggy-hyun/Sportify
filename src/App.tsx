@@ -19,6 +19,7 @@ import GlobalStyle from './styles/GlobalStyle';
 
 function App() {
   const queryClient = new QueryClient();
+  const token = localStorage.getItem('accessToken');
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
@@ -27,8 +28,7 @@ function App() {
           <Header />
           <Navbar />
           <Routes>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={token ? <HomePage /> : <LoginPage />} />
             <Route path="/ticket" element={<TicketApplyPage />} />
             <Route path="/manageCrew" element={<ManageCrewPage />} />
             <Route path="/my" element={<MyPage />} />

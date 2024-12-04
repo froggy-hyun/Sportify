@@ -12,7 +12,7 @@ interface  NavLinks {
 export const navLinks :  NavLinks[] = [
   {
     name: "홈",
-    path: '/home',
+    path: '/',
     activeImg:  images[defaultURL+"메인_Active.png"]?.default,
     deActiveImg :images[defaultURL+"메인_DeActive.png"]?.default,
   },
