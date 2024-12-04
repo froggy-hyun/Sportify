@@ -1,14 +1,1 @@
-
-
-
-
-
-
-export const chartColorPalette :  string[]= [
-
-     "#F77587",
-   "#FFF5CD",
-   "#B7E0FF",
-   
-  
-]
+export const chartColorPalette: string[] = ['#0096C7', '#FFA500', '#FF6F00'];
