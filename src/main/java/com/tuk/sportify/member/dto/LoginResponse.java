@@ -5,5 +5,6 @@ import com.tuk.sportify.member.jwt.token.dto.TokenInfo;
 
 public record LoginResponse(
     TokenInfo tokenInfo,
-    AddressResponse address
+    AddressResponse address,
+    boolean disabled
 ) {}

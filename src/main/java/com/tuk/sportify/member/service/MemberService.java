@@ -69,7 +69,7 @@ public class MemberService {
             Member member = findMemberByEmail(email);
             checkPassword(password, member);
             return new LoginResponse(tokenProvider.createToken(member),
-                getAddressResponse(member.getAddress()));
+                getAddressResponse(member.getAddress()),member.isDisabled());
         } catch (BadCredentialsException e) {
             throw new LoginFailedException(ErrorCode.MEMBER_LOGIN_PASSWORD_INCORRECT);
         }
