@@ -1,5 +1,5 @@
 import { newCrewState } from '@/recoil/atom/newCrew';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import * as S from '@/styles/pagesStyles/createCrewStyles/Capacity.styled';
 import * as K from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';

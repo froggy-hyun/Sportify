@@ -2,25 +2,25 @@ import styled from 'styled-components';
 
 export const CreateCrewPageContainer= styled.form`
   width: 100%;
-  margin-top:4rem;
+  padding-top:4rem;
   height: fit-content;
   display: flex;
   flex-direction: column;
 `;
 
 export const CrewInfoContainer= styled.div`
-  padding: 0 2rem;
+  padding: 0 2rem 6rem 2rem ;
 `;
 
 export const SelectListContainer= styled.div`
   margin-top: 6rem;
 `;
 
-
 export const InfoTitle = styled.h2`
   margin: 2.4rem 0 1.2rem 0;
-  color: var(--black);
-  font-size: 1.4rem;
+  padding-left:4px;
+  color: var(--textC3);
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: normal;
 `;
@@ -29,7 +29,6 @@ export const UploadImgContainer= styled.div`
   display: flex;
   align-items: end;
   height: 10.7rem;
-  margin-bottom: 6rem;
 `;
 
 export const DeleteImgBtn= styled.button`
@@ -67,7 +66,8 @@ export const PreviewImg= styled.img`
   width:100%;
   height:100%;
   border-radius: 0.8rem;
-
+  object-fit: cover;
+  border:1px solid var(--grayB);
 `;
 
 export const SelectContainer = styled.div`
@@ -86,7 +86,7 @@ export const LimitText = styled.p`
 `;
 
 export const BtnContainer = styled.div`
-  margin: 10rem 0 4rem 0;
+  margin: 4rem 0;
   display: flex;
   justify-content: space-between;
   padding: 0 2rem;

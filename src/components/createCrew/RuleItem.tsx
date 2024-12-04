@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from '@/styles/pagesStyles/createCrewStyles/Rule.styled';
 
 import PlusImg from '@/assets/icon/etc/plus_Default.png';

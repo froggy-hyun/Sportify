@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as S from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';
-import { BaseInput, Divide, Title } from '@/components/ui';
+
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { newCrewImgState, newCrewState } from '@/recoil/atom/newCrew';
 import { DifficultyLevelType, GenderRuleType, GoalType } from '@/constants/newCrew';
+
+import { useGenericMutation } from '@/service/mutations/customMutation';
+import { crewImgApi, newCrewApi } from '@/service/mutations';
 import SelectorList from '@/components/createCrew/SelectList';
 import ImageUpload from '@/components/createCrew/ImageUpload';
 import Rule from '@/components/createCrew/Rule';
 import Capacity from '@/components/createCrew/Capacity';
 import Button from '@/components/ui/Button';
-import { useGenericMutation } from '@/service/mutations/customMutation';
-import { crewImgApi, newCrewApi } from '@/service/mutations';
-import { useNavigate, useParams } from 'react-router-dom';
+import { BaseInput, Divide, Title } from '@/components/ui';
 
 const CreateCrewPage = () => {
   const [newCrew, setNewCrew] = useRecoilState(newCrewState);
