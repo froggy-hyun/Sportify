@@ -6,6 +6,7 @@ import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
 import com.tuk.sportify.member.dto.LoginResponse;
+import com.tuk.sportify.member.dto.MemberResponse;
 import com.tuk.sportify.member.exception.LoginFailedException;
 import com.tuk.sportify.member.exception.MemberNotFoundException;
 import com.tuk.sportify.member.exception.RegisterFailedException;
@@ -110,6 +111,11 @@ public class MemberService {
     // ID로 회원 조회
     public Member getMemberById(Long id) {
         return memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException(ErrorCode.MEMBER_NOT_FOUND));
+    }
+
+    public MemberResponse getMemberResponse(final Long memberId){
+        final Member member = getMemberById(memberId);
+        return memberMapper.toMemberResponse(member);
     }
 }
 

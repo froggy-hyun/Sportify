@@ -1,5 +1,6 @@
 package com.tuk.sportify.member.controller;
 
+import com.tuk.sportify.global.argumentresolver.AuthenticationMember;
 import com.tuk.sportify.global.response.ApiErrorCodeExample;
 import com.tuk.sportify.global.response.ApiErrorCodeExamples;
 import com.tuk.sportify.global.status_code.ErrorCode;
@@ -8,6 +9,7 @@ import com.tuk.sportify.member.dto.CreateMemberRequest;
 import com.tuk.sportify.member.dto.LoginMemberRequest;
 import com.tuk.sportify.member.dto.LoginResponse;
 import com.tuk.sportify.member.dto.MemberInfoResponse;
+import com.tuk.sportify.member.dto.MemberResponse;
 import com.tuk.sportify.member.exception.EmptyMemberListException;
 import com.tuk.sportify.member.exception.MemberNotFoundException;
 import com.tuk.sportify.member.jwt.ApiResponseJson;
@@ -70,6 +72,12 @@ public class MemberController {
         memberService.logoutMember(authHeader.substring(7), email);
 
         return new ApiResponseJson(HttpStatus.OK, "로그아웃 성공");
+    }
+
+    @GetMapping
+    @Operation(summary = "회원 단건 조회 [마이페이지 용]",description = "마이페이지를 위한 회원의 장애여부, 닉네임을 반환합니다.")
+    public MemberResponse getMember(@AuthenticationMember @Parameter(hidden = true) final Long memberId){
+        return memberService.getMemberResponse(memberId);
     }
 }
 
