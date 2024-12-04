@@ -2,23 +2,23 @@ import styled from 'styled-components';
 
 export const CrewItemContainer = styled.div`
   width: 100%;
-  padding:1.6rem 0px;
+  padding: 1.6rem 0px;
 
   display: flex;
-  gap: 1.6rem;
+  gap: 16px;
   border-bottom: 1px solid var(--grayBG);
 
   &:last-child {
-    margin-bottom:16px;
+    margin-bottom: 16px;
   }
 
   &:first-child {
-    padding:0px 0px 1.6rem 0px;
+    padding: 0px 0px 1.6rem 0px;
   }
 `;
 
 export const Image = styled.img`
-  width:8rem;
+  width: 8rem;
   height: 8rem;
   object-fit: cover;
   border-radius: 8px;
@@ -39,13 +39,13 @@ export const Info = styled.div`
 `;
 
 export const Difficulty = styled.p`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
   color: var(--brandColor);
 `;
 
 export const Name = styled.p`
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--textC3);
 `;
@@ -58,8 +58,8 @@ export const CapacityArea = styled.div`
 `;
 
 export const CapacityIcon = styled.img`
-  width:2rem;
-  height:2rem;
+  width: 2rem;
+  height: 2rem;
 `;
 
 export const Capacity = styled.p`
