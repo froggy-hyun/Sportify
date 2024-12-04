@@ -6,6 +6,8 @@ import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.member.domain.Role;
 import com.tuk.sportify.member.dto.CreateMemberRequest;
 import com.tuk.sportify.member.dto.MemberInfoResponse;
+import com.tuk.sportify.member.dto.MemberResponse;
+import com.tuk.sportify.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -27,22 +29,8 @@ public class MemberMapper {
                 .build();
     }
 
-//    public Address createAddress(CreateMemberRequest request) {
-//        return Address.builder()
-//                .detailAddress(request.voucherAddress())
-//                .addressName(request.addressName())
-//                .point(GeometryConverter.coordinateToPoint(request.latitude(), request.longitude()))
-//                .build();
-//    }
-
-    public MemberInfoResponse MembertoMemberInfoResponse(Member member) {
-        return MemberInfoResponse.builder()
-                .id(member.getId())
-                .email(member.getEmail())
-                .name(member.getName())
-                .disabled(member.isDisabled())
-                .role(member.getRole())
-                .address(member.getAddress().getDetailAddress())
-                .build();
+    public MemberResponse toMemberResponse(final Member member){
+        return new MemberResponse(member.getName(),member.isDisabled());
     }
+
 }
