@@ -13,4 +13,12 @@ public record ErrorResponse(
                 errorCode.getCode(),
                 errorCode.getMsg());
     }
+
+    public ErrorResponse(final ErrorCode errorCode, final String detailMsg){
+        this(
+            errorCode.getHttpStatus().value(),
+            errorCode.getHttpStatus().getReasonPhrase(),
+            errorCode.getCode(),
+            detailMsg);
+    }
 }
