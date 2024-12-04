@@ -29,15 +29,15 @@ export const TicketTitle = styled.h2`
   color: var(--brandColor);
   font-size: 1.6rem;
   font-weight: 700;
-  line-height:1.4;
+  line-height: 1.4;
 `;
 
 export const TicketAddress = styled.p`
   color: var(--textC8);
   font-size: 1.4rem;
   font-weight: 400;
-  line-height:1.4;
-  margin-bottom: 2.4rem;
+  line-height: 1.4;
+  margin-bottom: 3.6rem;
 `;
 
 export const TicketInfoContainer = styled.div<TicketItemProps>`

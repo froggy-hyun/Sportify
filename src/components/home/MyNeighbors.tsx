@@ -5,16 +5,14 @@ import MyNeighborItem from './MyNeighborItem';
 import Button from '../ui/Button';
 import { myCrewsState } from '@/recoil/atom/myCrews';
 import { useRecoilValue } from 'recoil';
-// import circlesImg from '@/assets/icon/etc/homeCircles.png';
-{
-  /* <S.CirclesImg src={circlesImg} /> */
-}
+import circlesImg from '@/assets/icon/etc/homeCircles.png';
 
 const MyNeighbors = () => {
   const myCrewsData = useRecoilValue(myCrewsState);
   return (
     <S.MyNeighborsContainer>
       <Title title="나만의 운동 이웃" color={true} />
+      <S.CirclesImg src={circlesImg} />
 
       <S.MyNeighbors>
         {' '}
