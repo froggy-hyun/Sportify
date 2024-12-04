@@ -36,7 +36,7 @@ const HomePopUp = () => {
         <Button title="있어요" width="12.3rem" color={true} onClick={() => closePopUp(false)} />
         <Button title="주소 설정하기" width="21.4rem" onClick={() => closePopUp(true)} />
       </S.BtnContainer>
-      <S.CheckContainer>
+      {/* <S.CheckContainer>
         <S.CheckBox
           type="checkbox"
           checked={isChecked}
@@ -45,7 +45,7 @@ const HomePopUp = () => {
           }}
         />
         <S.CheckExplain>오늘 하루동안 보지않기</S.CheckExplain>
-      </S.CheckContainer>
+      </S.CheckContainer> */}
     </PopUpModal>
   );
 };

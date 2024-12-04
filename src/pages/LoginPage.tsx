@@ -23,6 +23,8 @@ const LoginPage = () => {
   const onLoginSuccess = (res) => {
     const token = res.data.data.tokenInfo.accessToken;
     localStorage.setItem('accessToken', token);
+    localStorage.setItem('email', loginState.email);
+    localStorage.setItem(`currentLocation${loginState.email}`, res.data.data.address.address);
     alert('로그인 성공');
     navigate('/home');
   };

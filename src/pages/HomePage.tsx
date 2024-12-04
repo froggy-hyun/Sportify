@@ -55,18 +55,28 @@ const HomePage = () => {
     }
   }, [data]);
 
+  // useEffect(() => {
+  //   const today = Number(new Date());
+  //   const handlePopUp = () => {
+  //     if (HOME_VISITED && HOME_VISITED > today) {
+  //       return;
+  //     }
+  //     if (HOME_VISITED || HOME_VISITED < today) {
+  //       setModalOpen(true);
+  //     }
+  //   };
+  //   window.setTimeout(handlePopUp, 1000); //1초뒤 실행
+  // }, [HOME_VISITED]);
+
   useEffect(() => {
-    const today = Number(new Date());
-    const handlePopUp = () => {
-      if (HOME_VISITED && HOME_VISITED > today) {
-        return;
-      }
-      if (HOME_VISITED || HOME_VISITED < today) {
-        setModalOpen(true);
-      }
-    };
-    window.setTimeout(handlePopUp, 1000); //1초뒤 실행
-  }, [HOME_VISITED]);
+    const homeModal = sessionStorage.getItem('homeModal');
+    if (homeModal) {
+      return;
+    } else {
+      setModalOpen(true);
+      sessionStorage.setItem('homeModal', 'true');
+    }
+  }, []);
 
   return (
     <div>
