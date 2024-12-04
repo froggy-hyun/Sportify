@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MyNeighborContainer= styled.button`
-  padding: 1.6rem 2rem;
+  padding: 1.6rem;
   width:100%;
   display: flex;
   justify-content: space-between;
