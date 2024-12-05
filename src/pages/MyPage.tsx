@@ -8,10 +8,13 @@ import { useQuery } from '@tanstack/react-query';
 import { myPageUserDateApi } from '@/service/queries';
 import { useRecoilState } from 'recoil';
 import { myInfoState } from '@/recoil/atom/myPage';
+import { useGenericMutation } from '@/service/mutations/customMutation';
+import { logoutApi } from '@/service/mutations';
+import { useNavigate } from 'react-router-dom';
 
 const MyPage = () => {
   const [myUser, setMyUser] = useRecoilState(myInfoState);
-
+  const navigate = useNavigate();
   const { isLoading, data, isError } = useQuery({
     queryKey: ['myPageUser'],
     queryFn: () => myPageUserDateApi(),
@@ -23,6 +26,34 @@ const MyPage = () => {
       setMyUser(newData);
     }
   }, [data]);
+
+  const onLogoutSuccess = () => {
+    alert('로그아웃 되었습니다');
+    const email = localStorage.getItem('email');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem(`currentLocation${email}`);
+    localStorage.removeItem('email');
+    sessionStorage.removeItem('homeModal');
+    navigate('/login');
+  };
+
+  const onLogoutError = () => {
+    alert('로그아웃에 실패하였습니다');
+  };
+
+  const { mutation: logoutMutation } = useGenericMutation({
+    mutationFn: logoutApi,
+    onSuccessCb: onLogoutSuccess,
+    onErrorCb: onLogoutError,
+  });
+
+  const handleLogout = () => {
+    const userConfirmed = window.confirm('로그아웃하시겠습니까?');
+    const token = localStorage.getItem('accessToken');
+    if (token && userConfirmed) {
+      logoutMutation.mutate(token);
+    }
+  };
 
   return (
     <>
@@ -46,7 +77,7 @@ const MyPage = () => {
 
           <S.InfoManage>
             <S.ModifyInfo>회원정보 수정</S.ModifyInfo>
-            <S.Logout>로그아웃</S.Logout> {/* 로그아웃 */}
+            <S.Logout onClick={handleLogout}>로그아웃</S.Logout> {/* 로그아웃 */}
           </S.InfoManage>
         </S.UserInfoManage>
       </S.UserInfoContainer>

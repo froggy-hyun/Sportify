@@ -31,6 +31,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={token ? <HomePage /> : <LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/ticket" element={<TicketApplyPage />} />
             <Route path="/manageCrew" element={<ManageCrewPage />} />
             <Route path="/my" element={<MyPage />} />

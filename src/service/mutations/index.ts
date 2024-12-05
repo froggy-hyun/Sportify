@@ -48,3 +48,14 @@ export const participateCrewApi = async (crewId:number) => {
   const data = await authAPI.post(`/crews/${crewId}`);
   return data;
 };
+
+
+
+export const logoutApi = async (token:string) => {
+  const data = await authAPI.post('/members/logout',{
+    params: {
+      Authorization: token
+   },
+  });
+  return data;
+};

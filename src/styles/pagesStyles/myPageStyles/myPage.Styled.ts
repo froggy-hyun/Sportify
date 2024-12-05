@@ -75,6 +75,7 @@ export const Logout = styled.p`
   font-size:1.4rem;
   font-weight: 400;
   color: var(--textC3);
+  cursor: pointer;
 `;
 
 export const MyPageTitle = styled.p`
