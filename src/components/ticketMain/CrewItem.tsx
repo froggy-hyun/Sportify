@@ -20,7 +20,9 @@ const CrewItem = ({
         </S.Info>
         <S.CapacityArea>
           <S.CapacityIcon src={CapacityIcon} />
-          <S.Capacity>{crews.numberOfParticipants}/{crews.crewCapacity}</S.Capacity>
+          <S.Capacity>
+            {crews.numberOfParticipants}/{crews.crewCapacity}
+          </S.Capacity>
         </S.CapacityArea>
       </S.InfoArea>
     </S.CrewItemContainer>

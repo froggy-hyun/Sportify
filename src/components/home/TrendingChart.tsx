@@ -1,11 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import { Chart, registerables, ChartData, ChartOptions, plugins } from 'chart.js';
-import { useRecoilValue } from 'recoil';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+
+import { useRecoilValue } from 'recoil';
 import { trendingPastChart } from '@/recoil/selector/trendingPastChart';
 import { trendingPastState } from '@/recoil/atom/trendingPast';
-import { Title } from '../ui';
 import { chartColorPalette } from '@/constants/chartColorPalette';
+import { Title } from '../ui';
+
+import { Chart, registerables, ChartData, ChartOptions } from 'chart.js';
 
 const TrendingChart: React.FC = () => {
   const { labels, sportCategory } = useRecoilValue(trendingPastChart);
@@ -27,38 +29,39 @@ const TrendingChart: React.FC = () => {
         }),
         backgroundColor: chartColorPalette[idx],
         borderColor: 'transparent',
-        borderWidth: 1,
-        barThickness: 37,
+        borderWidth: 4,
+        barThickness: 24,
       })),
     };
 
     // Chart.js 옵션
     const chartOptions: ChartOptions<'bar'> = {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
+          align: 'end',
           labels: {
             color: '#333333',
             font: {
-              size: 9,
+              size: 14,
             },
-
-            usePointStyle: true, // 동그랗게
-            pointStyle: 'circle',
+            boxWidth: 20, // 기호 너비
+            boxHeight: 8, // 기호 높이
           },
         },
       },
 
       scales: {
         y: {
-          beginAtZero: true,
+          beginAtZero: false,
 
           grid: {
             color: '#f0f0f0',
           },
           ticks: {
             font: {
-              size: 10,
+              size: 12,
             },
             color: '#333333',
           },
@@ -70,7 +73,7 @@ const TrendingChart: React.FC = () => {
           },
           ticks: {
             font: {
-              size: 13,
+              size: 16,
             },
             color: '#333333',
           },
@@ -124,6 +127,7 @@ const ChartContainer = styled.div`
 `;
 
 const ChartCanvas = styled.canvas`
-  width: 100%;
-  padding-top: 1rem;
+  width: 100% !important;
+  margin-top: 2rem;
+  height: 360px !important;
 `;

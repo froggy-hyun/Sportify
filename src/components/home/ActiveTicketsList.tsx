@@ -10,7 +10,7 @@ const ActiveTicketsList = () => {
   const activityData = useRecoilValue(activityTicketsState);
   return (
     <S.TicketsListContainer>
-      <Title title="현재 활동중인 이용권" color={false} />
+      <Title title="현재 이용중인 이용권" color={false} />
 
       <S.Tickets>
         {activityData.map((item: ActivityTicketsState) => (

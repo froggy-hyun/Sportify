@@ -39,7 +39,7 @@ export const Btn = styled.button<{ $color: boolean; $width?: string; $outStorke:
     props.$outStorke ? 'var(--brandColor)' : !props.$color ? 'var(--white)' : 'var(--textC8)'};
   align-self: stretch;
   font-size: 1.4rem;
-  font-weight: ${(props) => (props.$color ? 400 : 700)};
+  font-weight: 400;
   line-height: normal;
   background-color: ${(props) =>
     props.$outStorke ? 'transparent' : !props.$color ? 'var(--brandColor)' : 'var(--grayBG)'};

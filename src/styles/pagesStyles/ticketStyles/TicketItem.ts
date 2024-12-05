@@ -15,8 +15,8 @@ export const Ticket = styled.div`
   height: fit-content;
 
   display: flex;
-  border-bottom:1px solid var(--grayBG);
-  padding-bottom:16px;
+  border-bottom: 1px solid var(--grayBG);
+  padding-bottom: 16px;
 `;
 
 export const Info = styled.div`
@@ -25,7 +25,7 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap:20px;
+  gap: 20px;
 `;
 
 export const Location = styled.p`
@@ -60,21 +60,21 @@ export const DetailArea = styled.div`
 `;
 
 export const IconImage = styled.img`
-  width:2rem;
+  width: 2rem;
 `;
 
 export const People = styled.p`
   font-size: 1.4rem;
   font-weight: 400;
   color: var(--textC3);
-  line-height:normal;
+  line-height: normal;
 `;
 
 export const Date = styled.p`
   font-size: 1.4rem;
   font-weight: 400;
   color: var(--textC3);
-  line-height:normal;
+  line-height: normal;
 `;
 
 export const Price = styled.p`
@@ -93,7 +93,7 @@ export const NoneData = styled.div`
   font-weight: 400;
   color: var(--textC3);
   border-radius: 8px;
-  
+
   margin-top: 2.8rem;
 `;
 

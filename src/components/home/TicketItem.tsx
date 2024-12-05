@@ -27,18 +27,13 @@ const TicketItem = ({
             <S.TicketInfoContainer ticket={ticket}>
               <S.InfoImg src={personImg} alt="신청인원" />
               <S.TickekRequestPerson>
-                신청인원 <S.NumPerson>{requestNumberOfPerson}</S.NumPerson> 명
+                신청인원 <S.NumPerson>{requestNumberOfPerson}</S.NumPerson>명
               </S.TickekRequestPerson>
             </S.TicketInfoContainer>
           )}
 
           <S.TicketInfoContainer ticket={ticket}>
-            {ticket === 'trending' ? (
-              <S.InfoImg src={clockImg} alt="이용기간" />
-            ) : (
-              <S.TickeUsagePeriod>이용기간</S.TickeUsagePeriod>
-            )}
-
+            <S.InfoImg src={clockImg} alt="이용기간" />
             <S.TickeUsagePeriod>{duration}</S.TickeUsagePeriod>
           </S.TicketInfoContainer>
         </S.UsageContainer>

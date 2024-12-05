@@ -11,15 +11,17 @@ export const CategroyItemContainer = styled.div`
 
 export const CategoryImgArea = styled.div<{ isSelected: boolean }>`
   padding: 1.6rem;
-  background-color: ${({ isSelected }) => (isSelected ? "var(--brandColor)" : "var(--grayBG)")};
+  background-color: ${({ isSelected }) => (isSelected ? 'var(--brandColor)' : 'var(--grayBG)')};
   border-radius: 10rem;
 
-  transition:all 0.3s;
+  transition: all 0.3s;
 `;
 
 export const CategoryImg = styled.img`
   width: 4.8rem;
   height: 4.8rem;
+  object-fit: cover;
+  display: block;
 `;
 
 export const CategoryTitle = styled.p`

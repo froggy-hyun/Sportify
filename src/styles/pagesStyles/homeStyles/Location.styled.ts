@@ -12,12 +12,12 @@ export const LocationContainer = styled.div`
 
 export const LocationTitle = styled.p`
   font-size:1.4rem;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--white);
 `;
 
 
 export const LocationImg = styled.img`
-  width: 2.0rem;
+  width: 20px;
 `;
 
