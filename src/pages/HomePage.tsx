@@ -13,7 +13,7 @@ import { myCrewsState } from '@/recoil/atom/myCrews';
 import { activityTicketsState } from '@/recoil/atom/activityTickets';
 import HomePopUp from '@/components/home/HomePopUp';
 import { modalState } from '@/recoil/atom/addressModal';
-import { TrendingChart } from '@/components/home';
+import { TicketVideo, TrendingChart } from '@/components/home';
 import { trendingPastState } from '@/recoil/atom/trendingPast';
 
 const HomePage = () => {
@@ -85,6 +85,8 @@ const HomePage = () => {
       <Location />
       <ActiveTicketsList />
       <MyNeighbors />
+      <Divide />
+      <TicketVideo />
       <Divide />
       <TrendingChart />
       <Divide />
