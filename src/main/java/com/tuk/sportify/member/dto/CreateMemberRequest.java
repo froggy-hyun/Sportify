@@ -24,7 +24,7 @@ public record CreateMemberRequest(
                 @Schema(description = "이메일", example = "sportify1@naver.com")
                 String email, // 이메일
         @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
-                @Length(min = 6, max = 16, message = "비밀번호는 6자 이상, 16자 이하로 입력해주세요.")
+                @Length(min = 8, max = 16, message = "비밀번호는 문자 상관 없이 8자 이상 16자 미만으로 입력해주세요.")
                 @Schema(description = "비밀 번호", example = "qWerfas3123!3d")
                 String password,
         @NotBlank(message = "이름은 필수 입력 값입니다.")

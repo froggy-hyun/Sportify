@@ -34,7 +34,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    private static final String PASSWORD_REGEX = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"; // 최소 8자리 + 영어, 숫자, 특수문자를 모두 포함해야함.
+    private static final String PASSWORD_REGEX = "^.{8,15}$"; // 최소 8자리, 16자리 미만
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
 
     private final MemberMapper memberMapper;
