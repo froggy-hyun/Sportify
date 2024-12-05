@@ -25,6 +25,7 @@ const LoginPage = () => {
     localStorage.setItem('accessToken', token);
     localStorage.setItem('email', loginState.email);
     localStorage.setItem(`currentLocation${loginState.email}`, res.data.data.address.address);
+    localStorage.setItem('disabled', res.data.data.disabled);
     alert('로그인 성공');
     navigate('/');
     location.reload();

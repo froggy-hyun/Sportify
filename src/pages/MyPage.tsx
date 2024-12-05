@@ -34,6 +34,7 @@ const MyPage = () => {
     localStorage.removeItem(`currentLocation${email}`);
     localStorage.removeItem('email');
     sessionStorage.removeItem('homeModal');
+    localStorage.removeItem('disabled');
     navigate('/login');
   };
 
