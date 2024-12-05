@@ -10,10 +10,9 @@ export default defineConfig({
     tsconfigPaths(),
     VitePluginHtmlEnv({
       compiler: true,
-    }),
-    VitePWA({
+    }),VitePWA({
       registerType: 'autoUpdate',
-      devOptions:{enabled: true}, // vite dev 로 돌려도 PWA 까지 볼 수 있게끔 주는 옵션
+      devOptions:{enabled: true, type: 'module'}, // vite dev 로 돌려도 PWA 까지 볼 수 있게끔 주는 옵션
       includeAssets: [
       '/icon/launchericon-48-48.png',
       '/icon/launchericon-96-96.png',
