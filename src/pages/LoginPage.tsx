@@ -26,6 +26,7 @@ const LoginPage = () => {
     localStorage.setItem('email', loginState.email);
     localStorage.setItem(`currentLocation${loginState.email}`, res.data.data.address.address);
     alert('로그인 성공');
+    navigate('/');
     location.reload();
   };
 
