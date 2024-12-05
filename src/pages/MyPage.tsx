@@ -1,33 +1,28 @@
-// import { useEffect } from 'react';
-
+import { useEffect } from 'react';
 import * as S from '@/styles/pagesStyles/myPageStyles/myPage.Styled';
 import { Location, Divide } from '@/components';
 
 import userProfileIcon from '@/assets/icon/navigation/마이_DeActive.png';
 import arrow from '@/assets/icon/etc/arrow/rightArrow_Default.png';
-// import { useQueries } from '@/service/queries/useQueries';
-// import { myPageUserDateApi } from '@/service/queries';
-
-// import { myInfoState } from '@/recoil/atom/myPage';
-// import { useRecoilState } from 'recoil';
+import { useQuery } from '@tanstack/react-query';
+import { myPageUserDateApi } from '@/service/queries';
+import { useRecoilState } from 'recoil';
+import { myInfoState } from '@/recoil/atom/myPage';
 
 const MyPage = () => {
-  // const [myUser, setMyUser] = useRecoilState(myInfoState);
+  const [myUser, setMyUser] = useRecoilState(myInfoState);
 
-  // const { data } = useQueries(
-  //   ['myInfoState'], // queryKey
-  //   {
-  //     myInfoState: myPageUserDateApi,
-  //   },
-  //   { staleTime: 5 * 60 * 1000, cacheTime: 10 * 60 * 1000 }, // queryOptions
-  //   [null]
-  // );
+  const { isLoading, data, isError } = useQuery({
+    queryKey: ['myPageUser'],
+    queryFn: () => myPageUserDateApi(),
+  });
 
-  // useEffect(() => {
-  //   if (data) {
-  //     console.log(data);
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (data) {
+      const newData = data.data.data;
+      setMyUser(newData);
+    }
+  }, [data]);
 
   return (
     <>
@@ -39,9 +34,10 @@ const MyPage = () => {
             <S.UserProfile src={userProfileIcon} />
           </S.UserProfileArea>
           <S.UserInfoArea>
-            <S.UserIsDisabled>비장애 이용권</S.UserIsDisabled>
-            {/* 장애 여부에 따른 조건부 렌더링 */}
-            <S.UserName>홍길동님</S.UserName> {/* 회원 이름 */}
+            <S.UserIsDisabled>
+              {!myUser.disabled ? '비장애 이용권' : '장애 이용권'}
+            </S.UserIsDisabled>
+            <S.UserName>{`${myUser.name}님`}</S.UserName> {/* 회원 이름 */}
           </S.UserInfoArea>
         </S.User>
 
@@ -52,7 +48,6 @@ const MyPage = () => {
             <S.ModifyInfo>회원정보 수정</S.ModifyInfo>
             <S.Logout>로그아웃</S.Logout> {/* 로그아웃 */}
           </S.InfoManage>
-
         </S.UserInfoManage>
       </S.UserInfoContainer>
 
