@@ -35,7 +35,8 @@ public class SecurityConfig {
         "/swagger-ui/**",
         "/api/members/logout"
     };
-    private final String[] anonymousUrl = {"/api/members/**"};
+    private final String[] anonymousUrl = {"/api/members/login","/api/members/logout","/api"
+        + "/members/register"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
