@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Divide, PopUpModal } from '../ui';
 import { useRecoilState } from 'recoil';
 import { modalState } from '@/recoil/atom/addressModal';
@@ -18,7 +18,7 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
   const [crewInfo, setCrewInfo] = useRecoilState(crewInfoState);
   const navigate = useNavigate();
 
-  const { isLoading, data, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ['crewInfo'],
     queryFn: () => crewInfoApi(crewId),
   });
@@ -30,7 +30,7 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
     }
   }, [data]);
 
-  const onParticipateSuccess = (res) => {
+  const onParticipateSuccess = () => {
     alert('크루에 참여하였습니다');
     navigate('/');
   };
@@ -92,7 +92,7 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
         </S.InfoTitle>
       </S.TitleContainer>
       <S.RuleContainer>
-        {crewInfo.rules.map((rule: string, index) => (
+        {crewInfo.rules.map((rule: string) => (
           <S.RowContainer>
             <S.CheckImg src={personImg} />
             <S.Rule>{rule}</S.Rule>
