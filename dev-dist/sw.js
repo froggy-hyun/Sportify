@@ -75,23 +75,29 @@ define(['./workbox-54d0af47'], (function (workbox) {
   self.skipWaiting();
   workbox.clientsClaim();
 
-  /**
-   * The precacheAndRoute() method efficiently caches and responds to
-   * requests for URLs in the manifest.
-   * See https://goo.gl/S9QRab
-   */
-  // workbox.precacheAndRoute([{
-  //   "url": "registerSW.js",
-  //   "revision": "3ca0b8505b4bec776b69afdba2768812"
-  // }, {
-  //   "url": "index.html",
-  //   "revision": "0.vs2chrae5po"
-  // }], {});
-  workbox.cleanupOutdatedCaches();
-  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
-    allowlist: [/^\/$/]
-  }, {
-    blocklist: [/^\/api\/swagger-ui\/index\.html$/],
-  }));
+  // 정적 자원 Precaching
+  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
+
+  // Navigation 요청 처리
+  workbox.registerRoute(
+    new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
+      blocklist: [
+        /^\/api\/swagger-ui\/index\.html$/, // Swagger UI 경로 제외
+        /^\/api\/v3\/api-docs$/ // API 문서 경로 제외
+      ]
+    })
+  );
+
+  // Swagger UI 정적 파일 처리
+  workbox.routing.registerRoute(
+    new RegExp('/api/swagger-ui/.*'),
+    new workbox.strategies.NetworkOnly()
+  );
+
+  // API 문서 요청 처리
+  workbox.routing.registerRoute(
+    new RegExp('/api/v3/api-docs'),
+    new workbox.strategies.NetworkOnly()
+  );
 
 }));
