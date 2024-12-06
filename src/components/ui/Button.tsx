@@ -30,17 +30,14 @@ export default Button;
 
 export const Btn = styled.button<{ $color: boolean; $width?: string; $outStorke: boolean }>`
   display: flex;
-  cursor: pointer;
   padding: 1.2rem 0;
   justify-content: center;
   align-items: center;
 
   color: ${(props) =>
     props.$outStorke ? 'var(--brandColor)' : !props.$color ? 'var(--white)' : 'var(--textC8)'};
-  align-self: stretch;
   font-size: 1.4rem;
   font-weight: 400;
-  line-height: normal;
   background-color: ${(props) =>
     props.$outStorke ? 'transparent' : !props.$color ? 'var(--brandColor)' : 'var(--grayBG)'};
   width: ${(props) => props.$width || '100%'};
