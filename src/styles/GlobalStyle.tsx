@@ -47,7 +47,7 @@ time, mark, audio, video,input {
 }
 
 html {
-
+    background:white;
     font-size: 62.5%; // 10px가 1rem
         /* @media (max-width: 768px) { // 태블릿
             font-size: 50%; // 8px
