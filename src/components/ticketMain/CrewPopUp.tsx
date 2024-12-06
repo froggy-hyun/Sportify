@@ -4,7 +4,8 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '@/recoil/atom/addressModal';
 
 import * as S from '@/styles/pagesStyles/ticketStyles/CrewPopUp.styled';
-import personImg from '@/assets/icon/etc/notice_Default.png';
+import personImg from '@/assets/icon/navigation/마이_DeActive.png';
+import checkImg from '@/assets/icon/etc/check.png';
 import { useQuery } from '@tanstack/react-query';
 import { crewInfoApi } from '@/service/queries';
 import { crewInfoState } from '@/recoil/atom/crewInfo';
@@ -94,7 +95,7 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
       <S.RuleContainer>
         {crewInfo.rules.map((rule: string) => (
           <S.RowContainer>
-            <S.CheckImg src={personImg} />
+            <S.CheckImg src={checkImg} />
             <S.Rule>{rule}</S.Rule>
           </S.RowContainer>
         ))}
@@ -113,14 +114,14 @@ const CrewPopUp = ({ crewId }: { crewId: number }) => {
       <S.BtnContainer>
         <Button
           title="다음에 하기"
-          width="10.7rem"
+          width="12.3rem"
           color={true}
           onClick={() => setModalOpen(false)}
         />
         <Button
           disabled={!isChecked}
           title="이웃 참여하기"
-          width="20.3rem"
+          width="21.4rem"
           color={!isChecked}
           onClick={handleCrew}
         />
