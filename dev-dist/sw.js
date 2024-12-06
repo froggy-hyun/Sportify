@@ -22,20 +22,20 @@ if (!self.define) {
   const singleRequire = (uri, parentUri) => {
     uri = new URL(uri + ".js", parentUri).href;
     return registry[uri] || (
-
-      new Promise(resolve => {
-        if ("document" in self) {
-          const script = document.createElement("script");
-          script.src = uri;
-          script.onload = resolve;
-          document.head.appendChild(script);
-        } else {
-          nextDefineUri = uri;
-          importScripts(uri);
-          resolve();
-        }
-      })
-
+      
+        new Promise(resolve => {
+          if ("document" in self) {
+            const script = document.createElement("script");
+            script.src = uri;
+            script.onload = resolve;
+            document.head.appendChild(script);
+          } else {
+            nextDefineUri = uri;
+            importScripts(uri);
+            resolve();
+          }
+        })
+      
       .then(() => {
         let promise = registry[uri];
         if (!promise) {
@@ -55,9 +55,7 @@ if (!self.define) {
     let exports = {};
     const require = depUri => singleRequire(depUri, uri);
     const specialDeps = {
-      module: {
-        uri
-      },
+      module: { uri },
       exports,
       require
     };
@@ -69,42 +67,26 @@ if (!self.define) {
     });
   };
 }
+define(['./workbox-54d0af47'], (function (workbox) { 'use strict';
 
-define(['./workbox-54d0af47'], (function (workbox) {
-  'use strict';
+  self.skipWaiting();
+  workbox.clientsClaim();
 
-  self.skipWaiting(); // 설치되자마자 활성화
-  workbox.clientsClaim(); // 활성화 후 즉시 컨트롤
+  /**
+   * The precacheAndRoute() method efficiently caches and responds to
+   * requests for URLs in the manifest.
+   * See https://goo.gl/S9QRab
+   */
+  workbox.precacheAndRoute([{
+    "url": "registerSW.js",
+    "revision": "3ca0b8505b4bec776b69afdba2768812"
+  }, {
+    "url": "index.html",
+    "revision": "0.ifphtmqsg"
+  }], {});
+  workbox.cleanupOutdatedCaches();
+  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
+    allowlist: [/^\/$/]
+  }));
 
-  // 정적 자원 Precaching
-  // workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
-
-  // 특정 API 경로를 캐싱하지 않도록 설정
-  const nonCacheableUrls = [
-    '/api/swagger-ui/index.html',
-    '/ticketItem',
-  ];
-
-  nonCacheableUrls.forEach((url) => {
-    workbox.routing.registerRoute(
-      new RegExp(url),
-      new workbox.strategies.NetworkOnly() // 네트워크 우선 처리
-    );
-  });
-
-  // 이전 캐시 제거
-  self.addEventListener('activate', (event) => {
-    const cacheWhitelist = ['new-cache-name']; // 유지할 캐시 이름
-    event.waitUntil(
-      caches.keys().then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => {
-            if (!cacheWhitelist.includes(cacheName)) {
-              return caches.delete(cacheName); // 기존 캐시 삭제
-            }
-          })
-        );
-      })
-    );
-  });
 }));
