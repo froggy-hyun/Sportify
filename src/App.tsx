@@ -1,9 +1,8 @@
-import { Route, Routes, Outlet, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import { Header, Navbar } from './components';
 import {
   HomePage,
   ManageCrewPage,
