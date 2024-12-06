@@ -5,7 +5,7 @@ const MyNeighborItem = ({ title }: { title: string }) => {
   return (
     <S.MyNeighborContainer>
       <S.MyNeighborTitle>{title}</S.MyNeighborTitle>
-      <S.ArrowImg src={arrowImg} alt="바로가기" />
+      {/* <S.ArrowImg src={arrowImg} alt="바로가기" /> */}
     </S.MyNeighborContainer>
   );
 };

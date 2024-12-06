@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Title } from '@/components';
 import ActiveTicketItem from './TicketItem';
 
@@ -8,6 +9,8 @@ import { activityTicketsState } from '@/recoil/atom/activityTickets';
 
 const ActiveTicketsList = () => {
   const activityData = useRecoilValue(activityTicketsState);
+  const navigate = useNavigate();
+
   return (
     <S.TicketsListContainer>
       <Title title="현재 이용중인 이용권" color={false} />
@@ -20,6 +23,9 @@ const ActiveTicketsList = () => {
             voucherAddress={item.voucherAddress}
             duration={item.duration}
             ticket="active"
+            onClickItem={() => {
+              navigate(`/ticketItem/${item.voucherId}`);
+            }}
           />
         ))}
       </S.Tickets>

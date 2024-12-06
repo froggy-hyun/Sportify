@@ -6,6 +6,7 @@ import clockImg from '@/assets/icon/etc/period_Default.png';
 
 export interface ActiveTicketItemProps extends TrendingTicketsState, ActivityTicketsState {
   ticket: TicketStatus;
+  onClickItem: () => void;
 }
 
 const TicketItem = ({
@@ -16,9 +17,10 @@ const TicketItem = ({
   subCategory,
   voucherCourseName,
   ticket,
+  onClickItem,
 }: ActiveTicketItemProps) => {
   return (
-    <S.TicketItemContainer ticket={ticket}>
+    <S.TicketItemContainer onClick={() => onClickItem()} ticket={ticket}>
       <S.TicketTitle>{voucherCourseName}</S.TicketTitle>
       <S.TicketAddress>{ticket === 'trending' ? address : voucherAddress}</S.TicketAddress>
       <S.TicketTagAndUsage>
