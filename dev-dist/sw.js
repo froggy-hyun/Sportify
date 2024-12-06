@@ -78,26 +78,13 @@ define(['./workbox-54d0af47'], (function (workbox) {
   // 정적 자원 Precaching
   workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
 
-  // Navigation 요청 처리
   workbox.registerRoute(
     new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
       blocklist: [
-        /^\/api\/swagger-ui\/index\.html$/, // Swagger UI 경로 제외
-        /^\/api\/v3\/api-docs$/ // API 문서 경로 제외
+        new RegExp('^/api/swagger-ui/index\\.html$'), // Swagger UI 경로 제외
+        new RegExp('^/api/v3/api-docs$') // API 문서 경로 제외
       ]
     })
-  );
-
-  // Swagger UI 정적 파일 처리
-  workbox.routing.registerRoute(
-    new RegExp('/api/swagger-ui/.*'),
-    new workbox.strategies.NetworkOnly()
-  );
-
-  // API 문서 요청 처리
-  workbox.routing.registerRoute(
-    new RegExp('/api/v3/api-docs'),
-    new workbox.strategies.NetworkOnly()
   );
 
 }));
