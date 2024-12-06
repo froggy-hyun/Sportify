@@ -77,23 +77,20 @@ define(['./workbox-54d0af47'], (function (workbox) {
   workbox.clientsClaim(); // 활성화 후 즉시 컨트롤
 
   // 정적 자원 Precaching
-  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
+  // workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
 
-  // Navigation 요청 처리
-  workbox.registerRoute(
-    new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
-      blocklist: [
-        /^\/api\/swagger-ui\/index\.html$/, // Swagger UI 경로 제외
-        /^\/api\/v3\/api-docs$/ // API 문서 경로 제외
-      ]
-    })
-  );
+  // 특정 API 경로를 캐싱하지 않도록 설정
+  const nonCacheableUrls = [
+    '/api/swagger-ui/index.html',
+    '/ticketItem',
+  ];
 
-  // Swagger UI 네트워크 처리
-  workbox.routing.registerRoute(
-    new RegExp('/api/swagger-ui/.*'),
-    new workbox.strategies.NetworkOnly() // 항상 네트워크에서 처리
-  );
+  nonCacheableUrls.forEach((url) => {
+    workbox.routing.registerRoute(
+      new RegExp(url),
+      new workbox.strategies.NetworkOnly() // 네트워크 우선 처리
+    );
+  });
 
   // 이전 캐시 제거
   self.addEventListener('activate', (event) => {
