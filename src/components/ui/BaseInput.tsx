@@ -8,20 +8,26 @@ interface BaseInputProps {
   search?: boolean; // 검색 스타일 여부
   margin?: string;
   value?: string;
+  onFocus?: () => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const BaseInput = forwardRef<HTMLInputElement, BaseInputProps>(
-  ({ type = 'text', placeholder = '', search = false, margin, value, onChange, ...props }, ref) => {
+  (
+    { type = 'text', placeholder = '', search = false, margin, value, onChange, onFocus, ...props },
+    ref
+  ) => {
     return (
       <S.SearchInput
         type={type}
+        required
         placeholder={placeholder}
         search={search}
         ref={ref}
         $margin={margin}
         value={value} // 상태를 넘김
         onChange={onChange}
+        onFocus={onFocus}
         {...props}
       />
     );

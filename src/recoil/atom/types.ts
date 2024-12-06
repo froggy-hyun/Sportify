@@ -33,6 +33,7 @@ export interface SignUpState extends LoginState {
   disabled: boolean;
 }
 
+
 export interface LoginState {
   email: string;
   password: string;
