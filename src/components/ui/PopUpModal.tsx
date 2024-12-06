@@ -1,7 +1,7 @@
-import { modalState } from '@/recoil/atom/addressModal';
+// import { modalState } from '@/recoil/atom/addressModal';
 import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+// import { useLocation } from 'react-router-dom';
+// import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 interface PopUpModalProps {
@@ -12,8 +12,8 @@ interface PopUpModalProps {
 
 const PopUpModal = ({ children, onClose, page }: PopUpModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [isModalOpen, setModalState] = useRecoilState(modalState);
-  const location = useLocation();
+  // const [isModalOpen, setModalState] = useRecoilState(modalState);
+  // const location = useLocation();
 
   useEffect(() => {
     const closeModal = (e: MouseEvent) => {
@@ -31,14 +31,14 @@ const PopUpModal = ({ children, onClose, page }: PopUpModalProps) => {
     };
   }, [onClose]);
 
-  useEffect(() => {
-    if (page !== 'main' && isModalOpen) {
-      setModalState(false); // 모달 닫기
-    }
-    return () => {
-      document.body.style.overflow = ''; // 스크롤 복구
-    };
-  }, [location]);
+  // useEffect(() => {
+  //   if (page !== 'main' && isModalOpen) {
+  //     setModalState(false); // 모달 닫기
+  //   }
+  //   return () => {
+  //     document.body.style.overflow = ''; // 스크롤 복구
+  //   };
+  // }, [location]);
 
   return (
     <Background>

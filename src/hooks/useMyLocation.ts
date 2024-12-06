@@ -12,7 +12,7 @@ const useMyLocation = () => {
     setLoading(true)
   navigator.geolocation.getCurrentPosition(
   (position: GeolocationPosition) => {
-        console.log(position)
+      
         const { latitude, longitude } = position.coords; 
         updateLocation(latitude, longitude);
    

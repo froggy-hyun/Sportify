@@ -1,18 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import * as S from '@/styles/componentsStyles/AddressSearch.styled';
-import SearchResults from '@/components/addressSearch/SearchResults';
-import MyAddressesList from '@/components/addressSearch/MyAddresses';
+
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { modalState } from '@/recoil/atom/addressModal';
-import AddressPopup from '@/components/addressSearch/AddressPopup';
-import BaseInput from '@/components/ui/BaseInput';
-import useSerchAddress from '@/hooks/useSerchAddress';
-import { useQuery } from '@tanstack/react-query';
-import { myAddressesApi } from '@/service/queries';
 import { myAddressesState } from '@/recoil/atom/myAddresses';
 import { currentLocationState } from '@/recoil/atom/currentLocation';
 import { loadingState } from '@/recoil/atom/loading';
+
+import SearchResults from '@/components/addressSearch/SearchResults';
+import MyAddressesList from '@/components/addressSearch/MyAddresses';
+import AddressPopup from '@/components/addressSearch/AddressPopup';
+import BaseInput from '@/components/ui/BaseInput';
 import Loading from '@/components/ui/Loading';
+
+import useSerchAddress from '@/hooks/useSerchAddress';
+import { useQuery } from '@tanstack/react-query';
+import { myAddressesApi } from '@/service/queries';
 
 const AddressSearchPage = () => {
   const inputRef = useRef<HTMLInputElement | null>(null); // 검색어 입력 DOM을 참조하기 위한 ref

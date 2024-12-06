@@ -43,6 +43,7 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video,input {
 	border: 0;
 	vertical-align: baseline;
+    letter-spacing: -0.025rem;
 }
 
 html {
@@ -64,7 +65,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-    margin: 6.7rem 0 8.88rem 0;
+    /* margin: 6.7rem 0 8.88rem 0; */
 	line-height: 1.4;
     background-color: var( --white) ;
 }

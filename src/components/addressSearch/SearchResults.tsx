@@ -9,7 +9,7 @@ const SearchResults = ({ places, onPlaceClick }: SearchResultsProps) => {
   return (
     <S.SearchListContainer>
       <S.SearchResult>검색결과</S.SearchResult>
-      <S.SearchListContainer>
+      <S.SearchItemContainer>
         {places.map((place: kakao.maps.services.PlacesSearchResultItem) => (
           <S.SearchResultItem
             key={place.id}
@@ -22,7 +22,7 @@ const SearchResults = ({ places, onPlaceClick }: SearchResultsProps) => {
             <S.Address>{place.road_address_name + ' ' + place.place_name}</S.Address>
           </S.SearchResultItem>
         ))}
-      </S.SearchListContainer>
+      </S.SearchItemContainer>
     </S.SearchListContainer>
   );
 };

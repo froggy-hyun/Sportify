@@ -25,7 +25,7 @@ const HomePage = () => {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
 
   // const HOME_VISITED = Number(localStorage.getItem('homeVisited'));
-  console.log('pwa');
+
   const { data, errorCode, isLoading } = useQueries(
     ['activityTickets', 'myNeighbors', 'trendingTickets', 'trendingPast'], // queryKey
     {

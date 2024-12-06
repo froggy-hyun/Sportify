@@ -24,9 +24,9 @@ export const CapacityCount = styled.p`
   line-height: normal;
 `;
 
-export const ArrowIcon = styled.img<{ isopen: boolean }>`
-  width: 2rem;
-  height: 2rem;
+export const ArrowIcon = styled.img<{ isOpen: boolean }>`
+  width: 1.6rem;
+  height: 1.6rem;
   transform: ${({ isOpen }) => (isOpen ? 'rotate(-180deg)' : 'rotate(0)')};
   transition: transform 0.3s ease;
 `;
