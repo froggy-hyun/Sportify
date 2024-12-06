@@ -14,7 +14,10 @@ export default defineConfig({
       srcDir: 'src',
       filename: 'service-worker.js', // 수정한 서비스 워커 파일 경로
       strategies: 'injectManifest', // 사용자 정의 서비스 워커 사용
-      
+      injectManifest: {
+        swSrc: 'src/service-worker.js', // 소스 파일 경로
+        swDest: 'dist/service-worker.js', // 빌드 후 출력 경로
+      },
       registerType: 'autoUpdate',
       devOptions:{enabled: true, type: 'module'}, // vite dev 로 돌려도 PWA 까지 볼 수 있게끔 주는 옵션
       includeAssets: [

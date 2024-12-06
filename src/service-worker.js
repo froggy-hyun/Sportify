@@ -7,6 +7,8 @@
  *
  * 캐싱을 완전히 비활성화한 서비스 워커
  */
+
+self.__WB_MANIFEST; // Workbox가 프리캐시 매니페스트를 주입하는 위치
 self.addEventListener('install', (event) => {
   console.log('Service Worker installed.');
   self.skipWaiting(); // 즉시 활성화
