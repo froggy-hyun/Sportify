@@ -40,6 +40,6 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(fetch(event.request));
 });
 
-navigator.serviceWorker.getRegistrations().then((registrations) => {
-  registrations.forEach((registration) => registration.unregister());
-});
+// navigator.serviceWorker.getRegistrations().then((registrations) => {
+//   registrations.forEach((registration) => registration.unregister());
+// });
