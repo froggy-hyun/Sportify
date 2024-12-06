@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Navbar from './Navbar';
@@ -15,7 +15,7 @@ const HeaderNav = () => {
 
   useEffect(() => {
     if (HeaderNavbarPath) {
-      document.body.style.margin = '6.7rem 0 8.88rem 0';
+      document.body.style.margin = '5.6rem 0 8.08rem 0';
     } else {
       document.body.style.margin = '0';
     }

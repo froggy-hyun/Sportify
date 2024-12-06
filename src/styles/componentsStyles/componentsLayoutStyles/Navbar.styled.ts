@@ -7,7 +7,7 @@ export const NavContainer = styled.ul`
   width: 100%;
   height: fit-content;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1.6rem 2rem;
   align-items: center;
   display: flex;
   background-color: var(--white);

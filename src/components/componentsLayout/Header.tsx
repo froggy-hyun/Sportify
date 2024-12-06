@@ -36,10 +36,10 @@ const Header = () => {
           {location.pathname === '/addressSearch' ? (
             <S.NoticeAndSearch src={myLocationImg} alt="내위치" onClick={searchMyAddress} />
           ) : (
-            <div>
+            <S.HeaderUtilFrame>
               <S.NoticeAndSearch src={searchImg} alt="검색" />
               <S.NoticeAndSearch className="search" src={noticeImg} alt="알림" />
-            </div>
+            </S.HeaderUtilFrame>
           )}
         </div>
       </S.HeaderContainer>

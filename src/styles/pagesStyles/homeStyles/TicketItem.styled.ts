@@ -23,6 +23,10 @@ export const TicketItemContainer = styled.button<TicketItemProps>`
   align-items: flex-start;
   background: var(--white);
   border: ${(props) => (props.ticket === 'trending' ? '1px solid #EEE;' : '')};
+
+  &:last-child {
+    margin-bottom:0px;
+  }
 `;
 
 export const TicketTitle = styled.h2`

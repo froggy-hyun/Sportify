@@ -100,13 +100,10 @@ table {
 	border-spacing: 0;
 }
 
-
 .scroll-locked {
   overflow: hidden !important; // 강제적으로 스크롤을 숨김 
   height: 100%; // 스크롤 차단 시 높이를 고정 
 }
-
-
 
 `;
 

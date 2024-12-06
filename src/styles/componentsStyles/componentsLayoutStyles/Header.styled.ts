@@ -9,16 +9,20 @@ export const HeaderContainer = styled.div`
   background-color: var(--white);
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1.6rem 2rem;
 
   z-index:100;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
 `;
 
+export const HeaderUtilFrame = styled.div`
+  display: flex;
+`;
+
 export const NoticeAndSearch = styled.img`
   height: 2.4rem;
   width:  2.4rem;
-  flex-shrink: 0;
+  display:block;
 
   &.search {
     margin-left: 2rem;
