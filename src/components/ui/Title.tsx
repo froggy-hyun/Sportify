@@ -67,5 +67,7 @@ const TitleContainer = styled.div`
   width: fit-content;
   margin-bottom: 1.6rem;
   display: flex;
+
+  position: relative;
 `;
 export default Title;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as S from '@/styles/pagesStyles/LoginPage.styled';
 import { BaseInput, Title } from '@/components/ui';
 import Button from '@/components/ui/Button';
