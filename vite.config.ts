@@ -30,9 +30,9 @@ export default defineConfig({
           name: 'sportify',
           short_name: 'sportify',
           start_url: "/",
-          background_color: "#000000",
+          background_color: "#FFFFFF",
           display: "fullscreen",
-          theme_color: '#0096C7',
+          theme_color: '#FFFFFF',
           icons:[
             {
               src:  '/icon/launchericon-48-48.png',
