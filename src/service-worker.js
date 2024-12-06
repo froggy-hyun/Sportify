@@ -37,6 +37,22 @@ self.addEventListener('fetch', (event) => {
     return; // 서비스 워커가 요청을 처리하지 않음
   }
 
+  // `/`로 시작하는 요청을 처리
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      caches.match('/index.html').then((cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse; // 캐싱된 index.html 반환
+        }
+        return fetch(event.request).catch(() => {
+          // 네트워크 요청 실패 시 index.html 반환
+          return caches.match('/index.html');
+        });
+      })
+    );
+    return;
+  }
+
   // 기본 네트워크 요청 처리
   console.log('Fetch event:', event.request.url);
   event.respondWith(fetch(event.request));
