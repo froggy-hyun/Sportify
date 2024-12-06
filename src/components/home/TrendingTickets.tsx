@@ -1,4 +1,5 @@
 import * as S from '@/styles/pagesStyles/homeStyles/TrendingTickets.styled';
+import { useNavigate } from 'react-router-dom';
 
 import { Title } from '@/components';
 
@@ -8,6 +9,8 @@ import { trendingTicketsState } from '@/recoil/atom/trendingTickets';
 
 const TrendingTickets = () => {
   const trendingTicketData = useRecoilValue(trendingTicketsState);
+  const navigate = useNavigate();
+
   return (
     <S.TrendingTicketsContainer>
       <Title title="🔥 우리 지역 트렌드 이용권" color={true}>
@@ -26,6 +29,9 @@ const TrendingTickets = () => {
               requestNumberOfPerson={item.requestNumberOfPerson}
               subCategory={item.subCategory}
               price={item.price}
+              onClickItem={() => {
+                navigate(`/ticketItem/${item.voucherId}`);
+              }}
             />
           ))
         ) : (
