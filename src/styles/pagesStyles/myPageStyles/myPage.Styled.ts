@@ -41,8 +41,7 @@ export const UserName = styled.p`
 `;
 
 export const UserIsDisabled = styled.p`
-  height: fit-content;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: var(--white);
 
@@ -50,6 +49,7 @@ export const UserIsDisabled = styled.p`
   margin-left: auto;
   background-color: var(--brandColor);
   border-radius: 50px;
+  line-height:normal;
 `;
 
 export const UserInfoManage = styled.div`
