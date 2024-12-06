@@ -30,8 +30,6 @@ const ManageCrewPage = () => {
 
       setMyCrews(myCrewData);
       setMyPastCrews(myPastCrewData);
-      // console.log(myCrewData);
-      // console.log(myPastCrewData);
     }
   }, [data, setMyCrews, setMyPastCrews]);
 

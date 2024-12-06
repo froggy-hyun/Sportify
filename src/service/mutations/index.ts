@@ -38,7 +38,6 @@ export const crewImgApi = async (img: File) => {
 
 
 export const newCrewApi = async ({ newCrewInfo, sportVoucherId }: { newCrewInfo: NewCrewState; sportVoucherId: number }) => {
-  console.log(newCrewInfo)
   const data = await authAPI.post(`/crews/sport-vouchers/${sportVoucherId }`,newCrewInfo );
   return data;
 };

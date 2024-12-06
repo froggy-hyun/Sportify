@@ -20,10 +20,6 @@ const TicketDetailViewPage = () => {
   const [selectedCrewId, setSelectedCrewId] = useState<number>(0);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
-
   const formatToKRW = (number: number) => {
     return Intl.NumberFormat('ko-KR').format(number);
   };

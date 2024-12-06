@@ -36,7 +36,6 @@ const CreateCrewPage = () => {
     }
   }, [newCrew.imageId]); // imageId 변경 시 실행
   const onCreateSuccess = (res) => {
-    console.log(res);
     alert('크루 생성 성공');
     navigate('/');
   };
