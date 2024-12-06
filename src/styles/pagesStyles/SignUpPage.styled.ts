@@ -1,16 +1,21 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 
 export const SignUpContainer = styled.div`
   display: flex;
+  justify-content: center;
   width: 100%;
-  padding: 6rem 2rem 4rem 2rem;
+  height:100vh;
+
+  padding: 0px 2rem;
   flex-direction: column;
 `;
 
 export const CirclesImg = styled.img`
   position: absolute;
   width:34px;
-  top: 127.5px;
+  top: 60px;
   left: 116.8px;
   transform:translateY(-100%);
 `;
@@ -18,7 +23,7 @@ export const CirclesImg = styled.img`
 export const SignUpInfoContainer = styled.form`
   display: flex;
   flex-direction: column;
-`;
+`;  
 
 export const LabelFrame = styled.form`
   display: flex;
@@ -48,10 +53,20 @@ export const SubTitle = styled.p`
 `;
 
 export const ButtonContainer = styled.div`
-margin: 10rem 0 4rem 0;
+margin-top:10rem;
 `;
 
 export const DisabledContainer = styled.div`
   display: flex;
   align-items:flex-end;
+`;
+
+export const StyledLink = styled(Link)`
+  display:block;
+  text-align:center;
+  margin-top:16px;
+
+  font-size:1.4rem;
+  font-weight: 400;
+  color: var(--textC8);
 `;

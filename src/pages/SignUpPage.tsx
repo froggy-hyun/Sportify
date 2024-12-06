@@ -92,7 +92,7 @@ const SignUpPage = () => {
         />
         <S.LimitText>{validText.password}</S.LimitText>
 
-        <Divide thin={true} margin="3.2rem 0 1.6rem 0" />
+        <Divide thin={true} margin="2.4rem 0 0.8rem 0" />
 
         <LabelTitle title="닉네임" />
         <BaseInput
@@ -114,7 +114,7 @@ const SignUpPage = () => {
           ))}
         </S.SelectContainer>
 
-        <Divide thin={true} margin="3.2rem 0 1.6rem 0" />
+        <Divide thin={true} margin="2.4rem 0.8rem 0" />
 
         <S.DisabledContainer>
           <LabelTitle title="장애 유무" />
@@ -133,6 +133,7 @@ const SignUpPage = () => {
         </S.SelectContainer>
         <S.ButtonContainer>
           <Button title="가입하기" />
+          <S.StyledLink to="/">뒤로가기</S.StyledLink>
         </S.ButtonContainer>
       </S.SignUpInfoContainer>
     </S.SignUpContainer>
