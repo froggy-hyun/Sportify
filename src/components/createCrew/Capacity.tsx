@@ -40,7 +40,7 @@ const Capacity = () => {
         <S.DropdownToggle onClick={() => setIsOpen((prev) => !prev)}>
           <S.CapacityCount> {newCrew.capacity}명</S.CapacityCount>
 
-          <S.ArrowIcon isopen={isOpen} src={arrowImg} alt="열기" />
+          <S.ArrowIcon isOpen={isOpen} src={arrowImg} alt="열기" />
         </S.DropdownToggle>
         {isOpen && (
           <S.DropdownMenu>
