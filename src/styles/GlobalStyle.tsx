@@ -43,6 +43,7 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video,input {
 	border: 0;
 	vertical-align: baseline;
+    letter-spacing: -0.025rem;
 }
 
 html {
