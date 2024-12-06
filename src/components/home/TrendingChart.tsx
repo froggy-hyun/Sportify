@@ -127,7 +127,7 @@ const ChartContainer = styled.div`
 `;
 
 const ChartCanvas = styled.canvas`
-  width: 100% !important;
+  width: 88% !important;
   margin-top: 2rem;
   height: 360px !important;
 `;
