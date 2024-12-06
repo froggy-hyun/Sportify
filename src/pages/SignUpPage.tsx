@@ -10,26 +10,33 @@ import Button from '@/components/ui/Button';
 import { useGenericMutation } from '@/service/mutations/customMutation';
 import { signUpApi } from '@/service/mutations';
 import { useNavigate } from 'react-router-dom';
+import useValid from '@/hooks/useValid';
 const SignUpPage = () => {
-  const [signUpstate, setSignUpState] = useRecoilState(signUpState);
+  const [signUp, setSignUp] = useRecoilState(signUpState);
   const navigate = useNavigate();
 
+  const { validText } = useValid({
+    email: signUp.email,
+    password: signUp.password,
+    name: signUp.name,
+  });
+
   const selectGender = (item: GenderKey) => {
-    setSignUpState((prev) => ({
+    setSignUp((prev) => ({
       ...prev,
       gender: Gender[item],
     }));
   };
 
   const selectDisabled = (item: DisabledKey) => {
-    setSignUpState((prev) => ({
+    setSignUp((prev) => ({
       ...prev,
       disabled: Disabled[item],
     }));
   };
 
-  const handleChange = (key: keyof typeof signUpstate, value: string) => {
-    setSignUpState((prev) => ({
+  const handleChange = (key: keyof typeof signUp, value: string) => {
+    setSignUp((prev) => ({
       ...prev,
       [key]: value,
     }));
@@ -41,9 +48,7 @@ const SignUpPage = () => {
   };
 
   const onSignUpError = (res) => {
-    if (res.response.status === 400) {
-      alert('이미 존재하는 이메일입니다');
-    }
+    alert(res.response.data.serverErrorMessage);
   };
   const { mutation: signUpMutation } = useGenericMutation({
     mutationFn: signUpApi,
@@ -53,7 +58,7 @@ const SignUpPage = () => {
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    signUpMutation.mutate(signUpstate);
+    signUpMutation.mutate(signUp);
   };
 
   // 반복되는 부분 추후 컴포넌트화
@@ -63,33 +68,37 @@ const SignUpPage = () => {
       <S.SignUpInfoContainer onSubmit={onSubmitHandler}>
         <LabelTitle title="이메일" />
         <BaseInput
+          type="email"
           placeholder="email@email.com"
           margin="0 0 1.6rem 0"
-          value={signUpstate.email}
+          value={signUp.email}
           onChange={(e) => handleChange('email', e.target?.value)}
         />
+        <S.LimitText>{validText.email}</S.LimitText>
         <LabelTitle title="비밀번호" />
         <BaseInput
           placeholder="비밀번호를 입력해주세요."
           margin="0 0 3.2rem 0"
-          value={signUpstate.password}
+          value={signUp.password}
           onChange={(e) => handleChange('password', e.target?.value)}
         />
+        <S.LimitText>{validText.password}</S.LimitText>
         <Divide thin={true} margin="0 0 3.2rem 0" />
         <LabelTitle title="닉네임" />
         <BaseInput
           placeholder="닉네임을 입력하세요."
           margin="0 0 1.6rem 0"
-          value={signUpstate.name}
+          value={signUp.name}
           onChange={(e) => handleChange('name', e.target?.value)}
         />
+        <S.LimitText>{validText.name}</S.LimitText>
         <LabelTitle title="성별" />
         <S.SelectContainer>
           {(Object.keys(Gender) as Array<keyof typeof Gender>).map((key) => (
             <SelectItem
               key={key}
               title={key as GenderKey}
-              select={signUpstate.gender === Gender[key]}
+              select={signUp.gender === Gender[key]}
               onClick={() => selectGender(key as GenderKey)}
             />
           ))}
@@ -105,7 +114,7 @@ const SignUpPage = () => {
             <SelectItem
               key={key}
               title={key as DisabledKey}
-              select={signUpstate.disabled === Disabled[key]}
+              select={signUp.disabled === Disabled[key]}
               onClick={() => selectDisabled(key as DisabledKey)}
             />
           ))}
