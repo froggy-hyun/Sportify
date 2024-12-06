@@ -69,22 +69,45 @@ if (!self.define) {
     });
   };
 }
+
 define(['./workbox-54d0af47'], (function (workbox) {
   'use strict';
 
-  self.skipWaiting();
-  workbox.clientsClaim();
+  self.skipWaiting(); // 설치되자마자 활성화
+  workbox.clientsClaim(); // 활성화 후 즉시 컨트롤
 
   // 정적 자원 Precaching
   workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
 
+  // Navigation 요청 처리
   workbox.registerRoute(
     new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
       blocklist: [
-        new RegExp('^/api/swagger-ui/index\\.html$'), // Swagger UI 경로 제외
-        new RegExp('^/api/v3/api-docs$') // API 문서 경로 제외
+        /^\/api\/swagger-ui\/index\.html$/, // Swagger UI 경로 제외
+        /^\/api\/v3\/api-docs$/ // API 문서 경로 제외
       ]
     })
   );
 
+  // Swagger UI 네트워크 처리
+  workbox.routing.registerRoute(
+    new RegExp('/api/swagger-ui/.*'),
+    new workbox.strategies.NetworkOnly() // 항상 네트워크에서 처리
+  );
+
+  // 이전 캐시 제거
+  self.addEventListener('activate', (event) => {
+    const cacheWhitelist = ['new-cache-name']; // 유지할 캐시 이름
+    event.waitUntil(
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (!cacheWhitelist.includes(cacheName)) {
+              return caches.delete(cacheName); // 기존 캐시 삭제
+            }
+          })
+        );
+      })
+    );
+  });
 }));
