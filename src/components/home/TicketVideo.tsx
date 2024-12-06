@@ -1,8 +1,8 @@
-import React from 'react';
-import { Title } from '../ui';
 import styled from 'styled-components';
 import YouTube from 'react-youtube';
 import { Link } from 'react-router-dom';
+
+import { Title } from '../ui';
 
 const TicketVideo = () => {
   const disabled = localStorage.getItem('disabled');
@@ -15,8 +15,8 @@ const TicketVideo = () => {
           <YouTube
             videoId={disabled ? `EaFcitHr8NA` : `kGlhSM_KYA4`}
             opts={{
-              width: '328px',
-              height: '184px',
+              width: '100%',
+              height: '196px',
 
               playerVars: {
                 autoplay: 0, //자동재생 X
@@ -60,23 +60,24 @@ const VideoContainer = styled.div`
 `;
 
 const YouTubeContainer = styled.div`
-  width: 328px;
-  height: 184px;
-  display: flex;
+  width: 100%;
+  height: auto;
   overflow: hidden; /* 테두리 안쪽으로 자르기 */
-  justify-content: center;
-  border-radius: 0.8rem;
-  background-color: antiquewhite;
+  border-radius: 8px;
+
+  iframe {
+    display: block; /* iframe에 스타일 적용 */
+  }
 `;
 
 const LinkBtn = styled(Link)`
   display: flex;
   margin-top: 1.6rem;
-  width: 328px;
+  width: 100%;
   padding: 1.2rem 0;
   justify-content: center;
   align-items: center;
-  border-radius: 0.8rem;
+  border-radius: 8px;
   background: var(--brandColor);
 
   color: var(--white);
