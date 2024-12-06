@@ -13,7 +13,7 @@ const TicketVideo = () => {
       <VideoContainer>
         <YouTubeContainer>
           <YouTube
-            videoId={disabled ? `EaFcitHr8NA` : `kGlhSM_KYA4`}
+            videoId={disabled ? `kGlhSM_KYA4` : `EaFcitHr8NA`}
             opts={{
               width: '100%',
               height: '196px',
@@ -31,7 +31,7 @@ const TicketVideo = () => {
           />
         </YouTubeContainer>
         <LinkBtn
-          to={`https://www.youtube.com/watch?v=${disabled ? `EaFcitHr8NA` : `kGlhSM_KYA4`}`}
+          to={`https://www.youtube.com/@kspo88`}
           target="_blank"
         >
           유튜브 영상 더보기
