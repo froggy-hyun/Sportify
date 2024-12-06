@@ -1,18 +1,29 @@
 import styled from 'styled-components';
+
 export const SignUpContainer = styled.div`
-  margin-top: 6rem;
   display: flex;
   width: 100%;
-  padding: 0 2rem;
+  padding: 6rem 2rem 4rem 2rem;
   flex-direction: column;
 `;
 
+export const CirclesImg = styled.img`
+  position: absolute;
+  width:34px;
+  top: 127.5px;
+  left: 116.8px;
+  transform:translateY(-100%);
+`;
 
 export const SignUpInfoContainer = styled.form`
-  margin-top:1.6rem;
   display: flex;
   flex-direction: column;
- 
+`;
+
+export const LabelFrame = styled.form`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const SelectContainer = styled.div`
@@ -22,24 +33,25 @@ export const SelectContainer = styled.div`
   gap: 1.2rem; 
 `;
 
-
-
 export const LimitText = styled.p`
   color: var(--funcC1);
   font-size: 1.2rem;
   font-weight: 400;
-  line-height: normal; 
-  margin: 0 0  1.2rem 1.4rem;
-
 `;
 
-
-export const ButtonContainer= styled.div`
-margin: 9.2rem 0 4rem 0;
+export const SubTitle = styled.p`
+  color: var(--funcC1);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+  margin-left:16px;
 `;
 
+export const ButtonContainer = styled.div`
+margin: 10rem 0 4rem 0;
+`;
 
-export const DisabledContainer= styled.div`
+export const DisabledContainer = styled.div`
   display: flex;
-  align-items:end
+  align-items:flex-end;
 `;

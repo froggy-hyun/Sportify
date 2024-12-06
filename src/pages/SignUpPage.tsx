@@ -1,16 +1,20 @@
-import React from 'react';
 import * as S from '@/styles/pagesStyles/SignUpPage.styled';
-import { Title, LabelTitle, BaseInput, Divide } from '@/components/ui';
+
 import { useRecoilState } from 'recoil';
 import { signUpState } from '@/recoil/atom/signUp';
 import { Disabled, Gender } from '@/constants/signUpInfo';
+
 import { DisabledKey, GenderKey } from '@/recoil/atom/types';
 import SelectItem from '@/components/createCrew/SelectItem';
 import Button from '@/components/ui/Button';
-import { useGenericMutation } from '@/service/mutations/customMutation';
-import { signUpApi } from '@/service/mutations';
+import { Title, LabelTitle, BaseInput, Divide } from '@/components/ui';
+import circlesImg from '@/assets/icon/etc/signUpCircles.png';
+
 import { useNavigate } from 'react-router-dom';
 import useValid from '@/hooks/useValid';
+import { signUpApi } from '@/service/mutations';
+import { useGenericMutation } from '@/service/mutations/customMutation';
+
 const SignUpPage = () => {
   const [signUp, setSignUp] = useRecoilState(signUpState);
   const navigate = useNavigate();
@@ -65,29 +69,35 @@ const SignUpPage = () => {
   return (
     <S.SignUpContainer>
       <Title login={true} title="회원가입" color={true} />
+      <S.CirclesImg src={circlesImg} />
+
       <S.SignUpInfoContainer onSubmit={onSubmitHandler}>
         <LabelTitle title="이메일" />
+
         <BaseInput
           type="email"
           placeholder="email@email.com"
-          margin="0 0 1.6rem 0"
+          margin="0 0px 8px 0px"
           value={signUp.email}
           onChange={(e) => handleChange('email', e.target?.value)}
         />
         <S.LimitText>{validText.email}</S.LimitText>
+
         <LabelTitle title="비밀번호" />
         <BaseInput
           placeholder="비밀번호를 입력해주세요."
-          margin="0 0 3.2rem 0"
+          margin="0 0 8px 0"
           value={signUp.password}
           onChange={(e) => handleChange('password', e.target?.value)}
         />
         <S.LimitText>{validText.password}</S.LimitText>
-        <Divide thin={true} margin="0 0 3.2rem 0" />
+
+        <Divide thin={true} margin="3.2rem 0 1.6rem 0" />
+
         <LabelTitle title="닉네임" />
         <BaseInput
           placeholder="닉네임을 입력하세요."
-          margin="0 0 1.6rem 0"
+          margin="0 0 8px 0"
           value={signUp.name}
           onChange={(e) => handleChange('name', e.target?.value)}
         />
@@ -103,10 +113,12 @@ const SignUpPage = () => {
             />
           ))}
         </S.SelectContainer>
-        <Divide thin={true} margin="3.2rem 0" />
+
+        <Divide thin={true} margin="3.2rem 0 1.6rem 0" />
+
         <S.DisabledContainer>
           <LabelTitle title="장애 유무" />
-          <S.LimitText>* 장애 유무에 따라 제공하는 이용권이 다릅니다.</S.LimitText>
+          <S.SubTitle>* 장애 유무에 따라 제공하는 이용권이 다릅니다.</S.SubTitle>
         </S.DisabledContainer>
 
         <S.SelectContainer>

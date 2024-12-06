@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 const useValid = (changeValue: { email: string; password: string; name: string }) => {
   const [validText, setValidText] = useState({
@@ -15,9 +15,9 @@ const useValid = (changeValue: { email: string; password: string; name: string }
   };
 
   const errorMessages: { [key in keyof typeof changeValue]: string } = {
-    email: '이메일 형식에 맞게 작성해주세요.',
-    password: '8자리 이상 16자리 미만으로 설정해주세요.',
-    name: '특수문자 제외 3자 이상 10자 이하로 작성해주세요.',
+    email: '* 이메일 형식에 맞게 작성해주세요.',
+    password: '* 8자리 이상 16자리 미만으로 설정해주세요.',
+    name: '* 특수문자 제외 3자 이상 10자 이하로 작성해주세요.',
   };
 
   const validateField = (field: keyof typeof changeValue, value: string): string => {
