@@ -31,8 +31,8 @@ public class SecurityConfig {
     private final String[] permitAllUrl = {
         "/error",
         "/api/members/login",
-        "/v3/api-docs/**",
-        "/swagger-ui/**",
+        "/api/v3/api-docs/**",
+        "/api/swagger-ui/**",
         "/api/members/logout"
     };
     private final String[] anonymousUrl = {"/api/members/login","/api/members/logout","/api"
