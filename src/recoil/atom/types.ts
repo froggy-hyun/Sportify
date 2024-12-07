@@ -106,3 +106,9 @@ export interface TrendingPastItem {
 }
 
 export type TrendingPastState = Record<string, TrendingPastItem[]>;
+
+
+export interface CrewDetailState {
+  memberId: number,
+  name: string
+}

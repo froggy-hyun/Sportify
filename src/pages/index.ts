@@ -7,6 +7,7 @@ import AddressSearchPage from './AddressSearchPage';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import CreateCrewPage from './CreateCrewPage';
+import CrewDetailPage from "./CrewDetailPage"
 
 export {
   HomePage,
@@ -18,4 +19,5 @@ export {
   LoginPage,
   SignUpPage,
   CreateCrewPage,
+  CrewDetailPage
 };
