@@ -1,9 +1,11 @@
+import { addressInputState } from '@/recoil/atom/addressInput';
 import { currentLocationState } from '@/recoil/atom/currentLocation';
 import { loadingState } from '@/recoil/atom/loading';
 import React from 'react';
 
-import { useSetRecoilState } from 'recoil';
+import {useSetRecoilState } from 'recoil';
 const useMyLocation = () => {
+  const  setInputValue = useSetRecoilState(addressInputState);
   const setMyLocation =useSetRecoilState(currentLocationState) 
   const setLoading =useSetRecoilState(loadingState) 
 
@@ -29,6 +31,7 @@ const useMyLocation = () => {
 
     if(address){
       setMyLocation({ address ,latitude,longitude})
+      setInputValue(address); 
     }
     else{
 
@@ -40,7 +43,7 @@ const useMyLocation = () => {
           if (status === window.kakao.maps.services.Status.OK) {
             const address = result[0]?.address?.address_name || '';
             setMyLocation({ address: address , latitude, longitude });
-          
+            setInputValue(address);
           }
         }
       );
