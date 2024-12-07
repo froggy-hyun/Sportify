@@ -48,3 +48,9 @@ export const myPageUserDateApi = async () => {
   const data = await authAPI.get('/members');
   return data;
 };
+
+
+export const crewDetailApi = async (crewId: number) => {
+  const data = await authAPI.get(`/voucher-members/${crewId}`);
+  return data;
+};
