@@ -58,3 +58,10 @@ export const logoutApi = async (token:string) => {
   });
   return data;
 };
+
+
+
+export const deleteCrewApi = async (crewId: number) => {
+  const data = await authAPI.delete(`/voucher-members/${crewId}`);
+  return data;
+};
