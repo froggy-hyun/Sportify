@@ -2,31 +2,29 @@ import styled from 'styled-components';
 
 export const CrewItemContainer = styled.div`
   width: 100%;
-  height:8.6rem;
   border-bottom: solid 1px var(--grayBG);
   display:flex;
   align-items: center;
+
+  padding:2rem 0%;
 `;
 
 export const CrewImgArea = styled.div`
   background-color: var(--grayBG);
   display: flex;
-  width: 4.6rem;
-  height: 4.6rem;
   align-items: center;
   justify-content: center; 
-  border-radius: 50%;
-
+  border-radius: 100px;
+  padding: 1.2rem;
 `;
 
 export const CrewImg = styled.img`
-  width: 17.164px;
-  height: 23px;
-  object-fit: cover;
+  height: 2.4rem;
+  width:2.4rem;
+  object-fit: contain;
   flex-shrink: 0;
-  
+  display: block;
 `;
-
 
 export const Name = styled.p`
  color: var(--textC3);

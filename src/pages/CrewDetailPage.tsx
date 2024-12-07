@@ -1,5 +1,5 @@
 import { AlertBanner, Button, Title } from '@/components';
-import CrewItemDetail from '@/components/crew/ CrewItemDetail';
+import CrewItemDetail from '@/components/crew/CrewItemDetail';
 import { crewDetailState } from '@/recoil/atom/crewDetail';
 import { deleteCrewApi } from '@/service/mutations';
 import { useGenericMutation } from '@/service/mutations/customMutation';

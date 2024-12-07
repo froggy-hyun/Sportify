@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from '@/styles/pagesStyles/crewDetailStyles/CrewItemDetail.styled';
 import crewImg from '@/assets/icon/etc/loginCircles.png';
 
