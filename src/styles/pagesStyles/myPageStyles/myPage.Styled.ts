@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const UserInfoContainer = styled.div`
   width: 100%;
@@ -44,38 +45,12 @@ export const UserIsDisabled = styled.p`
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--white);
+  width: fit-content;
 
   padding: 4px 12px;
-  margin-left: auto;
   background-color: var(--brandColor);
   border-radius: 50px;
   line-height:normal;
-`;
-
-export const UserInfoManage = styled.div`
-  width: 100%;
-`;
-
-export const InfoManage = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap:16px;
-
-  padding:2rem 0px 0px 1.6rem;
-`;
-
-export const ModifyInfo = styled.p`
-  font-size:1.4rem;
-  font-weight: 400;
-  color: var(--textC3);
-`;
-
-export const Logout = styled.p`
-  font-size:1.4rem;
-  font-weight: 400;
-  color: var(--textC3);
-  cursor: pointer;
 `;
 
 export const MyPageTitle = styled.p`
@@ -89,7 +64,7 @@ export const UserUtilServiceContainer = styled.div`
   padding: 4rem 2rem;
 `;
 
-export const UserServiceArea = styled.div`
+export const LinkBtn = styled(Link)`
   width: 100%;
   display: flex;
   align-items: center;

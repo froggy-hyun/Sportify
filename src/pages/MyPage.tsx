@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import * as S from '@/styles/pagesStyles/myPageStyles/myPage.Styled';
-import { Location, Divide } from '@/components';
+import { Location, Divide, Button } from '@/components';
 
 import userProfileIcon from '@/assets/icon/navigation/마이_DeActive.png';
 import arrow from '@/assets/icon/etc/arrow/rightArrow_Default.png';
@@ -73,31 +73,17 @@ const MyPage = () => {
           </S.UserInfoArea>
         </S.User>
 
-        <S.UserInfoManage>
-          <S.MyPageTitle>회원 정보 관리</S.MyPageTitle>
-
-          <S.InfoManage>
-            <S.ModifyInfo>회원정보 수정</S.ModifyInfo>
-            <S.Logout onClick={handleLogout}>로그아웃</S.Logout> {/* 로그아웃 */}
-          </S.InfoManage>
-        </S.UserInfoManage>
+        <Button title="로그아웃" onClick={handleLogout}/>
       </S.UserInfoContainer>
 
       <Divide />
 
       <S.UserUtilServiceContainer>
-        <S.UserServiceArea>
-          <S.MyPageTitle>현재 활동중인 이용권</S.MyPageTitle>
+        <S.LinkBtn to={`https://github.com/TUK-SPORTIFY`}
+          target="_blank">
+          <S.MyPageTitle>Sportify GitHub</S.MyPageTitle>
           <S.Arrow src={arrow} />
-        </S.UserServiceArea>
-        <S.UserServiceArea>
-          <S.MyPageTitle>과거 이용권</S.MyPageTitle>
-          <S.Arrow src={arrow} />
-        </S.UserServiceArea>
-        <S.UserServiceArea>
-          <S.MyPageTitle>고객 센터</S.MyPageTitle>
-          <S.Arrow src={arrow} />
-        </S.UserServiceArea>
+        </S.LinkBtn>
 
         <S.Version>V.0.0.1</S.Version>
       </S.UserUtilServiceContainer>
