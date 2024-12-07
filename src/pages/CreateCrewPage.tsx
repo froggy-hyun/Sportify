@@ -41,10 +41,10 @@ const CreateCrewPage = () => {
   };
 
   const onCreateError = (res) => {
-    if (res.response.status === 400) {
-      alert('사용자가 생성할 수 없는 성별입니다.');
-    }
+    const errorCode = res.response.data;
+    alert(errorCode.serverErrorMessage);
   };
+
   const { mutation: newCrewImgMutation } = useGenericMutation({
     mutationFn: crewImgApi,
     onSuccessCb: onCreateImgSuccess,

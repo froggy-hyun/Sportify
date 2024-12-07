@@ -20,9 +20,16 @@ const MyAddressesList = () => {
     localStorage.setItem(`currentLocation${email}`, newData);
     navigate('/ticket');
   };
+
+  const onSelectError = (res) => {
+    const errorCode = res.response.data;
+    alert(errorCode.serverErrorMessage);
+  };
+
   const { mutation: signUpMutation } = useGenericMutation({
     mutationFn: addressSelectApi,
     onSuccessCb: onSelectSuccess,
+    onErrorCb: onSelectError,
   });
 
   return (
