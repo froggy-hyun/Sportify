@@ -11,29 +11,29 @@ const HeaderNav = () => {
     (location.pathname === '/' && token) ||
     location.pathname.startsWith('/ticket') ||
     location.pathname.startsWith('/manageCrew') ||
-    location.pathname.startsWith('/addressSearch') ||
     location.pathname.startsWith('/my');
+
+  const HeaderOnlyPath =
+    location.pathname.startsWith('/addressSearch') || location.pathname.startsWith('/crewItem');
 
   useEffect(() => {
     if (HeaderNavbarPath) {
       document.body.style.margin = '5.6rem 0 8.08rem 0';
-      console.log(location.pathname)
+    } else if (HeaderOnlyPath) {
+      document.body.style.margin = '5.6rem 0 0 0';
     } else {
       document.body.style.margin = '0';
     }
+
     return () => {
-      document.body.style.margin = '';
+      document.body.style.margin = ''; // Cleanup
     };
-  }, [HeaderNavbarPath]);
+  }, [HeaderNavbarPath, HeaderOnlyPath]);
 
   return (
     <>
-      {HeaderNavbarPath && (
-        <>
-          <Header />
-          <Navbar />
-        </>
-      )}
+      {(HeaderNavbarPath || HeaderOnlyPath) && <Header />}
+      {HeaderNavbarPath && <Navbar />}
       <Outlet />
     </>
   );

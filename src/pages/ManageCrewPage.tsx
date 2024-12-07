@@ -8,10 +8,12 @@ import { useQueries } from '@/service/queries/useQueries';
 import { myNeighborsApi, pastCrewsApi } from '@/service/queries';
 
 import FilterIcon from '@/assets/icon/etc/filter_Default.png';
+import { useNavigate } from 'react-router-dom';
 
 const ManageCrewPage = () => {
   const [myCrews, setMyCrews] = useRecoilState(myCrewsState);
   const [myPastCrews, setMyPastCrews] = useRecoilState(myPastCrewsState);
+  const navigate = useNavigate();
 
   const { data } = useQueries(
     ['myNeighbors', 'myPastCrewsState'], // queryKey
@@ -39,7 +41,13 @@ const ManageCrewPage = () => {
         <Title title="나의 이웃" color={true} />
         <S.MyCrewList>
           {myCrews && myCrews.length > 0 ? (
-            myCrews.map((crew) => <CrewItem key={crew.crewId} crews={crew} />)
+            myCrews.map((crew) => (
+              <CrewItem
+                onClick={() => navigate(`/crewItem/${crew.crewId}`, { state: { crew } })}
+                key={crew.crewId}
+                crews={crew}
+              />
+            ))
           ) : (
             <p>현재 나만의 운동 이웃이 없습니다.</p>
           )}

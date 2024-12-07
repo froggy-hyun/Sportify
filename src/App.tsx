@@ -12,6 +12,7 @@ import {
   LoginPage,
   SignUpPage,
   CreateCrewPage,
+  CrewDetailPage,
 } from './pages';
 import GlobalStyle from './styles/GlobalStyle';
 import ScrollToTop from './util/ScrollToTop';
@@ -35,6 +36,7 @@ function App() {
               <Route path="/my" element={<MyPage />} />
               <Route path="/" element={token ? <HomePage /> : <LoginPage />} />
               <Route path="/ticketItem/:id" element={<TicketDetailViewPage />} />
+              <Route path="/crewItem/:id" element={<CrewDetailPage />} />
               <Route path="/addressSearch" element={<AddressSearchPage />} />{' '}
             </Route>
             <Route path="/login" element={<LoginPage />} />
