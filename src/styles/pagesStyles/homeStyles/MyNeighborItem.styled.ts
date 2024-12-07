@@ -18,8 +18,8 @@ export const MyNeighborTitle= styled.p`
   font-weight: 400;
 `;
 
-export const ArrowImg= styled.img`
-  width: 1.6rem;
-  flex-shrink: 0;
-`;
+// export const ArrowImg= styled.img`
+//   width: 1.6rem;
+//   flex-shrink: 0;
+// `;
 

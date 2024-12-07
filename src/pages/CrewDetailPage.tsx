@@ -56,7 +56,7 @@ const CrewDetailPage = () => {
       <S.CrewDetailInfoContainer>
         <S.CrewListTitleContainer>
           <Title title="내 이웃 목록" color={true} />
-          <S.CrewCount>{`${crew.numberOfParticipants}/${crew.crewCapacity}`} </S.CrewCount>
+          <S.CrewCount>{`${crew.numberOfParticipants}/${crew.crewCapacity}`}</S.CrewCount>
         </S.CrewListTitleContainer>
         <S.CrewListContainer>
           {crewInfo?.map((crew) => <CrewItemDetail key={crew.memberId} name={crew.name} />)}
