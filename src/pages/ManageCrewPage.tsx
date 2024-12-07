@@ -41,7 +41,7 @@ const ManageCrewPage = () => {
           {myCrews && myCrews.length > 0 ? (
             myCrews.map((crew) => <CrewItem key={crew.crewId} crews={crew} />)
           ) : (
-            <p>현재 나만의 운동 이웃이 없습니다.</p>
+            <S.NoneData>현재 나만의 운동 이웃이 없습니다.</S.NoneData>
           )}
         </S.MyCrewList>
         <Button title="이웃 추가하기"></Button>
@@ -57,7 +57,7 @@ const ManageCrewPage = () => {
           {myPastCrews && myPastCrews.length > 0 ? (
             myPastCrews.map((crew) => <CrewItem key={crew.crewId} crews={crew} />)
           ) : (
-            <p>지난 이웃이 없습니다.</p>
+            <S.NoneData>지난 이웃이 없습니다.</S.NoneData>
           )}
         </S.PastCrewList>
       </S.PastCrewListContainer>

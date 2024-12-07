@@ -22,7 +22,7 @@ const MyNeighbors = () => {
         {myCrewsData && myCrewsData.length > 0 ? (
           myCrewsData.map((crew, idx) => <MyNeighborItem key={idx} title={crew.crewName} />)
         ) : (
-          <p>현재 나만의 운동 이웃이 없습니다.</p>
+          <S.NoneData>현재 나만의 운동 이웃이 없습니다.</S.NoneData>
         )}
       </S.MyNeighbors>
       <Button onClick={() => navigate('/manageCrew')} title="관리하기" />
