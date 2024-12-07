@@ -23,7 +23,7 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
-  self.clientsClaim(); // 현재 활성화된 클라이언트 제어
+  // self.clientsClaim(); // 현재 활성화된 클라이언트 제어
 });
 
 self.addEventListener('fetch', (event) => {
