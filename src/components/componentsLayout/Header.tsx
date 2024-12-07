@@ -23,8 +23,8 @@ const Header = () => {
   return (
     <>
       <S.HeaderContainer>
-        {location.pathname === '/' ? (
-          <S.LogoImg src={logoImg} alt="sportify" />
+        {location.pathname === '/' || location.pathname === '/ticket' ? (
+          <S.LogoImg src={logoImg} alt="sportify" onClick={() => navigate('/')} />
         ) : (
           <S.HeaderConstants>
             <S.BackImg src={backImg} alt="뒤로가기" onClick={() => navigate(-1)} />
