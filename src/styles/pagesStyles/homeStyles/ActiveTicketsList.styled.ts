@@ -7,7 +7,7 @@ export const TicketsListContainer = styled.div`
   padding: 3.6rem 0 3.6rem 2rem;
 `;
 
-export const  Tickets =  styled.div`
+export const Tickets = styled.div`
   overflow-x: auto;
   display: flex;
   width: 100%;
@@ -19,5 +19,21 @@ export const  Tickets =  styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+export const EmptyMessage = styled.div`
+  width: calc(100vw - 40px);
+  height: 13rem;
+  border:1px dashed var(--white);
+  border-radius:8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PlusIcon = styled.img`
+  width: 2.4rem;
+  height: 2.4rem;
 `;
 
