@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,5 +79,13 @@ public class VoucherMemberController {
         @PathVariable @Parameter(description = "크루 ID") final Long crewId
     ){
         return voucherMemberService.findCrewMembers(crewId);
+    }
+
+    @DeleteMapping("/{crewId}")
+    @Operation(summary = "크루 나가기", description = "크루에서 나갑니다.")
+    public void exitCrew(
+        @AuthenticationMember @Parameter(hidden = true) final Long memberId,
+        @PathVariable @Parameter(description = "크루 ID") final Long crewId) {
+        voucherMemberService.delete(memberId,crewId);
     }
 }

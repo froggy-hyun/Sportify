@@ -4,6 +4,7 @@ import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.member.domain.Member;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
 
+import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -50,4 +51,7 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
     List<VoucherMember> findByCrewId(Long crewId);
 
     boolean existsByMemberAndCrew(Member member, Crew crew);
+
+    @Query("select vm from VoucherMember vm where vm.member.id = :memberId and vm.crew.id = :crewId")
+    Optional<VoucherMember> findByMemberAndCrew(final Long memberId, final Long crewId);
 }

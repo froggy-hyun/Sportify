@@ -15,6 +15,7 @@ import com.tuk.sportify.vouchermember.dto.MyPastCrewResponse;
 import com.tuk.sportify.vouchermember.dto.PastPersonalVoucherResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalAndCrewVoucherResponse;
 import com.tuk.sportify.vouchermember.dto.PersonalVoucher;
+import com.tuk.sportify.vouchermember.exception.VoucherMemberNotFound;
 import com.tuk.sportify.vouchermember.repository.VoucherMemberRepository;
 import com.tuk.sportify.vouchermember.service.mapper.VoucherMemberMapper;
 
@@ -112,5 +113,11 @@ public class VoucherMemberService {
     public CrewMembersResponse findCrewMembers(final Long crewId){
         List<VoucherMember> crewMembers = voucherMemberRepository.findByCrewId(crewId);
         return voucherMemberMapper.toCrewMembersResponse(crewMembers);
+    }
+
+    public void delete(final Long memberId, final Long crewId){
+        VoucherMember voucherMember = voucherMemberRepository.findByMemberAndCrew(memberId, crewId)
+            .orElseThrow(() -> new VoucherMemberNotFound(ErrorCode.VOUCHER_MEMBER_NOT_FOUND));
+        voucherMemberRepository.delete(voucherMember);
     }
 }

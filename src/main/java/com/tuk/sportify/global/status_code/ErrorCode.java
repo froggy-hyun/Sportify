@@ -16,7 +16,6 @@ public enum ErrorCode {
      */
     SPORT_VOUCHER_NOT_FOUND(HttpStatus.NOT_FOUND, "100", "존재하지 않는 스포츠 이용권입니다."),
     SPORT_VOUCHER_CLOSED(HttpStatus.NOT_FOUND, "101", "해당 이용권은 종료됐습니다."),
-
     POPULAR_SPORT_NOT_FOUND(HttpStatus.NOT_FOUND, "110", "해당 위치에서 인기 스포츠를 찾을 수 없습니다."),
     INVALID_POPULAR_SPORT_REQUEST(HttpStatus.BAD_REQUEST, "111", "잘못된 인기 스포츠 요청입니다."),
 
@@ -56,8 +55,12 @@ public enum ErrorCode {
     JWT_TOKEN_WRONG_SIGNATURE(HttpStatus.BAD_REQUEST, "402", "Token has wrong signature"),
     JWT_TOKEN_HASH_NOT_SUPPORTED(HttpStatus.BAD_REQUEST, "403", "Token hash algorithm not supported"),
     JWT_NO_AUTH_HEADER(HttpStatus.BAD_REQUEST, "404", "Authorization header is missing"),
-    JWT_TOKEN_VALIDATION_TRY_FAILED(HttpStatus.BAD_REQUEST, "405", "Token validation attempt failed");
+    JWT_TOKEN_VALIDATION_TRY_FAILED(HttpStatus.BAD_REQUEST, "405", "Token validation attempt failed"),
 
+    /**
+     * VoucherMember : 이용자 관련 에러코드
+     */
+    VOUCHER_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND,"500","참여자를 찾을 수 없습니다.");
 
 
     private final HttpStatus httpStatus;
