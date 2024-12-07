@@ -104,6 +104,10 @@ public class Crew {
         }
     }
 
+    public void exit(){
+        numberOfParticipant--;
+    }
+
     public boolean isNotCrewHost(final Long memberId) {
         return !host.getId().equals(memberId);
     }

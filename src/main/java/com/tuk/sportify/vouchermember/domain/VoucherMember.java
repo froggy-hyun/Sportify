@@ -45,6 +45,10 @@ public class VoucherMember {
         this.crew.increaseParticipant();
     }
 
+    public boolean isLastMember(){
+        return crew.getNumberOfParticipant() == 1;
+    }
+
     public String getSportVoucherName(){
         return sportVoucher.getCourse().getName();
     }

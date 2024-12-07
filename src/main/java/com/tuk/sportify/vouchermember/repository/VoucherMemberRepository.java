@@ -2,9 +2,9 @@ package com.tuk.sportify.vouchermember.repository;
 
 import com.tuk.sportify.crew.domain.Crew;
 import com.tuk.sportify.member.domain.Member;
+import com.tuk.sportify.sportvoucher.domain.SportVoucher;
 import com.tuk.sportify.vouchermember.domain.VoucherMember;
 
-import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Long> {
@@ -31,13 +32,13 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
 
     @Query(
             "select vm from VoucherMember vm join fetch vm.sportVoucher join fetch vm.crew c left join"
-                + " fetch c.crewImage where vm"
-                + ".member =:member and vm.sportVoucher.course.endAt > :currentDate")
+                    + " fetch c.crewImage where vm"
+                    + ".member =:member and vm.sportVoucher.course.endAt > :currentDate")
     List<VoucherMember> findCurrentCrewsByMember(Member member, Integer currentDate);
 
     @Query(
             "select vm from VoucherMember vm join fetch vm.sportVoucher sv join fetch vm.crew c "
-                + " left join fetch c.crewImage where vm.member =:member and sv.course.endAt < :currentDate order by sv.course.endAt")
+                    + " left join fetch c.crewImage where vm.member =:member and sv.course.endAt < :currentDate order by sv.course.endAt")
     Slice<VoucherMember> findPastCrewsByMemberJoinFetch(
             Member member, Integer currentDate, Pageable pageable);
 
@@ -52,6 +53,8 @@ public interface VoucherMemberRepository extends JpaRepository<VoucherMember, Lo
 
     boolean existsByMemberAndCrew(Member member, Crew crew);
 
-    @Query("select vm from VoucherMember vm where vm.member.id = :memberId and vm.crew.id = :crewId")
+    @Query("select vm from VoucherMember vm join fetch vm.crew where vm.member.id = :memberId and vm.crew.id = :crewId")
     Optional<VoucherMember> findByMemberAndCrew(final Long memberId, final Long crewId);
+
+    int countBySportVoucherAndCrew(SportVoucher sportVoucher, Crew crew);
 }

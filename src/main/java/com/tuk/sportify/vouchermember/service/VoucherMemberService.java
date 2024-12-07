@@ -1,6 +1,7 @@
 package com.tuk.sportify.vouchermember.service;
 
 import com.tuk.sportify.crew.domain.Crew;
+import com.tuk.sportify.crew.repository.CrewRepository;
 import com.tuk.sportify.crewapplicant.exception.DuplicatedParticipationException;
 import com.tuk.sportify.global.status_code.ErrorCode;
 import com.tuk.sportify.global.utils.SportifyDateFormatter;
@@ -36,6 +37,7 @@ public class VoucherMemberService {
     private final VoucherMemberRepository voucherMemberRepository;
     private final VoucherMemberMapper voucherMemberMapper;
     private final MemberService memberService;
+    private final CrewRepository crewRepository;
 
     public PersonalAndCrewVoucherResponse findPersonalAndCrewVouchers(final Long memberId) {
         final Member member = getMember(memberId);
@@ -115,9 +117,16 @@ public class VoucherMemberService {
         return voucherMemberMapper.toCrewMembersResponse(crewMembers);
     }
 
+    @Transactional
     public void delete(final Long memberId, final Long crewId){
         VoucherMember voucherMember = voucherMemberRepository.findByMemberAndCrew(memberId, crewId)
             .orElseThrow(() -> new VoucherMemberNotFound(ErrorCode.VOUCHER_MEMBER_NOT_FOUND));
+        if(voucherMember.isLastMember()){
+            crewRepository.delete(voucherMember.getCrew());
+        }else{
+            final Crew crew = voucherMember.getCrew();
+            crew.exit();
+        }
         voucherMemberRepository.delete(voucherMember);
     }
 }
