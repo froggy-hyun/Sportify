@@ -9,7 +9,7 @@ const TicketVideo = () => {
   return (
     <TicketVideoContainer>
       {' '}
-      <Title title="이용권은 어떻게 써요?" color={true} />
+      <Title title="이용권은 어떻게 사용하나요?" color={true} />
       <VideoContainer>
         <YouTubeContainer>
           <YouTube
