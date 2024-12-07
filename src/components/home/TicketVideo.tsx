@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Title } from '../ui';
 
 const TicketVideo = () => {
-  const disabled = localStorage.getItem('disabled');
+  const disabled = localStorage.getItem('disabled') === 'true';
   return (
     <TicketVideoContainer>
       {' '}
@@ -13,7 +13,7 @@ const TicketVideo = () => {
       <VideoContainer>
         <YouTubeContainer>
           <YouTube
-            videoId={disabled ? `kGlhSM_KYA4` : `EaFcitHr8NA`}
+            videoId={disabled ? `EaFcitHr8NA` : `kGlhSM_KYA4`}
             opts={{
               width: '100%',
               height: '196px',
