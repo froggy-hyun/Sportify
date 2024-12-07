@@ -6,6 +6,7 @@ export const HeaderContainer = styled.div`
   width: 100%;
 
   height: fit-content;
+  max-width:768px;
   background-color: var(--white);
   display: flex;
   justify-content: space-between;

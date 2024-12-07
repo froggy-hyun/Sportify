@@ -18,7 +18,7 @@ export const TicketItemContainer = styled.button<TicketItemProps>`
   `};
   flex-shrink: 0;
   display: flex;
-  width: ${(props) => (props.ticket === 'trending' ? '35.3rem' : '29.2rem')};
+  width: ${(props) => (props.ticket === 'trending' ? '100%' : '29.2rem')};
   flex-direction: column;
   align-items: flex-start;
   background: var(--white);

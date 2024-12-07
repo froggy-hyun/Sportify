@@ -5,6 +5,7 @@ export const NavContainer = styled.ul`
   position: fixed;
   bottom: 0;
   width: 100%;
+  max-width:768px;
   height: fit-content;
   justify-content: space-between;
   padding: 1.6rem 2rem;

@@ -57,7 +57,7 @@ const MyPage = () => {
   };
 
   return (
-    <>
+    <S.EntireContainer>
       <Location />
 
       <S.UserInfoContainer>
@@ -87,7 +87,7 @@ const MyPage = () => {
 
         <S.Version>V.0.0.1</S.Version>
       </S.UserUtilServiceContainer>
-    </>
+    </S.EntireContainer>
   );
 };
 

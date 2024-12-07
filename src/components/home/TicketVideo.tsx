@@ -16,7 +16,7 @@ const TicketVideo = () => {
             videoId={disabled ? `EaFcitHr8NA` : `kGlhSM_KYA4`}
             opts={{
               width: '100%',
-              height: '196px',
+              height: '194px',
 
               playerVars: {
                 autoplay: 0, //자동재생 X
@@ -68,6 +68,7 @@ const YouTubeContainer = styled.div`
   iframe {
     display: block; /* iframe에 스타일 적용 */
   }
+
 `;
 
 const LinkBtn = styled(Link)`

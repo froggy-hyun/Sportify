@@ -22,7 +22,7 @@ export const Tickets = styled.div`
 `;
 
 export const EmptyMessage = styled.div`
-  width: calc(100vw - 40px);
+  width: 35.3rem;
   height: 13rem;
   border:1px dashed var(--white);
   border-radius:8px;

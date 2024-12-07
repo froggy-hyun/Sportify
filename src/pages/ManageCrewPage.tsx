@@ -34,7 +34,7 @@ const ManageCrewPage = () => {
   }, [data, setMyCrews, setMyPastCrews]);
 
   return (
-    <div>
+    <S.EntireConatiner>
       <S.MyCrewListContainer>
         <Title title="나의 이웃" color={true} />
         <S.MyCrewList>
@@ -61,7 +61,7 @@ const ManageCrewPage = () => {
           )}
         </S.PastCrewList>
       </S.PastCrewListContainer>
-    </div>
+    </S.EntireConatiner>
   );
 };
 

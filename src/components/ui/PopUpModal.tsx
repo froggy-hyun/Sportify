@@ -72,6 +72,7 @@ export const Modal = styled.div<{ $page: 'main' | 'crew' | 'address' }>`
   bottom: 0;
 
   width: 100%;
+  max-width:768px;
   z-index: 200;
   /* height: ${({ $page }) =>
     $page === 'main' ? '31.5rem' : $page === 'crew' ? '62rem' : '31.5rem'}; */

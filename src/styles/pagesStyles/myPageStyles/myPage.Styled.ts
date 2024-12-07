@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const EntireContainer = styled.div`
+  min-height: 100vh;
+`;
+
 export const UserInfoContainer = styled.div`
   width: 100%;
   padding: 4rem 2rem;

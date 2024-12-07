@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SearchContainer = styled.div`
   width: 100%;
   height: fit-content;
+  min-height: 100vh;
   align-items: center;
   padding: 2rem 2rem 6rem 2rem;
   display: flex;

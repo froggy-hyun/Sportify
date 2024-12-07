@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const EntireConatiner= styled.div`
+  min-height: 100vh;
+`;
+
 export const MyCrewListContainer= styled.div`
   width: 100%;
   padding:4rem 2rem 6rem 2rem;

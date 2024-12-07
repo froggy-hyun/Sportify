@@ -46,9 +46,34 @@ time, mark, audio, video,input {
     letter-spacing: -0.025rem;
 }
 
+iframe {
+
+    @media (max-width: 1920px) { 
+        height:410px;
+    }
+
+    @media (max-width: 676px) { 
+        height:380px;
+    }
+
+    @media (max-width: 560px) { 
+        height:281px;
+    }
+
+    @media (max-width: 393px) { 
+        height:194px;
+    }
+}
+
 html {
-    background:white;
-    font-size: 62.5%; // 10px가 1rem
+    background:var(--grayBG);
+    margin:0 auto;
+    font-size: 62.5%;
+    
+    @media (min-width: 768px) { 
+        max-width:768px;
+    }
+    // 10px가 1rem
         /* @media (max-width: 768px) { // 태블릿
             font-size: 50%; // 8px
         } */
