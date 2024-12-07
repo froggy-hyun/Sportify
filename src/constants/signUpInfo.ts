@@ -4,7 +4,7 @@ export const Gender = {
 } as const;
 
 export const Disabled = {
-  "장애가 있습니다.": true,
-  "장애가 없습니다.": false,
+  "장애가 있습니다": true,
+  "장애가 없습니다": false,
 } as const;
 

@@ -61,7 +61,7 @@ const TicketDetailViewPage = () => {
                 </S.UtilInfo>
               </S.TicketData>
 
-              <Button title="신청하기" />
+              <Button title="이용권 신청하기" onClick={() => {alert('프로토타입에서는 제공하지 않는 기능입니다.')}} />
             </S.TicketDataArea>
           </>
         )}
