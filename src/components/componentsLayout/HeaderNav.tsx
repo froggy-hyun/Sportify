@@ -11,11 +11,13 @@ const HeaderNav = () => {
     (location.pathname === '/' && token) ||
     location.pathname.startsWith('/ticket') ||
     location.pathname.startsWith('/manageCrew') ||
+    location.pathname.startsWith('/addressSearch') ||
     location.pathname.startsWith('/my');
 
   useEffect(() => {
     if (HeaderNavbarPath) {
       document.body.style.margin = '5.6rem 0 8.08rem 0';
+      console.log(location.pathname)
     } else {
       document.body.style.margin = '0';
     }

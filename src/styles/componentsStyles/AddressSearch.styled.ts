@@ -20,6 +20,10 @@ export const SearchMyItem = styled.li`
   padding: 2rem 0;
   height: fit-content;
   border-bottom: solid 1px var(--grayBG);
+
+  &:first-child {
+    padding-top:0px;
+  }
 `;
 
 export const AddressNameContainer = styled.div`

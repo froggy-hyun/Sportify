@@ -36,9 +36,9 @@ function App() {
               <Route path="/my" element={<MyPage />} />
               <Route path="/" element={token ? <HomePage /> : <LoginPage />} />
               <Route path="/ticketItem/:id" element={<TicketDetailViewPage />} />
+              <Route path="/addressSearch" element={<AddressSearchPage />} />{' '}
             </Route>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/addressSearch" element={<AddressSearchPage />} />{' '}
             <Route path="/signUp" element={<SignUpPage />} />
             <Route path="/createCrew/:id" element={<CreateCrewPage />} />
           </Routes>
