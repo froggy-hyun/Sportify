@@ -48,7 +48,7 @@ const SignUpPage = () => {
 
   const onSignUpSuccess = () => {
     alert('회원가입 성공');
-    navigate('/');
+    navigate('/login');
   };
 
   const onSignUpError = (res) => {
