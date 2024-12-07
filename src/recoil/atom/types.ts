@@ -24,7 +24,7 @@ export interface NewCrewState {
   rules: string[];
   difficultyLevel: (typeof DifficultyLevelType)[keyof typeof DifficultyLevelType];
   capacity: number;
-  imageId: number;
+  imageId: number|null;
 }
 
 export interface SignUpState extends LoginState {

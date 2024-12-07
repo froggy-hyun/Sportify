@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as S from '@/styles/pagesStyles/createCrewStyles/CreateCrewPage.styled';
 
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { newCrewImgState, newCrewState } from '@/recoil/atom/newCrew';
 import { DifficultyLevelType, GenderRuleType, GoalType } from '@/constants/newCrew';
 
@@ -19,8 +19,16 @@ const CreateCrewPage = () => {
   const [newCrew, setNewCrew] = useRecoilState(newCrewState);
   const newCrewImg = useRecoilValue(newCrewImgState);
   const [waitingForImg, setWaitingForImg] = useState(false);
+  const resetNewCrew = useResetRecoilState(newCrewState); // 상태 리셋 함수
+  const resetNewCrewImg = useResetRecoilState(newCrewImgState); // 이미지 상태 리셋 함수
   const navigate = useNavigate();
   const postId = useParams().id;
+
+  useEffect(() => {
+    resetNewCrew();
+    resetNewCrewImg();
+    setWaitingForImg(false);
+  }, []);
 
   const onCreateImgSuccess = (res) => {
     const newCrewImgId = res.data.data.imageId;
@@ -28,13 +36,16 @@ const CreateCrewPage = () => {
       ...prev,
       imageId: newCrewImgId,
     }));
+
+    newCrewMutation.mutate({
+      newCrewInfo: {
+        ...newCrew,
+        imageId: newCrewImgId,
+      },
+      sportVoucherId: Number(postId),
+    });
   };
-  // 감지 후 mutate 실행
-  useEffect(() => {
-    if (newCrew.imageId) {
-      newCrewMutation.mutate({ newCrewInfo: newCrew, sportVoucherId: Number(postId) });
-    }
-  }, [newCrew.imageId]); // imageId 변경 시 실행
+
   const onCreateSuccess = (res) => {
     alert('크루 생성 성공');
     navigate('/');

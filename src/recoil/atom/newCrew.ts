@@ -12,7 +12,7 @@ export const  newCrewState = atom< NewCrewState>({
     rules: [""],
     difficultyLevel: "EVERYONE",
     capacity: 1,
-    imageId: 0
+    imageId: null
   }
 });
 
