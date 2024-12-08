@@ -1,7 +1,7 @@
 import * as S from '@/styles/componentsStyles/componentsLayoutStyles/AlertBanner.styled';
 
 // Image imports
-import alertImg from '@/assets/icon/etc/notice_Default.png';
+import alertImg from '@/assets/icon/etc/alert_Default.png';
 interface AlertBannerProps {
   title: string;
 }

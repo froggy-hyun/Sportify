@@ -13,8 +13,8 @@ export const AlertContainer = styled.div`
 `;
 
 export const AlertImg = styled.img`
-    width: 1.6rem;
-    height: auto;
+    width: 2rem;
+    height:2rem;
 `;
 
 export const AlertTitle = styled.p`
