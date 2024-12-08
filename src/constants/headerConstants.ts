@@ -6,5 +6,4 @@ export const headerConstants: Record<string, string> = {
   "/ticketItem": "이용권 상세페이지",
   "/crewItem": "크루 상세페이지",
   "/my": "마이페이지",
-  
 };

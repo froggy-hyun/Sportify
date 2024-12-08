@@ -17,7 +17,7 @@ const Header = () => {
 
   const classifyPath = (path: string): string => {
     if (path.startsWith('/ticketItem')) return headerConstants['/ticketItem'];
-    if (path.startsWith('/crewItem')) return headerConstants['/crewItem'];
+    if (path.startsWith('/crewItem')) return headerConstants[`/crewItem`];
     return headerConstants[location.pathname];
   };
 

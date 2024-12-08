@@ -20,7 +20,7 @@ const MyNeighbors = () => {
       <S.MyNeighbors>
         {' '}
         {myCrewsData && myCrewsData.length > 0 ? (
-          myCrewsData.map((crew, idx) => <MyNeighborItem key={idx} title={crew.crewName}/>)
+          myCrewsData.map((crew, idx) => <MyNeighborItem key={idx} title={crew.crewName} onClick={() => navigate(`/crewItem/${crew.crewId}`, { state: { crew } })}/>)
         ) : (
           <S.NoneData>현재 나만의 운동 이웃이 없습니다.</S.NoneData>
         )}

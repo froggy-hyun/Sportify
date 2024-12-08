@@ -55,7 +55,7 @@ const CrewDetailPage = () => {
       <AlertBanner title={'공지사항이 없습니다.'} />
       <S.CrewDetailInfoContainer>
         <S.CrewListTitleContainer>
-          <Title title="내 이웃 목록" color={true} />
+          <Title title={crew.crewName} color={true} />
           <S.CrewCount>{`${crew.numberOfParticipants}/${crew.crewCapacity}`}</S.CrewCount>
         </S.CrewListTitleContainer>
         <S.CrewListContainer>
