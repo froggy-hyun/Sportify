@@ -20,6 +20,6 @@ export const GenderRuleType = {
 export const DifficultyLevelType = {
   "초급": "BEGINNER",
   "중급": "INTERMEDIATE",
-  "고급": "ADVANCE",
+  "고급": "ADVANCED",
   "자유": "EVERYONE",
 } as const;
