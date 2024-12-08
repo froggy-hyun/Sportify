@@ -18,7 +18,7 @@ import { BaseInput, Divide, Title } from '@/components/ui';
 const CreateCrewPage = () => {
   const [newCrew, setNewCrew] = useRecoilState(newCrewState);
   const newCrewImg = useRecoilValue(newCrewImgState);
-  const [waitingForImg, setWaitingForImg] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const resetNewCrew = useResetRecoilState(newCrewState); // 상태 리셋 함수
   const resetNewCrewImg = useResetRecoilState(newCrewImgState); // 이미지 상태 리셋 함수
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ const CreateCrewPage = () => {
   useEffect(() => {
     resetNewCrew();
     resetNewCrewImg();
-    setWaitingForImg(false);
   }, []);
 
   const onCreateImgSuccess = (res) => {
@@ -59,6 +58,9 @@ const CreateCrewPage = () => {
   const { mutation: newCrewImgMutation } = useGenericMutation({
     mutationFn: crewImgApi,
     onSuccessCb: onCreateImgSuccess,
+    onErrorCb: () => {
+      alert('이미지 업로드에 실패했습니다.');
+    },
   });
 
   const { mutation: newCrewMutation } = useGenericMutation({
@@ -74,19 +76,25 @@ const CreateCrewPage = () => {
     }));
   };
 
-  useEffect(() => {
-    if (waitingForImg && newCrewImg) {
-      newCrewImgMutation.mutate(newCrewImg);
-      setWaitingForImg(false);
-    }
-  }, [newCrewImg]);
-
   const onSubmitHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    // 이미지가 업로드 중일 경우 처리 방지
+    if (isUploading) {
+      alert('이미지 업로드가 진행 중입니다. 잠시만 기다려주세요.');
+      return;
+    }
+
     if (newCrewImg) {
       newCrewImgMutation.mutate(newCrewImg);
     } else {
-      setWaitingForImg(true);
+      newCrewMutation.mutate({
+        newCrewInfo: {
+          ...newCrew,
+          imageId: null,
+        },
+        sportVoucherId: Number(postId),
+      });
     }
   };
   return (
@@ -101,7 +109,7 @@ const CreateCrewPage = () => {
           onChange={(e) => handleChange(e.target?.value)}
         />
         <S.InfoTitle>대표 이미지</S.InfoTitle>
-        <ImageUpload />
+        <ImageUpload setIsUploading={setIsUploading} />
       </S.CrewInfoContainer>
       <Divide />
       <S.CrewInfoContainer>
