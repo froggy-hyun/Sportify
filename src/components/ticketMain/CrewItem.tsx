@@ -2,6 +2,7 @@ import * as S from '@/styles/pagesStyles/ticketStyles/CrewItem.styled';
 import { DeatilTicketCrewListProps } from '@/types/ticket';
 
 import CapacityIcon from '@/assets/icon/navigation/마이_DeActive.png';
+import CrewImage_Null from '@/assets/icon/etc/crewImage_Null.png';
 
 const CrewItem = ({
   crews,
@@ -10,9 +11,12 @@ const CrewItem = ({
   crews: DeatilTicketCrewListProps;
   onClick: () => void;
 }) => {
+
+  const imageUrl = crews.imageUrl ?? CrewImage_Null;
+
   return (
     <S.CrewItemContainer onClick={onClick}>
-      <S.Image src={crews.imageUrl} />
+      <S.Image src={imageUrl} />
       <S.InfoArea>
         <S.Info>
           <S.Difficulty>{crews.difficultyLevel}</S.Difficulty>
