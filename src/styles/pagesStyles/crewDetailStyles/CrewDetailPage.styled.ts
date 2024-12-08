@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const CrewDetailContainer = styled.div`
   width: 100%;
+
   height: fit-content;
   min-height: 100vh;
   display: flex;
@@ -39,11 +40,13 @@ export const CrewListContainer = styled.div`
 
 export const BtnContainer = styled.div`
   width:100%;
+  max-width:768px;
   padding:0 2rem;
   display: flex;
   justify-content: space-between;
 
   position:fixed;
   bottom:4rem;
-  left:0;
+  left:50%;
+  transform:translateX(-50%);
 `;
