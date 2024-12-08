@@ -38,7 +38,7 @@ const ManageCrewPage = () => {
   return (
     <S.EntireConatiner>
       <S.MyCrewListContainer>
-        <Title title="나의 이웃" color={true} />
+        <Title title="나의 이웃 모임" color={true} />
         <S.MyCrewList>
           {myCrews && myCrews.length > 0 ? (
             myCrews.map((crew) => (
@@ -52,13 +52,13 @@ const ManageCrewPage = () => {
             <S.NoneData>현재 나만의 운동 이웃이 없습니다.</S.NoneData>
           )}
         </S.MyCrewList>
-        <Button title="이웃 추가하기"></Button>
+        <Button title="새로운 모임 찾아보기" onClick={() => {navigate('/ticket')}}></Button>
       </S.MyCrewListContainer>
 
       <Divide />
 
       <S.PastCrewListContainer>
-        <Title title="과거의 나의 이웃" color={true}>
+        <Title title="과거의 나의 이웃 모임" color={true}>
           <S.FilterIcon src={FilterIcon} />
         </Title>
         <S.PastCrewList>
