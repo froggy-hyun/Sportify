@@ -1,5 +1,5 @@
-## SPORTIFY : 2024년 국민체육진흥공단 공공데이터활용 경진대회
-<img src="https://private-user-images.githubusercontent.com/74394344/391340237-6b6dc69f-e6ea-4b16-bfab-147b4f22c848.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzMwNjQ2NDMsIm5iZiI6MTczMzA2NDM0MywicGF0aCI6Ii83NDM5NDM0NC8zOTEzNDAyMzctNmI2ZGM2OWYtZTZlYS00YjE2LWJmYWItMTQ3YjRmMjJjODQ4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEyMDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMjAxVDE0NDU0M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU1YTM3YjJlMjk0ZDNmNTRlM2FkYzkyMTAyMmNiMDM0MTljNGZiYzRkYjBkMTBlMmFhMWI5ZjdmMTE1OWU0NzYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.jVFVpbQeOebqVzVnjcdPW9alHdhZRjRSEGwIyOw8bVQ" alt="461shots_so" style="max-width: 100%;">
+## 2024년 국민체육진흥공단 공공데이터활용 경진대회 수상작 [장려상 4위]
+![1 (1)](https://github.com/user-attachments/assets/6c3bf130-05ee-4f83-8e9d-880fd775c12f)
 
 ## Architecture
 <img width="683" alt="스크린샷 2024-12-01 오후 11 28 05" src="https://github.com/user-attachments/assets/9aea9637-2453-466b-adeb-734a89c21dab">
