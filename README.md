@@ -1,3 +1,6 @@
+## Service Link
+https://sportify.co.kr
+
 ## 2024년 국민체육진흥공단 공공데이터활용 경진대회 수상작 [장려상 4위]
 ![1 (1)](https://github.com/user-attachments/assets/6c3bf130-05ee-4f83-8e9d-880fd775c12f)
 ![20](https://github.com/user-attachments/assets/b68bef1a-7e17-4166-a56a-a223555b6fd3)
@@ -8,8 +11,12 @@
 ![34](https://github.com/user-attachments/assets/5a2353e6-fbac-43cd-a5e5-af6ac7916f87)
 ![35](https://github.com/user-attachments/assets/bb26b124-1ad9-4630-b257-264617d3af28)
 
+## 개발 기간
+
+#### 11/4 ~ 12/8
+
 ## Architecture
-<img width="683" alt="스크린샷 2024-12-01 오후 11 28 05" src="https://github.com/user-attachments/assets/9aea9637-2453-466b-adeb-734a89c21dab">
+![25](https://github.com/user-attachments/assets/fcc1be08-f308-4f3e-8355-7ad34b66d90e)
 
 ## Team
 
