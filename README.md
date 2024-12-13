@@ -11,29 +11,6 @@
     </thead>
     <tbody>
     <tr>
-        <th>사진</th>
-        <td width="100" align="center">
-            <a href="https://github.com/songhaechan">
-                
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/jihye9549">
-                <img src="https://private-user-images.githubusercontent.com/74394344/391338572-58fb742e-d54e-433c-b77a-ba147aaf86b9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzMwNjM3MjYsIm5iZiI6MTczMzA2MzQyNiwicGF0aCI6Ii83NDM5NDM0NC8zOTEzMzg1NzItNThmYjc0MmUtZDU0ZS00MzNjLWI3N2EtYmExNDdhYWY4NmI5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEyMDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMjAxVDE0MzAyNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTE2M2NhMzVmMzU3Zjk5N2ViNTk3Y2Q4NDAwOTYyMmE2M2RjZGVjMDcyZWE1NDYwZmJmMDdkNGM4OTNjZDVkYmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.JbGitN4uGjXdUCr5RTySuTPW0gdrASTcWjyityGvQms" width="150" height="150">
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/froggy-hyun">
-                                <img src="https://private-user-images.githubusercontent.com/74394344/391338570-7da4b28e-cd10-49bb-87a8-e9b8b430566d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzMwNjM3MjYsIm5iZiI6MTczMzA2MzQyNiwicGF0aCI6Ii83NDM5NDM0NC8zOTEzMzg1NzAtN2RhNGIyOGUtY2QxMC00OWJiLTg3YTgtZTliOGI0MzA1NjZkLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEyMDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMjAxVDE0MzAyNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTU3MGQyM2VkMDQ1MjNlYWY0NmNjNzVhNDk5Y2NkZmFlNjVhZjFlZjQ1MmE2ZWEyNTc1YWRiODI0MzA3ZDZlMWMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.DlGWmvYjm17rkncUk6vrMpGd1UhpABKHk_gczCUSVxA" width="150" height="150">
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/76Dosu">
-                <img src="https://private-user-images.githubusercontent.com/74394344/391338574-b28e5438-528e-47aa-9576-d7a646907109.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzMwNjM3MjYsIm5iZiI6MTczMzA2MzQyNiwicGF0aCI6Ii83NDM5NDM0NC8zOTEzMzg1NzQtYjI4ZTU0MzgtNTI4ZS00N2FhLTk1NzYtZDdhNjQ2OTA3MTA5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEyMDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMjAxVDE0MzAyNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTU1Y2E0NzMxMmQwNzlmMDAyMGNmYzMwODQxNmFiMjE4ZGJhNzdiMTJiMGVlOTI0ZWY0OTIzODA2YmQwM2RiMDkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.SSHjCDzHlnJAmUNK9kkmBoqsqRuXJJ3SS4qCK5px950" width="150" height="150">
-            </a>
-        </td>
-    </tr>
-    <tr>
         <th>이름</th>
         <td width="100" align="center">송해찬</td>
         <td width="100" align="center">구지혜</td>
