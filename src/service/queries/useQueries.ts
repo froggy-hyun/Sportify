@@ -29,7 +29,9 @@ export const useQueries = (
     results.forEach((result, i) => {
       const key = apiKeys[i]; // 현재 API의 키
 
+      console.log(result)
       if (result.status === "fulfilled"){
+        const response = result.value;
         resultList.push([key, response.data]);
       }
       else if(result.status === 'rejected') {

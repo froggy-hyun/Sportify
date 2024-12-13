@@ -48,6 +48,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       const tredingData = data.trendingTickets.data.popularVouchers;
       const myCrewData = data.myNeighbors.data.myCrews;
       const activityData = [
