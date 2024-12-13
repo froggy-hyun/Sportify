@@ -11,7 +11,7 @@ export const useQueries = (
   queryOptions? : {},
   params?: any[]
 ) => {
-  const [errorCode, setErrorCode] = useState<number[]>([]);
+  const [errorCode, setErrorCode] = useState<any[]>([]);
 
   const fetchQueries = async () => {
     const apiKeys = Object.keys(apis);
@@ -24,21 +24,16 @@ export const useQueries = (
     );
 
     const resultList: [string, any][] = [];
-    const errorCodes: number[] = [];
+    const errorCodes: any[] = [];
 
     results.forEach((result, i) => {
       const key = apiKeys[i]; // 현재 API의 키
 
-      if (result.status === "fulfilled") {
-        const response = result.value;
-        if (response.data?.code) {
-          errorCodes.push(response.data.code);
-        } else {
-          resultList.push([key, response.data]);
-        }
-      } else {
-        console.error(`Error fetching ${key}:`, result.reason);
-      
+      if (result.status === "fulfilled"){
+        resultList.push([key, response.data]);
+      }
+      else if(result.status === 'rejected') {
+        errorCodes.push(result.reason?.response); 
       }
     });
 

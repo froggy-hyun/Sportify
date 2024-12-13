@@ -15,6 +15,7 @@ import HomePopUp from '@/components/home/HomePopUp';
 import { modalState } from '@/recoil/atom/addressModal';
 import { TicketVideo, TrendingChart } from '@/components/home';
 import { trendingPastState } from '@/recoil/atom/trendingPast';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const setTrending = useSetRecoilState(trendingTicketsState);
@@ -22,6 +23,7 @@ const HomePage = () => {
   const setActivity = useSetRecoilState(activityTicketsState);
   const setTrendingPast = useSetRecoilState(trendingPastState);
 
+  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
 
   // const HOME_VISITED = Number(localStorage.getItem('homeVisited'));
@@ -37,6 +39,12 @@ const HomePage = () => {
     { staleTime: 5 * 60 * 1000, cacheTime: 10 * 60 * 1000 }, // queryOptions
     [null, null, null]
   );
+
+  if (errorCode[0]?.data?.code === 400) {
+    alert('로그인이 만료되었습니다. 다시 로그인 해주세요.');
+    navigate('/login');
+    location.reload();
+  }
 
   useEffect(() => {
     if (data) {
