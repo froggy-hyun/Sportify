@@ -34,7 +34,7 @@ public class SecurityConfig {
         "/api/v3/api-docs/**",
         "/api/swagger-ui/**",
         "/api/members/logout",
-        "/actuator/**"
+        "/api/actuator/**"
     };
     private final String[] anonymousUrl = {"/api/members/login","/api/members/logout","/api"
         + "/members/register"};
