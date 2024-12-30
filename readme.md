@@ -1,19 +1,19 @@
 # Sportfy (2024년 국민체육진흥공단 공공데이터활용 경진대회 수상작 [장려상 4위])
 
 ## 👉  목차  
-1. [🗂️ 프로젝트](#-프로젝트)  
-   - [🔗 Service Link](#-Service-Link)
-   - [👥 Team](#-Team)
+1. [📃 프로젝트](#-프로젝트)  
+   - [🔗 Service Link](#-service-link)
+   - [👥 Team](#-team)
    - [👨‍💻 개발 기간](#-개발-기간)
    - [🌟 프로젝트 소개](#-프로젝트-소개)
 2. [🤜 협업](#-협업)
-   - [✨ Frontend&Design](#-Frontend&Design)
-   - [⚙️ Backend](#-Backend)
+   - [✨ Frontend & Design](#-frontend--design)
+   - [🛠 Backend](#-backend)
 4. [🎯 대회 개요](#-대회-개요)
 <br>
 <br>
 
-## 🗂️ 프로젝트
+## 📃 프로젝트
 
 ### 🔗 Service Link
 https://sportify.co.kr
@@ -94,14 +94,14 @@ https://sportify.co.kr
 
 ## 🤜 협업
 
-### ✨ Frontend&Design
+### ✨ Frontend & Design
 개발 리포지토리 : https://github.com/TUK-SPORTIFY/sportify-frontend
 - Architecture
 ![25](https://github.com/user-attachments/assets/3eb4015d-5350-4d42-ab57-51f9eae0bdb5)
 <br>
 <br>
 
-### ⚙️ Backend
+### 🛠 Backend
 개발 리포지토리 : https://github.com/TUK-SPORTIFY/sportify-backend
 - Architecture
 ![25](https://github.com/user-attachments/assets/fcc1be08-f308-4f3e-8355-7ad34b66d90e)
