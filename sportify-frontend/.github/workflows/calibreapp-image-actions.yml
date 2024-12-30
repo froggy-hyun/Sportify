@@ -1,0 +1,16 @@
+name: Compress images
+on:
+  pull_request:
+    branches:
+      - main # main 브랜치에 PR 올릴 시 실행
+jobs:
+  build:
+    name: calibreapp/image-actions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@main
+      - name: Compress Images
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
