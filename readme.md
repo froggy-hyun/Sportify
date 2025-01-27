@@ -100,7 +100,7 @@ https://sportify.co.kr
 
 ### ✨ Frontend & Design
 개발 리포지토리 : https://github.com/TUK-SPORTIFY/sportify-frontend
-- Architecture
+- Tech Stack
 ![25](https://github.com/user-attachments/assets/3eb4015d-5350-4d42-ab57-51f9eae0bdb5)
 <br>
 <br>
